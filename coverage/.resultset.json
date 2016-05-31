@@ -1,0 +1,123 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/evanlouden/side_projects/scheduler/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/jobs/application_job.rb": [
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/account.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/application_record.rb": [
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/availability.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/contact.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/inquiry.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/instrument.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/evanlouden/side_projects/scheduler/app/models/student.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1464734324
+  }
+}

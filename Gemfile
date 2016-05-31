@@ -11,6 +11,13 @@ gem 'devise', '4.0.0.rc2'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'coveralls', require: false
+  gem 'database_cleaner'
+  gem 'rspec-rails', '3.5.0.beta1'
+  gem 'capybara'
+  gem 'shoulda'
+  gem 'valid_attribute'
+  gem 'launchy'
 end
 
 group :development do
