@@ -23,7 +23,10 @@ class DeviseCreateAccounts < ActiveRecord::Migration
       t.string :address, null: false
       t.string :city, null: false
       t.string :state, null: false
-      t.string :zip, null: false 
+      t.string :zip, null: false
+
+      t.boolean :admin, default: false
+      t.boolean :teacher, default: false
 
       ## Confirmable
       # t.string   :confirmation_token

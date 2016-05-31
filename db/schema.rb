@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525193541) do
+ActiveRecord::Schema.define(version: 20160531195520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,4 +36,34 @@ ActiveRecord::Schema.define(version: 20160525193541) do
     t.index ["email"], name: "index_accounts_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   end
+
+  create_table "availabilities", force: :cascade do |t|
+    t.string  "day",        null: false
+    t.string  "start",      null: false
+    t.string  "end",        null: false
+    t.integer "inquiry_id", null: false
+    t.index ["inquiry_id"], name: "index_availabilities_on_inquiry_id", using: :btree
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string  "first_name", null: false
+    t.string  "last_name",  null: false
+    t.string  "email",      null: false
+    t.string  "phone",      null: false
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_contacts_on_account_id", using: :btree
+  end
+
+  create_table "inquiries", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.string  "instrument", null: false
+    t.index ["student_id"], name: "index_inquiries_on_student_id", using: :btree
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name",  null: false
+    t.date   "dob",        null: false
+  end
+
 end
