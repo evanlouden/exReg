@@ -9,7 +9,7 @@ class Availability < ActiveRecord::Base
     "Thursday",
     "Friday",
     "Saturday"
-    ].freeze
+  ].freeze
 
   validates :inquiry_id, presence: true
   validates :day, presence: true
