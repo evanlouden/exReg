@@ -1,67 +1,42 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/evanlouden/side_projects/scheduler/app/helpers/application_helper.rb": [
+      "/Users/Tommy/Desktop/exReg/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/channels/application_cable/channel.rb": [
+      "/Users/Tommy/Desktop/exReg/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/channels/application_cable/connection.rb": [
+      "/Users/Tommy/Desktop/exReg/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/controllers/application_controller.rb": [
+      "/Users/Tommy/Desktop/exReg/app/controllers/application_controller.rb": [
         0,
         0,
         0,
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/jobs/application_job.rb": [
+      "/Users/Tommy/Desktop/exReg/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/mailers/application_mailer.rb": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/account.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+      "/Users/Tommy/Desktop/exReg/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/application_record.rb": [
-        0,
-        0,
-        0
-      ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/availability.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
+      "/Users/Tommy/Desktop/exReg/app/models/account.rb": [
         0,
         0,
         0,
@@ -76,7 +51,21 @@
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/contact.rb": [
+      "/Users/Tommy/Desktop/exReg/app/models/application_record.rb": [
+        0,
+        0,
+        0
+      ],
+      "/Users/Tommy/Desktop/exReg/app/models/availability.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -87,17 +76,8 @@
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/inquiry.rb": [
+      "/Users/Tommy/Desktop/exReg/app/models/contact.rb": [
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/instrument.rb": [
         0,
         0,
         0,
@@ -107,7 +87,27 @@
         0,
         0
       ],
-      "/Users/evanlouden/side_projects/scheduler/app/models/student.rb": [
+      "/Users/Tommy/Desktop/exReg/app/models/inquiry.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/Tommy/Desktop/exReg/app/models/instrument.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/Tommy/Desktop/exReg/app/models/student.rb": [
         0,
         0,
         0,
@@ -118,6 +118,6 @@
         0
       ]
     },
-    "timestamp": 1464736867
+    "timestamp": 1464735107
   }
 }
