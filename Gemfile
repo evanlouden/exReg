@@ -17,13 +17,14 @@ group :development, :test do
   gem 'shoulda'
   gem 'valid_attribute'
   gem 'launchy'
+  gem 'pry-rails'
 end
 
 group :development do
   gem 'web-console'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
