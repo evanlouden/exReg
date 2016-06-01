@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
-  belongs_to :account
+  belongs_to :account, optional: true
 
   validates :first_name, presence: true
   validates :last_name, presence: true

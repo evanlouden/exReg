@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :accounts
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :accounts, controllers: { registrations: "registrations" }
+
   root to: "welcome#index"
+
+  resources :students, only: [:new, :create] do
+    resources :inquiries, only: [:new, :create]
+  end
+
+  resources :contacts, only: [:new, :create]
 end
