@@ -1,10 +1,16 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_account!
+
   def new
     @student = Student.new
     @inquiry = @student.inquiries.build
+    7.times { @inquiry.availabilities.build }
+    @availabilities = @student.inquiries.last.availabilities
+    @days = Availability::DAYS
   end
 
   def create
+    @days = Availability::DAYS
     @student = Student.new(student_params)
     if @student.save
       flash[:notice] = "Inquiry Submitted"
@@ -22,7 +28,8 @@ class StudentsController < ApplicationController
       :first_name,
       :last_name,
       :dob,
-      inquiries_attributes: [:instrument, :student_id]
+      inquiries_attributes: [:instrument, :student_id,
+        availabilities_attributes: [:day, :start, :end]]
     ).merge(account_id: current_account.id)
   end
 end

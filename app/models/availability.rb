@@ -1,5 +1,5 @@
 class Availability < ActiveRecord::Base
-  belongs_to :inquiry
+  belongs_to :inquiry, optional: true
 
   DAYS = [
     "Sunday",
@@ -11,8 +11,8 @@ class Availability < ActiveRecord::Base
     "Saturday"
   ].freeze
 
-  validates :inquiry_id, presence: true
-  validates :day, presence: true
-  validates :start, presence: true
-  validates :end, presence: true
+  # validates :inquiry_id, presence: true
+  # validates :day, presence: true
+  # validates :start, presence: true
+  # validates :end, presence: true
 end
