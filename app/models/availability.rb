@@ -11,8 +11,7 @@ class Availability < ActiveRecord::Base
     "Saturday"
   ].freeze
 
-  # validates :inquiry_id, presence: true
-  # validates :day, presence: true
-  # validates :start, presence: true
-  # validates :end, presence: true
+  validates :start, presence: true
+  validates :end, presence: true
+  validates :checked, inclusion: { in: ["0", "1"] } 
 end

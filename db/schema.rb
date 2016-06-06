@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160531203831) do
   end
 
   create_table "availabilities", force: :cascade do |t|
+    t.string  "checked",    null: false
     t.string  "day",        null: false
     t.string  "start",      null: false
     t.string  "end",        null: false

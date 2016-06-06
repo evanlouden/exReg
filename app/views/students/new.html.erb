@@ -19,17 +19,18 @@
     <%= f.fields_for :inquiries do |inquiry| %>
       <%= inquiry.label :instrument %>
       <%= inquiry.text_field :instrument %>
-      <% @availabilities.each_with_index do |day, index| %>
+      <% @availabilities.each do |day| %>
         <div class="field">
           <%= inquiry.fields_for :availabilities, day do |a| %>
-            <%= a.label @days[index] %>
-            <%= a.text_field :day %>
+            <%= a.check_box :checked %>
+            <%= a.label day.day %>
+            <%= a.hidden_field :day %>
             <%= a.label :start %>
             <%= a.text_field :start %>
             <%= a.label :end %>
             <%= a.text_field :end %>
+          <% end %>
         </div>
-        <% end %>
       <% end %>
     <% end %>
   </div>

@@ -4,14 +4,22 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @inquiry = @student.inquiries.build
-    7.times { @inquiry.availabilities.build }
-    @availabilities = @student.inquiries.last.availabilities
     @days = Availability::DAYS
+    @days.each do |item|
+      @inquiry.availabilities.build(day: item)
+    end
+    @availabilities = @student.inquiries.last.availabilities
   end
 
   def create
-    @days = Availability::DAYS
     @student = Student.new(student_params)
+    @days = Availability::DAYS
+    @availabilities = @student.inquiries.last.availabilities
+    @availabilities.each do |day|
+      if day.checked == "0"
+        day.delete
+      end
+    end
     if @student.save
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
@@ -29,7 +37,7 @@ class StudentsController < ApplicationController
       :last_name,
       :dob,
       inquiries_attributes: [:instrument, :student_id,
-        availabilities_attributes: [:day, :start, :end]]
+        availabilities_attributes: [:checked, :day, :start, :end]]
     ).merge(account_id: current_account.id)
   end
 end
