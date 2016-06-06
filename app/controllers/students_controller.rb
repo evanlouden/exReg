@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+class StudentsController < HelperController
   before_action :authenticate_account!
 
   def new
@@ -15,11 +15,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
     @days = Availability::DAYS
     @availabilities = @student.inquiries.last.availabilities
-    @availabilities.each do |day|
-      if day.checked == "0"
-        day.delete
-      end
-    end
+    checkbox_verify(@availabilities)
     if @student.save
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path

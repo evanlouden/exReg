@@ -13,5 +13,5 @@ class Availability < ActiveRecord::Base
 
   validates :start, presence: true
   validates :end, presence: true
-  validates :checked, inclusion: { in: ["0", "1"] } 
+  validates :checked, inclusion: { in: ["0", "1"] }
 end
