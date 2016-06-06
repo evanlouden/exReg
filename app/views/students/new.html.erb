@@ -1,4 +1,5 @@
 <%= form_for @student do |f| %>
+
   <div class= "field">
     <%= f.label :first_name, "First Name" %>
     <%= f.text_field :first_name %>
@@ -15,9 +16,22 @@
   </div>
 
   <div class= "field">
-    <%= f.fields_for :inquiries do |i| %>
-      <%= i.label :instrument %>
-      <%= i.text_field :instrument %>
+    <%= f.fields_for :inquiries do |inquiry| %>
+      <%= inquiry.label :instrument %>
+      <%= inquiry.text_field :instrument %>
+      <% @availabilities.each do |day| %>
+        <div class="field">
+          <%= inquiry.fields_for :availabilities, day do |a| %>
+            <%= a.check_box :checked %>
+            <%= a.label day.day %>
+            <%= a.hidden_field :day %>
+            <%= a.label :start %>
+            <%= a.text_field :start %>
+            <%= a.label :end %>
+            <%= a.text_field :end %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
