@@ -4,5 +4,5 @@ class Inquiry < ActiveRecord::Base
   accepts_nested_attributes_for :availabilities
   validates_associated :availabilities
 
-  validates :instrument, presence: {message: "cannot be blank"}
+  validates :instrument, presence: { message: "cannot be blank" }
 end
