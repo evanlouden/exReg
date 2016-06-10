@@ -21,7 +21,7 @@ class StudentsController < HelperController
       redirect_to dashboard_index_path
     else
       flash[:alert] = @student.errors.full_messages.join(". ")
-      render :new
+      render new_student_path
     end
   end
 
@@ -32,7 +32,7 @@ class StudentsController < HelperController
       :first_name,
       :last_name,
       :dob,
-      inquiries_attributes: [:instrument, :student_id,
+      inquiries_attributes: [:instrument, :student_id, :notes,
         availabilities_attributes: [:checked, :day, :start, :end]]
     ).merge(account_id: current_account.id)
   end

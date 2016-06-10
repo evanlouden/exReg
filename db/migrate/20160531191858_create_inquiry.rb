@@ -3,6 +3,7 @@ class CreateInquiry < ActiveRecord::Migration[5.0]
     create_table :inquiries do |t|
       t.belongs_to :student, null: false
       t.string :instrument, null: false
+      t.text :notes
     end
   end
 end
