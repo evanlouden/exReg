@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160531203831) do
   create_table "inquiries", force: :cascade do |t|
     t.integer "student_id", null: false
     t.string  "instrument", null: false
+    t.text    "notes"
     t.index ["student_id"], name: "index_inquiries_on_student_id", using: :btree
   end
 
