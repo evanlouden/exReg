@@ -1,3 +1,5 @@
+<h4>Student Inquiry</h4>
+
 <%= form_for @student do |f| %>
 
   <div class= "field">
@@ -32,12 +34,12 @@
           <% end %>
         </div>
       <% end %>
-      <%= inquiry.label :notes %>
+      <%= inquiry.label :notes, "Additional Notes" %>
       <%= inquiry.text_area :notes %>
     <% end %>
   </div>
 
   <div class= "actions">
-    <%= f.submit "Send Inquiry" %>
+    <%= f.submit "Submit Inquiry" %>
   </div>
 <% end %>
