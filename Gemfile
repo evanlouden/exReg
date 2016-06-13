@@ -18,6 +18,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'launchy'
   gem 'pry-rails'
+  gem 'factory_girl_rails', "~> 4.0"
 end
 
 group :development do

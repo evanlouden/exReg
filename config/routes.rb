@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   devise_for :accounts, controllers: { registrations: "registrations" }
 
-  root to: "welcome#index"
+  unauthenticated :account do
+    root to: "welcome#index", as: "unauthenticated_root"
+  end
+
+  authenticated :account do
+    root to: "dashboard#index", as: "authenticated_root"
+  end
 
   resources :students, only: [:new, :create] do
     resources :inquiries, only: [:new, :create]
