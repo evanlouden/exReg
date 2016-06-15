@@ -48,14 +48,27 @@
         1,
         null,
         1,
-        22,
+        24,
         null,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/controllers/dashboard_controller.rb": [
         1,
         1,
+        6,
         null,
+        null
+      ],
+      "/Users/anthonydegennaro/challenges/exReg/app/models/student.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/controllers/registrations_controller.rb": [
@@ -72,23 +85,28 @@
         1,
         null,
         1,
+        2,
+        2,
+        2,
+        2,
+        14,
+        null,
+        2,
+        null,
+        null,
+        1,
         1,
         1,
         1,
         1,
-        7,
+        null,
+        null,
+        null,
+        null,
         null,
         1,
-        null,
-        null,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
         null,
         0,
         0,
@@ -104,31 +122,20 @@
         null,
         null,
         null,
-        0,
+        1,
         null,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/controllers/helper_controller.rb": [
         1,
         1,
-        0,
+        8,
         null,
-        null
-      ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/student.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
         null,
-        1,
-        1,
-        1,
-        1,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/models/inquiry.rb": [
+        1,
         1,
         1,
         1,
@@ -157,9 +164,9 @@
         1,
         null,
         1,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
         null,
         null
       ],
@@ -192,6 +199,6 @@
         0
       ]
     },
-    "timestamp": 1465783995
+    "timestamp": 1465961000
   }
 }

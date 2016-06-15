@@ -24,13 +24,15 @@
       <% @availabilities.each do |day| %>
         <div class="field">
           <%= inquiry.fields_for :availabilities, day do |a| %>
-            <%= a.check_box :checked %>
-            <%= a.label day.day %>
-            <%= a.hidden_field :day %>
-            <%= a.label :start %>
-            <%= a.time_field :start %>
-            <%= a.label :end %>
-            <%= a.time_field :end %>
+            <div id ="<%= day.day %>">
+              <%= a.check_box :checked %>
+              <%= a.label day.day %>
+              <%= a.hidden_field :day %>
+              <%= a.label :start %>
+              <%= a.time_field :start %>
+              <%= a.label :end %>
+              <%= a.time_field :end %>
+            </div>
           <% end %>
         </div>
       <% end %>
