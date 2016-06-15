@@ -16,11 +16,6 @@ class StudentsController < HelperController
     @days = Availability::DAYS
     @availabilities = @student.inquiries.last.availabilities
     checkbox_verify(@availabilities)
-    # @availabilities.each do |item|
-    #   if item.checked == "0" || item.invalid_time?
-    #     item.destroy
-    #   end
-    # end
     if @student.save
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
