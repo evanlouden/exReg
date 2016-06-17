@@ -60,17 +60,17 @@ feature "user submits new student inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  scenario "existing user does not specify availability times" do
-    click_link "New Inquiry"
-    fill_in "First Name", with: "John"
-    fill_in "Last Name", with: "Doe"
-    fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
-    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
-    click_button "Submit Inquiry"
-
-    expect(page).to have_content("can't be blank")
-    expect(page).to have_content("Student Inquiry")
-    expect(page).to_not have_content("Dashboard")
-  end
+  # scenario "existing user does not specify availability times" do
+  #   click_link "New Inquiry"
+  #   fill_in "First Name", with: "John"
+  #   fill_in "Last Name", with: "Doe"
+  #   fill_in "Date of Birth", with: "2000/05/13"
+  #   fill_in "Instrument", with: "Guitar"
+  #   find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+  #   click_button "Submit Inquiry"
+  #
+  #   expect(page).to have_content("can't be blank")
+  #   expect(page).to have_content("Student Inquiry")
+  #   expect(page).to_not have_content("Dashboard")
+  # end
 end
