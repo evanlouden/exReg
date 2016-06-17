@@ -1,4 +1,4 @@
-class Inquiry < ActiveRecord::Base
+class Inquiry < ApplicationRecord
   has_many :availabilities
   belongs_to :student, optional: true
   accepts_nested_attributes_for :availabilities

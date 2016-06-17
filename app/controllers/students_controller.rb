@@ -13,10 +13,11 @@ class StudentsController < HelperController
 
   def create
     @student = Student.new(student_params)
-    @days = Availability::DAYS
     @availabilities = @student.inquiries.last.availabilities
-    # checkbox_verify(@availabilities)
-    if @student.save
+    if any_selected?(@availabilities) && @student.valid?
+      flash[:alert] = "Please select at least one day of availability"
+      render :new
+    elsif @student.save
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
     else
@@ -27,24 +28,22 @@ class StudentsController < HelperController
 
   def edit
     @student = Student.find(params[:id])
-    @days = Availability::DAYS
     @availabilities = @student.inquiries.last.availabilities
   end
 
   def update
-    # @game = Game.find(params[:id])
-    # @states = Game::STATES
-    # if @game.update(game_params) && !@game.team_phone.empty?
-    #   @game.text("edited", @game, true)
-    #   flash[:notice] = "Game Updated"
-    #   redirect_to games_path
-    # elsif @game.update(game_params) && @game.team_phone.empty?
-    #   flash[:notice] = "Game Updated"
-    #   redirect_to games_path
-    # else
-    #   flash[:alert] = @game.errors.full_messages.join('. ')
-    #   render :edit
-    # end
+    @student = Student.find(params[:id])
+    @availabilities = @student.inquiries.last.availabilities
+    if any_selected?(@availabilities) && @student.valid?
+      flash[:alert] = "Please select at least one day of availability"
+      render :edit
+    elsif @student.update(student_params)
+      flash[:notice] = "Inquiry Updated"
+      redirect_to dashboard_index_path
+    else
+      flash[:alert] = @student.errors.full_messages.join(". ")
+      render :edit
+    end
   end
 
   private
@@ -54,8 +53,8 @@ class StudentsController < HelperController
       :first_name,
       :last_name,
       :dob,
-      inquiries_attributes: [:instrument, :student_id, :notes,
-        availabilities_attributes: [:checked, :day, :start, :end]]
+      inquiries_attributes: [:id, :instrument, :student_id, :notes,
+        availabilities_attributes: [:id, :checked, :day, :start, :end]]
     ).merge(account_id: current_account.id)
   end
 end

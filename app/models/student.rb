@@ -1,4 +1,4 @@
-class Student < ActiveRecord::Base
+class Student < ApplicationRecord
   belongs_to :account
   has_many :inquiries
   accepts_nested_attributes_for :inquiries
