@@ -1,0 +1,47 @@
+<h4>Student Inquiry</h4>
+
+<%= form_for @student do |f| %>
+
+  <div class= "field">
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class= "field">
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class= "field">
+    <%= f.label :dob, "Date of Birth" %>
+    <%= f.date_field :dob %>
+  </div>
+
+  <div class= "field">
+    <%= f.fields_for :inquiries do |inquiry| %>
+      <%= inquiry.label :instrument %>
+      <%= inquiry.text_field :instrument %>
+      <% @availabilities.each do |day| %>
+        <div class="field">
+          <%= inquiry.fields_for :availabilities, day do |a| %>
+            <div id ="<%= day.day %>">
+              <%= a.check_box :checked %>
+              <%= a.label day.day %>
+              <%= a.hidden_field :day %>
+              <%= a.label :start %>
+              <%= a.time_field :start %>
+              <%= a.label :end %>
+              <%= a.time_field :end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= inquiry.label :notes, "Additional Notes" %>
+      <%= inquiry.text_area :notes %>
+    <% end %>
+  </div>
+
+  <div class= "actions">
+    <%= f.submit "Submit Inquiry" %>
+  </div>
+<% end %>

@@ -15,7 +15,7 @@ class StudentsController < HelperController
     @student = Student.new(student_params)
     @days = Availability::DAYS
     @availabilities = @student.inquiries.last.availabilities
-    checkbox_verify(@availabilities)
+    # checkbox_verify(@availabilities)
     if @student.save
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
@@ -23,6 +23,28 @@ class StudentsController < HelperController
       flash[:alert] = @student.errors.full_messages.join(". ")
       render new_student_path
     end
+  end
+
+  def edit
+    @student = Student.find(params[:id])
+    @days = Availability::DAYS
+    @availabilities = @student.inquiries.last.availabilities
+  end
+
+  def update
+    # @game = Game.find(params[:id])
+    # @states = Game::STATES
+    # if @game.update(game_params) && !@game.team_phone.empty?
+    #   @game.text("edited", @game, true)
+    #   flash[:notice] = "Game Updated"
+    #   redirect_to games_path
+    # elsif @game.update(game_params) && @game.team_phone.empty?
+    #   flash[:notice] = "Game Updated"
+    #   redirect_to games_path
+    # else
+    #   flash[:alert] = @game.errors.full_messages.join('. ')
+    #   render :edit
+    # end
   end
 
   private
