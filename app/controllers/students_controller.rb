@@ -21,7 +21,7 @@ class StudentsController < HelperController
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
     else
-      flash[:alert] = @student.errors.full_messages.join(". ")
+      flash[:alert] = @student.errors.full_messages.join(", ")
       render new_student_path
     end
   end
@@ -41,7 +41,7 @@ class StudentsController < HelperController
       flash[:notice] = "Inquiry Updated"
       redirect_to dashboard_index_path
     else
-      flash[:alert] = @student.errors.full_messages.join(". ")
+      flash[:alert] = @student.errors.full_messages.join(", ")
       render :edit
     end
   end

@@ -5,5 +5,5 @@ class Inquiry < ApplicationRecord
   validates_associated :availabilities, on: :save
   validates_associated :student
 
-  validates :instrument, presence: { message: "cannot be blank" }
+  validates :instrument, presence: true
 end
