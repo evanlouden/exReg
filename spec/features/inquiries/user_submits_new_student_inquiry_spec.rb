@@ -30,7 +30,7 @@ feature "user submits new student inquiry" do
     expect(page).to have_content("John Doe - Guitar")
   end
 
-  scenario "existing user optionally adds notes" do
+  scenario "existing user optionally adds notes to inquiry" do
     click_link "New Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
@@ -60,17 +60,50 @@ feature "user submits new student inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  # scenario "existing user does not specify availability times" do
-  #   click_link "New Inquiry"
-  #   fill_in "First Name", with: "John"
-  #   fill_in "Last Name", with: "Doe"
-  #   fill_in "Date of Birth", with: "2000/05/13"
-  #   fill_in "Instrument", with: "Guitar"
-  #   find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
-  #   click_button "Submit Inquiry"
-  #
-  #   expect(page).to have_content("can't be blank")
-  #   expect(page).to have_content("Student Inquiry")
-  #   expect(page).to_not have_content("Dashboard")
-  # end
+  scenario "existing user does not specify availability" do
+    click_link "New Inquiry"
+    fill_in "First Name", with: "John"
+    fill_in "Last Name", with: "Doe"
+    fill_in "Date of Birth", with: "2000/05/13"
+    fill_in "Instrument", with: "Guitar"
+    click_button "Submit Inquiry"
+
+    expect(page).to have_content("Please select at least one day of availability")
+    expect(page).to have_content("Student Inquiry")
+    expect(page).to_not have_content("Dashboard")
+  end
+
+  scenario "existing user does not specify availability times" do
+    click_link "New Inquiry"
+    fill_in "First Name", with: "John"
+    fill_in "Last Name", with: "Doe"
+    fill_in "Date of Birth", with: "2000/05/13"
+    fill_in "Instrument", with: "Guitar"
+    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    click_button "Submit Inquiry"
+
+    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("Student Inquiry")
+    expect(page).to_not have_content("Dashboard")
+  end
+
+  scenario "existing user selects invalid availability times" do
+    click_link "New Inquiry"
+    fill_in "First Name", with: "John"
+    fill_in "Last Name", with: "Doe"
+    fill_in "Date of Birth", with: "2000/05/13"
+    fill_in "Instrument", with: "Guitar"
+    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    within(:css, "#Sunday") do
+      fill_in "Start", with: "9:00 PM"
+    end
+    within(:css, "#Sunday") do
+      fill_in "End", with: "4:00 PM"
+    end
+    click_button "Submit Inquiry"
+
+    expect(page).to have_content("must be later than start time")
+    expect(page).to have_content("Student Inquiry")
+    expect(page).to_not have_content("Dashboard")
+  end
 end

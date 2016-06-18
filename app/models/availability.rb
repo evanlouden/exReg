@@ -12,8 +12,8 @@ class Availability < ApplicationRecord
   ].freeze
 
   validate :valid_time?
-  validates :start, presence: true, if: :checked?
-  validates :end, presence: true, if: :checked?
+  validates :start_time, presence: true, if: :checked?
+  validates :end_time, presence: true, if: :checked?
   validates :checked, inclusion: { in: ["0", "1"] }
 
   private
@@ -23,10 +23,10 @@ class Availability < ApplicationRecord
   end
 
   def valid_time?
-    return if self.end.blank? || self.start.blank?
+    return if self.end_time.blank? || self.start_time.blank?
 
-    if self.end < self.start
-      errors.add(:end, "must be later than start time")
+    if self.end_time < self.start_time
+      errors.add(:end_time, "must be later than start time")
     end
   end
 end

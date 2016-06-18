@@ -54,7 +54,7 @@ class StudentsController < HelperController
       :last_name,
       :dob,
       inquiries_attributes: [:id, :instrument, :student_id, :notes,
-        availabilities_attributes: [:id, :checked, :day, :start, :end]]
+        availabilities_attributes: [:id, :checked, :day, :start_time, :end_time]]
     ).merge(account_id: current_account.id)
   end
 end
