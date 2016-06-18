@@ -3,8 +3,8 @@ class CreateAvailability < ActiveRecord::Migration[5.0]
     create_table :availabilities do |t|
       t.string :checked, null: false
       t.string :day, null: false
-      t.string :start, null: false
-      t.string :end, null: false
+      t.time :start_time
+      t.time :end_time
       t.belongs_to :inquiry, null: false
     end
   end

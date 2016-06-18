@@ -23,5 +23,7 @@ en:
   activerecord:
     attributes:
       inquiries:
-        availabilities: "Your availability"
         instrument: "Instrument"
+      inquiries/availabilities:
+        start_time: "Start time"
+        end_time: "End time"

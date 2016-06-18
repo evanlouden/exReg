@@ -1,4 +1,4 @@
-class Contact < ActiveRecord::Base
+class Contact < ApplicationRecord
   belongs_to :account, optional: true
 
   validates :first_name, presence: true

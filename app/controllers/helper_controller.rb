@@ -1,5 +1,8 @@
 class HelperController < ApplicationController
-  def checkbox_verify(array)
-    array.map { |item| item.delete if item.checked == "0" || item.invalid_time? }
+  def any_selected?(array)
+    array.each do |a|
+      return false if a.checked == "1"
+    end
+    return true
   end
 end

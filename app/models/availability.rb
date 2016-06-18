@@ -1,4 +1,4 @@
-class Availability < ActiveRecord::Base
+class Availability < ApplicationRecord
   belongs_to :inquiry, optional: true
 
   DAYS = [
@@ -11,13 +11,22 @@ class Availability < ActiveRecord::Base
     "Saturday"
   ].freeze
 
-  validates :start, presence: true
-  validates :end, presence: true
+  validate :valid_time?
+  validates :start_time, presence: true, if: :checked?
+  validates :end_time, presence: true, if: :checked?
   validates :checked, inclusion: { in: ["0", "1"] }
 
-  def invalid_time?
-    start_time = self.start.gsub(":", "").to_i
-    end_time = self.end.gsub(":", "").to_i
-    end_time < start_time
+  private
+
+  def checked?
+    self.checked == "1"
+  end
+
+  def valid_time?
+    return if self.end_time.blank? || self.start_time.blank?
+
+    if self.end_time < self.start_time
+      errors.add(:end_time, "must be later than start time")
+    end
   end
 end

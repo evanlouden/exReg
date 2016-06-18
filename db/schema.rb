@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20160531203831) do
   create_table "availabilities", force: :cascade do |t|
     t.string  "checked",    null: false
     t.string  "day",        null: false
-    t.string  "start",      null: false
-    t.string  "end",        null: false
+    t.time    "start_time"
+    t.time    "end_time"
     t.integer "inquiry_id", null: false
     t.index ["inquiry_id"], name: "index_availabilities_on_inquiry_id", using: :btree
   end
