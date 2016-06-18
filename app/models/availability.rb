@@ -25,7 +25,7 @@ class Availability < ApplicationRecord
   def valid_time?
     return if self.end_time.blank? || self.start_time.blank?
 
-    if self.end_time < self.start_time
+    if self.end_time < self.start_time && self.checked == "1"
       errors.add(:end_time, "must be later than start time")
     end
   end

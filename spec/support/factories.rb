@@ -18,6 +18,10 @@ FactoryGirl.define do
 
   factory :inquiry do
     instrument "Guitar"
+    student
+    before(:create) do |inquiry|
+      inquiry.availabilities << FactoryGirl.build(:availability)
+    end
   end
 
   factory :availability do

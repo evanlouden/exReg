@@ -1,10 +1,9 @@
 require "rails_helper"
 
-feature "user submits new student inquiry" do
-  let!(:sunday) { FactoryGirl.create(:availability, inquiry: inquiry1) }
-  let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
-  let!(:student1) { FactoryGirl.create(:student, account: user1) }
+feature "user edits student inquiry" do
   let!(:user1) { FactoryGirl.create(:account) }
+  let!(:student1) { FactoryGirl.create(:student, account: user1) }
+  let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -18,7 +17,7 @@ feature "user submits new student inquiry" do
     click_link "Edit"
     fill_in "Instrument", with: "Piano"
     within(:css, "#Sunday") do
-      fill_in "Start", with: "6:00 PM"
+      fill_in "Start", with: "5:00 PM"
     end
     click_button "Update Inquiry"
 
@@ -51,14 +50,14 @@ feature "user submits new student inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  # scenario "existing user does not specify availability" do
-  #   visit dashboard_index_path
-  #   click_link "Edit"
-  #   find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(false)
-  #   click_button "Update Inquiry"
-  #
-  #   expect(page).to have_content("Please select at least one day of availability")
-  #   expect(page).to have_content("Student Inquiry")
-  #   expect(page).to_not have_content("Dashboard")
-  # end
+  scenario "existing user does not specify availability" do
+    visit dashboard_index_path
+    click_link "Edit"
+    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(false)
+    click_button "Update Inquiry"
+
+    expect(page).to have_content("Please select at least one day of availability")
+    expect(page).to have_content("Student Inquiry")
+    expect(page).to_not have_content("Dashboard")
+  end
 end

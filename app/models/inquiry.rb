@@ -6,4 +6,16 @@ class Inquiry < ApplicationRecord
   validates_associated :student
 
   validates :instrument, presence: true
+  validate :no_availability?
+
+  private
+
+  def no_availability?
+    self.availabilities.each do |a|
+      if a.checked == "1"
+        return false
+      end
+    end
+    errors.add(:availability, "Please select at least one day of availability")
+  end
 end

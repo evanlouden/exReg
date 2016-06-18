@@ -14,10 +14,7 @@ class StudentsController < HelperController
   def create
     @student = Student.new(student_params)
     @availabilities = @student.inquiries.last.availabilities
-    if any_selected?(@availabilities) && @student.valid?
-      flash[:alert] = "Please select at least one day of availability"
-      render :new
-    elsif @student.save
+    if @student.save
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
     else
@@ -34,10 +31,7 @@ class StudentsController < HelperController
   def update
     @student = Student.find(params[:id])
     @availabilities = @student.inquiries.last.availabilities
-    if any_selected?(@availabilities) && @student.valid?
-      flash[:alert] = "Please select at least one day of availability"
-      render :edit
-    elsif @student.update(student_params)
+    if @student.update(student_params)
       flash[:notice] = "Inquiry Updated"
       redirect_to dashboard_index_path
     else
