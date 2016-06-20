@@ -41,16 +41,16 @@ class StudentsController < HelperController
   end
 
   def destroy
-  @student = Student.find(params[:id])
-  if !current_account.students.include?(@student)
-    flash[:notice] = 'You are not authorized to delete this student'
-    redirect_to dashboard_index_path and return
-  else
-    @student.destroy
-    flash[:notice] = "Student and inquiry deleted"
-    redirect_to dashboard_index_path
+    @student = Student.find(params[:id])
+    if !current_account.students.include?(@student)
+      flash[:notice] = 'You are not authorized to delete this student'
+      redirect_to dashboard_index_path and return
+    else
+      @student.destroy
+      flash[:notice] = "Student and inquiry deleted"
+      redirect_to dashboard_index_path
+    end
   end
-end
 
   private
 
