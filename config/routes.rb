@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     root to: "dashboard#index", as: "authenticated_root"
   end
 
-  resources :students, only: [:new, :create, :edit, :update] do
-    resources :inquiries, only: [:new, :create, :edit, :update]
+  resources :students do
+    resources :inquiries
   end
 
   resources :contacts, only: [:new, :create]

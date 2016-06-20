@@ -14,7 +14,7 @@ feature "user edits student inquiry" do
   end
   scenario "existing user successfully edits inquiry form" do
     visit dashboard_index_path
-    click_link "Edit"
+    click_link "Edit Inquiry"
     fill_in "Instrument", with: "Piano"
     within(:css, "#Sunday") do
       fill_in "Start", with: "5:00 PM"
@@ -28,7 +28,7 @@ feature "user edits student inquiry" do
 
   scenario "existing user does not specify required information" do
     visit dashboard_index_path
-    click_link "Edit"
+    click_link "Edit Inquiry"
     fill_in "First Name", with: ""
     click_button "Update Inquiry"
 
@@ -39,7 +39,7 @@ feature "user edits student inquiry" do
 
   scenario "existing user selects invalid availability times" do
     visit dashboard_index_path
-    click_link "Edit"
+    click_link "Edit Inquiry"
     within(:css, "#Sunday") do
       fill_in "Start", with: "11:00 PM"
     end
@@ -52,7 +52,7 @@ feature "user edits student inquiry" do
 
   scenario "existing user does not specify availability" do
     visit dashboard_index_path
-    click_link "Edit"
+    click_link "Edit Inquiry"
     find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(false)
     click_button "Update Inquiry"
 

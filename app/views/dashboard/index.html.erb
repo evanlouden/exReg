@@ -4,5 +4,7 @@
 
 <h3> Current Inquiries </h3>
 <% @students.each do |student| %>
-  <%= student.first_name %> <%= student.last_name %> - <%= student.inquiries.last.instrument %> <%= link_to "Edit", edit_student_path(student) %></br>
+  <%= student.first_name %> <%= student.last_name %> - <%= student.inquiries.last.instrument %>
+  <%= link_to "Edit Inquiry", edit_student_path(student) %>
+  <%= link_to "Delete Student", student_path(student), method: :delete %></br>
 <% end %>
