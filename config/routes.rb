@@ -15,4 +15,10 @@ Rails.application.routes.draw do
 
   resources :contacts, only: [:new, :create]
   resources :dashboard, only: [:index]
+  resources :admin do
+    member do
+      patch :change
+      patch :complete
+    end
+  end
 end

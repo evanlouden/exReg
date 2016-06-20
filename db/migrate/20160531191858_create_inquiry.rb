@@ -4,6 +4,7 @@ class CreateInquiry < ActiveRecord::Migration[5.0]
       t.belongs_to :student, null: false
       t.string :instrument, null: false
       t.text :notes
+      t.boolean :completed, default: false
     end
   end
 end
