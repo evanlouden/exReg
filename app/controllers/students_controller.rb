@@ -1,4 +1,4 @@
-class StudentsController < HelperController
+class StudentsController < PermissionsController
   before_action :authenticate_account!
 
   def new
@@ -23,6 +23,11 @@ class StudentsController < HelperController
     end
   end
 
+  def show
+    @student = Student.find(params[:id])
+    @inquiries = @student.inquiries.where(completed: false)
+  end
+
   def edit
     @student = Student.find(params[:id])
     @availabilities = @student.inquiries.last.availabilities
@@ -32,6 +37,7 @@ class StudentsController < HelperController
     @student = Student.find(params[:id])
     @availabilities = @student.inquiries.last.availabilities
     if @student.update(student_params)
+      clear_times(@availabilities)
       flash[:notice] = "Inquiry Updated"
       redirect_to dashboard_index_path
     else

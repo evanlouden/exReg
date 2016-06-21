@@ -1,0 +1,24 @@
+<h1>
+  <%= @student.first_name %>
+  <%= @student.last_name %>
+</h1>
+
+<% @inquiries.each do |inquiry| %>
+  <%= inquiry.instrument %>
+  <br/>
+  Availability
+  <ul>
+    <% inquiry.availabilities.each do |availability| %>
+      <% unless availability.checked == "0" %>
+        <li>
+          <%= availability.day %>:
+          <%= availability.start_time.strftime("%I:%M %p") %>
+          -
+          <%= availability.end_time.strftime("%I:%M %p") %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "Dashboard", admin_index_path %>
