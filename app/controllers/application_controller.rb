@@ -4,12 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def after_sign_in_path_for(resources)
-    if current_account.admin
-      admin_index_path
-    else
-      dashboard_index_path
-    end
+  def after_sign_in_path_for(_resources)
+    current_account.admin ? admin_index_path : dashboard_index_path
   end
 
   private

@@ -27,13 +27,7 @@ class AdminController < PermissionsController
 
   def change
     @teacher = Account.find(params[:id])
-    if @teacher.admin
-      @teacher.update_attribute(:admin, false)
-      @teacher.save
-    else
-      @teacher.update_attribute(:admin, true)
-      @teacher.save
-    end
+    @teacher.admin ? @teacher.update_attribute(:admin, false) : @teacher.update_attribute(:admin, true)
     redirect_to admin_index_path
   end
 
@@ -47,6 +41,17 @@ class AdminController < PermissionsController
   private
 
   def account_params
-    params.require(:account).permit(:email, :password, :password_confirmation, :remember_me, :address, :city, :state, :zip, :admin, :teacher, :id)
+    params.require(:account).permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :remember_me,
+      :address,
+      :city,
+      :state,
+      :zip,
+      :admin,
+      :teacher,
+      :id)
   end
 end
