@@ -15,6 +15,7 @@ class StudentsController < PermissionsController
     @student = Student.new(student_params)
     @availabilities = @student.inquiries.last.availabilities
     if @student.save
+      clear_times(@availabilities)
       flash[:notice] = "Inquiry Submitted"
       redirect_to dashboard_index_path
     else
@@ -25,20 +26,17 @@ class StudentsController < PermissionsController
 
   def show
     @student = Student.find(params[:id])
-    @inquiries = @student.inquiries.where(completed: false)
+    @inquiries = @student.inquiries
   end
 
   def edit
     @student = Student.find(params[:id])
-    @availabilities = @student.inquiries.last.availabilities
   end
 
   def update
     @student = Student.find(params[:id])
-    @availabilities = @student.inquiries.last.availabilities
     if @student.update(student_params)
-      clear_times(@availabilities)
-      flash[:notice] = "Inquiry Updated"
+      flash[:notice] = "Student Updated"
       redirect_to dashboard_index_path
     else
       flash[:alert] = @student.errors.full_messages.join(", ")

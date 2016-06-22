@@ -6,6 +6,7 @@ class AdminController < PermissionsController
     @teachers = Account.where(teacher: true).order(email: :desc)
     @admins = Account.where(admin: true).order(email: :desc)
     @inquiries = Inquiry.all.where(completed: false)
+    @students = Student.all
   end
 
   def new

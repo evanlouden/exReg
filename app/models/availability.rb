@@ -12,6 +12,7 @@ class Availability < ApplicationRecord
   ].freeze
 
   validate :valid_time?
+  validate :min_time?
   validates :start_time, presence: true, if: :checked?
   validates :end_time, presence: true, if: :checked?
   validates :checked, inclusion: { in: ["0", "1"] }
@@ -28,5 +29,11 @@ class Availability < ApplicationRecord
     if self.end_time < self.start_time && self.checked == "1"
       errors.add(:end_time, "must be later than start time")
     end
+  end
+
+  def min_time?
+    return if self.end_time.blank? || self.start_time.blank?
+
+    errors.add(:availability, "Availability must be at least 30 minutes") if (self.end_time - self.start_time)/ 60 < 30 && self.checked == "1"
   end
 end

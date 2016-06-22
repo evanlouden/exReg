@@ -24,11 +24,17 @@
 <h3>Inquiries:</h3>
 <div id="admin-inquiries">
   <ul>
-    <% @inquiries.each do |inquiry| %>
-      <li>
-        <%= link_to "#{inquiry.student.first_name} #{inquiry.student.last_name}", student_path(inquiry.student) %> - <%= inquiry.instrument %>
-        <%= link_to "Mark Completed", complete_admin_path(inquiry), method: :patch, data: { confirm: "Mark inquiry as completed?" } %>
-      </li>
+    <% @students.each do |student| %>
+    <li>
+      <%= link_to "#{student.first_name} #{student.last_name}", student_path(student) %>
+      <ul>
+      <% student.inquiries.where(completed: false).each do |inquiry| %>
+        <li>
+          <%= inquiry.instrument %> - <%= link_to "Mark Completed", complete_admin_path(inquiry), method: :patch, data: { confirm: "Mark inquiry as completed?" } %>
+        </li>
+      <% end %>
+      </ul>
+    </li></br>
     <% end %>
   </ul>
 </div>
