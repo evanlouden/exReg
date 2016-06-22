@@ -1,26 +1,34 @@
 <h1>Admin Dashboard</h1>
 
+<%= link_to "Add Teacher", new_admin_path %></br>
+
 <h3>Teachers:</h3>
-<% @teachers.each do |teacher| %>
-  <p> <%= teacher.email %> </p>
-  <% if teacher.admin %>
-    <p> <%= link_to "Remove admin status", change_admin_path(teacher), method: :patch %> </p>
-  <% else %>
-    <p> <%= link_to "Make admin", change_admin_path(teacher), method: :patch %> </p>
+<div id="admin-teachers">
+  <% @teachers.each do |teacher| %>
+    <p> <%= teacher.email %> </p>
+    <% if teacher.admin %>
+      <p> <%= link_to "Revoke Admin", change_admin_path(teacher), method: :patch %> </p>
+    <% else %>
+      <p> <%= link_to "Make Admin", change_admin_path(teacher), method: :patch %> </p>
     <% end %>
-<% end %>
-
-<h3>Admins</h3>
-<% @admins.each do |teacher| %>
-  <p> <%= teacher.email %> </p>
-<% end %>
-
-<h3>Inquiries</h3>
-<ul>
-  <% @inquiries.each do |inquiry| %>
-    <li>
-      <%= link_to "#{inquiry.student.first_name} #{inquiry.student.last_name}", student_path(inquiry.student) %> - <%= inquiry.instrument %>
-      <%= link_to "Mark Completed", complete_admin_path(inquiry), method: :patch, data: { confirm: "Mark inquiry as completed?" } %>
-    </li>
   <% end %>
-</ul>
+</div>
+
+<h3>Admins:</h3>
+<div id="admin-admins">
+  <% @admins.each do |teacher| %>
+    <p> <%= teacher.email %> </p>
+  <% end %>
+</div>
+
+<h3>Inquiries:</h3>
+<div id="admin-inquiries">
+  <ul>
+    <% @inquiries.each do |inquiry| %>
+      <li>
+        <%= link_to "#{inquiry.student.first_name} #{inquiry.student.last_name}", student_path(inquiry.student) %> - <%= inquiry.instrument %>
+        <%= link_to "Mark Completed", complete_admin_path(inquiry), method: :patch, data: { confirm: "Mark inquiry as completed?" } %>
+      </li>
+    <% end %>
+  </ul>
+</div>
