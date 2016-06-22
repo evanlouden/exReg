@@ -1,9 +1,10 @@
+<h1>New Teacher Account</h1>
+
 <%= form_for @account, url: admin_index_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
-  
   <div class="field">
     <%= f.label :address %><br />
     <%= f.text_field :address %>
@@ -21,15 +22,21 @@
     <%= f.text_field :zip %>
   </div>
   <div class="field">
-    <%= f.check_box :admin, {}, "true", "false" %>
-    <%= f.label :admin %>
+    <div id="admin-checkbox"
+      <%= f.check_box :admin, {}, "true", "false" %>
+      <%= f.label :admin %>
+    </div>
   </div>
   <div class="field">
-    <%= f.check_box :teacher, {}, "true", "false" %>
-    <%= f.label :teacher %>
+    <div id="teacher-checkbox">
+      <%= f.check_box :teacher, {}, "true", "false" %>
+      <%= f.label :teacher %>
+    </div>
   </div>
 
   <div class="actions">
     <%= f.submit "Create Account" %>
   </div>
 <% end %>
+
+<%= link_to "Cancel", admin_index_path %>

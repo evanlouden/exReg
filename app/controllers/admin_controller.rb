@@ -17,7 +17,7 @@ class AdminController < PermissionsController
     password = Devise.friendly_token(10)
     @account.password = password
     if @account.save
-      flash[:notice] = "Account created successfully #{password}"
+      flash[:notice] = "Account created #{password}"
       redirect_to admin_index_path
     else
       flash[:error] = @account.errors.full_messages.join(', ')
@@ -51,7 +51,7 @@ class AdminController < PermissionsController
       :state,
       :zip,
       :admin,
-      :teacher,
-      :id)
+      :teacher
+    )
   end
 end
