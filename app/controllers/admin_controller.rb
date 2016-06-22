@@ -52,6 +52,6 @@ class AdminController < PermissionsController
       :zip,
       :admin,
       :teacher
-      )
+    )
   end
 end
