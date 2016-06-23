@@ -37,4 +37,21 @@ feature "user signs up" do
     expect(page).to have_content("doesn't match")
     expect(page).to_not have_content("Sign Out")
   end
+
+  scenario "does not specify valid zip code" do
+    visit unauthenticated_root_path
+    click_link "Sign Up"
+    fill_in "Email", with: "user99@user.com"
+    fill_in "Password", with: "password"
+    fill_in "Password Confirmation", with: "password"
+    fill_in "Address", with: "100 Main Street"
+    fill_in "City", with: "Boston"
+    fill_in "State", with: "MA"
+    fill_in "Zip", with: "abc"
+    click_button "Sign Up"
+
+    expect(page).to have_content("Zip is not a number")
+    expect(page).to have_content("Zip is the wrong length")
+    expect(page).to_not have_content("Sign Out")
+  end
 end

@@ -16,8 +16,10 @@ feature "admin marks inquiry completed" do
   scenario "successfully marks completed" do
     click_link "Mark Completed"
 
-    expect(page).to_not have_content(student1.first_name)
-    expect(page).to_not have_content(student1.last_name)
     expect(page).to_not have_content("Mark Completed")
+
+    click_link "#{student1.first_name} #{student1.last_name}"
+
+    expect(page).to have_content("#{inquiry1.instrument} - Completed")
   end
 end
