@@ -13,9 +13,7 @@ class Inquiry < ApplicationRecord
 
   def no_availability?
     self.availabilities.each do |a|
-      if a.checked == "1"
-        return false
-      end
+      return false if a.checked == "1"
     end
     errors.add(:availability, "Please select at least one day of availability")
   end

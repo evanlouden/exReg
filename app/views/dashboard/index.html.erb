@@ -1,10 +1,30 @@
 <h2> Dashboard </h2>
 
-<%= link_to 'New Inquiry', new_student_path %>
+<%= link_to 'New Student & Inquiry', new_student_path %>
 
-<h3> Current Inquiries </h3>
+
+<h3> Open Inquiries </h3>
 <% @students.each do |student| %>
-  <%= student.first_name %> <%= student.last_name %> - <%= student.inquiries.last.instrument %>
-  <%= link_to "Edit Inquiry", edit_student_path(student) %>
-  <%= link_to "Delete Student", student_path(student), method: :delete %></br>
+  <%= student.first_name %> <%= student.last_name %></br>
+  <p>
+    <% student.inquiries.where(completed: false).each do |inquiry| %>
+      Instrument: <%= inquiry.instrument %> -
+      <%= link_to "Edit Inquiry", edit_inquiry_path(inquiry) %></br>
+    <% end %>
+  </p>
+  <p>
+    <%= link_to "New Inquiry for #{student.first_name}", new_inquiry_path(student: student.id) %></br>
+    <%= link_to "Edit Student", edit_student_path(student) %></br>
+    <%= link_to "Delete Student", student_path(student), method: :delete %></br>
+  </p>
+<% end %>
+
+<h3>Contacts</h3>
+<%= link_to "Add Contact", new_contact_path %></br>
+<% @contacts.each do |contact| %>
+  <p>
+    <%= contact.first_name %> <%= contact.last_name %> </br>
+    <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
+    <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
+  </p>
 <% end %>

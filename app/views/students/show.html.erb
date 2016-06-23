@@ -4,7 +4,7 @@
 </h1>
 
 <% @inquiries.each do |inquiry| %>
-  <%= inquiry.instrument %>
+  <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %>
   <br/>
   Availability
   <ul>

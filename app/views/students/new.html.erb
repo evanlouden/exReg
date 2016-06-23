@@ -1,4 +1,4 @@
-<h4>Student Inquiry</h4>
+<h4>New Student Inquiry</h4>
 
 <%= form_for @student do |f| %>
 
@@ -16,6 +16,7 @@
     <%= f.label :dob, "Date of Birth" %>
     <%= f.date_field :dob %>
   </div>
+
 
   <div class= "field">
     <%= f.fields_for :inquiries do |inquiry| %>
@@ -45,3 +46,5 @@
     <%= f.submit "Submit Inquiry" %>
   </div>
 <% end %>
+
+<%= link_to "Cancel", dashboard_index_path %>
