@@ -1,6 +1,6 @@
 class InquiriesController < PermissionsController
   before_action :authenticate_account!
-  
+
   def new
     @student = Student.find(params[:student])
     @inquiry = @student.inquiries.build

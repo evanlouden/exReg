@@ -1,5 +1,4 @@
 class ContactsController < PermissionsController
-
   def new
     @contact = Contact.new
   end
@@ -43,6 +42,7 @@ class ContactsController < PermissionsController
   end
 
   private
+
   def contact_params
     params.require(:contact).permit(
       :first_name,
