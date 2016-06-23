@@ -22,9 +22,11 @@
 <h3>Contacts</h3>
 <%= link_to "Add Contact", new_contact_path %></br>
 <% @contacts.each do |contact| %>
-  <p>
-    <%= contact.first_name %> <%= contact.last_name %> </br>
-    <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
-    <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
-  </p>
+  <div id="contact-<%= contact.first_name %>">
+    <p>
+      <%= contact.first_name %> <%= contact.last_name %> </br>
+      <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
+      <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
+    </p>
+  </div>
 <% end %>
