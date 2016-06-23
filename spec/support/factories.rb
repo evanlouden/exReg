@@ -30,4 +30,12 @@ FactoryGirl.define do
     start_time "2000-01-01 20:00:00 UTC"
     end_time "2000-01-01 22:00:00 UTC"
   end
+
+  factory :contact do
+    first_name "Sandra"
+    last_name "Doe"
+    sequence(:email) { |n| "user#{n}@example.com" }
+    phone "9785551212"
+    account
+  end
 end

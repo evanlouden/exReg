@@ -36,7 +36,7 @@ class ContactsController < PermissionsController
       redirect_to dashboard_index_path and return
     else
       @contact.destroy
-      flash[:notice] = "Contact removed"
+      flash[:notice] = "Contact Removed"
       redirect_to dashboard_index_path
     end
   end
