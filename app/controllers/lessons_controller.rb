@@ -1,5 +1,4 @@
 class LessonsController < PermissionsController
-  respond_to :json, :html, only: [ :new, :create ]
   def new
     @student = Student.find(params[:student])
     @lesson = @student.lessons.build
