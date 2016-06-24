@@ -24,8 +24,9 @@ class ApplicationController < ActionController::Base
         :last_name,
         :email,
         :phone,
-        :account_id]
-    ) }
+        :account_id
+      ]
+    )}
   end
 
   def clear_times(availabilities)

@@ -1,5 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-
   def new
     build_resource({})
     self.resource.contacts << Contact.new
