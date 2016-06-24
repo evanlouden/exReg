@@ -5,5 +5,4 @@ class Contact < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true
   validates :phone, presence: true
-  validates :account_id, presence: true
 end

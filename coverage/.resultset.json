@@ -12,6 +12,8 @@
         1,
         1,
         1,
+        1,
+        1,
         null,
         1,
         null,
@@ -21,6 +23,12 @@
         1,
         1,
         1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/models/application_record.rb": [
@@ -64,6 +72,22 @@
         null,
         1,
         97,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         1,
@@ -311,11 +335,21 @@
         1,
         1,
         1,
-        1,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/controllers/registrations_controller.rb": [
         1,
+        null,
+        1,
+        4,
+        4,
+        4,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null,
         1,
         null,
         1,
@@ -458,6 +492,6 @@
         0
       ]
     },
-    "timestamp": 1466725602
+    "timestamp": 1466735587
   }
 }
