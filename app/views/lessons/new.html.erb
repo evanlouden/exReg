@@ -1,0 +1,39 @@
+<h1>Register <%= @student.first_name %> <%= @student.last_name %></h1>
+
+<%= form_for @lesson do |f| %>
+  <%= f.hidden_field :student_id %>
+  <div class="field">
+    <%= f.label :tier_name, "Pricing Tier" %>
+    <%= f.select :tier_name, options_from_collection_for_select(Price.all, :id, :description) %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date, "Start Date" %>
+    <%= f.date_field :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :day %>
+    <%= f.select :day, options_for_select(@days) %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time, "Start Time" %>
+    <%= f.time_field :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :purchased %>
+    <%= f.number_field :purchased %>
+  </div>
+  <div class="field">
+    <%= f.label :instrument %>
+    <%= f.text_field :instrument %>
+  </div>
+  <div class="field">
+    <%= f.label :account_id %>
+    <%= f.select :account_id, options_from_collection_for_select(@teachers, :id, :email) %>
+  </div>
+
+  <div class= "actions">
+    <%= f.submit "Register Student" %>
+  </div>
+<% end %>
+
+<%= link_to "Cancel", admin_index_path %>

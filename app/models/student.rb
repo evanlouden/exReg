@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   belongs_to :account
   has_many :inquiries
+  has_many :lessons
   accepts_nested_attributes_for :inquiries
   before_destroy :destroy_inquiries
 

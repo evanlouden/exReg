@@ -6,7 +6,7 @@
   </br>
   <%= f.label :notes, "Additional Notes" %>
   <%= f.text_area :notes %>
-  <%= f.hidden_field :student_id%>
+  <%= f.hidden_field :student_id %>
     <% @availabilities.each do |day| %>
       <div class="field">
         <%= f.fields_for :availabilities, day do |a| %>
