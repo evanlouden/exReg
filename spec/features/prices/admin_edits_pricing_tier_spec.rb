@@ -13,6 +13,9 @@ feature "admin edits pricing tier" do
   end
   scenario "specifies valid information" do
     click_link "Pricing Tiers"
+
+    expect(page).to have_content("#{price1.tier_name}, #{price1.duration} minutes - $#{'%.2f' % price1.price}")
+
     click_link "Edit"
     fill_in "Duration (minutes)", with: "75"
     click_button "Update Pricing Tier"
