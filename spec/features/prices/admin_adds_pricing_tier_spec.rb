@@ -18,7 +18,7 @@ feature "admin adds pricing tier" do
     click_button "Create Pricing Tier"
 
     expect(page).to have_content("Pricing Tier Added")
-    expect(page).to have_content("Private Lesson, 30 minutes - $50.00")
+    expect(page).to have_content("Private Lesson: 30 min., $50.00")
   end
 
   scenario "does not specify required information" do

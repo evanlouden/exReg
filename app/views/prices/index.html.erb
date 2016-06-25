@@ -2,9 +2,7 @@
 <% if @prices %>
   <% @prices.each do |price| %>
     <p>
-      <%= price.tier_name %>,
-      <%= price.duration %> minutes -
-      $<%= '%.2f' % price.price %>
+      <%= price.description %>
       <%= link_to "Edit", edit_price_path(price) %>
       <%= link_to "Delete", price_path(price), method: :delete %>
     </p>

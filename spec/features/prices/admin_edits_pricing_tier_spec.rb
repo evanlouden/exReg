@@ -14,14 +14,14 @@ feature "admin edits pricing tier" do
   scenario "specifies valid information" do
     click_link "Pricing Tiers"
 
-    expect(page).to have_content("#{price1.tier_name}, #{price1.duration} minutes - $#{'%.2f' % price1.price}")
-
+    expect(page).to have_content("#{price1.description}")
+    
     click_link "Edit"
     fill_in "Duration (minutes)", with: "75"
     click_button "Update Pricing Tier"
 
     expect(page).to have_content("Pricing Tier Updated")
-    expect(page).to have_content("#{price1.tier_name}, 75 minutes - $#{'%.2f' % price1.price}")
+    expect(page).to have_content("#{price1.tier_name}: 75 min., $#{'%.2f' % price1.price}")
   end
 
   scenario "does not specify required information" do
