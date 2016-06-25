@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   end
   resources :inquiries
   resources :contacts
+  resources :prices
+  resources :lessons
 end

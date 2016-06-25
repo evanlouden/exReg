@@ -1,0 +1,31 @@
+<h1>Price Tiers</h1>
+<% if @prices %>
+  <% @prices.each do |price| %>
+    <p>
+      <%= price.description %>
+      <%= link_to "Edit", edit_price_path(price) %>
+      <%= link_to "Delete", price_path(price), method: :delete %>
+    </p>
+  <% end %>
+<% end %>
+
+<%= form_for @price do |f| %>
+  <div class="field">
+    <%= f.label :tier_name, "Tier Name"  %>
+    <%= f.text_field :tier_name  %>
+  </div>
+  <div class="field">
+    <%= f.label :duration, "Duration (minutes)" %>
+    <%= f.number_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class= "actions">
+    <%= f.submit "Create Pricing Tier" %>
+  </div>
+<% end %>
+
+<%= link_to "Dashboard", admin_index_path %>

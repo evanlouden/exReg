@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531203831) do
+ActiveRecord::Schema.define(version: 20160624163242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,9 +66,29 @@ ActiveRecord::Schema.define(version: 20160531203831) do
   end
 
   create_table "instruments", force: :cascade do |t|
-    t.string  "name"
-    t.integer "inquiry_id"
-    t.index ["inquiry_id"], name: "index_instruments_on_inquiry_id", using: :btree
+    t.string "name"
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string  "day",                    null: false
+    t.date    "start_date",             null: false
+    t.time    "start_time",             null: false
+    t.integer "duration",               null: false
+    t.integer "purchased",              null: false
+    t.integer "attended",   default: 0, null: false
+    t.string  "instrument",             null: false
+    t.string  "tier_name",              null: false
+    t.integer "price",                  null: false
+    t.integer "student_id",             null: false
+    t.integer "account_id",             null: false
+    t.index ["account_id"], name: "index_lessons_on_account_id", using: :btree
+    t.index ["student_id"], name: "index_lessons_on_student_id", using: :btree
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.string  "tier_name", null: false
+    t.integer "duration",  null: false
+    t.decimal "price",     null: false
   end
 
   create_table "students", force: :cascade do |t|

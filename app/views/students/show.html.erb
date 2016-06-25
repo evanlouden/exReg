@@ -16,9 +16,11 @@
           -
           <%= availability.end_time.strftime("%I:%M %p") %>
         </li>
+        <li>
+          <%= link_to "Register Student", new_lesson_path(student: @student.id) %>
+        </li>
       <% end %>
     <% end %>
   </ul>
 <% end %>
-
 <%= link_to "Dashboard", admin_index_path %>

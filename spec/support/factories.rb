@@ -38,4 +38,10 @@ FactoryGirl.define do
     phone "9785551212"
     account
   end
+
+  factory :price do
+    tier_name "Suzuki Private Lesson"
+    duration "60"
+    price "75"
+  end
 end

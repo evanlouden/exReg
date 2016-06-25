@@ -2,6 +2,7 @@ class Account < ApplicationRecord
   has_many :students
   has_many :contacts
   accepts_nested_attributes_for :contacts
+  has_many :lessons
   before_destroy :destroy_contacts
 
   devise :database_authenticatable, :registerable,
