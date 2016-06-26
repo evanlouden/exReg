@@ -32,13 +32,6 @@ class AdminController < PermissionsController
     redirect_to admin_index_path
   end
 
-  def complete
-    @inquiry = Inquiry.find(params[:id])
-    @inquiry.update_attribute(:completed, true)
-    flash[:notice] = "Inquiry marked as completed"
-    redirect_to admin_index_path
-  end
-
   private
 
   def account_params
