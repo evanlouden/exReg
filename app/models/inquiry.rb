@@ -1,5 +1,6 @@
 class Inquiry < ApplicationRecord
   has_many :availabilities
+  has_many :lessons
   belongs_to :student, optional: true
   accepts_nested_attributes_for :availabilities
   before_destroy :destroy_availabilities

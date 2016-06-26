@@ -13,9 +13,11 @@ feature "admin views student inquiry" do
     fill_in "Password", with: admin1.password
     click_button "Sign In"
   end
-  scenario "successfully marks completed" do
-    click_link "#{student1.first_name} #{student1.last_name}"
-
+  scenario "views student inquiry" do
+    within(:css, "#admin-inquiries") do
+      click_link "#{student1.first_name} #{student1.last_name}"
+    end
+    
     expect(page).to have_content(student1.first_name)
     expect(page).to have_content(student1.last_name)
     expect(page).to have_content(inquiry1.instrument)

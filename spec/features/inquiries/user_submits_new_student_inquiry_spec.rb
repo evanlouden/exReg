@@ -10,7 +10,7 @@ feature "user submits new student and inquiry" do
     fill_in "Password", with: user1.password
     click_button "Sign In"
   end
-  scenario "existing user specifies valid information" do
+  scenario "specifies valid information" do
     click_link "New Student & Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
@@ -31,7 +31,7 @@ feature "user submits new student and inquiry" do
     expect(page).to have_content("Instrument: Guitar")
   end
 
-  scenario "existing user optionally adds notes to inquiry" do
+  scenario "optionally adds notes to inquiry" do
     click_link "New Student & Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
@@ -53,7 +53,7 @@ feature "user submits new student and inquiry" do
     expect(page).to have_content("Instrument: Guitar")
   end
 
-  scenario "existing user does not specify required student information" do
+  scenario "does not specify required student information" do
     click_link "New Student & Inquiry"
     click_button "Submit Inquiry"
 
@@ -62,7 +62,7 @@ feature "user submits new student and inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  scenario "existing user does not specify availability" do
+  scenario "does not specify availability" do
     click_link "New Student & Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
@@ -75,7 +75,7 @@ feature "user submits new student and inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  scenario "existing user does not specify availability times" do
+  scenario "does not specify availability times" do
     click_link "New Student & Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
@@ -89,7 +89,7 @@ feature "user submits new student and inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  scenario "existing user selects invalid availability times" do
+  scenario "selects invalid availability times" do
     click_link "New Student & Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
@@ -109,7 +109,7 @@ feature "user submits new student and inquiry" do
     expect(page).to_not have_content("Dashboard")
   end
 
-  scenario "existing user does not specify minimum availability times" do
+  scenario "does not specify minimum availability times" do
     click_link "New Student & Inquiry"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
