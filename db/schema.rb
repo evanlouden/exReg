@@ -81,7 +81,9 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.integer "price",                  null: false
     t.integer "student_id",             null: false
     t.integer "account_id",             null: false
+    t.integer "inquiry_id",             null: false
     t.index ["account_id"], name: "index_lessons_on_account_id", using: :btree
+    t.index ["inquiry_id"], name: "index_lessons_on_inquiry_id", using: :btree
     t.index ["student_id"], name: "index_lessons_on_student_id", using: :btree
   end
 

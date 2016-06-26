@@ -41,7 +41,7 @@ FactoryGirl.define do
 
   factory :price do
     tier_name "Suzuki Private Lesson"
-    duration "60"
+    duration "45"
     price "75"
   end
 end

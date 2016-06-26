@@ -5,7 +5,7 @@ class AdminController < PermissionsController
   def index
     @teachers = Account.where(teacher: true).order(email: :desc)
     @admins = Account.where(admin: true).order(email: :desc)
-    @inquiries = Inquiry.all.where(completed: false)
+    @open_inquiries = Inquiry.all.where(completed: false)
     @students = Student.all
   end
 
@@ -29,13 +29,6 @@ class AdminController < PermissionsController
   def change
     @teacher = Account.find(params[:id])
     @teacher.admin ? @teacher.update_attribute(:admin, false) : @teacher.update_attribute(:admin, true)
-    redirect_to admin_index_path
-  end
-
-  def complete
-    @inquiry = Inquiry.find(params[:id])
-    @inquiry.update_attribute(:completed, true)
-    flash[:notice] = "Inquiry marked as completed"
     redirect_to admin_index_path
   end
 

@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   resources :admin do
     member do
       patch :change
-      patch :complete
     end
   end
   resources :inquiries

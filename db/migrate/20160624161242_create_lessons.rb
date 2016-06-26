@@ -12,6 +12,7 @@ class CreateLessons < ActiveRecord::Migration[5.0]
       t.integer :price, null: false
       t.belongs_to :student, null: false
       t.belongs_to :account, null: false
+      t.belongs_to :inquiry, null: false
     end
   end
 end

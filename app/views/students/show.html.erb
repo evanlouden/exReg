@@ -16,10 +16,12 @@
           -
           <%= availability.end_time.strftime("%I:%M %p") %>
         </li>
-        <li>
-          <%= link_to "Register Student", new_lesson_path(student: @student.id) %>
-        </li>
       <% end %>
+    <% end %>
+    <% if inquiry.completed == false %>
+      <li>
+        <%= link_to "Register Student", new_lesson_path(student: @student.id, inquiry: inquiry.id) %>
+      </li>
     <% end %>
   </ul>
 <% end %>
