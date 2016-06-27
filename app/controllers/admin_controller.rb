@@ -5,7 +5,7 @@ class AdminController < PermissionsController
   def index
     @teachers = Account.where(teacher: true).order(email: :desc)
     @admins = Account.where(admin: true).order(email: :desc)
-    @open_inquiries = Inquiry.all.where(completed: false)
+    @open_inquiries = Inquiry.all.where(completed: false).order(created_at: :asc)
     @students = Student.all
   end
 
