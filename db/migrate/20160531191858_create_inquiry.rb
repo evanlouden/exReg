@@ -5,6 +5,7 @@ class CreateInquiry < ActiveRecord::Migration[5.0]
       t.string :instrument, null: false
       t.text :notes
       t.boolean :completed, default: false
+      t.timestamps null: false
     end
   end
 end
