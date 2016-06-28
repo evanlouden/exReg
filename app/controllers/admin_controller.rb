@@ -11,10 +11,12 @@ class AdminController < PermissionsController
 
   def new
     @account = Account.new
+    @contact = @account.contacts.build
   end
 
   def create
     @account = Account.new(account_params)
+    @account.contacts.last.email = @account.email
     password = Devise.friendly_token(10)
     @account.password = password
     if @account.save
@@ -45,7 +47,8 @@ class AdminController < PermissionsController
       :state,
       :zip,
       :admin,
-      :teacher
+      :teacher,
+      contacts_attributes: [:account_id, :first_name, :last_name, :email, :phone]
     )
   end
 end

@@ -21,6 +21,22 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip %>
   </div>
+  <div class="accounts-contacts">
+    <%= f.fields_for :contacts do |c| %>
+    <div class="field">
+      <%= c.label :first_name, "First Name" %><br />
+      <%= c.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= c.label :last_name, "Last Name" %><br />
+      <%= c.text_field :last_name %>
+    </div>
+    <div class="field">
+      <%= c.label :phone %><br />
+      <%= c.text_field :phone %>
+    </div>
+    <% end %>
+  </div>
   <div class="field">
     <div id="admin-checkbox">
       <%= f.check_box :admin, {}, "true", "false" %>
