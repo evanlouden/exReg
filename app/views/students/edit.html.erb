@@ -17,6 +17,22 @@
     <%= f.date_field :dob %>
   </div>
 
+  <% @availabilities.each do |day| %>
+    <div class="field">
+      <%= f.fields_for :availabilities, day do |a| %>
+      <div id ="<%= day.day %>">
+        <%= a.check_box :checked %>
+        <%= a.label day.day %>
+        <%= a.hidden_field :day %>
+        <%= a.label :start_time %>
+        <%= a.time_field :start_time %>
+        <%= a.label :end_time %>
+        <%= a.time_field :end_time %>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class= "actions">
     <%= f.submit "Update Student" %>
   </div>

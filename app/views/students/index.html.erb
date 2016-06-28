@@ -1,1 +1,6 @@
 <h1>Index Page</h1>
+<% @students.each do |s| %>
+  <p>
+    <%= s.first_name %> <%= s.last_name %>
+  </p>
+<% end %>

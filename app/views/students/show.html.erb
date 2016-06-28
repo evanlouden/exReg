@@ -9,7 +9,7 @@
   <br/>
   Availability
   <ul>
-    <% inquiry.availabilities.each do |availability| %>
+    <% @student.availabilities.each do |availability| %>
       <% unless availability.checked == "0" %>
         <li>
           <%= availability.day %>:

@@ -1,5 +1,6 @@
 class Availability < ApplicationRecord
-  belongs_to :inquiry, optional: true
+  belongs_to :student, optional: true
+  belongs_to :account, optional: true
 
   DAYS = [
     "Sunday",
