@@ -14,7 +14,7 @@
   </p>
   <p>
     <%= link_to "New Inquiry for #{student.first_name}", new_inquiry_path(student: student.id) %></br>
-    <%= link_to "Edit Student", edit_student_path(student) %></br>
+    <%= link_to "Edit Student Availability", edit_student_path(student) %></br>
     <%= link_to "Delete Student", student_path(student), method: :delete %></br>
   </p>
 <% end %>
@@ -41,7 +41,7 @@
       Lesson Times: <%= lesson.time_info %></br>
       <%= lesson.price_info %></br>
       Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
-      Excused Remaining: 
+      Excused Remaining:
     </p>
   </div>
 <% end %>

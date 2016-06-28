@@ -13,10 +13,12 @@ class StudentsController < PermissionsController
       @student.availabilities.build(day: item)
     end
     @availabilities = @student.availabilities
+    @instruments = Instrument.all
   end
 
   def create
     @student = Student.new(student_params)
+    @instruments = Instrument.all
     @availabilities = @student.availabilities
     if @student.save
       clear_times(@availabilities)

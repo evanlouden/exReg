@@ -1,4 +1,5 @@
 class Contact < ApplicationRecord
+  include ApplicationHelper
   belongs_to :account, optional: true
 
   validates :first_name, presence: true

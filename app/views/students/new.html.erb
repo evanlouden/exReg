@@ -18,14 +18,16 @@
   </div>
 
 
-  <div class= "field">
     <%= f.fields_for :inquiries do |inquiry| %>
-      <%= inquiry.label :instrument %>
-      <%= inquiry.text_field :instrument %>
-      <%= inquiry.label :notes, "Additional Notes" %>
-      <%= inquiry.text_area :notes %>
+      <div class= "field">
+        <%= inquiry.label :instrument %>
+        <%= inquiry.select :instrument, options_from_collection_for_select(@instruments, :name, :name) %>
+      </div>
+      <div class= "field">
+        <%= inquiry.label :notes, "Additional Notes" %>
+        <%= inquiry.text_area :notes %>
+      </div>
     <% end %>
-  </div>
 
   <% @availabilities.each do |day| %>
     <div class="field">
