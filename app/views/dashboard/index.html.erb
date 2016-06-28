@@ -5,7 +5,7 @@
 
 <h3> Open Inquiries </h3>
 <% @students.each do |student| %>
-  <%= student.first_name %> <%= student.last_name %></br>
+  <%= student.full_name %></br>
   <p>
     <% student.inquiries.where(completed: false).each do |inquiry| %>
       Instrument: <%= inquiry.instrument %> -
@@ -22,9 +22,9 @@
 <h3>Contacts</h3>
 <%= link_to "Add Contact", new_contact_path %></br>
 <% @contacts.each do |contact| %>
-  <div id="contact-<%= contact.first_name %>">
+  <div id="contact-<%= contact.full_name %>">
     <p>
-      <%= contact.first_name %> <%= contact.last_name %> </br>
+      <%= contact.full_name %> </br>
       <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
       <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
     </p>
@@ -35,7 +35,7 @@
 <% @lessons.each do |lesson| %>
   <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
     <p>
-      <%= lesson.student.first_name %> - <%= lesson.instrument %></br>
+      <%= lesson.student.full_name %> - <%= lesson.instrument %></br>
       Teacher: <%= lesson.account.email %></br>
       <%= "#{lesson.remaining} lessons remaining" %></br>
       Lesson Times: <%= lesson.time_info %></br>
