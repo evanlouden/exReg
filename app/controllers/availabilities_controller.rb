@@ -1,0 +1,2 @@
+class AvailabilitiesController < PermissionsController
+end

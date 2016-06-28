@@ -1,0 +1,13 @@
+<h1>Edit Instrument</h1>
+
+<%= form_for @instrument do |f| %>
+  <div class="field">
+    <%= f.label :name, "Instrument Name"  %>
+    <%= f.text_field :name  %>
+  </div>
+  <div class= "actions">
+    <%= f.submit "Update Instrument" %>
+  </div>
+<% end %>
+
+<%= link_to "Cancel", instruments_path %>

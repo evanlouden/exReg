@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  include ApplicationHelper
   belongs_to :account
   has_many :inquiries
   has_many :lessons

@@ -1,21 +1,9 @@
 <h4>Edit Student</h4>
 
+<p> Student: <%= @student.full_name %> </p>
+<p> Date of Birth: <%= @student.dob.strftime('%m-%d-%Y') %> </p>
+
 <%= form_for @student do |f| %>
-
-  <div class= "field">
-    <%= f.label :first_name, "First Name" %>
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class= "field">
-    <%= f.label :last_name, "Last Name" %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class= "field">
-    <%= f.label :dob, "Date of Birth" %>
-    <%= f.date_field :dob %>
-  </div>
 
   <% @availabilities.each do |day| %>
     <div class="field">

@@ -4,9 +4,11 @@ class InquiriesController < PermissionsController
   def new
     @student = Student.find(params[:student])
     @inquiry = @student.inquiries.build
+    @instruments = Instrument.all
   end
 
   def create
+    @instruments = Instrument.all
     @student = Student.find(params[:inquiry][:student_id])
     @inquiry = @student.inquiries.build(inquiry_params)
     if @inquiry.save
@@ -19,11 +21,13 @@ class InquiriesController < PermissionsController
   end
 
   def edit
+    @instruments = Instrument.all
     @inquiry = Inquiry.find(params[:id])
     @student = @inquiry.student
   end
 
   def update
+    @instruments = Instrument.all
     @inquiry = Inquiry.find(params[:id])
     @student = @inquiry.student
     if @inquiry.update(inquiry_params)
