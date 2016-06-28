@@ -44,4 +44,19 @@ FactoryGirl.define do
     duration "45"
     price "75"
   end
+
+  factory :lesson do
+    day "Sunday"
+    start_date "2016/08/20"
+    start_time "2000-01-01 20:00:00 UTC"
+    purchased "12"
+    attended "0"
+    instrument "Guitar"
+    tier_name "Suzuki Private Lesson"
+    duration "45"
+    price "75"
+    student
+    account
+    inquiry
+  end
 end

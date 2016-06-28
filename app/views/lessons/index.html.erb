@@ -1,0 +1,16 @@
+<h3>All Lessons:</h3>
+<% @lessons.each do |lesson| %>
+  <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
+    <p>
+      <%= lesson.student.first_name %> <%= lesson.student.last_name %> - <%= lesson.instrument %></br>
+      Teacher: <%= lesson.account.email %></br>
+      <%= "#{lesson.remaining} lessons remaining" %></br>
+      Lesson Times: <%= lesson.time_info %></br>
+      <%= lesson.price_info %></br>
+      Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
+      Excused Remaining:
+    </p>
+  </div>
+<% end %>
+
+<%= link_to "Dashboard", admin_index_path %>

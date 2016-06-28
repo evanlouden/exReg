@@ -3,6 +3,7 @@
   <%= @student.last_name %>
 </h1>
 
+<h3>Inquiries</h3>
 <% @inquiries.each do |inquiry| %>
   <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %>
   <br/>
@@ -12,9 +13,9 @@
       <% unless availability.checked == "0" %>
         <li>
           <%= availability.day %>:
-          <%= availability.start_time.strftime("%I:%M %p") %>
+          <%= availability.start_time.strftime("%l:%M %p") %>
           -
-          <%= availability.end_time.strftime("%I:%M %p") %>
+          <%= availability.end_time.strftime("%l:%M %p") %>
         </li>
       <% end %>
     <% end %>
@@ -25,4 +26,20 @@
     <% end %>
   </ul>
 <% end %>
+
+<h3>Lessons</h3>
+<% @student.lessons.each do |lesson| %>
+  <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
+    <p>
+      <%= lesson.instrument %></br>
+      Teacher: <%= lesson.account.email %></br>
+      <%= "#{lesson.remaining} lessons remaining" %></br>
+      Lesson Times: <%= lesson.time_info %></br>
+      <%= lesson.price_info %></br>
+      Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
+      Excused Remaining:
+    </p>
+  </div>
+<% end %>
+
 <%= link_to "Dashboard", admin_index_path %>
