@@ -44,8 +44,10 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.string  "day",        null: false
     t.time    "start_time"
     t.time    "end_time"
-    t.integer "inquiry_id", null: false
-    t.index ["inquiry_id"], name: "index_availabilities_on_inquiry_id", using: :btree
+    t.integer "account_id"
+    t.integer "student_id"
+    t.index ["account_id"], name: "index_availabilities_on_account_id", using: :btree
+    t.index ["student_id"], name: "index_availabilities_on_student_id", using: :btree
   end
 
   create_table "contacts", force: :cascade do |t|

@@ -24,12 +24,10 @@ en:
     attributes:
       inquiries:
         instrument: "Instrument"
-        availability: ""
-      inquiries/availabilities:
-        start_time: "Start time"
-        end_time: "End time"
-        availability: ""
       availabilities:
         availability: ""
         start_time: "Start time"
         end_time: "End time"
+      student:
+        dob: "Date of Birth"
+        availability: ""

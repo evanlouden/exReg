@@ -5,7 +5,8 @@ class CreateAvailability < ActiveRecord::Migration[5.0]
       t.string :day, null: false
       t.time :start_time
       t.time :end_time
-      t.belongs_to :inquiry, null: false
+      t.belongs_to :account
+      t.belongs_to :student
     end
   end
 end
