@@ -28,6 +28,16 @@ class LessonsController < PermissionsController
     end
   end
 
+  def index
+    @students = Student.all
+    @lessons = []
+    @students.each do |student|
+      unless student.lessons.empty?
+        student.lessons.map { |lesson| @lessons << lesson }
+      end
+    end
+  end
+
   private
 
   def lesson_params

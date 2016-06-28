@@ -15,4 +15,20 @@ class Lesson < ApplicationRecord
   validates :student, presence: true
   validates :account, presence: true
   validates :inquiry, presence: true
+
+  def remaining
+    purchased - attended
+  end
+
+  def remaining_balance
+    price * purchased
+  end
+
+  def time_info
+    "#{day}s, #{start_time.strftime('%l:%M %p')}"
+  end
+
+  def price_info
+    "#{tier_name}: #{duration} min., $#{'%.2f' % price}"
+  end
 end
