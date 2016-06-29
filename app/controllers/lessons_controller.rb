@@ -6,6 +6,7 @@ class LessonsController < PermissionsController
     @lesson.inquiry = @inquiry
     @days = Availability::DAYS
     @teachers = Account.all.where(teacher: true)
+    @instruments = Instrument.all
   end
 
   def create
@@ -14,6 +15,7 @@ class LessonsController < PermissionsController
     @lesson = @student.lessons.build(lesson_params)
     @days = Availability::DAYS
     @teachers = Account.all.where(teacher: true)
+    @instruments = Instrument.all
     @price_tier = Price.find(params[:lesson][:tier_name])
     @lesson.tier_name = @price_tier.tier_name
     @lesson.duration = @price_tier.duration

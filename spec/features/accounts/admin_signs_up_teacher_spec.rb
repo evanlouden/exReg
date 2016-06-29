@@ -17,6 +17,9 @@ feature "admin signs up teacher" do
     fill_in "City", with: "Boston"
     fill_in "State", with: "MA"
     fill_in "Zip", with: "02115"
+    fill_in "First Name", with: "Thomas"
+    fill_in "Last Name", with: "Appleseed"
+    fill_in "Phone", with: "9785551212"
     find(:css, "#account_teacher").set(true)
     click_button "Create Account"
 
@@ -41,6 +44,9 @@ feature "admin signs up teacher" do
     fill_in "City", with: "Boston"
     fill_in "State", with: "MA"
     fill_in "Zip", with: "abc"
+    fill_in "First Name", with: "Thomas"
+    fill_in "Last Name", with: "Appleseed"
+    fill_in "Phone", with: "9785551212"
     find(:css, "#account_teacher").set(true)
     click_button "Create Account"
 

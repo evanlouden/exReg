@@ -8,6 +8,7 @@ feature "admin registers student for lessons" do
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:price2) { FactoryGirl.create(:price, duration: "60", price: "100") }
   let!(:teacher1) { FactoryGirl.create(:account, teacher: true) }
+  let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -18,7 +19,7 @@ feature "admin registers student for lessons" do
   end
   scenario "specifies valid information" do
     within(:css, "#admin-inquiries") do
-      click_link "#{student1.first_name} #{student1.last_name}"
+      click_link "#{student1.full_name}"
     end
     click_link "Register Student"
     select("#{price2.description}", from: "Pricing Tier")
@@ -26,14 +27,14 @@ feature "admin registers student for lessons" do
     select("Monday", from: "Day")
     fill_in "Start Time", with: "8:00 PM"
     fill_in "Purchased", with: "10"
-    fill_in "Instrument", with: inquiry1.instrument
+    select("Guitar", from: "Instrument")
     select("#{teacher1.email}", from: 'Account')
     click_button "Register Student"
 
     expect(page).to have_content("Student Registered")
 
     within(:css, "#admin-students") do
-      click_link "#{student1.first_name} #{student1.last_name}"
+      click_link "#{student1.full_name}"
     end
 
     expect(page).to have_content("#{inquiry1.instrument} - Completed")
@@ -42,12 +43,12 @@ feature "admin registers student for lessons" do
 
   scenario "does not specify required information" do
     within(:css, "#admin-inquiries") do
-      click_link "#{student1.first_name} #{student1.last_name}"
+      click_link "#{student1.full_name}"
     end
     click_link "Register Student"
     click_button "Register Student"
 
     expect(page).to have_content("can't be blank")
-    expect(page).to have_content("Register #{student1.first_name} #{student1.last_name}")
+    expect(page).to have_content("Register #{student1.full_name}")
   end
 end
