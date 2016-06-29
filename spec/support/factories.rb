@@ -14,14 +14,15 @@ FactoryGirl.define do
     last_name "Doe"
     dob "2000/05/13"
     account
+    before(:create) do |student|
+      student.availabilities << FactoryGirl.build(:availability)
+      student.availabilities << FactoryGirl.build(:availability, day: "Monday", checked: "0", start_time: "", end_time: "")
+    end
   end
 
   factory :inquiry do
     instrument "Guitar"
     student
-    before(:create) do |inquiry|
-      inquiry.availabilities << FactoryGirl.build(:availability)
-    end
   end
 
   factory :availability do
@@ -29,6 +30,7 @@ FactoryGirl.define do
     day "Sunday"
     start_time "2000-01-01 20:00:00 UTC"
     end_time "2000-01-01 22:00:00 UTC"
+    account
   end
 
   factory :contact do
@@ -58,5 +60,9 @@ FactoryGirl.define do
     student
     account
     inquiry
+  end
+
+  factory :instrument do
+    name "Guitar"
   end
 end

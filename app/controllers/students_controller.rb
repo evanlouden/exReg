@@ -44,7 +44,7 @@ class StudentsController < PermissionsController
     @student = Student.find(params[:id])
     @availabilities = @student.availabilities
     if @student.update(student_params)
-      flash[:notice] = "Student Updated"
+      flash[:notice] = "Availability Updated"
       redirect_to dashboard_index_path
     else
       flash[:alert] = @student.errors.full_messages.join(", ")

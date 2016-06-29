@@ -15,8 +15,7 @@ feature "user deletes a student and inquiry" do
     click_link "Delete Student"
 
     expect(page).to have_content("Student and inquiry deleted")
-    expect(page).to_not have_content(student1.first_name)
-    expect(page).to_not have_content(student1.last_name)
+    expect(page).to_not have_content(student1.full_name)
   end
 
   scenario "user attempts to delete another account's student" do

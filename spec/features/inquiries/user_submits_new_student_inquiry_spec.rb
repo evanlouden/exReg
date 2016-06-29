@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "user submits new student and inquiry" do
   let!(:user1) { FactoryGirl.create(:account) }
+  let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -15,8 +16,8 @@ feature "user submits new student and inquiry" do
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
-    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    select("Guitar", from: "Instrument")
+    find(:css, "#student_availabilities_attributes_0_checked").set(true)
     within(:css, "#Sunday") do
       fill_in "Start", with: "6:00 PM"
     end
@@ -36,8 +37,8 @@ feature "user submits new student and inquiry" do
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
-    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    select("Guitar", from: "Instrument")
+    find(:css, "#student_availabilities_attributes_0_checked").set(true)
     within(:css, "#Sunday") do
       fill_in "Start", with: "6:00 PM"
     end
@@ -67,7 +68,7 @@ feature "user submits new student and inquiry" do
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
+    select("Guitar", from: "Instrument")
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Please select at least one day of availability")
@@ -80,8 +81,8 @@ feature "user submits new student and inquiry" do
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
-    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    select("Guitar", from: "Instrument")
+    find(:css, "#student_availabilities_attributes_0_checked").set(true)
     click_button "Submit Inquiry"
 
     expect(page).to have_content("can't be blank")
@@ -94,8 +95,8 @@ feature "user submits new student and inquiry" do
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
-    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    select("Guitar", from: "Instrument")
+    find(:css, "#student_availabilities_attributes_0_checked").set(true)
     within(:css, "#Sunday") do
       fill_in "Start", with: "9:00 PM"
     end
@@ -114,8 +115,8 @@ feature "user submits new student and inquiry" do
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
-    fill_in "Instrument", with: "Guitar"
-    find(:css, "#student_inquiries_attributes_0_availabilities_attributes_0_checked").set(true)
+    select("Guitar", from: "Instrument")
+    find(:css, "#student_availabilities_attributes_0_checked").set(true)
     within(:css, "#Sunday") do
       fill_in "Start", with: "8:00 PM"
     end
