@@ -36,6 +36,9 @@
         <%= a.check_box :checked %>
         <%= a.label day.day %>
         <%= a.hidden_field :day %>
+        <%= a.hidden_field :start_time %>
+        <%= a.hidden_field :end_time %>
+
         <div id="time-range-<%= day.day %>">
           <p> Time Range: <span class="slider-time-<%= day.day %>">10:00 AM</span> - <span class="slider-time2-<%= day.day %>">12:00 PM</span> </p>
           <div class="sliders_step1-<%= day.day %>">
@@ -43,13 +46,34 @@
           </div>
         </div>
       </div>
+
       <% end %>
     </div>
   <% end %>
 
+
   <div class= "actions">
-    <%= f.submit "Submit Inquiry" %>
+    <%= f.submit "Submit Inquiry", id:"submit" %>
   </div>
 <% end %>
 
 <%= link_to "Cancel", dashboard_index_path %>
+
+<script>
+$(document).ready(function() {
+  var submitButton = $('#submit');
+
+  var setTime =function(day, i){
+    $("#student_availabilities_attributes_" + i + "_start_time")[0].value = $('.slider-time-' + day)[0].innerText;
+    $("#student_availabilities_attributes_" + i + "_end_time")[0].value = $('.slider-time2-'+ day)[0].innerText;
+  }
+
+  submitButton.on("click", function(event) {
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    for(var i = 0; i < days.length; i++) {
+      setTime(days[i], i);
+    }
+  });
+});
+
+</script>
