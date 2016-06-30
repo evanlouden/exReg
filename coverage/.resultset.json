@@ -44,7 +44,7 @@
       "/Users/anthonydegennaro/challenges/exReg/app/helpers/application_helper.rb": [
         1,
         1,
-        70,
+        67,
         null,
         null
       ],
@@ -260,7 +260,7 @@
         1,
         null,
         1,
-        0,
+        3,
         null,
         null,
         1,
@@ -730,6 +730,6 @@
         0
       ]
     },
-    "timestamp": 1467163806
+    "timestamp": 1467250623
   }
 }

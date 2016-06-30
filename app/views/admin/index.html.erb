@@ -33,16 +33,7 @@
   </ul>
 </div>
 
-<h3>All Students:</h3>
-<div id="admin-students">
-  <ul>
-    <% @students.each do |student| %>
-    <li>
-      <%= link_to "#{student.full_name}", student_path(student) %>
-    </li>
-    <% end %>
-  </ul>
-</div>
+<h3><%= link_to "All Students", students_path %></h3>
 
 <h3><%= link_to "All Lessons", lessons_path %></h3>
 
