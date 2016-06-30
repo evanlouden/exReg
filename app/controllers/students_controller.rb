@@ -20,7 +20,6 @@ class StudentsController < PermissionsController
     @student = Student.new(student_params)
     @instruments = Instrument.all
     @availabilities = @student.availabilities
-    binding.pry
     if @student.save
       clear_times(@availabilities)
       flash[:notice] = "Inquiry Submitted"

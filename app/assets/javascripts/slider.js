@@ -10,8 +10,8 @@ $(document).ready(function(){
 var slickSlider = function(id){
   $("#slider-range-" + id).slider({
       range: true,
-      min: 0,
-      max: 1440,
+      min: 540,
+      max: 1260,
       step: 15,
       values: [600, 720],
       slide: function (e, ui) {
