@@ -1,6 +1,8 @@
-<h1>Index Page</h1>
-<% @students.each do |s| %>
+<h1>Students</h1>
+<% @students.each do |student| %>
   <p>
-    <%= s.full_name %>
+    <%= link_to "#{student.full_name}", student_path(student) %>
   </p>
 <% end %>
+
+<%= link_to "Dashboard", admin_index_path %>

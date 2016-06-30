@@ -18,9 +18,8 @@ feature "admin registers student for lessons" do
     click_button "Sign In"
   end
   scenario "specifies valid information" do
-    within(:css, "#admin-inquiries") do
-      click_link "#{student1.full_name}"
-    end
+    click_link "All Students"
+    click_link "#{student1.full_name}"
     click_link "Register Student"
     select("#{price2.description}", from: "Pricing Tier")
     fill_in "Start Date", with: "2016/09/13"
@@ -33,9 +32,8 @@ feature "admin registers student for lessons" do
 
     expect(page).to have_content("Student Registered")
 
-    within(:css, "#admin-students") do
-      click_link "#{student1.full_name}"
-    end
+    click_link "All Students"
+    click_link "#{student1.full_name}"
 
     expect(page).to have_content("#{inquiry1.instrument} - Completed")
     expect(page).to_not have_content("Register Student")
