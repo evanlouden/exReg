@@ -6,7 +6,7 @@ $(document).ready(function(){
   slickSlider("Thursday");
   slickSlider("Friday");
   slickSlider("Saturday");
-})
+});
 var slickSlider = function(id){
   $("#slider-range-" + id).slider({
       range: true,
@@ -20,7 +20,7 @@ var slickSlider = function(id){
 
           if (hours1.length == 1) hours1 = '0' + hours1;
           if (minutes1.length == 1) minutes1 = '0' + minutes1;
-          if (minutes1 == 0) minutes1 = '00';
+          if (minutes1 === 0) minutes1 = '00';
           if (hours1 >= 12) {
               if (hours1 == 12) {
                   hours1 = hours1;
@@ -33,7 +33,7 @@ var slickSlider = function(id){
               hours1 = hours1;
               minutes1 = minutes1 + " AM";
           }
-          if (hours1 == 0) {
+          if (hours1 === 0) {
               hours1 = 12;
               minutes1 = minutes1;
           }
@@ -45,7 +45,7 @@ var slickSlider = function(id){
 
           if (hours2.length == 1) hours2 = '0' + hours2;
           if (minutes2.length == 1) minutes2 = '0' + minutes2;
-          if (minutes2 == 0) minutes2 = '00';
+          if (minutes2 === 0) minutes2 = '00';
           if (hours2 >= 12) {
               if (hours2 == 12) {
                   hours2 = hours2;
@@ -65,4 +65,4 @@ var slickSlider = function(id){
           $('.slider-time2-' + id).html(hours2 + ':' + minutes2);
       }
   });
-}
+};

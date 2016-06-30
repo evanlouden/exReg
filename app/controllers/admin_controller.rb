@@ -3,8 +3,6 @@ class AdminController < PermissionsController
   before_action :require_admin
 
   def index
-    @teachers = Account.where(teacher: true).order(email: :desc)
-    @admins = Account.where(admin: true).order(email: :desc)
     @open_inquiries = Inquiry.all.where(completed: false).order(created_at: :asc)
     @students = Student.all
   end
@@ -31,7 +29,7 @@ class AdminController < PermissionsController
   def change
     @teacher = Account.find(params[:id])
     @teacher.admin ? @teacher.update_attribute(:admin, false) : @teacher.update_attribute(:admin, true)
-    redirect_to admin_index_path
+    redirect_to teachers_path
   end
 
   private
