@@ -1,3 +1,6 @@
+<div class="row">
+<div class="column">
+
 <h4>New Student Inquiry</h4>
 
 <%= form_for @student do |f| %>
@@ -33,11 +36,16 @@
       <div id ="<%= day.day %>">
         <%= a.check_box :checked %>
         <%= a.label day.day %>
-        <%= a.hidden_field :day %>
-        <%= a.label :start_time %>
-        <%= a.time_field :start_time %>
-        <%= a.label :end_time %>
-        <%= a.time_field :end_time %>
+      </div>
+      <div class="row">
+        <div id="time-range">
+    <p>Time Range: <span class="slider-time-<%= day.day %>">10:00 AM</span> - <span class="slider-time2-<%= day.day %>">12:00 PM</span>
+
+    </p>
+    <div class="sliders_step1">
+        <div id="<%= day.day %>"></div>
+    </div>
+</div>
       </div>
       <% end %>
     </div>
@@ -47,5 +55,6 @@
     <%= f.submit "Submit Inquiry" %>
   </div>
 <% end %>
-
+</div>
+</div>
 <%= link_to "Cancel", dashboard_index_path %>
