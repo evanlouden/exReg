@@ -64,4 +64,14 @@ feature "user signs in" do
 
     expect(page).to have_content("You Are Already Signed In!")
   end
+
+  scenario "authenticated user cannot sign in to admin dash" do
+    visit new_account_session_path
+    fill_in "Email", with: user1.email
+    fill_in "Password", with: user1.password
+    click_button "Sign In"
+    visit admin_index_path
+
+    expect(page).to have_content("You do not have permission to access this page")
+  end
 end
