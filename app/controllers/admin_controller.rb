@@ -21,7 +21,7 @@ class AdminController < PermissionsController
       flash[:notice] = "Account created #{password}"
       redirect_to admin_index_path
     else
-      flash[:error] = @account.errors.full_messages.join(', ')
+      flash[:error] = @account.errors.full_messages.join(", ")
       render :new
     end
   end

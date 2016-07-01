@@ -55,7 +55,7 @@ class StudentsController < PermissionsController
   def destroy
     @student = Student.find(params[:id])
     if !current_account.students.include?(@student)
-      flash[:notice] = 'You are not authorized to delete this student'
+      flash[:notice] = "You are not authorized to delete this student"
       redirect_to dashboard_index_path and return
     else
       @student.destroy

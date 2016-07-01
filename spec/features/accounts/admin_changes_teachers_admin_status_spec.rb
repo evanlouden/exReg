@@ -12,6 +12,7 @@ feature "admin changes teacher's admin status" do
     click_button "Sign In"
   end
   scenario "designates admin" do
+    click_link "Staff Members"
     click_link "Make Admin"
 
     within(:css, "#admin-admins") do
@@ -21,6 +22,7 @@ feature "admin changes teacher's admin status" do
   end
 
   scenario "revokes admin" do
+    click_link "Staff Members"
     click_link "Make Admin"
     click_link "Revoke Admin"
 

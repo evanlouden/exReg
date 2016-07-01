@@ -25,6 +25,9 @@ feature "admin signs up teacher" do
 
     expect(page).to have_content("Account created")
     expect(page).to have_content("Admin Dashboard")
+
+    click_link "Staff Members"
+
     expect(page).to have_content("newteacher@teacher.com")
   end
 

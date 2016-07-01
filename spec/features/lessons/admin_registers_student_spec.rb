@@ -18,7 +18,7 @@ feature "admin registers student for lessons" do
     click_button "Sign In"
   end
   scenario "specifies valid information" do
-    click_link "All Students"
+    click_link "Students"
     click_link "#{student1.full_name}"
     click_link "Register Student"
     select("#{price2.description}", from: "Pricing Tier")
@@ -27,12 +27,12 @@ feature "admin registers student for lessons" do
     fill_in "Start Time", with: "8:00 PM"
     fill_in "Purchased", with: "10"
     select("Guitar", from: "Instrument")
-    select("#{teacher1.email}", from: 'Account')
+    select("#{teacher1.email}", from: "Teacher")
     click_button "Register Student"
 
     expect(page).to have_content("Student Registered")
 
-    click_link "All Students"
+    click_link "Students"
     click_link "#{student1.full_name}"
 
     expect(page).to have_content("#{inquiry1.instrument} - Completed")
