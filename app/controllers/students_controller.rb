@@ -40,7 +40,7 @@ class StudentsController < PermissionsController
     @availabilities = sort_avails(@student.availabilities)
     respond_to do |format|
       format.html { render :edit }
-      format.json { render json: @availabilities.select { |a| a.checked == "1"} }
+      format.json { render json: @availabilities.select { |a| a.checked == "1" } }
     end
   end
 
