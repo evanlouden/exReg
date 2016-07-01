@@ -28,7 +28,7 @@
 
 <h3>Lessons</h3>
 <% @student.lessons.each do |lesson| %>
-  <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
+  <div id="lessons-<%= lesson.student.full_name %>-<%= lesson.instrument %>">
     <p>
       <%= lesson.instrument %></br>
       Teacher: <%= lesson.account.email %></br>

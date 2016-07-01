@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: [:new, :create]
-  resources :dashboard, only: [:index]
+  resources :dashboard, only: :index
   resources :admin do
     member do
       patch :change
@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   resources :lessons
   resources :availabilities
   resources :instruments
+  resources :teachers, only: [:index, :show]
 end

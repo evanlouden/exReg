@@ -1,26 +1,5 @@
 <h1>Admin Dashboard</h1>
 
-<%= link_to "Add Teacher", new_admin_path %></br>
-
-<h3>Teachers:</h3>
-<div id="admin-teachers">
-  <% @teachers.each do |teacher| %>
-    <p> <%= teacher.email %> </p>
-    <% if teacher.admin %>
-      <p> <%= link_to "Revoke Admin", change_admin_path(teacher), method: :patch %> </p>
-    <% else %>
-      <p> <%= link_to "Make Admin", change_admin_path(teacher), method: :patch %> </p>
-    <% end %>
-  <% end %>
-</div>
-
-<h3>Admins:</h3>
-<div id="admin-admins">
-  <% @admins.each do |teacher| %>
-    <p> <%= teacher.email %> </p>
-  <% end %>
-</div>
-
 <h3>Open Inquiries:</h3>
 <div id="admin-inquiries">
   <ul>
@@ -33,9 +12,12 @@
   </ul>
 </div>
 
-<h3><%= link_to "All Students", students_path %></h3>
+<h3><%= link_to "Staff Members", teachers_path %></h3>
 
-<h3><%= link_to "All Lessons", lessons_path %></h3>
+<h3><%= link_to "Students", students_path %></h3>
 
+<h3><%= link_to "Lessons", lessons_path %></h3>
+
+<%= link_to "Add Teacher", new_admin_path %></br>
 <%= link_to "Pricing Tiers", prices_path %></br>
 <%= link_to "Instruments", instruments_path %>

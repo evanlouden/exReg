@@ -1,0 +1,20 @@
+<h3>Teachers:</h3>
+<div id="admin-teachers">
+  <% @teachers.each do |teacher| %>
+    <p> <%= teacher.email %> </p>
+    <% if teacher.admin %>
+      <p> <%= link_to "Revoke Admin", change_admin_path(teacher), method: :patch %> </p>
+    <% else %>
+      <p> <%= link_to "Make Admin", change_admin_path(teacher), method: :patch %> </p>
+    <% end %>
+  <% end %>
+</div>
+
+<h3>Admins:</h3>
+<div id="admin-admins">
+  <% @admins.each do |teacher| %>
+    <p> <%= teacher.email %> </p>
+  <% end %>
+</div>
+
+<%= link_to "Dashboard", admin_index_path %>

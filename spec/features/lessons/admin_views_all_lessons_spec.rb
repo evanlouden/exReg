@@ -15,7 +15,7 @@ feature "admin views all lessons" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link "All Lessons"
+    click_link "Lessons"
 
     expect(page).to have_content("#{lesson1.remaining} lessons remaining")
     expect(page).to have_content("$#{lesson1.remaining_balance}")

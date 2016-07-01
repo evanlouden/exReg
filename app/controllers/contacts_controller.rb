@@ -32,7 +32,7 @@ class ContactsController < PermissionsController
   def destroy
     @contact = Contact.find(params[:id])
     if !current_account.contacts.include?(@contact)
-      flash[:notice] = 'You are not authorized to delete this contact'
+      flash[:notice] = "You are not authorized to delete this contact"
       redirect_to dashboard_index_path and return
     else
       @contact.destroy

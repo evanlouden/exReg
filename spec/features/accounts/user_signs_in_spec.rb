@@ -24,7 +24,7 @@ feature "user signs in" do
 
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Admin Dashboard")
-    expect(page).to have_content("Teachers")
+    expect(page).to have_content("Staff Members")
   end
 
   scenario "nonexistent email and password supplied" do
