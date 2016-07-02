@@ -48,6 +48,7 @@ class StudentsController < PermissionsController
     @student = Student.find(params[:id])
     @availabilities = @student.availabilities
     if @student.update(student_params)
+      clear_times(@availabilities)
       flash[:notice] = "Availability Updated"
       redirect_to dashboard_index_path
     else
