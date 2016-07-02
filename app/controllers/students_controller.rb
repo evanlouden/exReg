@@ -37,13 +37,18 @@ class StudentsController < PermissionsController
 
   def edit
     @student = Student.find(params[:id])
-    @availabilities = @student.availabilities
+    @availabilities = sort_avails(@student.availabilities)
+    respond_to do |format|
+      format.html { render :edit }
+      format.json { render json: @availabilities.select { |a| a.checked == "1" } }
+    end
   end
 
   def update
     @student = Student.find(params[:id])
     @availabilities = @student.availabilities
     if @student.update(student_params)
+      clear_times(@availabilities)
       flash[:notice] = "Availability Updated"
       redirect_to dashboard_index_path
     else
