@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   resources :contacts
   resources :prices
   resources :lessons
-  resources :availabilities
   resources :instruments
-  resources :teachers, only: [:index, :show]
+  resources :teachers
 end

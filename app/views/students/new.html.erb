@@ -17,17 +17,16 @@
     <%= f.date_field :dob %>
   </div>
 
-
-    <%= f.fields_for :inquiries do |inquiry| %>
-      <div class= "field">
-        <%= inquiry.label :instrument %>
-        <%= inquiry.select :instrument, options_from_collection_for_select(@instruments, :name, :name) %>
-      </div>
-      <div class= "field">
-        <%= inquiry.label :notes, "Additional Notes" %>
-        <%= inquiry.text_area :notes %>
-      </div>
-    <% end %>
+  <%= f.fields_for :inquiries do |inquiry| %>
+    <div class= "field">
+      <%= inquiry.label :instrument %>
+      <%= inquiry.select :instrument, options_from_collection_for_select(@instruments, :name, :name) %>
+    </div>
+    <div class= "field">
+      <%= inquiry.label :notes, "Additional Notes" %>
+      <%= inquiry.text_area :notes %>
+    </div>
+  <% end %>
 
   <% @availabilities.each do |day| %>
     <div class="field">
@@ -51,7 +50,6 @@
     </div>
   <% end %>
 
-
   <div class= "actions">
     <%= f.submit "Submit Inquiry", id:"submit" %>
   </div>
@@ -59,5 +57,5 @@
 
 <%= link_to "Cancel", dashboard_index_path %>
 
-<script src="slider_time.js"></script>
+<script src="/assets/slider_time.js"></script>
 <%= javascript_include_tag "slider.js"%>

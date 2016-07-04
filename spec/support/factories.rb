@@ -9,6 +9,28 @@ FactoryGirl.define do
     zip "01223"
   end
 
+  factory :teacher do
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password "password"
+    password_confirmation "password"
+    address "32 Main Street"
+    city "Boston"
+    state "MA"
+    zip "01223"
+    teacher true
+  end
+
+  factory :admin do
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password "password"
+    password_confirmation "password"
+    address "32 Main Street"
+    city "Boston"
+    state "MA"
+    zip "01223"
+    admin true
+  end
+
   factory :student do
     first_name "John"
     last_name "Doe"

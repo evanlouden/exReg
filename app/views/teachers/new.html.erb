@@ -1,6 +1,6 @@
-<h1>New Admin Account</h1>
+<h4>New Teacher Account</h4>
 
-<%= form_for @account, url: admin_index_path do |f| %>
+<%= form_for @teacher do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -39,21 +39,34 @@
     <% end %>
   </div>
 
-  <!-- <div class="field">
-    <div id="admin-checkbox">
-      <%= f.check_box :admin, {}, "true", "false" %>
-      <%= f.label :admin %>
+  <% @availabilities.each do |day| %>
+    <div class="field">
+      <%= f.fields_for :availabilities, day do |a| %>
+      <div id ="<%= day.day %>">
+        <%= a.check_box :checked %>
+        <%= a.label day.day %>
+        <%= a.hidden_field :day %>
+        <%= a.hidden_field :start_time %>
+        <%= a.hidden_field :end_time %>
+
+        <div id="time-range-<%= day.day %>">
+          <p> Time Range: <span class="slider-time-<%= day.day %>">10:00 AM</span> - <span class="slider-time2-<%= day.day %>">12:00 PM</span> </p>
+          <div class="sliders_step1-<%= day.day %>">
+              <div id="slider-range-<%= day.day %>"></div>
+          </div>
+        </div>
+      </div>
+
+      <% end %>
     </div>
-  </div>
-  <div class="field">
-    <div id="teacher-checkbox">
-      <%= f.check_box :teacher, {}, "true", "false" %>
-      <%= f.label :teacher %>
-    </div>
-  </div> -->
+  <% end %>
+
   <div class="actions">
-    <%= f.submit "Create Account", id:"submit" %>
+    <%= f.submit "Create Account", id:"submit_teacher" %>
   </div>
 <% end %>
 
 <%= link_to "Cancel", admin_index_path %>
+
+<script src="/assets/slider_time_teacher.js"></script>
+<%= javascript_include_tag "slider.js"%>

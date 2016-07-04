@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "admin changes teacher's admin status" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
-  let!(:teacher1) { FactoryGirl.create(:account, teacher: true) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:teacher1) { FactoryGirl.create(:teacher) }
 
   before(:each) do
     visit unauthenticated_root_path

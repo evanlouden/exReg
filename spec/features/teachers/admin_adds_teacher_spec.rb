@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "admin signs up teacher" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
+  let!(:admin1) { FactoryGirl.create(:admin, admin: true) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -20,7 +20,9 @@ feature "admin signs up teacher" do
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
     fill_in "Phone", with: "9785551212"
-    find(:css, "#account_teacher").set(true)
+    find(:css, "#teacher_availabilities_attributes_0_checked").set(true)
+    find(:css, "#teacher_availabilities_attributes_0_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_availabilities_attributes_0_end_time", visible: false).set("7:00 PM")
     click_button "Create Account"
 
     expect(page).to have_content("Account created")
@@ -50,7 +52,9 @@ feature "admin signs up teacher" do
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
     fill_in "Phone", with: "9785551212"
-    find(:css, "#account_teacher").set(true)
+    find(:css, "#teacher_availabilities_attributes_0_checked").set(true)
+    find(:css, "#teacher_availabilities_attributes_0_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_availabilities_attributes_0_end_time", visible: false).set("7:00 PM")
     click_button "Create Account"
 
     expect(page).to have_content("New Teacher Account")

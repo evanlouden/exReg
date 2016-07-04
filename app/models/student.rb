@@ -18,15 +18,15 @@ class Student < ApplicationRecord
 
   private
 
-  def destroy_inquiries
-    inquiries.destroy_all
-  end
-
   def no_availability?
     availabilities.each do |a|
       return false if a.checked == "1"
     end
     errors.add(:availability, "Please select at least one day of availability")
+  end
+
+  def destroy_inquiries
+    inquiries.destroy_all
   end
 
   def destroy_availabilities

@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.string   "zip",                                    null: false
     t.boolean  "admin",                  default: false
     t.boolean  "teacher",                default: false
+    t.string   "type"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.index ["email"], name: "index_accounts_on_email", unique: true, using: :btree
