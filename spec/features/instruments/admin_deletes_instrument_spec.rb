@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "admin deletes instrument" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   scenario "successfully deletes instrument" do

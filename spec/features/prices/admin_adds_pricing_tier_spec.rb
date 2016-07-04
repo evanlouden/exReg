@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "admin adds pricing tier" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
 
   before(:each) do
     visit unauthenticated_root_path

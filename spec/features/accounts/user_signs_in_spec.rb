@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "user signs in" do
-  let!(:user1) { FactoryGirl.create(:account) }
+  let!(:user1) { FactoryGirl.create(:family) }
   let!(:admin1) { FactoryGirl.create(:admin) }
   scenario "existing user specifies valid email and password" do
     visit unauthenticated_root_path

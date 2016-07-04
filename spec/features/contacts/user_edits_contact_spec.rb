@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "user edits contact" do
-  let!(:user1) { FactoryGirl.create(:account) }
-  let!(:contact1) { FactoryGirl.create(:contact, account: user1) }
+  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, family: user1) }
 
   before(:each) do
     visit unauthenticated_root_path

@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "user submits new student inquiry" do
-  let!(:user1) { FactoryGirl.create(:account) }
-  let!(:student1) { FactoryGirl.create(:student, account: user1) }
+  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:student1) { FactoryGirl.create(:student, family: user1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:instrument2) { FactoryGirl.create(:instrument, name: "Piano") }

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "user adds contact" do
-  let!(:user1) { FactoryGirl.create(:account) }
+  let!(:user1) { FactoryGirl.create(:family) }
 
   before(:each) do
     visit unauthenticated_root_path

@@ -27,7 +27,7 @@ class AdminController < PermissionsController
   end
 
   def change
-    @teacher = Account.find(params[:id])
+    @teacher = Teacher.find(params[:id])
     @teacher.admin ? @teacher.update_attribute(:admin, false) : @teacher.update_attribute(:admin, true)
     redirect_to teachers_path
   end

@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.string  "day",        null: false
     t.time    "start_time"
     t.time    "end_time"
-    t.integer "account_id"
+    t.integer "teacher_id"
     t.integer "student_id"
-    t.index ["account_id"], name: "index_availabilities_on_account_id", using: :btree
     t.index ["student_id"], name: "index_availabilities_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_availabilities_on_teacher_id", using: :btree
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -56,8 +56,12 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.string  "last_name",  null: false
     t.string  "email",      null: false
     t.string  "phone",      null: false
-    t.integer "account_id", null: false
-    t.index ["account_id"], name: "index_contacts_on_account_id", using: :btree
+    t.integer "teacher_id"
+    t.integer "admin_id"
+    t.integer "family_id"
+    t.index ["admin_id"], name: "index_contacts_on_admin_id", using: :btree
+    t.index ["family_id"], name: "index_contacts_on_family_id", using: :btree
+    t.index ["teacher_id"], name: "index_contacts_on_teacher_id", using: :btree
   end
 
   create_table "inquiries", force: :cascade do |t|
@@ -85,11 +89,11 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.string  "tier_name",              null: false
     t.integer "price",                  null: false
     t.integer "student_id",             null: false
-    t.integer "account_id",             null: false
+    t.integer "teacher_id",             null: false
     t.integer "inquiry_id",             null: false
-    t.index ["account_id"], name: "index_lessons_on_account_id", using: :btree
     t.index ["inquiry_id"], name: "index_lessons_on_inquiry_id", using: :btree
     t.index ["student_id"], name: "index_lessons_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_lessons_on_teacher_id", using: :btree
   end
 
   create_table "prices", force: :cascade do |t|
@@ -103,8 +107,8 @@ ActiveRecord::Schema.define(version: 20160624163242) do
     t.string  "last_name",  null: false
     t.string  "school"
     t.date    "dob",        null: false
-    t.integer "account_id"
-    t.index ["account_id"], name: "index_students_on_account_id", using: :btree
+    t.integer "family_id"
+    t.index ["family_id"], name: "index_students_on_family_id", using: :btree
   end
 
 end

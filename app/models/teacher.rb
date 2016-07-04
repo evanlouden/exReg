@@ -1,4 +1,6 @@
 class Teacher < Account
+  has_many :contacts
+  accepts_nested_attributes_for :contacts
   has_many :lessons
   has_many :availabilities
   accepts_nested_attributes_for :availabilities

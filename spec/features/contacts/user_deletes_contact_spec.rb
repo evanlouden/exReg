@@ -1,10 +1,10 @@
 require "rails_helper"
 
 feature "user deletes contact" do
-  let!(:user1) { FactoryGirl.create(:account) }
-  let!(:contact1) { FactoryGirl.create(:contact, account: user1) }
-  let!(:user2) { FactoryGirl.create(:account) }
-  let!(:contact2) { FactoryGirl.create(:contact, first_name: "Sarah", account: user2) }
+  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, family: user1) }
+  let!(:user2) { FactoryGirl.create(:family) }
+  let!(:contact2) { FactoryGirl.create(:contact, first_name: "Sarah", family: user2) }
 
   before(:each) do
     visit unauthenticated_root_path

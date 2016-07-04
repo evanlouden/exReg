@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "admin deletes pricing tier" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:price1) { FactoryGirl.create(:price) }
 
   scenario "successfully deletes contact" do
