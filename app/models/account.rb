@@ -1,8 +1,4 @@
 class Account < ApplicationRecord
-  has_many :students
-  has_many :contacts
-  accepts_nested_attributes_for :contacts
-  has_many :lessons
   before_destroy :destroy_contacts
 
   devise :database_authenticatable, :registerable,
@@ -17,6 +13,6 @@ class Account < ApplicationRecord
   private
 
   def destroy_contacts
-    self.contacts.destroy_all
+    contacts.destroy_all
   end
 end

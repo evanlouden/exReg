@@ -28,8 +28,8 @@
     <%= f.select :instrument, options_from_collection_for_select(@instruments, :name, :name) %>
   </div>
   <div class="field">
-    <%= f.label :account_id, "Teacher" %>
-    <%= f.select :account_id, options_from_collection_for_select(@teachers, :id, :email) %>
+    <%= f.label :teacher_id, "Teacher" %>
+    <%= f.select :teacher_id, options_from_collection_for_select(@teachers, :id, :email) %>
   </div>
 
   <div class= "actions">

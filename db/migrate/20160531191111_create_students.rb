@@ -5,7 +5,7 @@ class CreateStudents < ActiveRecord::Migration[5.0]
       t.string :last_name, null: false
       t.string :school
       t.date :dob, null: false
-      t.belongs_to :account
+      t.belongs_to :family
     end
   end
 end

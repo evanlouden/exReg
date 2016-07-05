@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
   belongs_to :student
-  belongs_to :account
+  belongs_to :teacher
   belongs_to :inquiry
 
   validates :day, presence: true
@@ -13,7 +13,7 @@ class Lesson < ApplicationRecord
   validates :tier_name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :student, presence: true
-  validates :account, presence: true
+  validates :teacher, presence: true
   validates :inquiry, presence: true
 
   def remaining

@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def new
-    build_resource({})
+    build_resource({type: "Family"})
     self.resource.contacts << Contact.new
     respond_with self.resource
   end

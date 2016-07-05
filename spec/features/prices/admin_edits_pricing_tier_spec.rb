@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "admin edits pricing tier" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:price1) { FactoryGirl.create(:price) }
 
   before(:each) do
@@ -15,7 +15,7 @@ feature "admin edits pricing tier" do
     click_link "Pricing Tiers"
 
     expect(page).to have_content("#{price1.description}")
-    
+
     click_link "Edit"
     fill_in "Duration (minutes)", with: "75"
     click_button "Update Pricing Tier"

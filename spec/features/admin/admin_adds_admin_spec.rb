@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature "admin signs up teacher" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
+feature "admin signs up admin" do
+  let!(:admin1) { FactoryGirl.create(:admin) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -11,8 +11,8 @@ feature "admin signs up teacher" do
     click_button "Sign In"
   end
   scenario "specifies valid account information" do
-    click_link "Add Teacher"
-    fill_in "Email", with: "newteacher@teacher.com"
+    click_link "Add Admin"
+    fill_in "Email", with: "newadmin@admin.com"
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
     fill_in "State", with: "MA"
@@ -20,7 +20,6 @@ feature "admin signs up teacher" do
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
     fill_in "Phone", with: "9785551212"
-    find(:css, "#account_teacher").set(true)
     click_button "Create Account"
 
     expect(page).to have_content("Account created")
@@ -28,21 +27,21 @@ feature "admin signs up teacher" do
 
     click_link "Staff Members"
 
-    expect(page).to have_content("newteacher@teacher.com")
+    expect(page).to have_content("newadmin@admin.com")
   end
 
   scenario "does not specify valid account information" do
-    click_link "Add Teacher"
+    click_link "Add Admin"
     click_button "Create Account"
 
-    expect(page).to have_content("New Teacher Account")
+    expect(page).to have_content("New Admin Account")
     expect(page).to have_content("can't be blank")
     expect(page).to_not have_content("Admin Dashboard")
   end
 
   scenario "does not specify valid zip code" do
-    click_link "Add Teacher"
-    fill_in "Email", with: "newteacher@teacher.com"
+    click_link "Add Admin"
+    fill_in "Email", with: "newadmin@admin.com"
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
     fill_in "State", with: "MA"
@@ -50,10 +49,9 @@ feature "admin signs up teacher" do
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
     fill_in "Phone", with: "9785551212"
-    find(:css, "#account_teacher").set(true)
     click_button "Create Account"
 
-    expect(page).to have_content("New Teacher Account")
+    expect(page).to have_content("New Admin Account")
     expect(page).to have_content("Zip is not a number")
     expect(page).to have_content("Zip is the wrong length")
     expect(page).to_not have_content("Admin Dashboard")

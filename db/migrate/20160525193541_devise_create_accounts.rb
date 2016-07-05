@@ -27,6 +27,7 @@ class DeviseCreateAccounts < ActiveRecord::Migration
 
       t.boolean :admin, default: false
       t.boolean :teacher, default: false
+      t.string :type
 
       ## Confirmable
       # t.string   :confirmation_token

@@ -8,12 +8,12 @@ class AdminController < PermissionsController
   end
 
   def new
-    @account = Account.new
+    @account = Admin.new
     @contact = @account.contacts.build
   end
 
   def create
-    @account = Account.new(account_params)
+    @account = Admin.new(admin_params)
     @account.contacts.last.email = @account.email
     password = Devise.friendly_token(10)
     @account.password = password
@@ -27,15 +27,15 @@ class AdminController < PermissionsController
   end
 
   def change
-    @teacher = Account.find(params[:id])
+    @teacher = Teacher.find(params[:id])
     @teacher.admin ? @teacher.update_attribute(:admin, false) : @teacher.update_attribute(:admin, true)
     redirect_to teachers_path
   end
 
   private
 
-  def account_params
-    params.require(:account).permit(
+  def admin_params
+    params.require(:admin).permit(
       :email,
       :password,
       :password_confirmation,
@@ -44,9 +44,7 @@ class AdminController < PermissionsController
       :city,
       :state,
       :zip,
-      :admin,
-      :teacher,
       contacts_attributes: [:account_id, :first_name, :last_name, :email, :phone]
-    )
+    ).merge(admin: true)
   end
 end

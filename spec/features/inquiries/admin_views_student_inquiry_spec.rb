@@ -1,9 +1,9 @@
 require "rails_helper"
 
 feature "admin views student inquiry" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
-  let!(:user1) { FactoryGirl.create(:account) }
-  let!(:student1) { FactoryGirl.create(:student, account: user1) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:student1) { FactoryGirl.create(:student, family: user1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:instrument2) { FactoryGirl.create(:instrument, name: "Piano") }

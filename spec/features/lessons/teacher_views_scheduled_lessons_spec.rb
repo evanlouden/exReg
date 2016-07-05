@@ -1,16 +1,16 @@
 require "rails_helper"
 
 feature "teacher views list of scheduled lessons" do
-  let!(:admin1) { FactoryGirl.create(:account, admin: true) }
-  let!(:teacher1) { FactoryGirl.create(:account, teacher: true) }
-  let!(:user1) { FactoryGirl.create(:account) }
-  let!(:student1) { FactoryGirl.create(:student, account: user1) }
+  let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:teacher1) { FactoryGirl.create(:teacher) }
+  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:student1) { FactoryGirl.create(:student, family: user1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:price2) { FactoryGirl.create(:price, duration: "60", price: "100") }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
-  let!(:lesson1) { FactoryGirl.create(:lesson, student: student1, account: teacher1, inquiry: inquiry1) }
-  let!(:contact1) { FactoryGirl.create(:contact, account: teacher1) }
+  let!(:lesson1) { FactoryGirl.create(:lesson, student: student1, teacher: teacher1, inquiry: inquiry1) }
+  let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   scenario "successfully views list" do
     visit unauthenticated_root_path

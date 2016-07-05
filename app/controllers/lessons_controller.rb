@@ -5,7 +5,7 @@ class LessonsController < PermissionsController
     @lesson = @student.lessons.build
     @lesson.inquiry = @inquiry
     @days = Availability::DAYS
-    @teachers = Account.all.where(teacher: true)
+    @teachers = Teacher.all
     @instruments = Instrument.all
   end
 
@@ -14,7 +14,7 @@ class LessonsController < PermissionsController
     @inquiry = Inquiry.find(params[:lesson][:inquiry_id])
     @lesson = @student.lessons.build(lesson_params)
     @days = Availability::DAYS
-    @teachers = Account.all.where(teacher: true)
+    @teachers = Teacher.all
     @instruments = Instrument.all
     @price_tier = Price.find(params[:lesson][:tier_name])
     @lesson.tier_name = @price_tier.tier_name
@@ -54,7 +54,7 @@ class LessonsController < PermissionsController
       :tier_name,
       :price,
       :student_id,
-      :account_id,
+      :teacher_id,
       :inquiry_id
     )
   end

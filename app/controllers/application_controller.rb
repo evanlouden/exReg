@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
       :city,
       :state,
       :zip,
+      :type,
       contacts_attributes: [
         :id,
         :first_name,

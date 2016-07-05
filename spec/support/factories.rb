@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :account do
+  factory :account, class: 'Account' do
     sequence(:email) { |n| "user#{n}@example.com" }
     password "password"
     password_confirmation "password"
@@ -9,11 +9,26 @@ FactoryGirl.define do
     zip "01223"
   end
 
+  factory :admin, parent: :account, class: 'Admin' do
+    admin true
+  end
+
+  factory :teacher, parent: :account, class: 'Teacher' do
+    teacher true
+    before(:create) do |teacher|
+      teacher.availabilities << FactoryGirl.build(:availability)
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Monday", checked: "0", start_time: "", end_time: "")
+    end
+  end
+
+  factory :family, parent: :account, class: 'Family' do
+  end
+
   factory :student do
     first_name "John"
     last_name "Doe"
     dob "2000/05/13"
-    account
+    family
     before(:create) do |student|
       student.availabilities << FactoryGirl.build(:availability)
       student.availabilities << FactoryGirl.build(:availability, day: "Monday", checked: "0", start_time: "", end_time: "")
@@ -30,7 +45,6 @@ FactoryGirl.define do
     day "Sunday"
     start_time "2000-01-01 20:00:00 UTC"
     end_time "2000-01-01 22:00:00 UTC"
-    account
   end
 
   factory :contact do
@@ -38,7 +52,9 @@ FactoryGirl.define do
     last_name "Doe"
     sequence(:email) { |n| "user#{n}@example.com" }
     phone "9785551212"
-    account
+    teacher
+    admin
+    family
   end
 
   factory :price do
@@ -58,7 +74,7 @@ FactoryGirl.define do
     duration "45"
     price "75"
     student
-    account
+    teacher
     inquiry
   end
 
