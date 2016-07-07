@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user edits student" do
+feature "user edits student availability" do
   let!(:user1) { FactoryGirl.create(:family) }
   let!(:student1) { FactoryGirl.create(:student, family: user1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }

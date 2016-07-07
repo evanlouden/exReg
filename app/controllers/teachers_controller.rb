@@ -9,6 +9,7 @@ class TeachersController < PermissionsController
 
   def show
     @lessons = current_account.lessons
+    @teacher = Teacher.find(params[:id])
   end
 
   def new
@@ -34,6 +35,28 @@ class TeachersController < PermissionsController
     else
       flash[:error] = @teacher.errors.full_messages.join(", ")
       render :new
+    end
+  end
+
+  def edit
+    @teacher = Teacher.find(params[:id])
+    @availabilities = sort_avails(@teacher.availabilities)
+    respond_to do |format|
+      format.html { render :edit }
+      format.json { render json: @availabilities.select { |a| a.checked == "1" } }
+    end
+  end
+
+  def update
+    @teacher = Teacher.find(params[:id])
+    @availabilities = @teacher.availabilities
+    if @teacher.update(teacher_params)
+      clear_times(@availabilities)
+      flash[:notice] = "Availability Updated"
+      redirect_to teacher_path(@teacher)
+    else
+      flash[:alert] = @teacher.errors.full_messages.join(", ")
+      render :edit
     end
   end
 
