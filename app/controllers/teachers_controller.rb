@@ -72,7 +72,7 @@ class TeachersController < PermissionsController
       :city,
       :state,
       :zip,
-      contacts_attributes: [:account_id, :first_name, :last_name, :email, :phone],
+      contacts_attributes: [:id, :first_name, :last_name, :email, :phone],
       availabilities_attributes: [:id, :checked, :day, :start_time, :end_time]
     ).merge(teacher: true)
   end
