@@ -1,7 +1,6 @@
 $(document).ready(function(){
   var path = window.location.pathname;
 
-
   var request = $.ajax({
     method: "GET",
     url: path,

@@ -44,7 +44,7 @@ class AdminController < PermissionsController
       :city,
       :state,
       :zip,
-      contacts_attributes: [:account_id, :first_name, :last_name, :email, :phone]
+      contacts_attributes: [:id, :first_name, :last_name, :email, :phone]
     ).merge(admin: true)
   end
 end
