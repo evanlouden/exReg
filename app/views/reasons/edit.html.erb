@@ -1,8 +1,8 @@
-<h1>Edit Reason</h1>
+<h1>Edit Absence Reason</h1>
 
 <%= form_for @reason do |f| %>
   <div class="field">
-    <%= f.label :reason  %>
+    <%= f.label :reason, "Reason Name"  %>
     <%= f.text_field :reason  %>
   </div>
 
@@ -10,7 +10,7 @@
     <%= f.label :teacher_paid, "Teacher Paid?"  %>
     <%= f.select(:teacher_paid, [["Yes", true],["No", false]] )  %>
   </div>
-  
+
   <div class="field">
     <%= f.label :student_charged, "Charge Student?"  %>
     <%= f.select(:student_charged, [["Yes", true],["No", false]] )  %>

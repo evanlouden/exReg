@@ -1,14 +1,14 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Tommy/Desktop/exReg/app/channels/application_cable/connection.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/channels/application_cable/connection.rb": [
         null,
         1,
         1,
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/account.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/account.rb": [
         1,
         1,
         null,
@@ -28,7 +28,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/application_record.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/application_record.rb": [
         1,
         1,
         null,
@@ -37,20 +37,20 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/helpers/application_helper.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/helpers/application_helper.rb": [
         1,
         1,
         76,
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/admin.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/admin.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/teacher.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/teacher.rb": [
         1,
         1,
         1,
@@ -80,7 +80,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/availability.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/availability.rb": [
         1,
         1,
         1,
@@ -122,31 +122,31 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/welcome_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/welcome_controller.rb": [
         1,
         1,
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/permissions_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/permissions_controller.rb": [
         1,
         1,
-        80,
-        80,
+        100,
+        100,
         1,
         1,
         null,
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/application_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/application_controller.rb": [
         1,
         1,
         1,
         null,
         1,
-        57,
-        24,
+        62,
+        29,
         33,
         5,
         null,
@@ -157,7 +157,7 @@
         1,
         null,
         1,
-        131,
+        141,
         null,
         null,
         null,
@@ -202,14 +202,14 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/admin_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/admin_controller.rb": [
         1,
         1,
         1,
         null,
         1,
-        27,
-        27,
+        32,
+        32,
         null,
         null,
         1,
@@ -254,7 +254,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/inquiry.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/inquiry.rb": [
         1,
         1,
         1,
@@ -263,7 +263,7 @@
         1,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/student.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/student.rb": [
         1,
         1,
         1,
@@ -301,7 +301,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/teachers_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/teachers_controller.rb": [
         1,
         1,
         1,
@@ -313,7 +313,10 @@
         null,
         1,
         6,
+        7,
         6,
+        0,
+        null,
         null,
         null,
         1,
@@ -382,14 +385,14 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/family.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/family.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/dashboard_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/dashboard_controller.rb": [
         1,
         1,
         42,
@@ -403,7 +406,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/contact.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/contact.rb": [
         1,
         1,
         1,
@@ -416,7 +419,7 @@
         1,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/registrations_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/registrations_controller.rb": [
         1,
         1,
         4,
@@ -435,7 +438,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/students_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/students_controller.rb": [
         1,
         1,
         null,
@@ -520,12 +523,13 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/instrument.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/instrument.rb": [
         1,
         1,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/lesson.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/lesson.rb": [
+        1,
         1,
         1,
         1,
@@ -559,9 +563,13 @@
         1,
         7,
         null,
+        null,
+        1,
+        0,
+        null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/contacts_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/contacts_controller.rb": [
         1,
         1,
         2,
@@ -618,7 +626,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/inquiries_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/inquiries_controller.rb": [
         1,
         1,
         null,
@@ -671,7 +679,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/instruments_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/instruments_controller.rb": [
         1,
         1,
         1,
@@ -723,7 +731,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/models/price.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/models/price.rb": [
         1,
         1,
         1,
@@ -734,7 +742,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/lessons_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/lessons_controller.rb": [
         1,
         1,
         2,
@@ -797,7 +805,7 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/prices_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/prices_controller.rb": [
         1,
         1,
         1,
@@ -851,28 +859,97 @@
         null,
         null
       ],
-      "/Users/Tommy/Desktop/exReg/app/channels/application_cable/channel.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/reasons_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        8,
+        8,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        4,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/anthonydegennaro/challenges/exReg/app/models/reason.rb": [
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/anthonydegennaro/challenges/exReg/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0,
         0
       ],
-      "/Users/Tommy/Desktop/exReg/app/controllers/availabilities_controller.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/controllers/availabilities_controller.rb": [
         0,
         0
       ],
-      "/Users/Tommy/Desktop/exReg/app/jobs/application_job.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/Tommy/Desktop/exReg/app/mailers/application_mailer.rb": [
+      "/Users/anthonydegennaro/challenges/exReg/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/anthonydegennaro/challenges/exReg/app/models/missed_lesson.rb": [
+        0,
+        0,
         0,
         0,
         0,
         0
       ]
     },
-    "timestamp": 1467995374
+    "timestamp": 1468032266
   }
 }

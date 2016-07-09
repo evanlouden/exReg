@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin adds instrument" do
+feature "admin edits instrument" do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
 
@@ -14,7 +14,7 @@ feature "admin adds instrument" do
   scenario "specifies valid information" do
     click_link "Instruments"
 
-    expect(page).to have_content("#{instrument1.name}")
+    expect(page).to have_content(instrument1.name)
 
     click_link "Edit"
     fill_in "Name", with: "Piano"

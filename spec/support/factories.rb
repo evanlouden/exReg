@@ -81,4 +81,10 @@ FactoryGirl.define do
   factory :instrument do
     name "Guitar"
   end
+
+  factory :reason do
+    reason "Excused Absence"
+    teacher_paid false
+    student_charged false
+  end
 end
