@@ -1,0 +1,31 @@
+<h1>Absence Reasons:</h1>
+<% if @reasons %>
+  <% @reasons.each do |reason| %>
+    <p>
+      <%= reason.reason %>
+      <%= link_to "Edit", edit_reason_path(reason) %>
+      <%= link_to "Delete", reason_path(reason), method: :delete %>
+    </p>
+  <% end %>
+<% end %>
+
+<%= form_for @reason do |f| %>
+  <div class="field">
+    <%= f.label :reason, "Reason Name"  %>
+    <%= f.text_field :reason  %>
+  </div>
+  <div class="field">
+    <%= f.label :teacher_paid, "Teacher Paid?"  %>
+    <%= f.select(:teacher_paid, [["Yes", true],["No", false]] )  %>
+  </div>
+  <div class="field">
+    <%= f.label :student_charged, "Charge Student?"  %>
+    <%= f.select(:student_charged, [["Yes", true],["No", false]] )  %>
+  </div>
+
+  <div class= "actions">
+    <%= f.submit "Add Reason" %>
+  </div>
+<% end %>
+
+<%= link_to "Dashboard", admin_index_path %>

@@ -2,6 +2,7 @@ class Lesson < ApplicationRecord
   belongs_to :student
   belongs_to :teacher
   belongs_to :inquiry
+  has_many :missed_lessons
 
   validates :day, presence: true
   validates :start_date, presence: true
@@ -30,5 +31,9 @@ class Lesson < ApplicationRecord
 
   def price_info
     "#{tier_name}: #{duration} min., $#{'%.2f' % price}"
+  end
+
+  def current_attendance_date
+    attended == 0 ? start_date + 7 : start_date + (7 * attended)
   end
 end

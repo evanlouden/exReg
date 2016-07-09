@@ -9,7 +9,10 @@ class TeachersController < PermissionsController
 
   def show
     @lessons = current_account.lessons
-    @teacher = Teacher.find(params[:id])
+    @today_lessons = @lessons.select { |x| x.day == Date.today.strftime('%A') }
+    @today_lessons.each do |lesson|
+      lesson.missed_lessons.build(date: lesson.current_attendance_date)
+    end
   end
 
   def new

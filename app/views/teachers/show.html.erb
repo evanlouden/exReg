@@ -14,4 +14,11 @@
   </div>
 <% end %>
 
-<%= link_to "Edit Availability", edit_teacher_path(@teacher) %></br>
+Attendance:
+<% @today_lessons.each do |lesson| %>
+  <p>
+    <%= lesson.student.full_name %>
+  </p>
+<% end %>
+
+<%= link_to "Edit Availability", edit_teacher_path(current_account) %></br>

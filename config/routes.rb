@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   resources :lessons
   resources :instruments
   resources :teachers
+  resources :reasons
 end
