@@ -8,6 +8,8 @@ Instrument.create(name: "Piano")
 Instrument.create(name: "Violin")
 Price.create(tier_name: "Private Lesson", price: "50", duration: "30")
 Price.create(tier_name: "Suzuki Private Lesson", price: "75", duration: "45")
+Reason.create(reason: "Excused Absence", teacher_paid: false, student_charged: false)
+Reason.create(reason: "Unexcused Absence", teacher_paid: true, student_charged: true)
 
 teacher_params = {
   email: "teacher1@teacher.com",
@@ -123,4 +125,4 @@ student_params = {
   ]
 }
 
-student1 = Student.create(student_params)
+Student.create(student_params)
