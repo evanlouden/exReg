@@ -40,6 +40,13 @@ class LessonsController < PermissionsController
     end
   end
 
+  def attended
+    @lesson = Lesson.find(params[:id])
+    @lesson.attended += 1
+    @lesson.save
+    redirect_to teacher_path(current_account)
+  end
+
   private
 
   def lesson_params

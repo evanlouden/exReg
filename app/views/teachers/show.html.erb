@@ -15,10 +15,20 @@
 <% end %>
 
 Attendance:
-<% @today_lessons.each do |lesson| %>
-  <p>
-    <%= lesson.student.full_name %>
-  </p>
+<% @attendance.each do |lesson| %>
+  <%= lesson.student.full_name %>
+    <div class="button-group">
+      <%= link_to "Present", attended_lesson_path(lesson), method: :patch, class: "button success" %>
+      <%= link_to "Absent", "#", class: "button alert" %>
+    </div>
+    <div class="hidden-submit">
+      <%= form_for lesson.missed_lessons.last, url: missed_lessons_path do |f| %>
+      <%= f.hidden_field :lesson_id %>
+      <%= f.label :reason_id, "Reason" %>
+      <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :reason) %>
+      <%= f.submit "Submit" %>
+    </div>
+    <% end %>
 <% end %>
 
 <%= link_to "Edit Availability", edit_teacher_path(current_account) %></br>
