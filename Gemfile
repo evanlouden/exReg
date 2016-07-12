@@ -21,6 +21,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
   gem 'factory_girl_rails', "~> 4.0"
+  gem 'selenium-webdriver'
 end
 
 group :development do

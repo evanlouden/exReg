@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "teacher takes attendance" do
+feature "teacher takes attendance", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
   let!(:user1) { FactoryGirl.create(:family) }
@@ -57,6 +57,7 @@ feature "teacher takes attendance" do
     click_button "Sign In"
 
     within(:css, "#attendance-#{lesson1.student.first_name}-#{lesson1.student.last_name}") do
+      click_link "Absent"
       select("#{reason1.reason}", from: "Reason")
       click_button "Submit"
     end
@@ -74,6 +75,7 @@ feature "teacher takes attendance" do
     click_button "Sign In"
 
     within(:css, "#attendance-#{lesson1.student.first_name}-#{lesson1.student.last_name}") do
+      click_link "Absent"
       select("#{reason2.reason}", from: "Reason")
       click_button "Submit"
     end
