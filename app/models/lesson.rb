@@ -33,28 +33,24 @@ class Lesson < ApplicationRecord
     "#{tier_name}: #{duration} min., $#{'%.2f' % price}"
   end
 
-  def absence_date
-    attended == 0 ? start_date + 7 : start_date + (7 * attended)
-  end
-
   def excused_counter
     count = 0
     missed_lessons.each do |missed|
-      unless missed.reason.student_charged
+      unless missed.reason.nil? || missed.reason.student_charged
         count += 1
       end
     end
     count
   end
 
-  def next_lesson
+  def active_lesson
     start_date + ((attended + excused_counter) * 7)
   end
 
   def attendance_needed?
-    if attended == 0 && Date.today >= start_date && Date.today >= next_lesson
+    if attended == 0 && Date.today >= start_date && Date.today >= active_lesson
       true
-    elsif Date.today >= next_lesson
+    elsif Date.today >= active_lesson
       true
     else
       false

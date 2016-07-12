@@ -4,7 +4,9 @@ class MissedLessonsController < PermissionsController
     @missed_lesson = MissedLesson.new(missed_lessons_params)
     @missed_lesson.save
     @lesson.attended += 1 if @missed_lesson.reason.student_charged
-    redirect teacher_path(current_account)
+    @lesson.save
+    @teacher = current_account
+    redirect_to teacher_path(@teacher)
   end
 
   private
@@ -14,6 +16,6 @@ class MissedLessonsController < PermissionsController
     :reason_id,
     :date,
     :lesson_id
-    ).merge(date: @lesson.absence_date)
+    ).merge(date: @lesson.active_lesson)
   end
 end

@@ -14,9 +14,11 @@
   </div>
 <% end %>
 
-Attendance:
+<h3>Outstanding Attendance:</h3>
 <% @attendance.each do |lesson| %>
-  <%= lesson.student.full_name %>
+  <div id="attendance-<%= lesson.student.first_name %>-<%= lesson.student.last_name %>">
+    <%= lesson.student.full_name %></br>
+    Attendance For: <%= lesson.active_lesson %>
     <div class="button-group">
       <%= link_to "Present", attended_lesson_path(lesson), method: :patch, class: "button success" %>
       <%= link_to "Absent", "#", class: "button alert", id:"btn-#{lesson.student.id}" %>
@@ -29,6 +31,7 @@ Attendance:
         <%= f.submit "Submit" %>
       <% end %>
     </div>
+  </div>
 <% end %>
 
 <%= link_to "Edit Availability", edit_teacher_path(current_account) %></br>
