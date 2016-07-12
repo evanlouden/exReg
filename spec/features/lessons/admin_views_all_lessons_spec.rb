@@ -14,10 +14,11 @@ feature "admin views all lessons" do
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:lesson1) {
     FactoryGirl.create(
-    :lesson,
-    student: student1,
-    teacher: teacher1,
-    inquiry: inquiry1)
+      :lesson,
+      student: student1,
+      teacher: teacher1,
+      inquiry: inquiry1
+    )
   }
 
   scenario "views list of lessons" do

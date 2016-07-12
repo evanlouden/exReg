@@ -11,12 +11,13 @@ feature "teacher takes attendance", js: true do
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:lesson1) {
     FactoryGirl.create(
-    :lesson,
-    student: student1,
-    teacher: teacher1,
-    inquiry: inquiry1,
-    start_date: Date.today.strftime("%F"),
-    day: Date.today.strftime("%A"))
+      :lesson,
+      student: student1,
+      teacher: teacher1,
+      inquiry: inquiry1,
+      start_date: Date.today.strftime("%F"),
+      day: Date.today.strftime("%A")
+    )
   }
   let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
   let!(:reason1) { FactoryGirl.create(:reason) }

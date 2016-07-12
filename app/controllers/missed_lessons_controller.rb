@@ -13,9 +13,9 @@ class MissedLessonsController < PermissionsController
 
   def missed_lessons_params
     params.require(:missed_lesson).permit(
-    :reason_id,
-    :date,
-    :lesson_id
+      :reason_id,
+      :date,
+      :lesson_id
     ).merge(date: @lesson.active_lesson)
   end
 end

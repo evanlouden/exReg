@@ -11,10 +11,11 @@ feature "teacher views list of scheduled lessons" do
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:lesson1) {
     FactoryGirl.create(
-    :lesson,
-    student: student1,
-    teacher: teacher1,
-    inquiry: inquiry1)
+      :lesson,
+      student: student1,
+      teacher: teacher1,
+      inquiry: inquiry1
+    )
   }
   let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
 
