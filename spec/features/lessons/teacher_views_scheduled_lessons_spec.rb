@@ -9,7 +9,13 @@ feature "teacher views list of scheduled lessons" do
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:price2) { FactoryGirl.create(:price, duration: "60", price: "100") }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
-  let!(:lesson1) { FactoryGirl.create(:lesson, student: student1, teacher: teacher1, inquiry: inquiry1) }
+  let!(:lesson1) {
+    FactoryGirl.create(
+    :lesson,
+    student: student1,
+    teacher: teacher1,
+    inquiry: inquiry1)
+  }
   let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   scenario "successfully views list" do
