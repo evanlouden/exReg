@@ -7,9 +7,9 @@ feature "admin views all lessons" do
   let!(:student1) { FactoryGirl.create(:student, family: family1) }
   let!(:inquiry1) {
     FactoryGirl.create(
-    :inquiry,
-    student: student1,
-    completed: true)
+      :inquiry,
+      student: student1,
+      completed: true)
   }
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:lesson1) {

@@ -23,10 +23,10 @@ feature "teacher takes attendance", js: true do
   let!(:reason1) { FactoryGirl.create(:reason) }
   let!(:reason2) {
     FactoryGirl.create(
-    :reason,
-    reason: "Unexcused Absence",
-    student_charged: true,
-    teacher_paid: true)
+      :reason,
+      reason: "Unexcused Absence",
+      student_charged: true,
+      teacher_paid: true)
   }
 
   scenario "marks student present" do
