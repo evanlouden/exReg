@@ -5,9 +5,21 @@ feature "admin views all lessons" do
   let!(:teacher1) { FactoryGirl.create(:teacher) }
   let!(:family1) { FactoryGirl.create(:family) }
   let!(:student1) { FactoryGirl.create(:student, family: family1) }
-  let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1, completed: true) }
+  let!(:inquiry1) {
+    FactoryGirl.create(
+    :inquiry,
+    student: student1,
+    completed: true)
+  }
   let!(:price1) { FactoryGirl.create(:price) }
-  let!(:lesson1) { FactoryGirl.create(:lesson, student: student1, teacher: teacher1, inquiry: inquiry1) }
+  let!(:lesson1) {
+    FactoryGirl.create(
+      :lesson,
+      student: student1,
+      teacher: teacher1,
+      inquiry: inquiry1
+    )
+  }
 
   scenario "views list of lessons" do
     visit unauthenticated_root_path

@@ -23,8 +23,13 @@ Rails.application.routes.draw do
   resources :inquiries
   resources :contacts
   resources :prices
-  resources :lessons
+  resources :lessons do
+    member do
+      patch :attended
+    end
+  end
   resources :instruments
   resources :teachers
   resources :reasons
+  resources :missed_lessons, only: :create
 end

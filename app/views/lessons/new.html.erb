@@ -25,7 +25,7 @@
   </div>
   <div class= "field">
     <%= f.label :instrument %>
-    <%= f.select :instrument, options_from_collection_for_select(@instruments, :name, :name) %>
+    <%= f.select :instrument, options_from_collection_for_select(@instruments, :name, :name, selected: @inquiry.instrument ) %>
   </div>
   <div class="field">
     <%= f.label :teacher_id, "Teacher" %>
