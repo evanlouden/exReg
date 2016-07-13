@@ -15,7 +15,7 @@ feature "admin signs up teacher" do
     fill_in "Email", with: "newteacher@teacher.com"
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
-    fill_in "State", with: "MA"
+    select("Massachusetts", from: "State")
     fill_in "Zip", with: "02115"
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
@@ -47,7 +47,7 @@ feature "admin signs up teacher" do
     fill_in "Email", with: "newteacher@teacher.com"
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
-    fill_in "State", with: "MA"
+    select("Massachusetts", from: "State")
     fill_in "Zip", with: "abc"
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
