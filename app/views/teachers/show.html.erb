@@ -1,4 +1,4 @@
-<h1>Welcome, <%= current_account.contacts.first.full_name %></h1>
+<h1><%= @teacher.contacts.first.full_name %> Profile Page</h1>
 
 <h3>Current Lessons</h3>
 <% @lessons.each do |lesson| %>
