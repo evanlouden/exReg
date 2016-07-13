@@ -11,9 +11,8 @@
     <%= f.label :start_date, "Start Date" %>
     <%= f.date_field :start_date %>
   </div>
-  <div class="field">
-    <%= f.label :day %>
-    <%= f.select :day, options_for_select(@days) %>
+  <div class="field" id="dayValue">
+    Day:
   </div>
   <div class="field">
     <%= f.label :start_time, "Start Time" %>
@@ -38,3 +37,4 @@
 <% end %>
 
 <%= link_to "Cancel", admin_index_path %>
+<%= javascript_include_tag 'dayFromDate.js' %>
