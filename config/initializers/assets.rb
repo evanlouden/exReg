@@ -8,6 +8,7 @@ Rails.application.config.assets.precompile += %w( slider_edit_teacher.js )
 Rails.application.config.assets.precompile += %w( slider_time_teacher.js )
 Rails.application.config.assets.precompile += %w( slider_time.js )
 Rails.application.config.assets.precompile += %w( absentToggle.js )
+Rails.application.config.assets.precompile += %w( dayFromDate.js )
 Rails.application.config.assets.precompile += %w( teacherShow.js )
 
 # Add additional assets to the asset load path
