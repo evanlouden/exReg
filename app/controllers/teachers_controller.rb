@@ -16,6 +16,7 @@ class TeachersController < PermissionsController
   end
 
   def new
+    @states = Account::STATES
     @teacher = Teacher.new
     @contact = @teacher.contacts.build
     @days = Availability::DAYS
@@ -26,6 +27,7 @@ class TeachersController < PermissionsController
   end
 
   def create
+    @states = Account::STATES
     @teacher = Teacher.new(teacher_params)
     @teacher.contacts.last.email = @teacher.email
     @availabilities = @teacher.availabilities

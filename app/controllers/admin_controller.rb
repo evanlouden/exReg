@@ -8,11 +8,13 @@ class AdminController < PermissionsController
   end
 
   def new
+    @states = Account::STATES
     @account = Admin.new
     @contact = @account.contacts.build
   end
 
   def create
+    @states = Account::STATES
     @account = Admin.new(admin_params)
     @account.contacts.last.email = @account.email
     password = Devise.friendly_token(10)

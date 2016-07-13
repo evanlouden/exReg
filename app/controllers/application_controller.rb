@@ -34,6 +34,17 @@ class ApplicationController < ActionController::Base
         :account_id
       ]
     )}
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :current_password,
+      :address,
+      :city,
+      :state,
+      :zip,
+      :type)
+    }
   end
 
   def clear_times(availabilities)

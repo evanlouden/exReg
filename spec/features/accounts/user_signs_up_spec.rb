@@ -11,7 +11,7 @@ feature "user signs up" do
     fill_in "Password Confirmation", with: "password"
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
-    fill_in "State", with: "MA"
+    select("Massachusetts", from: "State")
     fill_in "Zip", with: "02115"
     fill_in "First Name", with: "Jimmy"
     fill_in "Last Name", with: "Smith"
@@ -56,7 +56,7 @@ feature "user signs up" do
     fill_in "Password Confirmation", with: "password"
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
-    fill_in "State", with: "MA"
+    select("Massachusetts", from: "State")
     fill_in "Zip", with: "abc"
     fill_in "First Name", with: "Jimmy"
     fill_in "Last Name", with: "Smith"
