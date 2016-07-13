@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :admin do
     member do
       patch :change
+      post :attendance
     end
   end
   resources :inquiries
