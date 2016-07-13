@@ -5,6 +5,7 @@ class AdminController < PermissionsController
   def index
     @open_inquiries = Inquiry.all.where(completed: false).order(created_at: :asc)
     @students = Student.all
+    @teachers = Teacher.all
   end
 
   def new
@@ -32,6 +33,11 @@ class AdminController < PermissionsController
     @teacher = Teacher.find(params[:id])
     @teacher.admin ? @teacher.update_attribute(:admin, false) : @teacher.update_attribute(:admin, true)
     redirect_to teachers_path
+  end
+
+  def attendance
+    @teacher = Teacher.find(params[:id])
+    redirect_to teacher_path(@teacher)
   end
 
   private

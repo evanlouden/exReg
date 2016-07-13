@@ -8,7 +8,8 @@ class TeachersController < PermissionsController
   end
 
   def show
-    @lessons = current_account.lessons
+    @teacher = Teacher.find(params[:id])
+    @lessons = @teacher.lessons
     @attendance = @lessons.select { |x| x.attendance_needed? }
     @attendance.each do |lesson|
       lesson.missed_lessons.build
