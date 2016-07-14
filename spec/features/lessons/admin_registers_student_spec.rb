@@ -24,6 +24,7 @@ feature "admin registers student for lessons", js: true do
     click_link "Register Student"
     select(price2.description, from: "Pricing Tier")
     fill_in "Start Date", with: "2016/09/13"
+    find("#header").click
     fill_in "Start Time", with: "8:00 PM"
     fill_in "Purchased", with: "10"
     select("Guitar", from: "Instrument")
