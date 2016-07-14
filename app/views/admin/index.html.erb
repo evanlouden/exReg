@@ -23,7 +23,9 @@
 <%= link_to "Pricing Tiers", prices_path %></br>
 <%= link_to "Instruments", instruments_path %></br>
 <%= link_to "Absence Reasons", reasons_path %>
-<p>Take attendance for:
-  <%= collection_select(:teacher, :attendance, @teachers, :id, :full_name) %>
-</p>
+<div id="admin-attendance">
+  <p>Take Attendance For:
+    <%= collection_select(:teacher, :attendance, @teachers, :id, :full_name) %>
+  </p>
+</div>
 <%= javascript_include_tag "teacherShow.js"%>
