@@ -23,7 +23,7 @@ feature "admin views student's lessons" do
     fill_in "Password", with: admin1.password
     click_button "Sign In"
     click_link "Students"
-    click_link "#{student1.full_name}"
+    click_link student1.full_name
 
     expect(page).to have_content(lesson1.time_info)
     expect(page).to have_content(lesson1.price_info)
