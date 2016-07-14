@@ -17,7 +17,7 @@ feature "admin views student inquiry" do
   end
   scenario "views student inquiry" do
     within(:css, "#admin-inquiries") do
-      click_link "#{student1.full_name}"
+      click_link student1.full_name
     end
 
     expect(page).to have_content(student1.first_name)
