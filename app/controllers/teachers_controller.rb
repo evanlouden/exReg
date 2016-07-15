@@ -1,6 +1,6 @@
 class TeachersController < PermissionsController
   before_action :authenticate_account!
-  before_action :require_admin, only: [:index, :new, :create]
+  before_action :require_admin, only: [:index, :new, :create, :destroy]
 
   def index
     @teachers = Account.where(teacher: true).order(email: :desc)
@@ -64,6 +64,13 @@ class TeachersController < PermissionsController
       flash[:alert] = @teacher.errors.full_messages.join(", ")
       render :edit
     end
+  end
+
+  def destroy
+    @teacher = Teacher.find(params[:id])
+    @teacher.destroy
+    flash[:notice] = "Teacher deleted"
+    redirect_to teachers_path
   end
 
   private

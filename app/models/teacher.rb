@@ -5,6 +5,7 @@ class Teacher < Account
   has_many :availabilities
   accepts_nested_attributes_for :availabilities
   before_destroy :destroy_availabilities
+  before_destroy :destroy_lessons
 
   validates_associated :availabilities, unless: :admin?
   validate :no_availability?, unless: :admin?
@@ -28,5 +29,9 @@ class Teacher < Account
 
   def destroy_availabilities
     availabilities.destroy_all
+  end
+
+  def destroy_lessons
+    lessons.destroy_all
   end
 end

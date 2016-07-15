@@ -30,7 +30,7 @@ feature "admin signs up teacher" do
 
     click_link "Staff Members"
 
-    expect(page).to have_content("newteacher@teacher.com")
+    expect(page).to have_content("Thomas Appleseed")
   end
 
   scenario "does not specify valid account information" do
