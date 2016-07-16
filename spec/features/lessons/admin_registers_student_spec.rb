@@ -24,6 +24,7 @@ feature "admin registers student for lessons", js: true do
     click_link "Register Student"
     select(price2.description, from: "Pricing Tier")
     find(:css, "#lesson_start_date").set("2016/09/13")
+    page.evaluate_script("document.activeElement.id") == "lesson_start_time"
     fill_in "Start Time", with: "8:00 PM"
     fill_in "Purchased", with: "10"
     select("Guitar", from: "Instrument")
