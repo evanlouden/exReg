@@ -11,8 +11,10 @@
     <%= f.label :start_date, "Start Date" %>
     <%= f.date_field :start_date %>
   </div>
-  <div class="field" id="dayValue">
-    Day:
+  <div id="dayOfWeek">Day of Week:
+    <%= f.hidden_field :day %>
+    <div class="field" id="dayValue">
+    </div>
   </div>
   <div class="field">
     <%= f.label :start_time, "Start Time" %>
