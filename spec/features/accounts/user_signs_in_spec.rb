@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "user signs in" do
   let!(:user1) { FactoryGirl.create(:family) }
-  let!(:admin1) { FactoryGirl.create(:admin) }
+
   scenario "existing user specifies valid email and password" do
     visit unauthenticated_root_path
     click_link "Sign In"
@@ -13,18 +13,6 @@ feature "user signs in" do
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Sign Out")
     expect(page).to have_content("Dashboard")
-  end
-
-  scenario "existing admin specifies valid email and password" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
-
-    expect(page).to have_content("Welcome Back!")
-    expect(page).to have_content("Admin Dashboard")
-    expect(page).to have_content("Staff Members")
   end
 
   scenario "nonexistent email and password supplied" do

@@ -3,7 +3,11 @@ class PermissionsController < ApplicationController
     session[:current_page] ||= request.referer
     unless current_account.admin
       flash[:alert] = "You do not have permission to access this page"
-      redirect_to authenticated_root_path
+      if current_account.teacher
+        redirect_to teacher_root_path
+      else
+        redirect_to family_root_path
+      end
     end
   end
 end

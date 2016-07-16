@@ -5,8 +5,20 @@ Rails.application.routes.draw do
     root to: "welcome#index", as: "unauthenticated_root"
   end
 
-  authenticated :account do
-    root to: "dashboard#index", as: "authenticated_root"
+  authenticated :account, ->(a) { a.admin && a.teacher } do
+    root to: "admin#index", as: "adminteacher_root"
+  end
+
+  authenticated :account, ->(a) { a.admin } do
+    root to: "admin#index", as: "admin_root"
+  end
+
+  authenticated :account, ->(a) { a.teacher } do
+    root to: "teachers#show", as: "teacher_root"
+  end
+
+  authenticated :account, ->(a) { a.type == "Family" } do
+    root to: "dashboard#index", as: "family_root"
   end
 
   resources :students do
