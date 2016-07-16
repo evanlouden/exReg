@@ -3,12 +3,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(_resources)
-    if current_account.admin
-      admin_index_path
-    elsif current_account.teacher && !current_account.admin
-      teacher_path(current_account)
+    if current_account.admin && current_account.teacher
+      adminteacher_root_path
+    elsif current_account.admin
+      admin_root_path
+    elsif current_account.teacher
+      teacher_root_path
     else
-      dashboard_index_path
+      family_root_path
     end
   end
 
