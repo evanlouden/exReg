@@ -59,7 +59,11 @@ class TeachersController < PermissionsController
     if @teacher.update(teacher_params)
       clear_times(@availabilities)
       flash[:notice] = "Availability Updated"
-      redirect_to teacher_path(@teacher)
+      if current_account.type == "Teacher"
+        redirect_to teacher_path(@teacher)
+      else
+        redirect_to teachers_path
+      end
     else
       flash[:alert] = @teacher.errors.full_messages.join(", ")
       render :edit

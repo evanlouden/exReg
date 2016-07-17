@@ -1,6 +1,6 @@
 <h4>Edit Availability</h4>
 
-<p><%= @teacher.email %> </p>
+<p><%= @teacher.full_name %> </p>
 
 <%= form_for @teacher do |f| %>
 
@@ -33,7 +33,7 @@
   </div>
 <% end %>
 
-<%= link_to "Cancel", teacher_path(@teacher) %>
+<%= render "teachers/cancel" %>
 
 <%= javascript_include_tag "slider_time_teacher.js" %>
 <%= javascript_include_tag "slider_edit_teacher"%>

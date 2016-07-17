@@ -1,0 +1,5 @@
+<% if current_account.type == "Teacher" %>
+  <%= link_to "Cancel", teacher_path(@teacher) %>
+<% else %>
+  <%= link_to "Cancel", teachers_path %>
+<% end %>
