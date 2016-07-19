@@ -35,11 +35,6 @@ class AdminController < PermissionsController
     redirect_to teachers_path
   end
 
-  def attendance
-    @teacher = Teacher.find(params[:id])
-    redirect_to teacher_path(@teacher)
-  end
-
   private
 
   def admin_params

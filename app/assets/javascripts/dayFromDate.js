@@ -1,7 +1,7 @@
 $('#lesson_start_date').on('input', function(){
-  let startDate = (this.value);
-  let dayOfWeek = new Date(startDate).getDay();
-  let day = dayOfWeekAsString(dayOfWeek);
+  var startDate = (this.value);
+  var dayOfWeek = new Date(startDate).getDay();
+  var day = dayOfWeekAsString(dayOfWeek);
   $("#lesson_day").val(day);
   $('#dayValue').html(day);
 });
