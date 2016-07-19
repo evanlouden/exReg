@@ -21,6 +21,7 @@ feature "user adds contact" do
     expect(page).to have_content("Contact Added")
     expect(page).to have_content("Dashboard")
     expect(page).to have_content("Grandma Doe")
+    expect(page).to_not have_content("Grandma Doe - Primary")
   end
 
   scenario "does not specify valid information" do

@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
         :last_name,
         :email,
         :phone,
+        :primary,
         :account_id
       ]
     )}

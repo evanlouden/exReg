@@ -52,10 +52,11 @@ ActiveRecord::Schema.define(version: 20160708185803) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string  "first_name", null: false
-    t.string  "last_name",  null: false
-    t.string  "email",      null: false
-    t.string  "phone",      null: false
+    t.string  "first_name",                null: false
+    t.string  "last_name",                 null: false
+    t.string  "email",                     null: false
+    t.string  "phone",                     null: false
+    t.boolean "primary",    default: true
     t.integer "teacher_id"
     t.integer "admin_id"
     t.integer "family_id"

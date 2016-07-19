@@ -2,6 +2,15 @@ require "rails_helper"
 
 feature "admin views student inquiry" do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:user1) { FactoryGirl.create(:family) }
   let!(:student1) { FactoryGirl.create(:student, family: user1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }

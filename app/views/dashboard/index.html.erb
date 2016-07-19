@@ -20,11 +20,11 @@
 <% end %>
 
 <h3>Contacts</h3>
-<%= link_to "Add Contact", new_contact_path %></br>
+<p><%= link_to "Add Contact", new_contact_path %></p>
 <% @contacts.each do |contact| %>
   <div id="contact-<%= contact.full_name %>">
     <p>
-      <%= contact.full_name %> </br>
+      <%= contact.full_name %> <%= "- Primary" if contact.primary %></br>
       <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
       <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
     </p>

@@ -49,7 +49,8 @@ class ContactsController < PermissionsController
       :last_name,
       :phone,
       :email,
+      :primary,
       :account_id,
-    )
+    ).merge(primary: false)
   end
 end
