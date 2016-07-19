@@ -2,6 +2,8 @@ class Teacher < Account
   has_many :contacts
   accepts_nested_attributes_for :contacts
   has_many :lessons
+  has_many :teacher_instruments
+  has_many :instruments, through: :teacher_instruments
   has_many :availabilities
   accepts_nested_attributes_for :availabilities
   before_destroy :destroy_availabilities

@@ -5,7 +5,8 @@ class LessonsController < PermissionsController
     @lesson = @student.lessons.build
     @lesson.inquiry = @inquiry
     @days = Availability::DAYS
-    @teachers = Teacher.all
+    @instrument = Instrument.find_by(name: @inquiry.instrument)
+    @teachers = @instrument.teachers
     @instruments = Instrument.all
   end
 

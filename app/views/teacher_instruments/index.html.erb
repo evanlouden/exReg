@@ -1,0 +1,20 @@
+<% @teachers.each do |teacher| %>
+  <%= teacher.full_name %>
+    <% teacher.teacher_instruments.each do |ti| %>
+      <li>
+        <%= ti.instrument.name %> <%= link_to "Remove", teacher_instrument_path(ti), method: :delete %>
+      </li>
+  <% end %>
+<% end %>
+
+<%= form_for @teacher_instrument do |f| %>
+  <div class="field">
+    <%= f.label :teacher %>
+    <%= f.select :teacher_id, options_from_collection_for_select(@teachers, :id, :full_name) %>
+  </div>
+  <div class="field">
+    <%= f.label :instrument %>
+    <%= f.select :instrument_id, options_from_collection_for_select(@instruments, :id, :name) %>
+  </div>
+  <%= f.submit "Add Association" %>
+<% end %>

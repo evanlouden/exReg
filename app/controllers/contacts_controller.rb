@@ -1,4 +1,7 @@
 class ContactsController < PermissionsController
+  def index
+    @contacts = current_account.contacts
+  end
   def new
     @contact = Contact.new
   end

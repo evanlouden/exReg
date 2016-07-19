@@ -12,17 +12,9 @@
   </ul>
 </div>
 
-<h3><%= link_to "Staff Members", teachers_path %></h3>
-
 <h3><%= link_to "Students", students_path %></h3>
-
 <h3><%= link_to "Lessons", lessons_path %></h3>
 
-<%= link_to "Add Admin", new_admin_path %></br>
-<%= link_to "Add Teacher", new_teacher_path %></br>
-<%= link_to "Pricing Tiers", prices_path %></br>
-<%= link_to "Instruments", instruments_path %></br>
-<%= link_to "Absence Reasons", reasons_path %>
 <div id="admin-attendance">
   <p>Take Attendance For:
     <%= collection_select(:teacher, :attendance, @teachers, :id, :full_name, :include_blank => "Select a teacher") %>
