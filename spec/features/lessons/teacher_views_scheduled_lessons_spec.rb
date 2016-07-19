@@ -2,6 +2,15 @@ require "rails_helper"
 
 feature "teacher views list of scheduled lessons" do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
   let!(:user1) { FactoryGirl.create(:family) }
   let!(:student1) { FactoryGirl.create(:student, family: user1) }
@@ -17,7 +26,7 @@ feature "teacher views list of scheduled lessons" do
       inquiry: inquiry1
     )
   }
-  let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   scenario "successfully views list" do
     visit unauthenticated_root_path

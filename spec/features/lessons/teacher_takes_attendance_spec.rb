@@ -2,6 +2,15 @@ require "rails_helper"
 
 feature "teacher takes attendance", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
   let!(:user1) { FactoryGirl.create(:family) }
   let!(:student1) { FactoryGirl.create(:student, family: user1) }
@@ -19,7 +28,7 @@ feature "teacher takes attendance", js: true do
       day: Date.today.strftime("%A")
     )
   }
-  let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
   let!(:reason1) { FactoryGirl.create(:reason) }
   let!(:reason2) {
     FactoryGirl.create(

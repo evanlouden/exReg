@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "family accesses dashboard via root path" do
   let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, family: family1) }
   let!(:student1) { FactoryGirl.create(:student, family: family1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
@@ -18,5 +19,6 @@ feature "family accesses dashboard via root path" do
 
     expect(page).to have_content("Dashboard")
     expect(page).to have_content(student1.full_name)
+    expect(page).to have_content("Primary")
   end
 end

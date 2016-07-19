@@ -10,21 +10,21 @@ class AdminController < PermissionsController
 
   def new
     @states = Account::STATES
-    @account = Admin.new
-    @contact = @account.contacts.build
+    @admin = Admin.new
+    @contact = @admin.contacts.build
   end
 
   def create
     @states = Account::STATES
-    @account = Admin.new(admin_params)
-    @account.contacts.last.email = @account.email
+    @admin = Admin.new(admin_params)
+    @admin.contacts.last.email = @admin.email
     password = Devise.friendly_token(10)
-    @account.password = password
-    if @account.save
+    @admin.password = password
+    if @admin.save
       flash[:notice] = "Account created #{password}"
       redirect_to admin_index_path
     else
-      flash[:error] = @account.errors.full_messages.join(", ")
+      flash[:error] = @admin.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -52,7 +52,7 @@ class AdminController < PermissionsController
       :city,
       :state,
       :zip,
-      contacts_attributes: [:id, :first_name, :last_name, :email, :phone]
+      contacts_attributes: [:id, :first_name, :last_name, :email, :phone, :primary]
     ).merge(admin: true)
   end
 end

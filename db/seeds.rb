@@ -1,8 +1,9 @@
 admin1 = Admin.create(email: "admin@admin.com", password: "password", address: "32 Test St", city: "Boston", state: "MA", zip: "03333", admin: true)
+Contact.create(first_name: "Bernie", last_name: "Sanders", email: admin1.email, phone: "9785551313", admin: admin1)
 # teacher2 = Teacher.create(email: "teacher2@teacher.com", password: "password", address: "36 Test St", city: "Boston", state: "MA", zip: "03333", teacher: true)
 # Contact.create(first_name: "Cody", last_name: "Daniels", email: "teacher2@teacher.com", phone: "9785551313", teacher: teacher2)
 family1 = Family.create(email: "family1@family.com", password: "password", address: "38 Test St", city: "Boston", state: "MA", zip: "03333")
-Contact.create(first_name: "Sam", last_name: "Williams", email: "family1@family.com", phone: "9785551313", family: family1)
+Contact.create(first_name: "Ted", last_name: "Williams", email: family1.email, phone: "9785551313", family: family1)
 Instrument.create(name: "Guitar")
 Instrument.create(name: "Piano")
 Instrument.create(name: "Violin")
@@ -66,11 +67,11 @@ teacher_params = {
 }
 
 teacher1 = Teacher.create(teacher_params)
-Contact.create(first_name: "Jimmy", last_name: "Williams", email: "teacher1@teacher.com", phone: "9785551212", teacher: teacher1)
+Contact.create(first_name: "Terry", last_name: "Rozier", email: "teacher1@teacher.com", phone: "9785551212", teacher: teacher1)
 
 student_params = {
-  first_name: "Bob",
-  last_name: "Smith",
+  first_name: "Jimmy",
+  last_name: "Williams",
   dob: "2001/02/10",
   family: family1,
   inquiries_attributes: [

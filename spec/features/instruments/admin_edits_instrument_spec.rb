@@ -2,6 +2,15 @@ require "rails_helper"
 
 feature "admin edits instrument" do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   before(:each) do

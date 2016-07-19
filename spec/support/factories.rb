@@ -52,6 +52,7 @@ FactoryGirl.define do
     last_name "Doe"
     sequence(:email) { |n| "user#{n}@example.com" }
     phone "9785551212"
+    primary true
     teacher
     admin
     family

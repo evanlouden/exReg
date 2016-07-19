@@ -2,13 +2,22 @@ require "rails_helper"
 
 feature "admin registers student for lessons", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:user1) { FactoryGirl.create(:family) }
   let!(:student1) { FactoryGirl.create(:student, family: user1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:price2) { FactoryGirl.create(:price, duration: "60", price: "100") }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
-  let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   before(:each) do
