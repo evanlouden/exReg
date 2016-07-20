@@ -14,11 +14,10 @@ feature "family accesses dashboard via root path" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     visit family_root_path
 
     expect(page).to have_content("Dashboard")
     expect(page).to have_content(student1.full_name)
-    expect(page).to have_content("Primary")
   end
 end

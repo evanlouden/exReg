@@ -53,9 +53,6 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     phone "9785551212"
     primary true
-    teacher
-    admin
-    family
   end
 
   factory :price do
@@ -87,5 +84,8 @@ FactoryGirl.define do
     reason "Excused Absence"
     teacher_paid false
     student_charged false
+  end
+
+  factory :teacher_instrument do
   end
 end

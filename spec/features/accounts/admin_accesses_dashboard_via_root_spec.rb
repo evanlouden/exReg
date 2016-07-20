@@ -14,6 +14,7 @@ feature "admin accesses dashboard via root path" do
   let!(:teacher1) { FactoryGirl.create(:teacher) }
   let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
   let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact3) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
 
   scenario "successfully accesses dashboard" do
     visit unauthenticated_root_path
@@ -21,11 +22,10 @@ feature "admin accesses dashboard via root path" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link "Staff Members"
+    click_link "All Staff"
     visit admin_root_path
 
     expect(page).to have_content("Admin Dashboard")
-    expect(page).to have_content("Staff Members")
   end
 
   scenario "teacher tries to access admin dashboard" do
@@ -49,6 +49,6 @@ feature "admin accesses dashboard via root path" do
     visit admin_index_path
 
     expect(page).to have_content("You do not have permission to access this page")
-    expect(page).to have_content("New Student & Inquiry")
+    expect(page).to have_content("New Student")
   end
 end

@@ -1,17 +1,18 @@
 require "rails_helper"
 
 feature "user edits contact" do
-  let!(:user1) { FactoryGirl.create(:family) }
-  let!(:contact1) { FactoryGirl.create(:contact, family: user1) }
+  let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, family: family1) }
 
   before(:each) do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
   end
   scenario "specifies valid information" do
+    click_link "Contacts"
     click_link "Edit Contact"
     fill_in "First Name", with: "Jane"
     click_button "Update Contact"
@@ -22,6 +23,7 @@ feature "user edits contact" do
   end
 
   scenario "does not specify valid information" do
+    click_link "Contacts"
     click_link "Edit Contact"
     fill_in "First Name", with: ""
     click_button "Update Contact"

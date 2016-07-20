@@ -2,6 +2,7 @@ class ContactsController < PermissionsController
   def index
     @contacts = current_account.contacts
   end
+  
   def new
     @contact = Contact.new
   end
@@ -10,7 +11,7 @@ class ContactsController < PermissionsController
     @contact = current_account.contacts.build(contact_params)
     if @contact.save
       flash[:notice] = "Contact Added"
-      redirect_to dashboard_index_path
+      redirect_to contacts_path
     else
       flash[:alert] = @contact.errors.full_messages.join(", ")
       render new_contact_path

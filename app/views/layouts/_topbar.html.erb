@@ -2,7 +2,7 @@
   <ul class="dropdown menu" data-dropdown-menu>
     <li class="menu-text"> <%= link_to "exReg", "/" %> </li>
     <% if current_account %>
-      <% if current_account.type == "Admin" %>
+      <% if current_account.type == "Admin" || current_account.admin %>
         <%= render "layouts/staff" %>
         <%= render "layouts/settings" %>
       <% elsif current_account.type == "Teacher"%>

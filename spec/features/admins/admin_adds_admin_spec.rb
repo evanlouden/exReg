@@ -34,7 +34,7 @@ feature "admin signs up admin" do
     expect(page).to have_content("Account created")
     expect(page).to have_content("Admin Dashboard")
 
-    click_link "Staff Members"
+    click_link "All Staff"
 
     expect(page).to have_content("newadmin@admin.com")
   end

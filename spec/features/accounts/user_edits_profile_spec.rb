@@ -1,19 +1,20 @@
 require "rails_helper"
 
 feature "user edits profile" do
-  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
 
   before(:each) do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
   end
   scenario "successfully edits profile" do
-    click_link "Profile"
+    click_link contact1.full_name
     select("Alaska", from: "State")
-    fill_in "Current Password", with: user1.password
+    fill_in "Current Password", with: family1.password
     click_button "Update"
 
     expect(page).to have_content("Account Updated")
@@ -21,9 +22,9 @@ feature "user edits profile" do
   end
 
   scenario "does not specify valid information" do
-    click_link "Profile"
+    click_link contact1.full_name
     fill_in "Zip", with: ""
-    fill_in "Current Password", with: user1.password
+    fill_in "Current Password", with: family1.password
     click_button "Update"
 
     expect(page).to have_content("can't be blank")
