@@ -1,8 +1,9 @@
 require "rails_helper"
 
 feature "user edits student inquiry" do
-  let!(:user1) { FactoryGirl.create(:family) }
-  let!(:student1) { FactoryGirl.create(:student, family: user1) }
+  let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
+  let!(:student1) { FactoryGirl.create(:student, family: family1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:instrument2) { FactoryGirl.create(:instrument, name: "Piano") }
@@ -10,8 +11,8 @@ feature "user edits student inquiry" do
   before(:each) do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
   end
   scenario "existing user successfully edits inquiry form" do

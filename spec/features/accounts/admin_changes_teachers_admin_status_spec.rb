@@ -2,8 +2,17 @@ require "rails_helper"
 
 feature "admin changes teacher's admin status" do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
-  let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -13,7 +22,7 @@ feature "admin changes teacher's admin status" do
     click_button "Sign In"
   end
   scenario "designates admin" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Make Admin"
 
     within(:css, "#admin-admins") do
@@ -23,7 +32,7 @@ feature "admin changes teacher's admin status" do
   end
 
   scenario "revokes admin" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Make Admin"
     click_link "Revoke Admin"
 

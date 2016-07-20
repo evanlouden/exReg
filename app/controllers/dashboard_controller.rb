@@ -1,6 +1,5 @@
 class DashboardController < PermissionsController
   def index
-    @contacts = current_account.contacts
     @students = current_account.students
     @lessons = []
     @students.each do |student|

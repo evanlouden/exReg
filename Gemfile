@@ -14,7 +14,7 @@ gem 'foundation-rails'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'database_cleaner'
-  gem 'rspec-rails', '3.5.0.beta1'
+  gem 'rspec-rails', '3.5.0'
   gem 'capybara'
   gem 'shoulda'
   gem 'valid_attribute'

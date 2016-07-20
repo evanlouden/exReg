@@ -1,13 +1,14 @@
 require "rails_helper"
 
 feature "user signs in" do
-  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
 
   scenario "existing user specifies valid email and password" do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
 
     expect(page).to have_content("Welcome Back!")
@@ -30,7 +31,7 @@ feature "user signs in" do
   scenario "an existing email with wrong password is denied access" do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user1.email
+    fill_in "Email", with: family1.email
     fill_in "Password", with: "wrongpassword"
     click_button "Sign In"
 
@@ -41,8 +42,8 @@ feature "user signs in" do
 
   scenario "authenticated user cannot re-sign in" do
     visit new_account_session_path
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
 
     expect(page).to have_content("Sign Out")
@@ -55,8 +56,8 @@ feature "user signs in" do
 
   scenario "authenticated user cannot sign in to admin dash" do
     visit new_account_session_path
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
     visit admin_index_path
 

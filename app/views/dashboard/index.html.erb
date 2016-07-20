@@ -1,9 +1,6 @@
 <h2> Dashboard </h2>
 
-<%= link_to "New Student & Inquiry", new_student_path %>
-
-
-<h3> Open Inquiries </h3>
+<h3> Students </h3>
 <% @students.each do |student| %>
   <%= student.full_name %></br>
   <p>
@@ -19,29 +16,17 @@
   </p>
 <% end %>
 
-<h3>Contacts</h3>
-<p><%= link_to "Add Contact", new_contact_path %></p>
-<% @contacts.each do |contact| %>
-  <div id="contact-<%= contact.full_name %>">
-    <p>
-      <%= contact.full_name %> <%= "- Primary" if contact.primary %></br>
-      <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
-      <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
-    </p>
-  </div>
-<% end %>
-
 <h3>Lessons</h3>
+
 <% @lessons.each do |lesson| %>
-  <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
-    <p>
-      <%= lesson.student.full_name %> - <%= lesson.instrument %></br>
-      Teacher: <%= lesson.teacher.email %></br>
-      <%= "#{lesson.remaining} lessons remaining" %></br>
-      Lesson Times: <%= lesson.time_info %></br>
-      <%= lesson.price_info %></br>
-      Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
-      Excused Remaining:
-    </p>
-  </div>
+<div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
+  <p>
+    Teacher: <%= lesson.teacher.full_name %></br>
+    <%= lesson.time_info %></br>
+    <%= "#{lesson.remaining} lessons remaining" %></br>
+    <%= lesson.price_info %></br>
+    Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
+    Excused Remaining:
+  </p>
+</div>
 <% end %>

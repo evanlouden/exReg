@@ -13,7 +13,7 @@ feature "adminteacher accesses dashboard via root path" do
 
     expect(page).to have_content("Admin Dashboard")
 
-    click_link "Staff Members"
+    click_link "All Staff"
     visit adminteacher_root_path
 
     expect(page).to have_content("Admin Dashboard")

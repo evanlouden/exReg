@@ -4,8 +4,8 @@ Contact.create(first_name: "Bernie", last_name: "Sanders", email: admin1.email, 
 # Contact.create(first_name: "Cody", last_name: "Daniels", email: "teacher2@teacher.com", phone: "9785551313", teacher: teacher2)
 family1 = Family.create(email: "family1@family.com", password: "password", address: "38 Test St", city: "Boston", state: "MA", zip: "03333")
 Contact.create(first_name: "Ted", last_name: "Williams", email: family1.email, phone: "9785551313", family: family1)
+instrument1 = Instrument.create(name: "Piano")
 Instrument.create(name: "Guitar")
-Instrument.create(name: "Piano")
 Instrument.create(name: "Violin")
 Price.create(tier_name: "Private Lesson", price: "50", duration: "30")
 Price.create(tier_name: "Suzuki Private Lesson", price: "75", duration: "45")
@@ -127,3 +127,4 @@ student_params = {
 }
 
 Student.create(student_params)
+TeacherInstrument.create(teacher: teacher1, instrument: instrument1)

@@ -1,18 +1,19 @@
 require "rails_helper"
 
 feature "user submits new student and inquiry" do
-  let!(:user1) { FactoryGirl.create(:family) }
+  let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact1) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   before(:each) do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user1.email
-    fill_in "Password", with: user1.password
+    fill_in "Email", with: family1.email
+    fill_in "Password", with: family1.password
     click_button "Sign In"
   end
   scenario "specifies valid information" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
@@ -29,7 +30,7 @@ feature "user submits new student and inquiry" do
   end
 
   scenario "optionally adds notes to inquiry" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
@@ -47,7 +48,7 @@ feature "user submits new student and inquiry" do
   end
 
   scenario "does not specify required student information" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     click_button "Submit Inquiry"
 
     expect(page).to have_content("can't be blank")
@@ -56,7 +57,7 @@ feature "user submits new student and inquiry" do
   end
 
   scenario "does not specify availability" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
@@ -69,7 +70,7 @@ feature "user submits new student and inquiry" do
   end
 
   scenario "does not specify availability times" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
@@ -83,7 +84,7 @@ feature "user submits new student and inquiry" do
   end
 
   scenario "selects invalid availability times" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
@@ -99,7 +100,7 @@ feature "user submits new student and inquiry" do
   end
 
   scenario "does not specify minimum availability times" do
-    click_link "New Student & Inquiry"
+    click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"

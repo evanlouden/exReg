@@ -1,7 +1,36 @@
-<% if current_account %>
-  <li><%= link_to "Profile", edit_account_registration_path %></li>
-  <li><%= link_to "Sign Out", destroy_account_session_path, method: :delete %></li>
-<% else %>
-  <li><%= link_to "Sign In", new_account_session_path %></li>
-  <li><%= link_to "Sign Up", new_account_registration_path %></li>
-<% end %>
+<div class="top-bar-left">
+  <ul class="dropdown menu" data-dropdown-menu>
+    <li class="menu-text"> <%= link_to "exReg", "/" %> </li>
+    <% if current_account %>
+      <% if current_account.type == "Admin" || current_account.admin %>
+        <%= render "layouts/staff" %>
+        <%= render "layouts/settings" %>
+      <% elsif current_account.type == "Teacher"%>
+        <li>
+          <%= link_to "Edit Availability", edit_teacher_path(current_account) %>
+        </li>
+        <% elsif current_account.type == "Family"%>
+          <li>
+            <%= link_to "Contacts", contacts_path %>
+          </li>
+          <li>
+            <%= link_to "New Student", new_student_path %>
+          </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="top-bar-right">
+  <ul class="menu">
+    <% if current_account %>
+      <li></li>
+      <li><%= link_to "#{current_account.contacts.first.full_name}", edit_account_registration_path %></li>
+      <li><%= link_to "Sign Out", destroy_account_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign In", new_account_session_path %></li>
+      <li><%= link_to "Sign Up", new_account_registration_path %></li>
+    <% end %>
+    <li><input type="search" placeholder="Search"></li>
+    <li><button type="button" class="button">Search</button></li>
+  </ul>
+</div>

@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     resources :inquiries
   end
 
-  resources :contacts, only: [:new, :create]
   resources :dashboard, only: :index
   resources :admin do
     member do
@@ -44,5 +43,7 @@ Rails.application.routes.draw do
   resources :instruments
   resources :teachers
   resources :reasons
+  resources :teacher_instruments
   resources :missed_lessons, only: :create
+
 end

@@ -12,7 +12,9 @@ feature "user views registered students' lessons" do
     )
   }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
+  let!(:contact2) { FactoryGirl.create(:contact, email: teacher1.email, teacher: teacher1) }
   let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact3) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
   let!(:student1) { FactoryGirl.create(:student, family: family1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1, completed: true) }
   let!(:price1) { FactoryGirl.create(:price) }

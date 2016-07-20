@@ -3,7 +3,7 @@ class TeachersController < PermissionsController
   before_action :require_admin, only: [:index, :new, :create, :destroy]
 
   def index
-    @teachers = Account.where(teacher: true).order(email: :desc)
+    @teachers = Teacher.all.order(email: :desc)
     @admins = Account.where(admin: true).order(email: :desc)
   end
 

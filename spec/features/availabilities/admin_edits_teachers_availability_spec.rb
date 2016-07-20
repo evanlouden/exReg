@@ -2,8 +2,17 @@ require "rails_helper"
 
 feature "admin edits teacher's availability" do
   let!(:admin1) { FactoryGirl.create(:admin) }
+  let!(:contact1) {
+    FactoryGirl.create(
+      :contact,
+      admin: admin1,
+      email: admin1.email,
+      first_name: "Bernie",
+      last_name: "Sanders"
+    )
+  }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
-  let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -13,7 +22,7 @@ feature "admin edits teacher's availability" do
     click_button "Sign In"
   end
   scenario "successfully edits availability" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Edit Availability"
     find(:css, "#teacher_availabilities_attributes_1_checked").set(true)
     find(:css, "#teacher_availabilities_attributes_1_start_time", visible: false).set("4:00 PM")
@@ -25,7 +34,7 @@ feature "admin edits teacher's availability" do
   end
 
   scenario "does not specify availability" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Edit Availability"
     find(:css, "#teacher_availabilities_attributes_0_checked").set(false)
     click_button "Update Availability"
@@ -36,7 +45,7 @@ feature "admin edits teacher's availability" do
   end
 
   scenario "selects invalid availability times" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Edit Availability"
     find(:css, "#teacher_availabilities_attributes_1_checked").set(true)
     find(:css, "#teacher_availabilities_attributes_1_start_time", visible: false).set("7:00 PM")
@@ -49,7 +58,7 @@ feature "admin edits teacher's availability" do
   end
 
   scenario "does not specify minimum availability times" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Edit Availability"
     find(:css, "#teacher_availabilities_attributes_1_checked").set(true)
     find(:css, "#teacher_availabilities_attributes_1_start_time", visible: false).set("7:00 PM")
@@ -62,7 +71,7 @@ feature "admin edits teacher's availability" do
   end
 
   scenario "cancels edit attempt" do
-    click_link "Staff Members"
+    click_link "All Staff"
     click_link "Edit Availability"
     click_link "Cancel"
 
