@@ -1,10 +1,12 @@
 <% @teachers.each do |teacher| %>
-  <%= teacher.full_name %>
+  <div id="teachinst-<%= teacher.contacts.first.first_name %>-<%= teacher.contacts.first.last_name %>">
+    <%= teacher.full_name %>
     <% teacher.teacher_instruments.each do |ti| %>
       <li>
         <%= ti.instrument.name %> <%= link_to "Remove", teacher_instrument_path(ti), method: :delete %>
       </li>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>
 
 <%= form_for @teacher_instrument do |f| %>

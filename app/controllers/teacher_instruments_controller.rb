@@ -12,7 +12,6 @@ class TeacherInstrumentsController < PermissionsController
     @teachers = Teacher.all
     @instruments = Instrument.all
     @teacher_instrument = TeacherInstrument.new(teacher_instrument_params)
-
     if @teacher_instrument.save
       flash[:notice] = "Instrument associated"
       redirect_to teacher_instruments_path
