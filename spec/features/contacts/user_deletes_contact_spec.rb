@@ -21,7 +21,6 @@ feature "user deletes contact" do
     end
 
     expect(page).to have_content("Contact Removed")
-    expect(page).to have_content("Dashboard")
     expect(page).to_not have_content(contact2.full_name)
   end
 

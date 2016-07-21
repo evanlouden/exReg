@@ -33,7 +33,11 @@ Rails.application.routes.draw do
     end
   end
   resources :inquiries
-  resources :contacts
+  resources :contacts do
+    member do
+      patch :change
+    end
+  end
   resources :prices
   resources :lessons do
     member do
