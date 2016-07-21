@@ -1,7 +1,12 @@
 <h3>Contacts <span id="add-contact">(<%= link_to "Add Contact", new_contact_path %>)</span></h3>
 <% @contacts.each do |contact| %>
   <div id="contact-<%= contact.first_name %>-<%= contact.last_name %>">
-    <%= contact.full_name %> <%= "- Primary" if contact.primary %></br>
+    <%= contact.full_name %> -
+    <% if contact.primary %>
+      <%= " Primary" %></br>
+    <% else %>
+      <%= link_to " Make Primary", change_contact_path(contact), method: :patch %></br>
+    <% end %>
     <p>
       <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
       <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>

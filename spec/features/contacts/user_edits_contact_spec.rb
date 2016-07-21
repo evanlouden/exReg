@@ -18,7 +18,6 @@ feature "user edits contact" do
     click_button "Update Contact"
 
     expect(page).to have_content("Contact Updated")
-    expect(page).to have_content("Dashboard")
     expect(page).to have_content("Jane Doe")
   end
 
@@ -29,6 +28,5 @@ feature "user edits contact" do
     click_button "Update Contact"
 
     expect(page).to have_content("can't be blank")
-    expect(page).to_not have_content("Dashboard")
   end
 end
