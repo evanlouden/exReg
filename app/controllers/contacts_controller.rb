@@ -1,9 +1,8 @@
 class ContactsController < PermissionsController
   def index
     @contacts = current_account.contacts
-    if @contacts.find { |c| c.primary } == nil
-      @contacts.first.update_attribute(:primary, true)
-    end
+    @primary = @contacts.select { |c| c.primary }.first
+    @nonprimary = @contacts.select { |c| !c.primary }
   end
 
   def new

@@ -17,16 +17,8 @@ feature "user changes primary contact" do
     click_link "Make Primary"
 
     expect(page).to have_content("#{contact2.full_name} - Primary")
+    expect(page).to have_link(contact2.full_name)
     expect(page).to_not have_content("#{contact1.full_name} - Primary")
-  end
-
-  scenario "deletes primary contact" do
-    click_link "Contacts"
-    within(:css, "#contact-#{contact1.first_name}-#{contact1.last_name}") do
-      click_link "Delete Contact"
-    end
-
-    expect(page).to have_content("#{contact2.full_name} - Primary")
-    expect(page).to_not have_content("#{contact1.full_name} - Make Primary")
+    expect(page).to_not have_link(contact1.full_name)
   end
 end

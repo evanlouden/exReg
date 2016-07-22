@@ -24,7 +24,7 @@
   <ul class="menu">
     <% if current_account %>
       <li></li>
-      <li><%= link_to "#{current_account.contacts.first.full_name}", edit_account_registration_path %></li>
+      <li><%= link_to "#{primary_contact.full_name}", edit_account_registration_path %></li>
       <li><%= link_to "Sign Out", destroy_account_session_path, method: :delete %></li>
     <% else %>
       <li><%= link_to "Sign In", new_account_session_path %></li>
