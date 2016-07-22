@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def primary_contact
-    current_account.contacts.select { |c| c.primary }.first
+    current_account.contacts.select(&:primary).first
   end
 end
