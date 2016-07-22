@@ -3,7 +3,7 @@ require "rails_helper"
 feature "user deletes contact" do
   let!(:family1) { FactoryGirl.create(:family) }
   let!(:contact1) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
-  let!(:contact2) { FactoryGirl.create(:contact, first_name: "Tom", email: family1.email, family: family1) }
+  let!(:contact2) { FactoryGirl.create(:contact, first_name: "Tom", email: family1.email, primary: false, family: family1) }
   let!(:family2) { FactoryGirl.create(:family) }
   let!(:contact3) { FactoryGirl.create(:contact, first_name: "Sarah", family: family2) }
 

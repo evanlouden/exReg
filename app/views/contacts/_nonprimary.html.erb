@@ -1,0 +1,10 @@
+<% @nonprimary.each do |contact| %>
+  <div id="contact-<%= contact.first_name %>-<%= contact.last_name %>">
+    <%= contact.full_name %> -
+    <%= link_to " Make Primary", change_contact_path(contact), method: :patch %></br>
+    <p>
+      <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
+      <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
+    </p>
+  </div>
+<% end %>
