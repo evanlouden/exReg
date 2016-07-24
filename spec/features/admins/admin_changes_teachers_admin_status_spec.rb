@@ -26,7 +26,7 @@ feature "admin changes teacher's admin status" do
     click_link "Make Admin"
 
     within(:css, "#admin-admins") do
-      expect(page).to have_content(teacher1.email)
+      expect(page).to have_content(teacher1.staff_name)
     end
     expect(page).to have_content("Revoke Admin")
   end
@@ -37,7 +37,7 @@ feature "admin changes teacher's admin status" do
     click_link "Revoke Admin"
 
     within(:css, "#admin-admins") do
-      expect(page).to_not have_content(teacher1.email)
+      expect(page).to_not have_content(teacher1.staff_name)
     end
     expect(page).to_not have_content("Revoke Admin")
   end

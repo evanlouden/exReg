@@ -47,15 +47,20 @@
       "/Users/anthonydegennaro/challenges/exReg/app/helpers/application_helper.rb": [
         1,
         1,
-        390,
+        521,
         null,
         null,
         1,
         261,
         null,
+        null,
+        1,
+        131,
+        null,
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/models/admin.rb": [
+        1,
         1,
         1,
         1,
@@ -85,13 +90,10 @@
         1,
         1,
         1,
-        null,
-        1,
         1,
         null,
         1,
-        108,
-        null,
+        1,
         null,
         1,
         null,
@@ -116,6 +118,7 @@
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/models/availability.rb": [
+        1,
         1,
         1,
         1,
@@ -370,8 +373,8 @@
         1,
         null,
         1,
-        18,
-        18,
+        34,
+        39,
         null,
         null,
         1,
@@ -463,6 +466,7 @@
         null
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/models/lesson.rb": [
+        1,
         1,
         1,
         1,
@@ -1157,6 +1161,6 @@
         0
       ]
     },
-    "timestamp": 1469217541
+    "timestamp": 1469323092
   }
 }

@@ -17,7 +17,7 @@
 
 <div id="admin-attendance">
   <p>Take Attendance For:
-    <%= collection_select(:teacher, :attendance, @teachers, :id, :full_name, :include_blank => "Select a teacher") %>
+    <%= collection_select(:teacher, :attendance, @teachers, :id, :staff_name, :include_blank => "Select a teacher") %>
   </p>
 </div>
 <%= javascript_include_tag "teacherShow.js"%>

@@ -28,7 +28,7 @@ feature "admin adds teacher instrument association" do
   end
   scenario "successfully adds association" do
     click_link "Instrument Associations"
-    select(teacher2.full_name, from: :teacher_instrument_teacher_id)
+    select(teacher2.staff_name, from: :teacher_instrument_teacher_id)
     select(instrument1.name, from: :teacher_instrument_instrument_id)
     click_button "Add Association"
 
@@ -40,10 +40,10 @@ feature "admin adds teacher instrument association" do
 
   scenario "adds duplicate association" do
     click_link "Instrument Associations"
-    select(teacher2.full_name, from: :teacher_instrument_teacher_id)
+    select(teacher2.staff_name, from: :teacher_instrument_teacher_id)
     select(instrument1.name, from: :teacher_instrument_instrument_id)
     click_button "Add Association"
-    select(teacher2.full_name, from: :teacher_instrument_teacher_id)
+    select(teacher2.staff_name, from: :teacher_instrument_teacher_id)
     select(instrument1.name, from: :teacher_instrument_instrument_id)
     click_button "Add Association"
 

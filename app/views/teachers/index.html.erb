@@ -1,7 +1,7 @@
 <h3>Teachers:</h3>
 <div id="admin-teachers">
   <% @teachers.each do |teacher| %>
-    <p> <%= teacher.full_name %> </p>
+    <p> <%= teacher.staff_name %> </p>
     <%=
      link_to_if(teacher.admin, "Revoke Admin", change_admin_path(teacher), method: :patch) do
        link_to("Make Admin", change_admin_path(teacher), method: :patch)
@@ -15,8 +15,6 @@
 <h3>Admins:</h3>
 <div id="admin-admins">
   <% @admins.each do |admin| %>
-    <p> <%= admin.email %> </p>
+    <p> <%= admin.staff_name %> </p>
   <% end %>
 </div>
-
-<%= link_to "Dashboard", admin_index_path %>

@@ -1,4 +1,5 @@
 class Teacher < Account
+  include ApplicationHelper
   has_many :contacts
   accepts_nested_attributes_for :contacts
   has_many :lessons
@@ -11,10 +12,6 @@ class Teacher < Account
 
   validates_associated :availabilities, unless: :admin?
   validate :no_availability?, unless: :admin?
-
-  def full_name
-    "#{contacts.first.first_name} #{contacts.first.last_name}"
-  end
 
   private
 

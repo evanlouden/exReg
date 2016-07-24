@@ -1,4 +1,5 @@
 class Availability < ApplicationRecord
+  include ApplicationHelper
   belongs_to :student, optional: true
   belongs_to :teacher, optional: true
 

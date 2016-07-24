@@ -21,7 +21,7 @@
 <% @lessons.each do |lesson| %>
 <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
   <p>
-    Teacher: <%= lesson.teacher.full_name %></br>
+    Teacher: <%= lesson.teacher.staff_name %></br>
     <%= lesson.time_info %></br>
     <%= "#{lesson.remaining} lessons remaining" %></br>
     <%= lesson.price_info %></br>

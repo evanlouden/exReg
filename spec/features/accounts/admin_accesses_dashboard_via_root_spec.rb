@@ -37,7 +37,7 @@ feature "admin accesses dashboard via root path" do
     visit admin_index_path
 
     expect(page).to have_content("You do not have permission to access this page")
-    expect(page).to have_content(teacher1.full_name)
+    expect(page).to have_content(teacher1.staff_name)
   end
 
   scenario "family tries to access admin dashboard" do
