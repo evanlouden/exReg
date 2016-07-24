@@ -4,6 +4,9 @@ class MissedLessonsController < PermissionsController
     @missed_lesson = MissedLesson.new(missed_lessons_params)
     @missed_lesson.save
     @lesson.attended += 1 if @missed_lesson.reason.student_charged
+    if @lesson.excused_remaining > 0 && !@missed_lesson.reason.student_charged
+      @lesson.excused_remaining -= 1
+    end
     @lesson.save
     if current_account.type == "Teacher"
       redirect_to teacher_path(current_account)

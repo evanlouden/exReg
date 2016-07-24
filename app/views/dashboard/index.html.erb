@@ -26,7 +26,7 @@
     <%= "#{lesson.remaining} lessons remaining" %></br>
     <%= lesson.price_info %></br>
     Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
-    Excused Remaining:
+    Excused Remaining: <%= lesson.excused_remaining %>
   </p>
 </div>
 <% end %>

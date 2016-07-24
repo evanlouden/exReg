@@ -49,5 +49,5 @@ Rails.application.routes.draw do
   resources :reasons
   resources :teacher_instruments
   resources :missed_lessons, only: :create
-
+  resources :excused_absences, only: [:index, :create, :edit, :update]
 end

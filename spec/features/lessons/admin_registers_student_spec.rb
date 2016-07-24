@@ -21,6 +21,7 @@ feature "admin registers student for lessons", js: true do
   let!(:contact3) { FactoryGirl.create(:contact, email: teacher1.email, teacher: teacher1) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:association1) { FactoryGirl.create(:teacher_instrument, teacher: teacher1, instrument: instrument1) }
+  let!(:count1) { FactoryGirl.create(:excused_absence) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -53,6 +54,7 @@ feature "admin registers student for lessons", js: true do
     click_link student1.full_name
 
     expect(page).to have_content("#{inquiry1.instrument} - Completed")
+    expect(page).to have_content(count1.count)
     expect(page).to_not have_content("Register Student")
   end
 

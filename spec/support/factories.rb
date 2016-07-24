@@ -71,6 +71,7 @@ FactoryGirl.define do
     tier_name "Suzuki Private Lesson"
     duration "45"
     price "75"
+    excused_remaining "3"
     student
     teacher
     inquiry
@@ -87,5 +88,9 @@ FactoryGirl.define do
   end
 
   factory :teacher_instrument do
+  end
+
+  factory :excused_absence do
+    count "3"
   end
 end

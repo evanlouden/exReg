@@ -10,6 +10,7 @@ class CreateLessons < ActiveRecord::Migration[5.0]
       t.string :instrument, null: false
       t.string :tier_name, null: false
       t.integer :price, null: false
+      t.integer :excused_remaining, null: false, default: 0
       t.belongs_to :student, null: false
       t.belongs_to :teacher, null: false
       t.belongs_to :inquiry, null: false
