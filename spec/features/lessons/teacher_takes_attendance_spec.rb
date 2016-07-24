@@ -73,6 +73,7 @@ feature "teacher takes attendance", js: true do
     end
 
     expect(page).to have_content(lesson1.remaining)
+    expect(page).to have_content(lesson1.excused_remaining - 1)
     expect(page).to_not have_content("Present")
     expect(page).to_not have_content("Absent")
   end

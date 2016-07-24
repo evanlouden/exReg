@@ -80,6 +80,10 @@ feature "admin takes teacher's attendance", js: true do
     expect(page).to have_content("Admin Dashboard")
     expect(page).to_not have_content("Present")
     expect(page).to_not have_content("Absent")
+
+    click_link "Lessons"
+
+    expect(page).to have_content(lesson1.excused_remaining - 1)
   end
 
   scenario "marks student as unexcused absence" do

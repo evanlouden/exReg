@@ -1,6 +1,6 @@
 class TeacherInstrumentsController < PermissionsController
   before_action :authenticate_account!
-  before_action :require_admin, only: [:index, :new, :create, :destroy]
+  before_action :require_admin
 
   def index
     @teachers = Teacher.all

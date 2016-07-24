@@ -39,8 +39,8 @@ feature "admin views all lessons" do
     click_button "Sign In"
     click_link "Lessons"
 
-    expect(page).to have_content("#{lesson1.remaining} lessons remaining")
-    expect(page).to have_content("$#{lesson1.remaining_balance}")
-    expect(page).to have_content("#{lesson1.student.first_name} #{lesson1.student.last_name} - #{lesson1.instrument}")
+    expect(page).to have_content(lesson1.remaining)
+    expect(page).to have_content(lesson1.remaining_balance)
+    expect(page).to have_content("#{lesson1.student.full_name} - #{lesson1.instrument}")
   end
 end

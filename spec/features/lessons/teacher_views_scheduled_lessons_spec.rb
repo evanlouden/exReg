@@ -36,6 +36,7 @@ feature "teacher views list of scheduled lessons" do
     click_button "Sign In"
 
     expect(page).to have_content(teacher1.staff_name)
+    expect(page).to have_content("Excused Remaining: 3")
     expect(page).to have_content("#{student1.full_name} - #{lesson1.instrument}")
   end
 end

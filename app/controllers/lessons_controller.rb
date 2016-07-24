@@ -1,10 +1,10 @@
 class LessonsController < PermissionsController
   def new
+    @days = Availability::DAYS
     @student = Student.find(params[:student])
     @inquiry = Inquiry.find(params[:inquiry])
     @lesson = @student.lessons.build
     @lesson.inquiry = @inquiry
-    @days = Availability::DAYS
     @instrument = Instrument.find_by(name: @inquiry.instrument)
     @teachers = @instrument.teachers
     @instruments = Instrument.all
@@ -23,6 +23,7 @@ class LessonsController < PermissionsController
     @lesson.price = @price_tier.price
     if @lesson.save
       @lesson.inquiry.update_attribute(:completed, true)
+      @lesson.update_attribute(:excused_remaining, ExcusedAbsence.first.count)
       flash[:notice] = "Student Registered"
       redirect_to admin_index_path
     else

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin edits absence reason" do
+feature "admin adds allotted excused absences" do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(
@@ -11,7 +11,6 @@ feature "admin edits absence reason" do
       last_name: "Sanders"
     )
   }
-  let!(:reason1) { FactoryGirl.create(:reason) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -21,25 +20,20 @@ feature "admin edits absence reason" do
     click_button "Sign In"
   end
   scenario "specifies valid information" do
-    click_link "Absence Reasons"
+    click_link "Excused Absences Allotted"
+    fill_in "Count", with: "3"
+    click_button "Add Count"
 
-    expect(page).to have_content(reason1.reason)
-
-    click_link "Edit"
-    fill_in "Reason Name", with: "Unexcused Absence"
-    click_button "Update Reason"
-
-    expect(page).to have_content("Reason Updated")
-    expect(page).to have_content("Unexcused Absence")
+    expect(page).to have_content("Count Added")
+    expect(page).to have_content("Allotted: 3")
   end
 
   scenario "does not specify required information" do
-    click_link "Absence Reasons"
-    click_link "Edit"
-    fill_in "Reason Name", with: ""
-    click_button "Update Reason"
+    click_link "Excused Absences Allotted"
+    click_button "Add Count"
 
     expect(page).to have_content("can't be blank")
-    expect(page).to_not have_content("Reason Updated")
+    expect(page).to have_content("Allotted: 0")
+    expect(page).to_not have_content("Count Added")
   end
 end

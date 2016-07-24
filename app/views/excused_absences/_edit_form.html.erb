@@ -1,0 +1,7 @@
+<%= form_for @count do |f| %>
+  <div class="field">
+    <%= f.label :count %>
+    <%= f.number_field :count %>
+  </div>
+  <%= f.submit "Update Count" %>
+<% end %>

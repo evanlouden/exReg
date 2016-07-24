@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719200533) do
+ActiveRecord::Schema.define(version: 20160724185438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,10 @@ ActiveRecord::Schema.define(version: 20160719200533) do
     t.index ["teacher_id"], name: "index_contacts_on_teacher_id", using: :btree
   end
 
+  create_table "excused_absences", force: :cascade do |t|
+    t.integer "count", null: false
+  end
+
   create_table "inquiries", force: :cascade do |t|
     t.integer  "student_id",                 null: false
     t.string   "instrument",                 null: false
@@ -79,18 +83,19 @@ ActiveRecord::Schema.define(version: 20160719200533) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.string  "day",                    null: false
-    t.date    "start_date",             null: false
-    t.time    "start_time",             null: false
-    t.integer "duration",               null: false
-    t.integer "purchased",              null: false
-    t.integer "attended",   default: 0, null: false
-    t.string  "instrument",             null: false
-    t.string  "tier_name",              null: false
-    t.integer "price",                  null: false
-    t.integer "student_id",             null: false
-    t.integer "teacher_id",             null: false
-    t.integer "inquiry_id",             null: false
+    t.string  "day",                           null: false
+    t.date    "start_date",                    null: false
+    t.time    "start_time",                    null: false
+    t.integer "duration",                      null: false
+    t.integer "purchased",                     null: false
+    t.integer "attended",          default: 0, null: false
+    t.string  "instrument",                    null: false
+    t.string  "tier_name",                     null: false
+    t.integer "price",                         null: false
+    t.integer "excused_remaining", default: 0, null: false
+    t.integer "student_id",                    null: false
+    t.integer "teacher_id",                    null: false
+    t.integer "inquiry_id",                    null: false
     t.index ["inquiry_id"], name: "index_lessons_on_inquiry_id", using: :btree
     t.index ["student_id"], name: "index_lessons_on_student_id", using: :btree
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id", using: :btree

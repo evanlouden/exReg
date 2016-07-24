@@ -11,6 +11,7 @@ Price.create(tier_name: "Private Lesson", price: "50", duration: "30")
 Price.create(tier_name: "Suzuki Private Lesson", price: "75", duration: "45")
 Reason.create(reason: "Excused Absence", teacher_paid: false, student_charged: false)
 Reason.create(reason: "Unexcused Absence", teacher_paid: true, student_charged: true)
+ExcusedAbsence.create(count: "2")
 
 teacher_params = {
   email: "teacher1@teacher.com",
