@@ -23,7 +23,7 @@ class LessonsController < PermissionsController
     @lesson.price = @price_tier.price
     if @lesson.save
       @lesson.inquiry.update_attribute(:completed, true)
-      @lesson.update_attribute(:excused_remaining, ExcusedAbsence.first.count) 
+      @lesson.update_attribute(:excused_remaining, ExcusedAbsence.first.count)
       flash[:notice] = "Student Registered"
       redirect_to admin_index_path
     else

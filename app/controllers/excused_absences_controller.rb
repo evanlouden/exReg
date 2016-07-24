@@ -22,11 +22,10 @@ class ExcusedAbsencesController < PermissionsController
     @excused_absence = ExcusedAbsence.first
     if @excused_absence.update(excused_absences_params)
       flash[:notice] = "Count Updated"
-      redirect_to excused_absences_path
     else
       flash[:alert] = @excused_absence.errors.full_messages.join(", ")
-      redirect_to excused_absences_path
     end
+    redirect_to excused_absences_path
   end
 
   private
