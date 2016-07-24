@@ -36,7 +36,7 @@ feature "admin signs up admin" do
 
     click_link "All Staff"
 
-    expect(page).to have_content("newadmin@admin.com")
+    expect(page).to have_content("Thomas Appleseed")
   end
 
   scenario "does not specify valid account information" do

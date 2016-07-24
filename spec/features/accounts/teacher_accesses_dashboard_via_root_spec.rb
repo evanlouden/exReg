@@ -13,7 +13,7 @@ feature "teacher accesses dashboard via root path" do
     click_link "Edit Availability"
     visit teacher_root_path
 
-    expect(page).to have_content(teacher1.full_name)
+    expect(page).to have_content(teacher1.staff_name)
     expect(page).to have_content("Edit Availability")
   end
 end

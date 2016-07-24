@@ -44,7 +44,7 @@ feature "admin registers student for lessons", js: true do
     fill_in "Start Time", with: "8:00 PM"
     fill_in "Purchased", with: "10"
     select("Guitar", from: "Instrument")
-    select(teacher1.full_name, from: "Teacher")
+    select(teacher1.staff_name, from: "Teacher")
     click_button "Register Student"
 
     expect(page).to have_content("Student Registered")

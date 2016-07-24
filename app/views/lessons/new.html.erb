@@ -30,7 +30,7 @@
   </div>
   <div class="field">
     <%= f.label :teacher_id, "Teacher" %>
-    <%= f.select :teacher_id, options_from_collection_for_select(@teachers, :id, :full_name) %>
+    <%= f.select :teacher_id, options_from_collection_for_select(@teachers, :id, :staff_name) %>
   </div>
 
   <div class= "actions">

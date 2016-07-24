@@ -1,30 +1,32 @@
 <h4>Edit Availability</h4>
 
-<p><%= @teacher.full_name %> </p>
+<p><%= @teacher.staff_name %> </p>
 
 <%= form_for @teacher do |f| %>
 
 <% @availabilities.each do |day| %>
   <div class="field">
-    <%= f.fields_for :availabilities, day do |a| %>
-    <% day.start_time ||= "10:00 AM" %>
-    <% day.end_time ||= "12:00 PM" %>
-    <div id ="<%= day.day %>">
-      <%= a.check_box :checked %>
-      <%= a.label day.day %>
-      <%= a.hidden_field :day %>
-      <%= a.hidden_field :start_time %>
-      <%= a.hidden_field :end_time %>
+    <div class="avail-block">
+      <%= f.fields_for :availabilities, day do |a| %>
+      <% day.start_time ||= "10:00 AM" %>
+      <% day.end_time ||= "12:00 PM" %>
+      <div id ="<%= day.day %>">
+        <%= a.check_box :checked %>
+        <%= a.label day.day %>
+        <%= a.hidden_field :day %>
+        <%= a.hidden_field :start_time %>
+        <%= a.hidden_field :end_time %>
 
-      <div id="time-range-<%= day.day %>">
-        <p> Time Range: <span class="slider-time-<%= day.day %>"><%= day.start_time.strftime("%l:%M %p") %></span> - <span class="slider-time2-<%= day.day %>"><%= day.end_time.strftime("%l:%M %p") %></span> </p>
-        <div class="sliders_step1-<%= day.day %>">
-            <div id="slider-range-<%= day.day %>"></div>
+        <div id="time-range-<%= day.day %>">
+          <p> Time Range: <span class="slider-time-<%= day.day %>"><%= day.start_time.strftime("%l:%M %p") %></span> - <span class="slider-time2-<%= day.day %>"><%= day.end_time.strftime("%l:%M %p") %></span> </p>
+          <div class="sliders_step1-<%= day.day %>">
+              <div id="slider-range-<%= day.day %>"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
@@ -37,3 +39,4 @@
 
 <%= javascript_include_tag "slider_time_teacher.js" %>
 <%= javascript_include_tag "slider_edit_teacher"%>
+<%= javascript_include_tag "availTransparency"%>

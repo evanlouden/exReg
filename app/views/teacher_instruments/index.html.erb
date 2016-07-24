@@ -1,6 +1,6 @@
 <% @teachers.each do |teacher| %>
   <div id="teachinst-<%= teacher.contacts.first.first_name %>-<%= teacher.contacts.first.last_name %>">
-    <%= teacher.full_name %>
+    <%= teacher.staff_name %>
     <% teacher.teacher_instruments.each do |ti| %>
       <li>
         <%= ti.instrument.name %> <%= link_to "Remove", teacher_instrument_path(ti), method: :delete %>
@@ -12,7 +12,7 @@
 <%= form_for @teacher_instrument do |f| %>
   <div class="field">
     <%= f.label :teacher %>
-    <%= f.select :teacher_id, options_from_collection_for_select(@teachers, :id, :full_name) %>
+    <%= f.select :teacher_id, options_from_collection_for_select(@teachers, :id, :staff_name) %>
   </div>
   <div class="field">
     <%= f.label :instrument %>
