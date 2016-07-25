@@ -14,6 +14,9 @@ class TeachersController < PermissionsController
     @attendance.each do |lesson|
       lesson.missed_lessons.build
     end
+    @time = @teacher.earliest_start_time
+    @end_time = @teacher.latest_end_time
+    @days = Availability::DAYS
   end
 
   def new

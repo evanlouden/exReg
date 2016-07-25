@@ -13,6 +13,18 @@ class Teacher < Account
   validates_associated :availabilities, unless: :admin?
   validate :no_availability?, unless: :admin?
 
+  def earliest_start_time
+    array = availabilities.select { |a| a.start_time if a.start_time }
+    array.sort! { |a, b| a.start_time <=> b.start_time }
+    array.first.start_time
+  end
+
+  def latest_end_time
+    array = availabilities.select { |a| a.end_time if a.end_time }
+    array.sort! { |a, b| b.end_time <=> a.end_time }
+    array.first.end_time
+  end
+
   private
 
   def admin?
