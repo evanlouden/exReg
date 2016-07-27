@@ -3,8 +3,11 @@ module Api::V1
     respond_to :json, :js
 
     def index
-      teachers = Teacher.all.sort_by { |t| t.contacts.first.last_name }
-      render json: teachers
+      @lessons = current_account.lessons
+      @students = []
+      @lessons.map { |l| @students << l.student.full_name }
+      response = { lessons: @lessons, students: @students }
+      render json: response
     end
   end
 end
