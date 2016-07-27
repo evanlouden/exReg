@@ -1,5 +1,12 @@
 <h1>Admin Dashboard</h1>
 
+<div id="teacher-cal-dropdown">
+  <p>Teacher Calendar:
+    <%= collection_select(:teacher, :calendar, @teachers, :id, :staff_name, :include_blank => "Select a teacher") %>
+  </p>
+</div>
+<%= render "layouts/admin_cal" %>
+
 <h3>Open Inquiries:</h3>
 <div id="admin-inquiries">
   <ul>
@@ -12,12 +19,9 @@
   </ul>
 </div>
 
-<h3><%= link_to "Students", students_path %></h3>
-<h3><%= link_to "Lessons", lessons_path %></h3>
-
 <div id="admin-attendance">
   <p>Take Attendance For:
     <%= collection_select(:teacher, :attendance, @teachers, :id, :staff_name, :include_blank => "Select a teacher") %>
   </p>
 </div>
-<%= javascript_include_tag "teacherShow.js"%>
+<%= javascript_include_tag "teacherShow"%>
