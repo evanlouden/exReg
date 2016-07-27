@@ -11,6 +11,7 @@ Rails.application.config.assets.precompile += %w( absentToggle.js )
 Rails.application.config.assets.precompile += %w( dayFromDate.js )
 Rails.application.config.assets.precompile += %w( teacherShow.js )
 Rails.application.config.assets.precompile += %w( availTransparency.js )
+Rails.application.config.assets.precompile += %w( scheduler.js )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

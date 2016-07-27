@@ -50,4 +50,10 @@ Rails.application.routes.draw do
   resources :teacher_instruments
   resources :missed_lessons, only: :create
   resources :excused_absences, only: [:index, :create, :edit, :update]
+
+  namespace :api do
+    namespace :v1 do
+      resources :calendar
+    end
+  end
 end

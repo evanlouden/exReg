@@ -14,6 +14,8 @@
   </div>
 <% end %>
 
+<%= render "layouts/schedule" %>
+
 <h3>Outstanding Attendance:</h3>
 <% @attendance.each do |lesson| %>
   <div id="attendance-<%= lesson.student.first_name %>-<%= lesson.student.last_name %>">

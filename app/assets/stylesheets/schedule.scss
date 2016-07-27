@@ -1,0 +1,26 @@
+.schedule-block {
+  padding:0px;
+  height: 25px;
+  border:1px dotted #aaaaaa;
+}
+
+.time-header {
+  font-size: 0.7em;
+  text-align: right;
+  height: 25px;
+  width: 70px;
+  padding: 5px;
+}
+
+.day-header {
+  font-weight: bold;
+}
+
+.lesson-block-30 {
+  font-size: 0.7em;
+  background-color: #669999;
+  height: 50px;
+  width: 70px;
+  position: relative;
+  z-index: 1;
+}
