@@ -8,7 +8,7 @@ $(window).resize(function(){
 
 var getTeachersLessons = function(){
   $.ajax({
-    url: "api/v1/calendar",
+    url: "/api/v1/calendar",
     method: "GET",
     dataType: "json",
     success: function(response){
