@@ -10,6 +10,8 @@ class TeachersController < PermissionsController
   def show
     params[:id] ? @teacher = Teacher.find(params[:id]) : @teacher = current_account
     @lessons = @teacher.lessons
+    @students = []
+    @lessons.map { |l| @students << l.student.full_name }
     @attendance = @lessons.select { |x| x.attendance_needed? }
     @attendance.each do |lesson|
       lesson.missed_lessons.build
@@ -17,6 +19,11 @@ class TeachersController < PermissionsController
     @time = @teacher.earliest_start_time
     @end_time = @teacher.latest_end_time
     @days = Availability::DAYS
+    response = { lessons: @lessons, students: @students }
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: response }
+    end
   end
 
   def new

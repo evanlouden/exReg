@@ -7,8 +7,10 @@ $(window).resize(function(){
 });
 
 var getTeachersLessons = function(){
+  var path = window.location.pathname;
+
   $.ajax({
-    url: "/api/v1/calendar",
+    url: path,
     method: "GET",
     dataType: "json",
     success: function(response){
