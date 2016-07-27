@@ -3,6 +3,12 @@
     <li class="menu-text"> <%= link_to "exReg", "/" %> </li>
     <% if current_account %>
       <% if current_account.type == "Admin" || current_account.admin %>
+        <li>
+          <%= link_to "Students", students_path %>
+        </li>
+        <li>
+          <%= link_to "Lessons", lessons_path %>
+        </li>
         <%= render "layouts/staff" %>
         <%= render "layouts/settings" %>
       <% elsif current_account.type == "Teacher"%>

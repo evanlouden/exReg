@@ -47,7 +47,7 @@
       "/Users/anthonydegennaro/challenges/exReg/app/helpers/application_helper.rb": [
         1,
         1,
-        556,
+        592,
         null,
         null,
         1,
@@ -55,7 +55,7 @@
         null,
         null,
         1,
-        131,
+        167,
         null,
         null
       ],
@@ -105,6 +105,22 @@
         90,
         31,
         30,
+        null,
+        null,
+        1,
+        54,
+        113,
+        null,
+        54,
+        54,
+        null,
+        null,
+        1,
+        54,
+        113,
+        null,
+        54,
+        54,
         null,
         null,
         1,
@@ -283,6 +299,9 @@
         1,
         null,
         1,
+        54,
+        54,
+        54,
         54,
         54,
         54,
@@ -1226,6 +1245,15 @@
         0,
         0,
         0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0
       ],
       "/Users/anthonydegennaro/challenges/exReg/app/jobs/application_job.rb": [
@@ -1239,6 +1267,6 @@
         0
       ]
     },
-    "timestamp": 1469636403
+    "timestamp": 1469649438
   }
 }
