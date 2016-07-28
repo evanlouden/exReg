@@ -2,17 +2,31 @@ $('#teacher_calendar').change(function() {
   var teacherId = $(this).find(":selected").context.value;
   clearLessons();
   getTeachersId(teacherId);
+  $('.schedule-block').droppable( { drop:function(event, ui) {
+        ui.draggable.detach().appendTo($(this)); }
+    });
+});
+
+$('#calendarButton').on("click", function(event){
+  event.preventDefault();
+  updateSchedule();
+});
+
+$('#revertButton').on("click", function(event){
+  event.preventDefault();
+  var lessons = $('div[id^="lesson-"]');
+  placeLessons(lessons);
 });
 
 $(window).resize(function(){
   resizeLessons();
 });
 
-var getTeachersId = function(Id){
+var getTeachersId = function(id){
   $.ajax({
     url: "/api/v1/calendar",
-    method: "POST",
-    data: {id: Id},
+    method: "GET",
+    data: {id: id},
     dataType: "json",
     success: function(response){
       var lessonDivs = [];
@@ -24,6 +38,8 @@ var getTeachersId = function(Id){
           ampm = "PM";
           hr -= "12";
           hr = "0" + hr;
+        } else if(hr == 12){
+          ampm = "PM";
         }
         var min = startTime.getUTCMinutes();
         if (min < 10) {
@@ -31,7 +47,7 @@ var getTeachersId = function(Id){
         }
         var $div = $("<div>", {
           id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
-          "class": "lesson-block-" + response.lessons[i].duration
+          "class": "lesson-block-" + response.lessons[i].duration, data: {"id": response.lessons[i].id}
         });
         $div.text(response.students[i]);
         lessonDivs.push($div[0]);
@@ -48,16 +64,16 @@ var placeLessons = function(lessons){
     var lessonArray = lessonId.split('-');
     var lessonBlockId = lessonArray[1] + '-' + lessonArray[2];
     var lessonRow = $('#' + lessonBlockId );
-    var lessonPosition = lessonRow.position();
     lessonRow.append(lesson);
     lesson.style.width = lessonRow.width() + "px";
   }
+  addDraggable();
 };
 
 var resizeLessons = function(){
   var lessons = $('div[id^="lesson-"]');
   for (var i = 0; i < lessons.length; i++) {
-    lessons[i].style.width = lessons[i].parentElement.offsetWidth + "px";
+    lessons[i].style.width = (lessons[i].parentElement.offsetWidth - 2) + "px";
   }
 };
 
@@ -66,4 +82,44 @@ var clearLessons = function(){
   for (var i = 0; i < lessons.length; i++) {
     lessons[i].remove();
   }
+};
+
+var addDraggable = function(){
+$('div[class^="lesson-block-"]')
+  .draggable({
+    helper:"clone",
+    drag: function(){
+      $('#calendarButton').removeClass('hidden-submit');
+      $('#revertButton').removeClass('hidden-submit');
+    }
+  });
+};
+
+var updateSchedule = function(){
+  var updatedLessons = [];
+  var lessons = $('div[id^="lesson-"]');
+  for (var i = 0; i < lessons.length; i++) {
+    var id = $(lessons[i]).data().id;
+    var newTimeValue = lessons[i].parentElement.id;
+    var day = newTimeValue.split("-")[0];
+    var rawTime = newTimeValue.split("-")[1];
+    var time = rawTime.slice(0,2) + ":" + rawTime.slice(2, 6);
+    var lesson = {
+      id: id,
+      day: day,
+      start_time: time
+    };
+    updatedLessons.push(lesson);
+  }
+  $.ajax({
+    url: "/api/v1/calendar",
+    method: "POST",
+    data: JSON.stringify({"lessons": updatedLessons}),
+    dataType: "json",
+    contentType: "application/json",
+    success: function(response)
+    {
+      console.log("WoO");
+    }
+  });
 };

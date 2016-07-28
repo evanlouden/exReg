@@ -23,6 +23,8 @@ var getTeachersLessons = function(){
           ampm = "PM";
           hr -= "12";
           hr = "0" + hr;
+        } else if(hr == 12){
+          ampm = "PM";
         }
         var min = startTime.getUTCMinutes();
         if (min < 10) {
