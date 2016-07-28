@@ -1,3 +1,5 @@
+$lesson-green: #669999;
+
 .schedule-block {
   padding:0px;
   height: 25px;
@@ -18,7 +20,7 @@
 
 .lesson-block-30 {
   font-size: 0.7em;
-  background-color: #669999;
+  background-color: $lesson-green;
   height: 50px;
   width: 70px;
   position: absolute;
@@ -26,7 +28,7 @@
 }
 .lesson-block-45 {
   font-size: 0.7em;
-  background-color: #669999;
+  background-color: $lesson-green;
   height: 75px;
   width: 70px;
   position: absolute;
@@ -34,7 +36,7 @@
 }
 .lesson-block-60 {
   font-size: 0.7em;
-  background-color: #669999;
+  background-color: $lesson-green;
   height: 100px;
   width: 70px;
   position: absolute;
@@ -42,7 +44,7 @@
 }
 
 .move-cursor {
-  cursor: ns-resize;;
+  cursor: ns-resize;
 }
 
 .grab-cursor {
