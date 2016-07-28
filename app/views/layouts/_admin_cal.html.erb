@@ -27,7 +27,7 @@
   </div>
   <% while @time <= @end_time do %>
     <div class="row" id="<%= @time.strftime("%I%M%p") %>">
-      <div class="small-1 columns schedule-block time-header">
+      <div class="small-1 columns time-header">
         <% if @time.strftime("%M") == "00" || @time.strftime("%M") == "30" %>
           <%= @time.strftime("%l:%M %p")%>
         <% end %>
@@ -51,4 +51,6 @@
   <% end %>
 </div>
 
+<%= link_to "Save", "#", class: "button hidden-submit", id:"calendarButton" %>
+<%= link_to "Revert", "#", class: "button hidden-submit", id:"revertButton" %>
 <%= javascript_include_tag "adminDashCal" %>

@@ -21,7 +21,7 @@
   background-color: #669999;
   height: 50px;
   width: 70px;
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 .lesson-block-45 {
@@ -29,7 +29,7 @@
   background-color: #669999;
   height: 75px;
   width: 70px;
-  position: relative;
+  position: absolute;
   z-index: 1;
 }
 .lesson-block-60 {
@@ -37,6 +37,15 @@
   background-color: #669999;
   height: 100px;
   width: 70px;
-  position: relative;
+  position: absolute;
   z-index: 1;
+}
+
+.move-cursor {
+  cursor: ns-resize;;
+}
+
+.grab-cursor {
+  cursor: grab;
+  cursor: -webkit-grab;
 }
