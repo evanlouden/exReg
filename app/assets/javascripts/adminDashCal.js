@@ -57,7 +57,7 @@ var placeLessons = function(lessons){
 var resizeLessons = function(){
   var lessons = $('div[id^="lesson-"]');
   for (var i = 0; i < lessons.length; i++) {
-    lessons[i].style.width = lessons[i].parentElement.offsetWidth + "px";
+    lessons[i].style.width = (lessons[i].parentElement.offsetWidth - 2) + "px";
   }
 };
 
