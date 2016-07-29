@@ -16,6 +16,7 @@ $('#revertButton').on("click", function(event){
   event.preventDefault();
   var lessons = $('div[id^="lesson-"]');
   placeLessons(lessons);
+  hideButtons();
 });
 
 $(window).resize(function(){
@@ -47,7 +48,8 @@ var getTeachersId = function(id){
         }
         var $div = $("<div>", {
           id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
-          "class": "lesson-block-" + response.lessons[i].duration, data: {"id": response.lessons[i].id}
+          "class": "lesson-block-" + response.lessons[i].duration,
+          data: {"id": response.lessons[i].id}
         });
         $div.text(response.students[i]);
         lessonDivs.push($div[0]);
@@ -85,13 +87,13 @@ var clearLessons = function(){
 };
 
 var addDraggable = function(){
-$('div[class^="lesson-block-"]')
-  .draggable({
-    helper:"clone",
-    drag: function(){
-      $('#calendarButton').removeClass('hidden-submit');
-      $('#revertButton').removeClass('hidden-submit');
-    }
+  var lessonBlocks = $('div[class^="lesson-block-"]');
+  lessonBlocks.draggable({
+      helper:"clone",
+      stop: function(){
+        $('#calendarButton').removeClass('hidden-submit');
+        $('#revertButton').removeClass('hidden-submit');
+      }
   });
 };
 
@@ -120,6 +122,23 @@ var updateSchedule = function(){
     success: function(response)
     {
       console.log("WoO");
+      var lessons = $('div[id^="lesson-"]');
+      var divsToUpdate = $.grep(lessons, function(n, i){
+        var idArray = n.id.split("-");
+        var comparableId = idArray[1] + '-' + idArray[2];
+        return comparableId != n.parentElement.id;
+      });
+      $.each(divsToUpdate, function(index, div) {
+        var idToWrite = div.parentElement.id;
+        div.setAttribute('id', 'lesson-' + idToWrite);
+      });
+      hideButtons();
+      $(divsToUpdate).delay(50).fadeOut(50).fadeIn(400);
     }
   });
+};
+
+var hideButtons = function(){
+  $('#calendarButton').addClass('hidden-submit');
+  $('#revertButton').addClass('hidden-submit');
 };
