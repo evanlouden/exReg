@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin views all lessons" do
+feature "teacher views personal calendar", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(
@@ -31,16 +31,15 @@ feature "admin views all lessons" do
     )
   }
 
-  scenario "views list of lessons" do
+  scenario "successfully views calendar" do
     visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
+    fill_in "Email", with: teacher1.email
+    fill_in "Password", with: teacher1.password
     click_button "Sign In"
-    click_link "Lessons"
 
-    expect(page).to have_content(lesson1.remaining)
-    expect(page).to have_content(lesson1.remaining_balance)
-    expect(page).to have_content("#{lesson1.student.full_name} - #{lesson1.instrument}")
+    within(:css, "##{lesson1.day}-0800PM") do
+      find(:xpath, ".//div[@id='lesson-#{lesson1.day}-0800PM']")
+    end
   end
 end
