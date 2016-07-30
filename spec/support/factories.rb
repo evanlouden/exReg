@@ -43,7 +43,7 @@ FactoryGirl.define do
   factory :availability do
     checked "1"
     day "Sunday"
-    start_time "2000-01-01 20:00:00 UTC"
+    start_time "2000-01-01 18:00:00 UTC"
     end_time "2000-01-01 22:00:00 UTC"
   end
 
