@@ -1,7 +1,7 @@
 $('#teacher_calendar').change(function() {
   var teacherId = $(this).find(":selected").context.value;
   clearLessons();
-  getTeachersId(teacherId);
+  getTeachersLessons(teacherId);
   $('.schedule-block').droppable( { drop:function(event, ui) {
         ui.draggable.detach().appendTo($(this)); }
     });
@@ -23,13 +23,23 @@ $(window).resize(function(){
   resizeLessons();
 });
 
-var getTeachersId = function(id){
+var getTeachersLessons = function(id){
   $.ajax({
     url: "/api/v1/calendar",
     method: "GET",
     data: {id: id},
     dataType: "json",
     success: function(response){
+      // var availabilities = response.availability;
+      // $.each(availabilities, function(index, avail) {
+      //   var rawEarliestTime = avail.start_time;
+      //   var rawLatestTime = avail.end_time;
+      //   var earliestCalendarBlock = $('.schedule-block#' + index + '-' + rawEarliestTime);
+      //   var lastestCalendarBlock = $('.schedule-block#' + index + '-' + rawLatestTime);
+      //   debugger;
+      // });
+      // debugger;
+
       var lessonDivs = [];
       for (var i = 0; i < response.lessons.length; i++) {
         var startTime = new Date(response.lessons[i].start_time);
@@ -98,11 +108,11 @@ var addDraggable = function(){
 };
 
 var updateSchedule = function(){
+  var divsToUpdate = changedLessons();
   var updatedLessons = [];
-  var lessons = $('div[id^="lesson-"]');
-  for (var i = 0; i < lessons.length; i++) {
-    var id = $(lessons[i]).data().id;
-    var newTimeValue = lessons[i].parentElement.id;
+  for (var i = 0; i < divsToUpdate.length; i++) {
+    var id = $(divsToUpdate[i]).data().id;
+    var newTimeValue = divsToUpdate[i].parentElement.id;
     var day = newTimeValue.split("-")[0];
     var rawTime = newTimeValue.split("-")[1];
     var time = rawTime.slice(0,2) + ":" + rawTime.slice(2, 6);
@@ -122,12 +132,7 @@ var updateSchedule = function(){
     success: function(response)
     {
       console.log("WoO");
-      var lessons = $('div[id^="lesson-"]');
-      var divsToUpdate = $.grep(lessons, function(n, i){
-        var idArray = n.id.split("-");
-        var comparableId = idArray[1] + '-' + idArray[2];
-        return comparableId != n.parentElement.id;
-      });
+      var divsToUpdate = changedLessons();
       $.each(divsToUpdate, function(index, div) {
         var idToWrite = div.parentElement.id;
         div.setAttribute('id', 'lesson-' + idToWrite);
@@ -141,4 +146,14 @@ var updateSchedule = function(){
 var hideButtons = function(){
   $('#calendarButton').addClass('hidden-submit');
   $('#revertButton').addClass('hidden-submit');
+};
+
+var changedLessons = function(){
+  var lessons = $('div[id^="lesson-"]');
+  var divsToUpdate = $.grep(lessons, function(n, i){
+    var idArray = n.id.split("-");
+    var comparableId = idArray[1] + '-' + idArray[2];
+    return comparableId != n.parentElement.id;
+  });
+  return divsToUpdate;
 };

@@ -6,8 +6,28 @@ module Api::V1
       @teacher = Teacher.find(params[:id])
       @lessons = @teacher.lessons
       @students = []
+      @avail_hash = {}
       @lessons.map { |l| @students << l.student.full_name }
-      response = { lessons: @lessons, students: @students }
+      @availabilities = sort_avails(@teacher.availabilities)
+      @availabilities.each do |a|
+        time_hash = {}
+        if a.start_time
+          time_hash[:start_time] = a.start_time.strftime("%I%M%p").strip
+        else
+          time_hash[:start_time] = nil
+        end
+        if a.end_time
+          time_hash[:end_time] = a.end_time.strftime("%I%M%p").strip
+        else
+          time_hash[:end_time] = nil
+        end
+        @avail_hash[a.day] = time_hash
+      end
+      response = {
+        lessons: @lessons,
+        students: @students,
+        availability: @avail_hash
+      }
       render json: response
     end
 

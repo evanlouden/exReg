@@ -1,4 +1,5 @@
 $lesson-green: #669999;
+$unavailable-block: #A29EA3;
 
 .schedule-block {
   padding:0px;
@@ -25,6 +26,7 @@ $lesson-green: #669999;
   position: absolute;
   width: 70px;
   z-index: 1;
+  border-radius: 6px;
 }
 
 .lesson-block-45 {
@@ -34,6 +36,7 @@ $lesson-green: #669999;
   position: absolute;
   width: 70px;
   z-index: 1;
+  border-radius: 6px;
 }
 
 .lesson-block-60 {
@@ -43,6 +46,7 @@ $lesson-green: #669999;
   position: absolute;
   width: 70px;
   z-index: 1;
+  border-radius: 6px;
 }
 
 .move-cursor {
