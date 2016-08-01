@@ -5,7 +5,10 @@
     <%= collection_select(:teacher, :calendar, @teachers, :id, :staff_name, :include_blank => "Select a teacher") %>
   </p>
 </div>
-<%= render "layouts/admin_cal" %>
+
+<div class="admin-calendar">
+
+</div>
 
 <h3>Open Inquiries:</h3>
 <div id="admin-inquiries">
@@ -25,3 +28,4 @@
   </p>
 </div>
 <%= javascript_include_tag "teacherShow"%>
+<%= javascript_include_tag "calendar"%>

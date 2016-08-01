@@ -4,6 +4,8 @@ module Api::V1
 
     def index
       @teacher = Teacher.find(params[:id])
+      @time = @teacher.earliest_start_time
+      @end_time = @teacher.latest_end_time
       @lessons = @teacher.lessons
       @students = []
       @avail_hash = {}
@@ -12,18 +14,20 @@ module Api::V1
       @availabilities.each do |a|
         time_hash = {}
         if a.start_time
-          time_hash[:start_time] = a.start_time.strftime("%I%M%p").strip
+          time_hash[:start_time] = a.start_time
         else
           time_hash[:start_time] = nil
         end
         if a.end_time
-          time_hash[:end_time] = a.end_time.strftime("%I%M%p").strip
+          time_hash[:end_time] = a.end_time
         else
           time_hash[:end_time] = nil
         end
         @avail_hash[a.day] = time_hash
       end
       response = {
+        time: @time,
+        endTime: @end_time,
         lessons: @lessons,
         students: @students,
         availability: @avail_hash
