@@ -42,9 +42,13 @@ feature "admin edits teacher's lessons", js: true do
     within(:css, "#teacher-cal-dropdown") do
       find("option[value='#{teacher1.id}']").click
     end
-    within(:css, "##{lesson1.day}-0800PM") do
-      find(:xpath, ".//div[@id='lesson-#{lesson1.day}-0800PM']")
+
+    using_wait_time 15 do
+      within(:css, "##{lesson1.day}-0800PM") do
+        find(:xpath, ".//div[@id='lesson-#{lesson1.day}-0800PM']")
+      end
     end
+
     lesson_element = find("#lesson-#{lesson1.day}-0800PM")
     new_lesson_block = find("#Sunday-0730PM")
     lesson_element.drag_to new_lesson_block

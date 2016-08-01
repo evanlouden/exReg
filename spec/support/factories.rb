@@ -17,7 +17,12 @@ FactoryGirl.define do
     teacher true
     before(:create) do |teacher|
       teacher.availabilities << FactoryGirl.build(:availability)
-      teacher.availabilities << FactoryGirl.build(:availability, day: "Monday", checked: "0", start_time: "", end_time: "")
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Monday", checked: "0", start_time: nil, end_time: nil)
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Tuesday", checked: "0", start_time: nil, end_time: nil)
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Wednesday", checked: "0", start_time: nil, end_time: nil)
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Thursday", checked: "0", start_time: nil, end_time: nil)
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Friday", checked: "0", start_time: nil, end_time: nil)
+      teacher.availabilities << FactoryGirl.build(:availability, day: "Saturday", checked: "0", start_time: nil, end_time: nil)
     end
   end
 

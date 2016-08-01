@@ -25,22 +25,6 @@ class Teacher < Account
     array.first.end_time
   end
 
-  def self.earliest_start_time
-    find_each do |teacher|
-      @all_start_times = teacher.availabilities.select { |a| a.start_time if a.start_time }
-    end
-    @all_start_times.sort! { |a, b| a.start_time <=> b.start_time }
-    @all_start_times.first.start_time
-  end
-
-  def self.latest_end_time
-    find_each do |teacher|
-      @all_end_times = teacher.availabilities.select { |a| a.end_time if a.end_time }
-    end
-    @all_end_times.sort! { |a, b| b.end_time <=> a.end_time }
-    @all_end_times.first.end_time
-  end
-
   private
 
   def admin?

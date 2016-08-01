@@ -6,9 +6,6 @@ class AdminController < PermissionsController
     @open_inquiries = Inquiry.all.where(completed: false).order(created_at: :asc)
     @students = Student.all
     @teachers = Teacher.all
-    @time = Teacher.earliest_start_time
-    @end_time = Teacher.latest_end_time
-    @days = Availability::DAYS
   end
 
   def new

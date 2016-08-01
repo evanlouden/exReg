@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/anthonydegennaro/challenges/exReg/app/models/account.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/account.rb": [
         1,
         1,
         null,
@@ -35,7 +35,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/application_record.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/application_record.rb": [
         1,
         1,
         null,
@@ -44,7 +44,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/helpers/application_helper.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/helpers/application_helper.rb": [
         1,
         1,
         606,
@@ -59,14 +59,14 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/admin.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/admin.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/contact.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/contact.rb": [
         1,
         1,
         1,
@@ -79,7 +79,7 @@
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/teacher.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/teacher.rb": [
         1,
         1,
         1,
@@ -96,31 +96,15 @@
         1,
         null,
         1,
-        96,
-        33,
-        32,
+        272,
+        35,
+        34,
         null,
         null,
         1,
-        96,
-        33,
-        32,
-        null,
-        null,
-        1,
-        56,
-        119,
-        null,
-        56,
-        56,
-        null,
-        null,
-        1,
-        56,
-        119,
-        null,
-        56,
-        56,
+        272,
+        35,
+        34,
         null,
         null,
         1,
@@ -131,7 +115,7 @@
         null,
         1,
         53,
-        61,
+        71,
         null,
         3,
         null,
@@ -145,7 +129,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/availability.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/availability.rb": [
         1,
         1,
         1,
@@ -170,38 +154,38 @@
         1,
         null,
         1,
-        724,
+        1744,
         null,
         null,
         1,
-        362,
+        872,
         null,
-        150,
+        230,
         6,
         null,
         null,
         null,
         1,
-        362,
+        872,
         null,
-        150,
-        null,
-        null
-      ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/family.rb": [
-        1,
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/welcome_controller.rb": [
-        1,
-        1,
+        230,
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/permissions_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/family.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/evanlouden/side_projects/exReg/app/controllers/welcome_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/evanlouden/side_projects/exReg/app/controllers/permissions_controller.rb": [
         1,
         1,
         159,
@@ -216,7 +200,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/application_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -271,37 +255,34 @@
         null,
         1,
         6,
-        27,
-        19,
-        19,
-        19,
+        37,
+        29,
+        29,
+        29,
         null,
         null,
         null,
         null,
         1,
-        15,
-        15,
+        17,
+        17,
         null,
-        15,
-        105,
+        17,
+        119,
         null,
         null,
-        15,
-        30,
+        17,
+        99,
         null,
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/admin_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/admin_controller.rb": [
         1,
         1,
         1,
         null,
         1,
-        56,
-        56,
-        56,
         56,
         56,
         56,
@@ -351,7 +332,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/inquiry.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/inquiry.rb": [
         1,
         1,
         1,
@@ -360,7 +341,7 @@
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/student.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/student.rb": [
         1,
         1,
         1,
@@ -383,7 +364,7 @@
         null,
         1,
         66,
-        83,
+        79,
         null,
         3,
         null,
@@ -398,7 +379,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/teachers_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/teachers_controller.rb": [
         1,
         1,
         1,
@@ -506,7 +487,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/lesson.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/lesson.rb": [
         1,
         1,
         1,
@@ -568,7 +549,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/dashboard_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/dashboard_controller.rb": [
         1,
         1,
         47,
@@ -581,7 +562,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/instrument.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/instrument.rb": [
         1,
         1,
         1,
@@ -589,7 +570,7 @@
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/students_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/students_controller.rb": [
         1,
         1,
         null,
@@ -674,7 +655,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/registrations_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/registrations_controller.rb": [
         1,
         1,
         4,
@@ -705,7 +686,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/price.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/price.rb": [
         1,
         1,
         1,
@@ -716,18 +697,42 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/api/v1/calendar_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/api/v1/calendar_controller.rb": [
         1,
         1,
         null,
         null,
         1,
+        2,
+        2,
+        2,
         2,
         2,
         2,
         4,
         2,
         2,
+        14,
+        14,
+        2,
+        null,
+        12,
+        null,
+        14,
+        2,
+        null,
+        12,
+        null,
+        14,
+        null,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2,
         null,
         null,
         1,
@@ -742,7 +747,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/missed_lesson.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/missed_lesson.rb": [
         1,
         1,
         1,
@@ -750,7 +755,7 @@
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/contacts_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/contacts_controller.rb": [
         1,
         1,
         10,
@@ -833,7 +838,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/excused_absences_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/excused_absences_controller.rb": [
         1,
         1,
         1,
@@ -873,12 +878,12 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/excused_absence.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/excused_absence.rb": [
         1,
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/inquiries_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/inquiries_controller.rb": [
         1,
         1,
         null,
@@ -931,7 +936,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/instruments_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/instruments_controller.rb": [
         1,
         1,
         1,
@@ -983,7 +988,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/teacher_instrument.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/teacher_instrument.rb": [
         1,
         1,
         null,
@@ -991,7 +996,7 @@
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/lessons_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/lessons_controller.rb": [
         1,
         1,
         2,
@@ -1067,14 +1072,14 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/models/reason.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/models/reason.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/missed_lessons_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/missed_lessons_controller.rb": [
         1,
         1,
         4,
@@ -1103,61 +1108,7 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/prices_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        8,
-        8,
-        null,
-        null,
-        1,
-        2,
-        2,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        2,
-        null,
-        null,
-        1,
-        2,
-        2,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-        4,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/reasons_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/prices_controller.rb": [
         1,
         1,
         1,
@@ -1211,7 +1162,61 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/controllers/teacher_instruments_controller.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/controllers/reasons_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        8,
+        8,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        4,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/evanlouden/side_projects/exReg/app/controllers/teacher_instruments_controller.rb": [
         1,
         1,
         1,
@@ -1252,31 +1257,31 @@
         null,
         null
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/channels/application_cable/channel.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0,
         0
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/channels/application_cable/connection.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0,
         0
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/jobs/application_job.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/anthonydegennaro/challenges/exReg/app/mailers/application_mailer.rb": [
+      "/Users/evanlouden/side_projects/exReg/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ]
     },
-    "timestamp": 1469907054
+    "timestamp": 1470088083
   }
 }
