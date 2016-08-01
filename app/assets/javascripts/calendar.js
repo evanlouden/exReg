@@ -45,8 +45,61 @@ var generateCalendar = function(id){
     dataType: "json",
     success: function(response){
       printRows(response);
+      getTeachersLessons(id, response);
     }
   });
+
+  var getTeachersLessons = function(id, response){
+      var lessonDivs = [];
+      for (var i = 0; i < response.lessons.length; i++) {
+        var startTime = new Date(response.lessons[i].start_time);
+        var hr = startTime.getUTCHours();
+        var ampm = "AM";
+        if (hr > 12) {
+          ampm = "PM";
+          hr -= "12";
+          hr = "0" + hr;
+        } else if(hr == 12){
+          ampm = "PM";
+        }
+        var min = startTime.getUTCMinutes();
+        if (min < 10) {
+          min = "0" + min;
+        }
+        var $div = $("<div>", {
+          id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
+          "class": "lesson-block-" + response.lessons[i].duration,
+          data: {"id": response.lessons[i].id}
+        });
+        $div.text(response.students[i]);
+        lessonDivs.push($div[0]);
+      }
+      placeLessons(lessonDivs);
+    };
+
+  var placeLessons = function(lessons){
+    for (var i = 0; i < lessons.length; i++) {
+      var lesson = lessons[i];
+      var lessonId = lesson.id;
+      var lessonArray = lessonId.split('-');
+      var lessonBlockId = lessonArray[1] + '-' + lessonArray[2];
+      var lessonRow = $('#' + lessonBlockId );
+      lessonRow.append(lesson);
+      lesson.style.width = lessonRow.width() + "px";
+    }
+    addDraggable();
+  };
+
+  var addDraggable = function(){
+    var lessonBlocks = $('div[class^="lesson-block-"]');
+    lessonBlocks.draggable({
+        helper:"clone",
+        stop: function(){
+          $('#calendarButton').removeClass('hidden-submit');
+          $('#revertButton').removeClass('hidden-submit');
+        }
+    });
+  };
 };
 
 var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

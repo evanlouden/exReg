@@ -1,10 +1,10 @@
 $('#teacher_calendar').change(function() {
-  var teacherId = $(this).find(":selected").context.value;
+  // var teacherId = $(this).find(":selected").context.value;
   clearLessons();
-  getTeachersLessons(teacherId);
-  $('.schedule-block').droppable( { drop:function(event, ui) {
-        ui.draggable.detach().appendTo($(this)); }
-    });
+  // getTeachersLessons(teacherId);
+  // $('.schedule-block').droppable( { drop:function(event, ui) {
+  //       ui.draggable.detach().appendTo($(this)); }
+  //   });
 });
 
 $('#calendarButton').on("click", function(event){
@@ -23,64 +23,47 @@ $(window).resize(function(){
   resizeLessons();
 });
 
-var getTeachersLessons = function(id){
-  $.ajax({
-    url: "/api/v1/calendar",
-    method: "GET",
-    data: {id: id},
-    dataType: "json",
-    success: function(response){
-      // var availabilities = response.availability;
-      // $.each(availabilities, function(index, avail) {
-      //   var rawEarliestTime = avail.start_time;
-      //   var rawLatestTime = avail.end_time;
-      //   var earliestCalendarBlock = $('.schedule-block#' + index + '-' + rawEarliestTime);
-      //   var lastestCalendarBlock = $('.schedule-block#' + index + '-' + rawLatestTime);
-      //   debugger;
-      // });
-      // debugger;
-
-      var lessonDivs = [];
-      for (var i = 0; i < response.lessons.length; i++) {
-        var startTime = new Date(response.lessons[i].start_time);
-        var hr = startTime.getUTCHours();
-        var ampm = "AM";
-        if (hr > 12) {
-          ampm = "PM";
-          hr -= "12";
-          hr = "0" + hr;
-        } else if(hr == 12){
-          ampm = "PM";
-        }
-        var min = startTime.getUTCMinutes();
-        if (min < 10) {
-          min = "0" + min;
-        }
-        var $div = $("<div>", {
-          id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
-          "class": "lesson-block-" + response.lessons[i].duration,
-          data: {"id": response.lessons[i].id}
-        });
-        $div.text(response.students[i]);
-        lessonDivs.push($div[0]);
-      }
-      placeLessons(lessonDivs);
-    }
-  });
-};
-
-var placeLessons = function(lessons){
-  for (var i = 0; i < lessons.length; i++) {
-    var lesson = lessons[i];
-    var lessonId = lesson.id;
-    var lessonArray = lessonId.split('-');
-    var lessonBlockId = lessonArray[1] + '-' + lessonArray[2];
-    var lessonRow = $('#' + lessonBlockId );
-    lessonRow.append(lesson);
-    lesson.style.width = lessonRow.width() + "px";
-  }
-  addDraggable();
-};
+// var getTeachersLessons = function(id, response){
+//     var lessonDivs = [];
+//     for (var i = 0; i < response.lessons.length; i++) {
+//       var startTime = new Date(response.lessons[i].start_time);
+//       var hr = startTime.getUTCHours();
+//       var ampm = "AM";
+//       if (hr > 12) {
+//         ampm = "PM";
+//         hr -= "12";
+//         hr = "0" + hr;
+//       } else if(hr == 12){
+//         ampm = "PM";
+//       }
+//       var min = startTime.getUTCMinutes();
+//       if (min < 10) {
+//         min = "0" + min;
+//       }
+//       var $div = $("<div>", {
+//         id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
+//         "class": "lesson-block-" + response.lessons[i].duration,
+//         data: {"id": response.lessons[i].id}
+//       });
+//       $div.text(response.students[i]);
+//       lessonDivs.push($div[0]);
+//     }
+//     placeLessons(lessonDivs);
+//   };
+// };
+//
+// var placeLessons = function(lessons){
+//   for (var i = 0; i < lessons.length; i++) {
+//     var lesson = lessons[i];
+//     var lessonId = lesson.id;
+//     var lessonArray = lessonId.split('-');
+//     var lessonBlockId = lessonArray[1] + '-' + lessonArray[2];
+//     var lessonRow = $('#' + lessonBlockId );
+//     lessonRow.append(lesson);
+//     lesson.style.width = lessonRow.width() + "px";
+//   }
+//   addDraggable();
+// };
 
 var resizeLessons = function(){
   var lessons = $('div[id^="lesson-"]');
@@ -96,16 +79,16 @@ var clearLessons = function(){
   }
 };
 
-var addDraggable = function(){
-  var lessonBlocks = $('div[class^="lesson-block-"]');
-  lessonBlocks.draggable({
-      helper:"clone",
-      stop: function(){
-        $('#calendarButton').removeClass('hidden-submit');
-        $('#revertButton').removeClass('hidden-submit');
-      }
-  });
-};
+// var addDraggable = function(){
+//   var lessonBlocks = $('div[class^="lesson-block-"]');
+//   lessonBlocks.draggable({
+//       helper:"clone",
+//       stop: function(){
+//         $('#calendarButton').removeClass('hidden-submit');
+//         $('#revertButton').removeClass('hidden-submit');
+//       }
+//   });
+// };
 
 var updateSchedule = function(){
   var divsToUpdate = changedLessons();
