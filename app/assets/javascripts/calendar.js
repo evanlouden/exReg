@@ -21,16 +21,10 @@ $('#teacher_calendar').change(function() {
   );
 
   $.each(daysOfTheWeek, function(index, day){
-    var $div = "";
-    if (index == 6) {
-      $div = $("<div>", {
-        "class": "small-1 columns end day-header ", text: dayAbbr(day)
-      });
-    } else {
-      $div = $("<div>", {
-        "class": "small-1 columns day-header", text: dayAbbr(day)
-      });
-    }
+    var $div = $("<div>", {
+      "class": "small-1 columns day-header ", text: dayAbbr(day)
+    });
+    addEndToLastBlock($div, index);
     $($headerRow).append($div);
   });
 
@@ -52,22 +46,9 @@ var generateCalendar = function(id){
   var getTeachersLessons = function(id, response){
     var lessonDivs = [];
     for (var i = 0; i < response.lessons.length; i++) {
-      var startTime = new Date(response.lessons[i].start_time);
-      var hr = startTime.getUTCHours();
-      var ampm = "AM";
-      if (hr > 12) {
-        ampm = "PM";
-        hr -= "12";
-        hr = "0" + hr;
-      } else if(hr == 12){
-        ampm = "PM";
-      }
-      var min = startTime.getUTCMinutes();
-      if (min < 10) {
-        min = "0" + min;
-      }
+      var startTime = moment.utc(response.lessons[i].start_time);
       var $div = $("<div>", {
-        id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
+        id: "lesson-" + response.lessons[i].day + "-" + startTime.format("hhmmA"),
         "class": "lesson-block-" + response.lessons[i].duration,
         data: {"id": response.lessons[i].id}
       });
@@ -113,16 +94,10 @@ var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
 
 var printRows = function(response){
   var days = function(index, day){
-    var $blocks = "";
-    if (index == 6) {
-      $blocks = $("<div>", {
-        "class": "small-1 columns end schedule-block shaded", id: day + "-" + idTime
-      });
-    } else {
-      $blocks = $("<div>", {
-        "class": "small-1 columns schedule-block shaded", id: day + "-" + idTime
-      });
-    }
+    var $blocks = $("<div>", {
+      "class": "small-1 columns schedule-block shaded", id: day + "-" + idTime
+    });
+    addEndToLastBlock($blocks, index);
     var styleAvailableBlock = function(day, response){
       var availabilities = response.availability;
       if(availabilities[day].start_time && availabilities[day].end_time){
@@ -226,3 +201,9 @@ var resizeLessons = function(){
 $(window).resize(function(){
   resizeLessons();
 });
+
+var addEndToLastBlock = function(variable, index){
+  if (index == 6) {
+    variable.addClass('end');
+  }
+};
