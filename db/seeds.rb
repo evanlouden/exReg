@@ -29,10 +29,10 @@ teacher_params = {
       end_time: "2000-01-01 16:00:00 UTC"
     },
     {
-      checked: "0",
+      checked: "1",
       day: "Monday",
-      start_time: nil,
-      end_time: nil
+      start_time: "2000-01-01 12:00:00 UTC",
+      end_time: "2000-01-01 18:00:00 UTC"
     },
     {
       checked: "0",
@@ -47,10 +47,10 @@ teacher_params = {
       end_time: nil
     },
     {
-      checked: "0",
+      checked: "1",
       day: "Thursday",
-      start_time: nil,
-      end_time: nil
+      start_time: "2000-01-01 12:00:00 UTC",
+      end_time: "2000-01-01 20:00:00 UTC"
     },
     {
       checked: "0",

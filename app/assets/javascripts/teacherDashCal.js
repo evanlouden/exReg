@@ -16,23 +16,11 @@ var getTeachersLessons = function(){
     success: function(response){
       var lessonDivs = [];
       for (var i = 0; i < response.lessons.length; i++) {
-        var startTime = new Date(response.lessons[i].start_time);
-        var hr = startTime.getUTCHours();
-        var ampm = "AM";
-        if (hr > 12) {
-          ampm = "PM";
-          hr -= "12";
-          hr = "0" + hr;
-        } else if(hr == 12){
-          ampm = "PM";
-        }
-        var min = startTime.getUTCMinutes();
-        if (min < 10) {
-          min = "0" + min;
-        }
+        var startTime = moment.utc(response.lessons[i].start_time);
         var $div = $("<div>", {
-          id: "lesson-" + response.lessons[i].day + "-" + hr + min + ampm,
-          "class": "lesson-block-" + response.lessons[i].duration
+          id: "lesson-" + response.lessons[i].day + "-" + startTime.format("hhmmA"),
+          "class": "lesson-block-" + response.lessons[i].duration,
+          data: {"id": response.lessons[i].id}
         });
         $div.text(response.students[i]);
         lessonDivs.push($div[0]);

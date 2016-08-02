@@ -8,9 +8,9 @@ module Api::V1
       @end_time = @teacher.latest_end_time
       @lessons = @teacher.lessons
       @students = []
-      @avail_hash = {}
       @lessons.map { |l| @students << l.student.full_name }
       @availabilities = sort_avails(@teacher.availabilities)
+      @avail_hash = {}
       @availabilities.each do |a|
         time_hash = {}
         if a.start_time
