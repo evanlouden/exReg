@@ -82,6 +82,7 @@ var generateCalendar = function(id){
     var lessonBlocks = $('div[class^="lesson-block-"]');
     lessonBlocks.draggable({
         helper:"clone",
+        revert: "invalid",
         stop: function(){
           $('#calendarButton').removeClass('hidden-submit');
           $('#revertButton').removeClass('hidden-submit');
@@ -104,9 +105,21 @@ var printRows = function(response){
         var availStartTime = moment.utc(availabilities[day].start_time);
         var availEndTime = moment.utc(availabilities[day].end_time);
         if(time >= availStartTime && time <= availEndTime){
-          $($blocks).removeClass('shaded').droppable( { drop:function(event, ui) {
-              ui.draggable.detach().appendTo($(this)); }
-            });
+          $($blocks).removeClass('shaded').droppable( {
+            drop:function(event, ui){
+              var dayID = $(this).attr('id').split("-")[0];
+              var dayBlocks = $('div[id^="'+dayID+'-"]').not(".shaded");
+              if (this === dayBlocks[dayBlocks.length - 1]){
+                return false;
+              } else if (!$(ui.draggable).hasClass('lesson-block-30') && this === dayBlocks[dayBlocks.length - 2]) {
+                return false;
+              } else if ($(ui.draggable).hasClass('lesson-block-60') && this === dayBlocks[dayBlocks.length - 3]) {
+                return false;
+              } else {
+                ui.draggable.detach().appendTo($(this));
+              }
+            },
+          });
         }
       }
     };
@@ -207,3 +220,15 @@ var addEndToLastBlock = function(variable, index){
     variable.addClass('end');
   }
 };
+
+// $('.ui-droppable').droppable({
+//   accept: function(event, ui){
+//     var dayID = $(this).attr('id').split("-")[0];
+//     var dayBlocks = $('div[id^="'+dayID+'-"]').not(".shaded");
+//     if ($(this) === dayBlocks[dayBlocks.length - 1]){
+//       return false;
+//     } else {
+//       return true;
+//     }
+//   }
+// });
