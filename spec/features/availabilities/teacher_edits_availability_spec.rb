@@ -25,6 +25,7 @@ feature "teacher edits availability" do
   scenario "does not specify availability" do
     click_link "Edit Availability"
     find(:css, "#teacher_availabilities_attributes_0_checked").set(false)
+    find(:css, "#teacher_availabilities_attributes_1_checked").set(false)
     click_button "Update Availability"
 
     expect(page).to have_content("Please select at least one day of availability")

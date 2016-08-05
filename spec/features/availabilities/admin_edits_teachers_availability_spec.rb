@@ -24,9 +24,9 @@ feature "admin edits teacher's availability" do
   scenario "successfully edits availability" do
     click_link "All Staff"
     click_link "Edit Availability"
-    find(:css, "#teacher_availabilities_attributes_1_checked").set(true)
-    find(:css, "#teacher_availabilities_attributes_1_start_time", visible: false).set("4:00 PM")
-    find(:css, "#teacher_availabilities_attributes_1_end_time", visible: false).set("8:00 PM")
+    find(:css, "#teacher_availabilities_attributes_2_checked").set(true)
+    find(:css, "#teacher_availabilities_attributes_2_start_time", visible: false).set("4:00 PM")
+    find(:css, "#teacher_availabilities_attributes_2_end_time", visible: false).set("8:00 PM")
     click_button "Update Availability"
 
     expect(page).to have_content("Availability Updated")
@@ -37,6 +37,7 @@ feature "admin edits teacher's availability" do
     click_link "All Staff"
     click_link "Edit Availability"
     find(:css, "#teacher_availabilities_attributes_0_checked").set(false)
+    find(:css, "#teacher_availabilities_attributes_1_checked").set(false)
     click_button "Update Availability"
 
     expect(page).to have_content("Please select at least one day of availability")
