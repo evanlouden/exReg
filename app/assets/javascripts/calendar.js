@@ -82,6 +82,7 @@ var generateCalendar = function(id){
     var lessonBlocks = $('div[class^="lesson-block-"]');
     lessonBlocks.draggable({
         helper:"clone",
+        revert: "invalid",
         stop: function(){
           $('#calendarButton').removeClass('hidden-submit');
           $('#revertButton').removeClass('hidden-submit');
@@ -104,9 +105,36 @@ var printRows = function(response){
         var availStartTime = moment.utc(availabilities[day].start_time);
         var availEndTime = moment.utc(availabilities[day].end_time);
         if(time >= availStartTime && time <= availEndTime){
-          $($blocks).removeClass('shaded').droppable( { drop:function(event, ui) {
-              ui.draggable.detach().appendTo($(this)); }
-            });
+          $($blocks).removeClass('shaded').droppable( {
+            drop: function(event, ui){
+              var dayId = $(this).attr('id').split("-")[0];
+              var dayBlocks = $('div[id^="'+dayId+'-"]').not(".shaded");
+              var blockIndex = $(dayBlocks).index(this);
+              if (this === dayBlocks[dayBlocks.length - 1]){
+                return false;
+              } else if (!$(ui.draggable).hasClass('lesson-block-30') && this === dayBlocks[dayBlocks.length - 2]) {
+                return false;
+              } else if ($(ui.draggable).hasClass('lesson-block-60') && this === dayBlocks[dayBlocks.length - 3]) {
+                return false;
+              } else if (this.hasChildNodes()) {
+                return false;
+              } else {
+                var changeDroppable = function(lessonLength, index, boolean){
+                  var i = (lessonLength / 15) - 1;
+                  while (i > 0) {
+                    $(dayBlocks[index + i]).droppable("option", "disabled", boolean);
+                    i--;
+                  }
+                };
+                var lessonTime = $(ui.draggable).attr('class').slice(13,15);
+                var parent = $(ui.draggable).parent();
+                var parentIndex = $(dayBlocks).index(parent);
+                changeDroppable(lessonTime, parentIndex, false);
+                ui.draggable.detach().appendTo($(this));
+                changeDroppable(lessonTime, blockIndex, true);
+              }
+            },
+          });
         }
       }
     };

@@ -21,6 +21,13 @@ feature "admin edits teacher's lessons", js: true do
       student: student1,
       completed: true)
   }
+  let!(:student2) { FactoryGirl.create(:student, family: family1) }
+  let!(:inquiry2) {
+    FactoryGirl.create(
+      :inquiry,
+      student: student2,
+      completed: true)
+  }
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:lesson1) {
     FactoryGirl.create(
@@ -28,6 +35,15 @@ feature "admin edits teacher's lessons", js: true do
       student: student1,
       teacher: teacher1,
       inquiry: inquiry1
+    )
+  }
+  let!(:lesson2) {
+    FactoryGirl.create(
+      :lesson,
+      day: "Monday",
+      student: student2,
+      teacher: teacher1,
+      inquiry: inquiry2
     )
   }
 
@@ -76,5 +92,31 @@ feature "admin edits teacher's lessons", js: true do
     end
     expect(page).to_not have_content("Save")
     expect(page).to_not have_content("Revert")
+  end
+
+  scenario "places lesson hanging over unavailable block" do
+    within(:css, "#teacher-cal-dropdown") do
+      find("option[value='#{teacher1.id}']").click
+    end
+    lesson_element = find("#lesson-#{lesson1.day}-0800PM")
+    new_lesson_block = find("#Sunday-1000PM")
+    lesson_element.drag_to new_lesson_block
+
+    within(:css, "##{lesson1.day}-0800PM") do
+      find(:xpath, ".//div[@id='lesson-#{lesson1.day}-0800PM']")
+    end
+  end
+
+  scenario "places lesson on top of another lesson" do
+    within(:css, "#teacher-cal-dropdown") do
+      find("option[value='#{teacher1.id}']").click
+    end
+    lesson_element = find("#lesson-#{lesson1.day}-0800PM")
+    new_lesson_block = find("#Monday-0800PM")
+    lesson_element.drag_to new_lesson_block
+
+    within(:css, "##{lesson1.day}-0800PM") do
+      find(:xpath, ".//div[@id='lesson-#{lesson1.day}-0800PM']")
+    end
   end
 end

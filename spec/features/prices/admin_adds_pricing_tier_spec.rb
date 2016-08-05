@@ -38,4 +38,26 @@ feature "admin adds pricing tier" do
     expect(page).to have_content("can't be blank")
     expect(page).to_not have_content("Pricing Tier Added")
   end
+
+  scenario "specifies duration not multiple of 15" do
+    click_link "Pricing Tiers"
+    fill_in "Tier Name", with: "Private Lesson"
+    fill_in "Duration (minutes)", with: "35"
+    fill_in "Price", with: "50"
+    click_button "Create Pricing Tier"
+
+    expect(page).to have_content("must be intervals of 15 minutes")
+    expect(page).to_not have_content("Pricing Tier Added")
+  end
+
+  scenario "specifies duration less than 30" do
+    click_link "Pricing Tiers"
+    fill_in "Tier Name", with: "Private Lesson"
+    fill_in "Duration (minutes)", with: "15"
+    fill_in "Price", with: "50"
+    click_button "Create Pricing Tier"
+
+    expect(page).to have_content("must be minimum of 30 minutes")
+    expect(page).to_not have_content("Pricing Tier Added")
+  end
 end
