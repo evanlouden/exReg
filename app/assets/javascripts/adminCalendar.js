@@ -39,11 +39,11 @@ var generateCalendar = function(id){
     dataType: "json",
     success: function(response){
       printRows(response);
-      getTeachersLessons(id, response);
+      getTeachersLessons(response);
     }
   });
 
-  var getTeachersLessons = function(id, response){
+  var getTeachersLessons = function(response){
     var lessonDivs = [];
     for (var i = 0; i < response.lessons.length; i++) {
       var startTime = moment.utc(response.lessons[i].start_time);

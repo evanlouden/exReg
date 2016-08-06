@@ -14,7 +14,8 @@
   </div>
 <% end %>
 
-<%= render "layouts/teacher_cal" %>
+<div class="teacher-calendar">
+</div>
 
 <h3>Outstanding Attendance:</h3>
 <% @attendance.each do |lesson| %>
@@ -36,4 +37,5 @@
   </div>
 <% end %>
 
-<%= javascript_include_tag "absentToggle.js"%>
+<%= javascript_include_tag "absentToggle"%>
+<%= javascript_include_tag "teacherCalendar"%>
