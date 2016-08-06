@@ -18,8 +18,29 @@ class TeachersController < PermissionsController
     end
     @time = @teacher.earliest_start_time
     @end_time = @teacher.latest_end_time
-    @days = Availability::DAYS
-    response = { lessons: @lessons, students: @students }
+    @availabilities = sort_avails(@teacher.availabilities)
+    @avail_hash = {}
+    @availabilities.each do |a|
+      time_hash = {}
+      if a.start_time
+        time_hash[:start_time] = a.start_time
+      else
+        time_hash[:start_time] = nil
+      end
+      if a.end_time
+        time_hash[:end_time] = a.end_time
+      else
+        time_hash[:end_time] = nil
+      end
+      @avail_hash[a.day] = time_hash
+    end
+    response = {
+      time: @time,
+      endTime: @end_time,
+      lessons: @lessons,
+      students: @students,
+      availability: @avail_hash
+    }
     respond_to do |format|
       format.html { render :show }
       format.json { render json: response }
