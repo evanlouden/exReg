@@ -1,6 +1,6 @@
 $('#teacher_calendar').change(function() {
   $(".admin-calendar").empty();
-  var teacherId = $(this).find(":selected").context.value;
+  var teacherId = $(this).val();
 
   var dayAbbr = function(day){
     return day.slice(0, 3);
@@ -50,9 +50,9 @@ var generateCalendar = function(id){
       var $div = $("<div>", {
         id: "lesson-" + response.lessons[i].day + "-" + startTime.format("hhmmA"),
         "class": "lesson-block-" + response.lessons[i].duration,
-        data: {"id": response.lessons[i].id}
+        data: {"id": response.lessons[i].id},
+        text: response.students[i]
       });
-      $div.text(response.students[i]);
       lessonDivs.push($div[0]);
     }
     placeLessons(lessonDivs);

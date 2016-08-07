@@ -19,8 +19,12 @@ feature "admin registers student for lessons", js: true do
   let!(:price2) { FactoryGirl.create(:price, duration: "60", price: "100") }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
   let!(:contact3) { FactoryGirl.create(:contact, email: teacher1.email, teacher: teacher1) }
+  let!(:teacher2) { FactoryGirl.create(:teacher) }
+  let!(:contact4) { FactoryGirl.create(:contact, email: teacher2.email, teacher: teacher2) }
   let!(:instrument1) { FactoryGirl.create(:instrument) }
+  let!(:instrument2) { FactoryGirl.create(:instrument, name: "Violin") }
   let!(:association1) { FactoryGirl.create(:teacher_instrument, teacher: teacher1, instrument: instrument1) }
+  let!(:association2) { FactoryGirl.create(:teacher_instrument, teacher: teacher2, instrument: instrument2) }
   let!(:count1) { FactoryGirl.create(:excused_absence) }
 
   before(:each) do
@@ -35,11 +39,11 @@ feature "admin registers student for lessons", js: true do
     click_link student1.full_name
     click_link "Register Student"
     select(price2.description, from: "Pricing Tier")
-    find(:css, "#lesson_start_date").set("2016/09/13")
+    find(:css, "#lesson_start_date").set("09/11/2016")
     find('label', text: 'Start Time').click
 
     using_wait_time 20 do
-      page.has_css?('input', text: 'Wednesday', visible: false)
+      page.has_css?("input", text: "Sunday", visible: false)
     end
 
     fill_in "Start Time", with: "8:00 PM"
@@ -58,6 +62,15 @@ feature "admin registers student for lessons", js: true do
     expect(page).to_not have_content("Register Student")
   end
 
+  scenario "changes instrument from original inquiry" do
+    click_link "Students"
+    click_link student1.full_name
+    click_link "Register Student"
+    select("Violin", from: "Instrument")
+
+    expect(page).to have_select("lesson_teacher_id", options: [teacher2.staff_name])
+  end
+
   scenario "does not specify required information" do
     within(:css, "#admin-inquiries") do
       click_link student1.full_name
@@ -67,5 +80,6 @@ feature "admin registers student for lessons", js: true do
 
     expect(page).to have_content("can't be blank")
     expect(page).to have_content("Register #{student1.full_name}")
+    expect(page).to have_select("lesson_teacher_id", options: [teacher1.staff_name])
   end
 end

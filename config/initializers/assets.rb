@@ -8,12 +8,12 @@ Rails.application.config.assets.precompile += %w( slider_edit_teacher.js )
 Rails.application.config.assets.precompile += %w( slider_time_teacher.js )
 Rails.application.config.assets.precompile += %w( slider_time.js )
 Rails.application.config.assets.precompile += %w( absentToggle.js )
-Rails.application.config.assets.precompile += %w( dayFromDate.js )
 Rails.application.config.assets.precompile += %w( teacherShow.js )
 Rails.application.config.assets.precompile += %w( availTransparency.js )
 Rails.application.config.assets.precompile += %w( teacherDashCal.js )
 Rails.application.config.assets.precompile += %w( adminCalendar.js )
 Rails.application.config.assets.precompile += %w( teacherCalendar.js )
+Rails.application.config.assets.precompile += %w( lessonRegistrationForm.js )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
