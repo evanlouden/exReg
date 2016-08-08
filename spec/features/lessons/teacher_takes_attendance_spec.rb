@@ -45,7 +45,6 @@ feature "teacher takes attendance", js: true do
     fill_in "Password", with: teacher1.password
     click_button "Sign In"
 
-    expect(page).to have_content("#{lesson1.remaining} lessons remaining")
     within(:css, "#attendance-#{lesson1.student.first_name}-#{lesson1.student.last_name}") do
       expect(page).to have_content(lesson1.active_lesson)
     end
@@ -54,7 +53,10 @@ feature "teacher takes attendance", js: true do
       click_link "Present"
     end
 
-    expect(page).to have_content(lesson1.remaining - 1)
+    within(:css, "#lesson-#{lesson1.day}-#{lesson1.start_time.strftime("%I%M%p")}") do
+      expect(page).to have_content(lesson1.remaining - 1)
+    end
+
     expect(page).to_not have_content("Present")
     expect(page).to_not have_content("Absent")
   end

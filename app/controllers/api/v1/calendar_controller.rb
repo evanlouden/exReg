@@ -6,9 +6,10 @@ module Api::V1
       @teacher = Teacher.find(params[:id])
       @time = @teacher.earliest_start_time
       @end_time = @teacher.latest_end_time
-      @lessons = @teacher.lessons
+      @lessons = @teacher.lessons.select { |l| l.remaining > 0}
       @students = []
       @lessons.map { |l| @students << l.student.full_name }
+      @lessons_remaining = @lessons.map { |l| l.remaining }
       @availabilities = sort_avails(@teacher.availabilities)
       @avail_hash = {}
       @availabilities.each do |a|
@@ -30,7 +31,8 @@ module Api::V1
         endTime: @end_time,
         lessons: @lessons,
         students: @students,
-        availability: @avail_hash
+        availability: @avail_hash,
+        lessonsRemaining: @lessons_remaining
       }
       render json: response
     end

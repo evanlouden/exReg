@@ -7,6 +7,14 @@ class InquiriesController < PermissionsController
     @instruments = Instrument.all
   end
 
+  def show
+    @inquiry = Inquiry.find(params[:id])
+    @student = @inquiry.student
+    @instruments = Instrument.all
+    @teachers = Teacher.all
+    @inquiry_instrument = Instrument.find_by(name: @inquiry.instrument)
+  end
+
   def create
     @instruments = Instrument.all
     @student = Student.find(params[:inquiry][:student_id])

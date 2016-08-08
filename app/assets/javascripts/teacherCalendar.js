@@ -36,6 +36,7 @@ var generateCalendar = function(){
     method: "GET",
     dataType: "json",
     success: function(response){
+      debugger;
       printRows(response);
       getTeachersLessons(response);
     }
@@ -48,9 +49,9 @@ var generateCalendar = function(){
       var $div = $("<div>", {
         id: "lesson-" + response.lessons[i].day + "-" + startTime.format("hhmmA"),
         "class": "lesson-block-" + response.lessons[i].duration,
-        data: {"id": response.lessons[i].id}
+        data: {"id": response.lessons[i].id},
+        text: response.students[i] + " (" + response.lessonsRemaining[i] + ")"
       });
-      $div.text(response.students[i]);
       lessonDivs.push($div[0]);
     }
     placeLessons(lessonDivs);
@@ -74,7 +75,7 @@ var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
 var printRows = function(response){
   var days = function(index, day){
     var $blocks = $("<div>", {
-      "class": "small-1 columns schedule-block shaded", id: day + "-" + idTime
+      "class": "small-1 columns schedule-block teacher-unavailable", id: day + "-" + idTime
     });
     addEndToLastBlock($blocks, index);
     var styleAvailableBlock = function(day, response){
@@ -83,7 +84,7 @@ var printRows = function(response){
         var availStartTime = moment.utc(availabilities[day].start_time);
         var availEndTime = moment.utc(availabilities[day].end_time);
         if(time >= availStartTime && time <= availEndTime){
-          $($blocks).removeClass('shaded');
+          $($blocks).removeClass('teacher-unavailable');
         }
       }
     };

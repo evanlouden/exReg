@@ -33,13 +33,18 @@ class LessonsController < PermissionsController
   end
 
   def index
-    @students = Student.all
+    if current_account.type == "Teacher"
+      @students = current_account.students
+    else
+      @students = Student.all
+    end
     @lessons = []
     @students.each do |student|
       unless student.lessons.empty?
         student.lessons.map { |lesson| @lessons << lesson }
       end
     end
+    @lessons.sort_by! { |l| [l.teacher.contacts.first.last_name, l.student.last_name] }
   end
 
   def attended

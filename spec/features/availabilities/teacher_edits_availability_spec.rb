@@ -19,7 +19,7 @@ feature "teacher edits availability" do
     click_button "Update Availability"
 
     expect(page).to have_content("Availability Updated")
-    expect(page).to have_content("Current Lessons")
+    expect(page).to_not have_content("Update Availability")
   end
 
   scenario "does not specify availability" do
@@ -61,6 +61,6 @@ feature "teacher edits availability" do
     click_link "Edit Availability"
     click_link "Cancel"
 
-    expect(page).to have_content("Current Lessons")
+    expect(page).to_not have_content("Update Availability")
   end
 end

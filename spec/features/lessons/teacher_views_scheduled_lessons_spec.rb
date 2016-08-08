@@ -34,8 +34,8 @@ feature "teacher views list of scheduled lessons" do
     fill_in "Email", with: teacher1.email
     fill_in "Password", with: teacher1.password
     click_button "Sign In"
+    click_link "Lessons"
 
-    expect(page).to have_content(teacher1.staff_name)
     expect(page).to have_content("Excused Remaining: 3")
     expect(page).to have_content("#{student1.full_name} - #{lesson1.instrument}")
   end
