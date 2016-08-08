@@ -106,6 +106,7 @@ var printRows = function(response){
         var availEndTime = moment.utc(availabilities[day].end_time);
         if(time >= availStartTime && time <= availEndTime){
           $($blocks).removeClass('teacher-unavailable').droppable( {
+            tolerance: "intersect",
             drop: function(event, ui){
               var dayId = $(this).attr('id').split("-")[0];
               var dayBlocks = $('div[id^="'+dayId+'-"]').not(".teacher-unavailable");
