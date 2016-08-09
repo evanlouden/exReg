@@ -13,6 +13,9 @@
         <%= render "layouts/settings" %>
       <% elsif current_account.type == "Teacher"%>
         <li>
+          <%= link_to "Lessons", lessons_path %>
+        </li>
+        <li>
           <%= link_to "Edit Availability", edit_teacher_path(current_account) %>
         </li>
         <% elsif current_account.type == "Family"%>

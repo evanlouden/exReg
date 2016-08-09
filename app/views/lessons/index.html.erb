@@ -3,7 +3,9 @@
   <div id="lessons-<%= lesson.student.full_name %>-<%= lesson.instrument %>">
     <p>
       <%= lesson.student.full_name %> - <%= lesson.instrument %></br>
-      Teacher: <%= lesson.teacher.email %></br>
+      <% unless current_account.type == "Teacher" %>
+        Teacher: <%= lesson.teacher.staff_name %></br>
+      <% end %>
       <%= "#{lesson.remaining} lessons remaining" %></br>
       Lesson Times: <%= lesson.time_info %></br>
       <%= lesson.price_info %></br>

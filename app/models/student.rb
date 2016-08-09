@@ -3,6 +3,7 @@ class Student < ApplicationRecord
   belongs_to :family
   has_many :inquiries
   has_many :lessons
+  has_many :teachers, through: :lessons
   has_many :availabilities
   accepts_nested_attributes_for :inquiries
   accepts_nested_attributes_for :availabilities

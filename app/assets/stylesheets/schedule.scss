@@ -1,5 +1,6 @@
 $lesson-green: #669999;
-$unavailable-block: #A29EA3;
+$teacher-unavailable: #999999;
+$student-unavailable: #bfbfbf;
 
 .schedule-block {
   padding:0px;
@@ -57,6 +58,10 @@ $unavailable-block: #A29EA3;
   cursor: -webkit-grab;
 }
 
-.shaded {
-  background-color: $unavailable-block;
+.teacher-unavailable {
+  background-color: $teacher-unavailable;
+}
+
+.student-unavailable {
+  background-color: $student-unavailable;
 }

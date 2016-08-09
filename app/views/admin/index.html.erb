@@ -6,7 +6,7 @@
   <ul>
     <% @open_inquiries.each do |inquiry| %>
     <li>
-      <%= link_to "#{inquiry.student.full_name}", student_path(inquiry.student) %> -
+      <%= link_to "#{inquiry.student.full_name}", inquiry_path(inquiry) %> -
       <%= inquiry.instrument %>
     </li>
     <% end %>

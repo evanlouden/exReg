@@ -9,18 +9,19 @@ class TeachersController < PermissionsController
 
   def show
     params[:id] ? @teacher = Teacher.find(params[:id]) : @teacher = current_account
-    @lessons = @teacher.lessons
+    @lessons = @teacher.lessons.select { |l| l.remaining > 0 }
     @students = []
     @lessons.map { |l| @students << l.student.full_name }
+    @lessons_remaining = @lessons.map(&:remaining)
     @attendance = @lessons.select { |x| x.attendance_needed? }
     @attendance.each do |lesson|
       lesson.missed_lessons.build
     end
     @time = @teacher.earliest_start_time
     @end_time = @teacher.latest_end_time
-    @availabilities = sort_avails(@teacher.availabilities)
-    @avail_hash = {}
-    @availabilities.each do |a|
+    teacher_days = sort_avails(@teacher.availabilities)
+    @teacher_avail = {}
+    teacher_days.each do |a|
       time_hash = {}
       if a.start_time
         time_hash[:start_time] = a.start_time
@@ -32,14 +33,35 @@ class TeachersController < PermissionsController
       else
         time_hash[:end_time] = nil
       end
-      @avail_hash[a.day] = time_hash
+      @teacher_avail[a.day] = time_hash
+    end
+    unless params[:inquiry].nil?
+      @student = Inquiry.find(params[:inquiry]).student
+      student_days = sort_avails(@student.availabilities)
+      @student_avail = {}
+      student_days.each do |a|
+        time_hash = {}
+        if a.start_time
+          time_hash[:start_time] = a.start_time
+        else
+          time_hash[:start_time] = nil
+        end
+        if a.end_time
+          time_hash[:end_time] = a.end_time
+        else
+          time_hash[:end_time] = nil
+        end
+        @student_avail[a.day] = time_hash
+      end
     end
     response = {
       time: @time,
       endTime: @end_time,
       lessons: @lessons,
       students: @students,
-      availability: @avail_hash
+      availability: @teacher_avail,
+      lessonsRemaining: @lessons_remaining,
+      student_avail: @student_avail
     }
     respond_to do |format|
       format.html { render :show }

@@ -51,7 +51,7 @@ var generateCalendar = function(id){
         id: "lesson-" + response.lessons[i].day + "-" + startTime.format("hhmmA"),
         "class": "lesson-block-" + response.lessons[i].duration,
         data: {"id": response.lessons[i].id},
-        text: response.students[i]
+        text: response.students[i] + " (" + response.lessonsRemaining[i] + ")"
       });
       lessonDivs.push($div[0]);
     }
@@ -96,7 +96,7 @@ var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Sa
 var printRows = function(response){
   var days = function(index, day){
     var $blocks = $("<div>", {
-      "class": "small-1 columns schedule-block shaded", id: day + "-" + idTime
+      "class": "small-1 columns schedule-block teacher-unavailable", id: day + "-" + idTime
     });
     addEndToLastBlock($blocks, index);
     var styleAvailableBlock = function(day, response){
@@ -105,10 +105,11 @@ var printRows = function(response){
         var availStartTime = moment.utc(availabilities[day].start_time);
         var availEndTime = moment.utc(availabilities[day].end_time);
         if(time >= availStartTime && time <= availEndTime){
-          $($blocks).removeClass('shaded').droppable( {
+          $($blocks).removeClass('teacher-unavailable').droppable( {
+            tolerance: "intersect",
             drop: function(event, ui){
               var dayId = $(this).attr('id').split("-")[0];
-              var dayBlocks = $('div[id^="'+dayId+'-"]').not(".shaded");
+              var dayBlocks = $('div[id^="'+dayId+'-"]').not(".teacher-unavailable");
               var blockIndex = $(dayBlocks).index(this);
               if (this === dayBlocks[dayBlocks.length - 1]){
                 return false;
