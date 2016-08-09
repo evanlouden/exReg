@@ -6,10 +6,10 @@ module Api::V1
       @teacher = Teacher.find(params[:id])
       @time = @teacher.earliest_start_time
       @end_time = @teacher.latest_end_time
-      @lessons = @teacher.lessons.select { |l| l.remaining > 0}
+      @lessons = @teacher.lessons.select { |l| l.remaining > 0 }
       @students = []
       @lessons.map { |l| @students << l.student.full_name }
-      @lessons_remaining = @lessons.map { |l| l.remaining }
+      @lessons_remaining = @lessons.map(&:remaining)
       @availabilities = sort_avails(@teacher.availabilities)
       @avail_hash = {}
       @availabilities.each do |a|

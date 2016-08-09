@@ -33,11 +33,11 @@ class LessonsController < PermissionsController
   end
 
   def index
-    if current_account.type == "Teacher"
-      @students = current_account.students
-    else
-      @students = Student.all
-    end
+    @students = if current_account.type == "Teacher"
+        current_account.students
+      else
+        Student.all
+      end
     @lessons = []
     @students.each do |student|
       unless student.lessons.empty?

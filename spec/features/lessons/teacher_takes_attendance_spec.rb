@@ -53,7 +53,7 @@ feature "teacher takes attendance", js: true do
       click_link "Present"
     end
 
-    within(:css, "#lesson-#{lesson1.day}-#{lesson1.start_time.strftime("%I%M%p")}") do
+    within(:css, "#lesson-#{lesson1.day}-#{lesson1.start_time.strftime('%I%M%p')}") do
       expect(page).to have_content(lesson1.remaining - 1)
     end
 

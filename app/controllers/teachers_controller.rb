@@ -9,10 +9,10 @@ class TeachersController < PermissionsController
 
   def show
     params[:id] ? @teacher = Teacher.find(params[:id]) : @teacher = current_account
-    @lessons = @teacher.lessons.select { |l| l.remaining > 0}
+    @lessons = @teacher.lessons.select { |l| l.remaining > 0 }
     @students = []
     @lessons.map { |l| @students << l.student.full_name }
-    @lessons_remaining = @lessons.map { |l| l.remaining }
+    @lessons_remaining = @lessons.map(&:remaining)
     @attendance = @lessons.select { |x| x.attendance_needed? }
     @attendance.each do |lesson|
       lesson.missed_lessons.build
