@@ -82,6 +82,12 @@ FactoryGirl.define do
     inquiry
   end
 
+  factory :missed_lesson do
+    date "2016/08/20"
+    lesson
+    reason
+  end
+
   factory :instrument do
     name "Guitar"
   end

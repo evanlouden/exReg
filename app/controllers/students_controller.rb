@@ -33,6 +33,7 @@ class StudentsController < PermissionsController
   def show
     @student = Student.find(params[:id])
     @inquiries = @student.inquiries
+    @lessons = @student.lessons
   end
 
   def edit
