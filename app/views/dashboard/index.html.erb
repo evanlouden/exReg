@@ -2,7 +2,7 @@
 
 <h3> Students </h3>
 <% @students.each do |student| %>
-  <%= student.full_name %></br>
+  <%= link_to "#{student.full_name}", student_path(student) %></br>
   <p>
     <% student.inquiries.where(completed: false).each do |inquiry| %>
       Instrument: <%= inquiry.instrument %> -
