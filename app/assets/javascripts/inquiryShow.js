@@ -1,46 +1,50 @@
-var teacher = $('#teacher_name option:first-child').val();
-
 $(document).ready(function() {
   returnTeachers();
+  dayFromDate();
+});
+
+$('#lesson_instrument').change(function() {
+  $('.inquiry-calendar').empty();
+  returnTeachers();
+});
+
+$("#lesson_teacher_id").change(function() {
+  $('.inquiry-calendar').empty();
+  var teacher = $("#lesson_teacher_id").val();
   availabilities(teacher);
 });
 
-$('#instrument_name').change(function() {
-  returnTeachers();
-  $('.inquiry-calendar').empty();
-  availabilities(teacher);
+$('#lesson_start_date').on('input', function(){
+  dayFromDate();
 });
 
 var returnTeachers = function(){
-  var instrument = $('#instrument_name option:selected').text();
+  var instrument = $('#lesson_instrument').val();
   $.ajax({
     url: "/api/v1/teacher",
     method: "GET",
     data: {instrument: instrument},
     dataType: "json",
     success: function(response){
-      $("#teacher_name").empty();
+      $("#lesson_teacher_id").empty();
       var teachers = response.teachers;
       var teachersNames = response.fullNames;
       for (var i = 0; i < teachers.length; i++) {
-        var teacher = $("<option>", {
+        var teacherName = $("<option>", {
           value: teachers[i].id,
           text: teachersNames[i]
         });
-        $("#teacher_name").append(teacher);
+        $("#lesson_teacher_id").append(teacherName);
       }
+      var teacher = $("#lesson_teacher_id").val();
+      availabilities(teacher);
     }
   });
 };
 
-$('#teacher_name').change(function() {
-  $('.inquiry-calendar').empty();
-  var teacher = $('#teacher_name').val();
-  availabilities(teacher);
-});
 
 var availabilities = function(teacher){
-  var inquiry = window.location.pathname.split("/")[2];
+  var inquiry = $('#inquiry_id').val();
   $.ajax({
     url: "/teachers/" + teacher,
     method: "GET",
@@ -174,3 +178,20 @@ var addEndToLastBlock = function(variable, index){
     variable.addClass('end');
   }
 };
+
+$('#register-button').on("click", function(event){
+  event.preventDefault();
+  $('.hidden-submit').toggle();
+  $(this).addClass('hidden-submit');
+});
+
+var dayFromDate = function(){
+  var dayOfWeek = moment($('#lesson_start_date').val()).day();
+  var day = dayOfWeekAsString(dayOfWeek);
+  $("#lesson_day").val(day);
+  $('#dayValue').html(day);
+};
+
+function dayOfWeekAsString(dayIndex) {
+  return ["Sunday", "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
+}

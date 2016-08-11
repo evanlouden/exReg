@@ -35,7 +35,6 @@ feature "admin registers student for lessons", js: true do
     click_button "Sign In"
   end
   scenario "specifies valid information" do
-    click_link "Students"
     click_link student1.full_name
     click_link "Register Student"
     select(price2.description, from: "Pricing Tier")
@@ -63,7 +62,6 @@ feature "admin registers student for lessons", js: true do
   end
 
   scenario "changes instrument from original inquiry" do
-    click_link "Students"
     click_link student1.full_name
     click_link "Register Student"
     select("Violin", from: "Instrument")
@@ -72,14 +70,12 @@ feature "admin registers student for lessons", js: true do
   end
 
   scenario "does not specify required information" do
-    within(:css, "#admin-inquiries") do
-      click_link student1.full_name
-    end
+    click_link student1.full_name
     click_link "Register Student"
     click_button "Register Student"
 
     expect(page).to have_content("can't be blank")
-    expect(page).to have_content("Register #{student1.full_name}")
+    expect(page).to have_content("Register Student")
     expect(page).to have_select("lesson_teacher_id", options: [teacher1.staff_name])
   end
 end

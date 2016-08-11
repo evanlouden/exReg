@@ -1,39 +1,21 @@
-<h3><%= @student.full_name %>'s Inquiry</h3>
-  <%= @inquiry.instrument %> - <%= @inquiry.completed ? "Completed" : "Pending" %>
-  <br/>
-  Availability
-  <ul>
-    <% @student.availabilities.each do |availability| %>
-      <% unless availability.checked == "0" %>
-        <li>
-          <%= availability.day %>:
-          <%= availability.start_time.strftime("%l:%M %p") %>
-          -
-          <%= availability.end_time.strftime("%l:%M %p") %>
-        </li>
-      <% end %>
-    <% end %>
-    <% if @inquiry.completed == false %>
+Student: <%= @student.full_name %><br/>
+Inquiry Instrument: <%= @inquiry.instrument %><br/>
+Availability:
+<ul>
+  <% @student.availabilities.each do |availability| %>
+    <% unless availability.checked == "0" %>
       <li>
-        <%= link_to "Register Student", new_lesson_path(student: @student.id, inquiry: @inquiry.id) %>
+        <%= availability.day %>:
+        <%= availability.start_time.strftime("%l:%M %p") %>
+        -
+        <%= availability.end_time.strftime("%l:%M %p") %>
       </li>
     <% end %>
-  </ul>
+  <% end %>
+</ul>
+<p><%= link_to "Register Student", "#", id:"register-button" %></p>
 
-  <div id="instrument-inquiry-dropdown">
-    <p> Instrument:
-      <%= collection_select(:instrument, :name, @instruments, :id, :name, selected: @inquiry_instrument.id) %>
-    </p>
-  </div>
+<p><%= render '/lessons/registration_form', :lesson => @lesson %></p>
 
-  <div id="teacher-inquiry-dropdown">
-    <p> Teachers:
-      <%= collection_select(:teacher, :name, @teachers, :id, :staff_name) %>
-    </p>
-  </div>
-
-  <div class= "inquiry-calendar">
-
-  </div>
-
-  <%= javascript_include_tag "inquiryShow" %>
+<div class= "inquiry-calendar">
+</div>

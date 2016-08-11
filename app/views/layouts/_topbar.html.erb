@@ -39,7 +39,9 @@
       <li><%= link_to "Sign In", new_account_session_path %></li>
       <li><%= link_to "Sign Up", new_account_registration_path %></li>
     <% end %>
-    <li><input type="search" placeholder="Search"></li>
-    <li><button type="button" class="button">Search</button></li>
+    <%= form_tag search_admin_index_path, method: :get do %>
+      <li> <%= text_field_tag :query, params[:query] %> </li>
+      <li> <%= submit_tag "Search", class: "button searchbutton" %> </li>
+    <% end %>
   </ul>
 </div>

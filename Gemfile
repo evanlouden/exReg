@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '4.0.0.rc2'
 gem 'foundation-rails'
 gem 'momentjs-rails'
+gem 'pg_search'
 
 group :development, :test do
   gem 'byebug', platform: :mri
