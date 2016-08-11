@@ -15,25 +15,13 @@
     <% end %>
     <% if @inquiry.completed == false %>
       <li>
-        <%= link_to "Register Student", new_lesson_path(student: @student.id, inquiry: @inquiry.id) %>
+        <%= link_to "Register Student", "#", id:"register-button" %>
       </li>
     <% end %>
   </ul>
 
-  <div id="instrument-inquiry-dropdown">
-    <p> Instrument:
-      <%= collection_select(:instrument, :name, @instruments, :id, :name, selected: @inquiry_instrument.id) %>
-    </p>
-  </div>
-
-  <div id="teacher-inquiry-dropdown">
-    <p> Teachers:
-      <%= collection_select(:teacher, :name, @teachers, :id, :staff_name) %>
-    </p>
-  </div>
+  <%= render '/lessons/registration_form', :lesson => @lesson %>
 
   <div class= "inquiry-calendar">
 
   </div>
-
-  <%= javascript_include_tag "inquiryShow" %>

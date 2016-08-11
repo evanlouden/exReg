@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: :index
   resources :admin do
+    collection do
+      get 'search'
+    end
     member do
       patch :change
     end

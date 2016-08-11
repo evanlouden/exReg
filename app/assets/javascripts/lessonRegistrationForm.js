@@ -12,7 +12,7 @@ $('#lesson_start_date').on('input', function(){
 });
 
 var returnTeachers = function(){
-  var instrument = $('#lesson_instrument').val();
+  var instrument = $('#instrument_name option:selected').text();
   $.ajax({
     url: "/api/v1/teacher",
     method: "GET",

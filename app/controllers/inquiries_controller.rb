@@ -9,10 +9,14 @@ class InquiriesController < PermissionsController
 
   def show
     @inquiry = Inquiry.find(params[:id])
+    @hidden = "hidden-submit"
     @student = @inquiry.student
     @instruments = Instrument.all
     @teachers = Teacher.all
-    @inquiry_instrument = Instrument.find_by(name: @inquiry.instrument)
+    @days = Availability::DAYS
+    @lesson = @student.lessons.build
+    @instrument = Instrument.find_by(name: @inquiry.instrument)
+    @teachers = @instrument.teachers
   end
 
   def create

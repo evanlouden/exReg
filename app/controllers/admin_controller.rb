@@ -35,6 +35,14 @@ class AdminController < PermissionsController
     redirect_to teachers_path
   end
 
+  def search
+    @students = Student.search(params[:query])
+    if @students.empty?
+      flash[:error] = "Sorry, but we couldn't find anything matching '#{params[:query]}'"
+    end
+    render :search
+  end
+
   private
 
   def admin_params

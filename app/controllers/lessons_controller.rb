@@ -1,18 +1,8 @@
 class LessonsController < PermissionsController
-  def new
-    @days = Availability::DAYS
-    @student = Student.find(params[:student])
-    @inquiry = Inquiry.find(params[:inquiry])
-    @lesson = @student.lessons.build
-    @lesson.inquiry = @inquiry
-    @instrument = Instrument.find_by(name: @inquiry.instrument)
-    @teachers = @instrument.teachers
-    @instruments = Instrument.all
-  end
 
   def create
-    @student = Student.find(params[:lesson][:student_id])
-    @inquiry = Inquiry.find(params[:lesson][:inquiry_id])
+    @inquiry = Inquiry.find(params[:inquiry_id])
+    @student = @inquiry.student
     @lesson = @student.lessons.build(lesson_params)
     @days = Availability::DAYS
     @teachers = Teacher.all
@@ -21,6 +11,7 @@ class LessonsController < PermissionsController
     @lesson.tier_name = @price_tier.tier_name
     @lesson.duration = @price_tier.duration
     @lesson.price = @price_tier.price
+    @lesson.inquiry = @inquiry
     if @lesson.save
       @lesson.inquiry.update_attribute(:completed, true)
       @lesson.update_attribute(:excused_remaining, ExcusedAbsence.first.count)
@@ -28,7 +19,8 @@ class LessonsController < PermissionsController
       redirect_to admin_index_path
     else
       flash[:alert] = @lesson.errors.full_messages.join(", ")
-      render :new
+      @hidden = ""
+      render "inquiries/show", location: inquiry_path(@inquiry)
     end
   end
 
