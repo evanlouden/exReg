@@ -1,27 +1,21 @@
-<h3><%= @student.full_name %>'s Inquiry</h3>
-  <%= @inquiry.instrument %> - <%= @inquiry.completed ? "Completed" : "Pending" %>
-  <br/>
-  Availability
-  <ul>
-    <% @student.availabilities.each do |availability| %>
-      <% unless availability.checked == "0" %>
-        <li>
-          <%= availability.day %>:
-          <%= availability.start_time.strftime("%l:%M %p") %>
-          -
-          <%= availability.end_time.strftime("%l:%M %p") %>
-        </li>
-      <% end %>
-    <% end %>
-    <% if @inquiry.completed == false %>
+Student: <%= @student.full_name %><br/>
+Inquiry Instrument: <%= @inquiry.instrument %><br/>
+Availability:
+<ul>
+  <% @student.availabilities.each do |availability| %>
+    <% unless availability.checked == "0" %>
       <li>
-        <%= link_to "Register Student", "#", id:"register-button" %>
+        <%= availability.day %>:
+        <%= availability.start_time.strftime("%l:%M %p") %>
+        -
+        <%= availability.end_time.strftime("%l:%M %p") %>
       </li>
     <% end %>
-  </ul>
+  <% end %>
+</ul>
+<p><%= link_to "Register Student", "#", id:"register-button" %></p>
 
-  <%= render '/lessons/registration_form', :lesson => @lesson %>
+<p><%= render '/lessons/registration_form', :lesson => @lesson %></p>
 
-  <div class= "inquiry-calendar">
-
-  </div>
+<div class= "inquiry-calendar">
+</div>

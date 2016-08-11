@@ -57,7 +57,6 @@ var availabilities = function(teacher){
 };
 
 var printCalendar = function(response){
-  debugger;
   var dayAbbr = function(day){
     return day.slice(0, 3);
   };
@@ -183,6 +182,7 @@ var addEndToLastBlock = function(variable, index){
 $('#register-button').on("click", function(event){
   event.preventDefault();
   $('.hidden-submit').toggle();
+  $(this).addClass('hidden-submit');
 });
 
 var dayFromDate = function(){

@@ -1,27 +1,27 @@
 <h1><%= @student.full_name %></h1>
 
-<h3>Open Inquiries</h3>
-<% @inquiries.each do |inquiry| %>
-  <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %>
-  <br/>
-  Availability
-  <ul>
-    <% @student.availabilities.each do |availability| %>
-      <% unless availability.checked == "0" %>
-        <li>
-          <%= availability.day %>:
-          <%= availability.start_time.strftime("%l:%M %p") %>
-          -
-          <%= availability.end_time.strftime("%l:%M %p") %>
-        </li>
-      <% end %>
-    <% end %>
-    <% if inquiry.completed == false %>
+<h3>Current Availability</h3>
+<ul>
+  <% @student.availabilities.each do |availability| %>
+    <% unless availability.checked == "0" %>
       <li>
-        <%= link_to "Register Student", new_lesson_path(student: @student.id, inquiry: inquiry.id) %>
+        <%= availability.day %>:
+        <%= availability.start_time.strftime("%l:%M %p") %>
+        -
+        <%= availability.end_time.strftime("%l:%M %p") %>
       </li>
     <% end %>
-  </ul>
+  <% end %>
+</ul>
+
+<h3>Open Inquiries</h3>
+<% @inquiries.each do |inquiry| %>
+  <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %><br/>
+  <% if inquiry.completed == false %>
+    <li>
+      <%= link_to "Register Student", inquiry_path(inquiry) %>
+    </li>
+  <% end %>
 <% end %>
 
 <h3>Lessons</h3>
