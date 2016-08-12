@@ -1,0 +1,13 @@
+    <% if current_account %>
+      <li><%= link_to "#{primary_contact.full_name}", edit_account_registration_path %></li>
+      <li><%= link_to "Sign Out", destroy_account_session_path, method: :delete %></li>
+      <% unless current_account.type == "Family" %>
+        <%= form_tag search_admin_index_path, method: :get do %>
+          <li> <%= text_field_tag :query, params[:query] %> </li>
+          <li> <%= submit_tag "Search", class: "button searchbutton" %> </li>
+        <% end %>
+      <% end %>
+    <% else %>
+      <li><%= link_to "Sign In", new_account_session_path %></li>
+      <li><%= link_to "Sign Up", new_account_registration_path %></li>
+    <% end %>

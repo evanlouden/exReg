@@ -43,11 +43,7 @@ class LessonsController < PermissionsController
     @lesson = Lesson.find(params[:id])
     @lesson.attended += 1
     @lesson.save
-    if current_account.type == "Teacher"
-      redirect_to teacher_path(current_account)
-    else
-      redirect_to admin_index_path
-    end
+    redirect_to teacher_path(@lesson.teacher)
   end
 
   private

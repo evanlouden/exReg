@@ -12,13 +12,45 @@
   </head>
 
   <body>
-  <div class="top-bar">
-    <%= render "layouts/topbar" %>
+  <!-- Full Site Navigation -->
+  <div class="top-bar show-for-medium">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li> <%= link_to "exReg", "/" %> </li>
+          <%= render "layouts/topbar_left" %>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <%= render "layouts/topbar_right" %>
+      </ul>
+    </div>
+  </div>
+  <!-- Mobile Navigation -->
+  <div class="top-bar show-for-small-only">
+    <div class="top-bar-left">
+      <ul class="vertical menu" data-accordion-menu>
+        <li>
+          <a href="#">
+            <i class="fa fa-bars" aria-hidden="true" style="font-size: 1.8em;"></i>
+          </a>
+          <ul class="menu vertical nested">
+            <li> <%= link_to "Home", "/" %> </li>
+              <%= render "layouts/topbar_left" %>
+              <%= render "layouts/topbar_right" %>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 
     <%= render "layouts/flash" %>
     <div class="content">
-      <%= yield %>
+      <div class="row">
+        <div class="column">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

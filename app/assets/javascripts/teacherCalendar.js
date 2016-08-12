@@ -36,7 +36,6 @@ var generateCalendar = function(){
     method: "GET",
     dataType: "json",
     success: function(response){
-      debugger;
       printRows(response);
       getTeachersLessons(response);
     }

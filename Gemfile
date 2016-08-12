@@ -12,6 +12,7 @@ gem 'devise', '4.0.0.rc2'
 gem 'foundation-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'byebug', platform: :mri
