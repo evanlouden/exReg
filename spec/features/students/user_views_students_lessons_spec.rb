@@ -26,6 +26,7 @@ feature "user views registered students' lessons" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
+    click_link student1.full_name
 
     within(:css, "#lessons-#{lesson1.student.first_name}-#{lesson1.instrument}") do
       expect(page).to have_content(lesson1.time_info)

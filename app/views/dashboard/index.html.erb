@@ -1,32 +1,33 @@
-<h2> Dashboard </h2>
-
-<h3> Students </h3>
 <% @students.each do |student| %>
-  <%= link_to "#{student.full_name}", student_path(student) %></br>
-  <p>
+<div class="row small-12 medium-8 columns callout student-info">
+  <ul>
+    <li>
+      <h2><%= link_to "#{student.full_name}", student_path(student) %></h2>
+    </li>
     <% student.inquiries.where(completed: false).each do |inquiry| %>
-      Instrument: <%= inquiry.instrument %> -
-      <%= link_to "Edit Inquiry", edit_inquiry_path(inquiry) %></br>
+    <li class="pending">
+      Pending <%= inquiry.instrument %> Inquiry
+      <%= link_to "Edit", edit_inquiry_path(inquiry) %>
+    </li>
+  </ul>
+  <% end %>
+  <% student.lessons.each do |lesson| %>
+    <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>" class="lesson-info">
+        <ul>
+          <li>
+            <h2><%= lesson.instrument %></h2>
+          </li>
+          <li>
+            <%= lesson.time_info %>
+          </li>
+          <li>
+           Lessons Remaining: <%= lesson.remaining %>
+          </li>
+          <li>
+            Excused Remaining: <%= lesson.excused_remaining %>
+          </li>
+        </ul>
+      </div>
     <% end %>
-  </p>
-  <p>
-    <%= link_to "New Inquiry for #{student.first_name}", new_inquiry_path(student: student.id) %></br>
-    <%= link_to "Edit Student Availability", edit_student_path(student) %></br>
-    <%= link_to "Delete Student", student_path(student), method: :delete %></br>
-  </p>
-<% end %>
-
-<h3>Lessons</h3>
-
-<% @lessons.each do |lesson| %>
-<div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>">
-  <p>
-    Teacher: <%= lesson.teacher.staff_name %></br>
-    <%= lesson.time_info %></br>
-    <%= "#{lesson.remaining} lessons remaining" %></br>
-    <%= lesson.price_info %></br>
-    Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
-    Excused Remaining: <%= lesson.excused_remaining %>
-  </p>
-</div>
+  </div>
 <% end %>

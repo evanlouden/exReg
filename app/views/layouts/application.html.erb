@@ -12,13 +12,36 @@
   </head>
 
   <body>
-  <div class="top-bar">
-    <%= render "layouts/topbar" %>
-  </div>
+
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+      <button class="menu-icon" type="button" data-toggle></button>
+      <div class="title-bar-title">Menu</div>
+    </div>
+
+    <div class="top-bar" id="main-menu">
+      <div class="top-bar-left">
+        <ul class="dropdown menu vertical medium-horizontal" data-dropdown-menu>
+          <li>
+            <a href="/">exReg</a>
+          </li>
+          <%= render "layouts/topbar_left" %>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
+          <%= render "layouts/topbar_right" %>
+        </ul>
+      </div>
+    </div>
 
     <%= render "layouts/flash" %>
+    
     <div class="content">
-      <%= yield %>
+      <div class="row">
+        <div class="column">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

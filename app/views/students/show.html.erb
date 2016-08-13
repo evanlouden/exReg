@@ -1,42 +1,44 @@
-<h1><%= @student.full_name %></h1>
-
-<h3>Current Availability</h3>
-<ul>
-  <% @student.availabilities.each do |availability| %>
-    <% unless availability.checked == "0" %>
-      <li>
-        <%= availability.day %>:
-        <%= availability.start_time.strftime("%l:%M %p") %>
-        -
-        <%= availability.end_time.strftime("%l:%M %p") %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-
-<h3>Open Inquiries</h3>
-<% @inquiries.each do |inquiry| %>
-  <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %><br/>
-  <% if inquiry.completed == false %>
-    <li>
-      <%= link_to "Register Student", inquiry_path(inquiry) %>
-    </li>
-  <% end %>
-<% end %>
-
+<h3>
+  <%= @student.full_name %>
+  <span class="student-links">
+  </span>
+</h3>
 <h3>Lessons</h3>
 <% @lessons.each do |lesson| %>
-  <div id="lessons-<%= lesson.student.full_name %>-<%= lesson.instrument %>">
-    <p>
-      Instrument: <%= lesson.instrument %></br>
-      Teacher: <%= lesson.teacher.staff_name %></br>
-      <%= "#{lesson.remaining} lessons remaining" %></br>
-      Lesson Times: <%= lesson.time_info %></br>
-      <%= lesson.price_info %></br>
-      Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
-      Excused Remaining: <%= lesson.excused_remaining %></br>
-      Lesson History:</br>
-      <%= lesson.print_history %>
-    </p>
-  </div>
+<div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>" class="callout">
+  <p>
+    Instrument: <%= lesson.instrument %></br>
+    Teacher: <%= lesson.teacher.staff_name %></br>
+    <%= "#{lesson.remaining} lessons remaining" %></br>
+    Lesson Times: <%= lesson.time_info %></br>
+    <%= lesson.price_info %></br>
+    Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
+    Excused Remaining: <%= lesson.excused_remaining %></br>
+    Lesson History:</br>
+    <%= lesson.print_history %>
+  </p>
+</div>
+<% end %>
+<%= link_to "New Inquiry", new_inquiry_path(student: @student.id) %></br>
+<h3>
+  Student Availability
+  <%= link_to "Edit", edit_student_path(@student) %>
+</h3>
+<div class="student-info">
+  <ul>
+    <% @student.availabilities.each do |availability| %>
+      <% unless availability.checked == "0" %>
+        <li>
+          <%= availability.day %>:
+          <%= availability.start_time.strftime("%l:%M %p") %>
+          -
+          <%= availability.end_time.strftime("%l:%M %p") %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+<h3>Inquiries:</h3>
+<% @inquiries.each do |inquiry| %>
+  <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %><br/>
 <% end %>

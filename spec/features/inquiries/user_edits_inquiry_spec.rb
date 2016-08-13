@@ -17,12 +17,11 @@ feature "user edits student inquiry" do
   end
   scenario "existing user successfully edits inquiry form" do
     visit dashboard_index_path
-    click_link "Edit Inquiry"
+    click_link "Edit"
     select("Piano", from: "Instrument")
     click_button "Update Inquiry"
 
     expect(page).to have_content("Inquiry Updated")
-    expect(page).to have_content("Dashboard")
-    expect(page).to have_content("Instrument: Piano")
+    expect(page).to have_content("Pending Piano Inquiry")
   end
 end

@@ -24,9 +24,8 @@ feature "user submits new student and inquiry" do
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Inquiry Submitted")
-    expect(page).to have_content("Dashboard")
     expect(page).to have_content("John Doe")
-    expect(page).to have_content("Instrument: Guitar")
+    expect(page).to have_content("Pending Guitar Inquiry")
   end
 
   scenario "optionally adds notes to inquiry" do
@@ -42,9 +41,8 @@ feature "user submits new student and inquiry" do
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Inquiry Submitted")
-    expect(page).to have_content("Dashboard")
     expect(page).to have_content("John Doe")
-    expect(page).to have_content("Instrument: Guitar")
+    expect(page).to have_content("Pending Guitar Inquiry")
   end
 
   scenario "does not specify required student information" do
@@ -53,7 +51,7 @@ feature "user submits new student and inquiry" do
 
     expect(page).to have_content("can't be blank")
     expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Dashboard")
+    expect(page).to_not have_content("Pending")
   end
 
   scenario "does not specify availability" do
@@ -66,7 +64,7 @@ feature "user submits new student and inquiry" do
 
     expect(page).to have_content("Please select at least one day of availability")
     expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Dashboard")
+    expect(page).to_not have_content("Pending")
   end
 
   scenario "does not specify availability times" do
@@ -80,7 +78,7 @@ feature "user submits new student and inquiry" do
 
     expect(page).to have_content("can't be blank")
     expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Dashboard")
+    expect(page).to_not have_content("Pending")
   end
 
   scenario "selects invalid availability times" do
@@ -96,7 +94,7 @@ feature "user submits new student and inquiry" do
 
     expect(page).to have_content("must be later than start time")
     expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Dashboard")
+    expect(page).to_not have_content("Pending")
   end
 
   scenario "does not specify minimum availability times" do
@@ -112,6 +110,6 @@ feature "user submits new student and inquiry" do
 
     expect(page).to have_content("Availability must be at least 30 minutes")
     expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Dashboard")
+    expect(page).to_not have_content("Pending")
   end
 end

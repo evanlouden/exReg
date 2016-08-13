@@ -1,6 +1,3 @@
-<div class="top-bar-left">
-  <ul class="dropdown menu" data-dropdown-menu>
-    <li class="menu-text"> <%= link_to "exReg", "/" %> </li>
     <% if current_account %>
       <% if current_account.type == "Admin" || current_account.admin %>
         <li>
@@ -27,21 +24,3 @@
           </li>
       <% end %>
     <% end %>
-  </ul>
-</div>
-<div class="top-bar-right">
-  <ul class="menu">
-    <% if current_account %>
-      <li></li>
-      <li><%= link_to "#{primary_contact.full_name}", edit_account_registration_path %></li>
-      <li><%= link_to "Sign Out", destroy_account_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to "Sign In", new_account_session_path %></li>
-      <li><%= link_to "Sign Up", new_account_registration_path %></li>
-    <% end %>
-    <%= form_tag search_admin_index_path, method: :get do %>
-      <li> <%= text_field_tag :query, params[:query] %> </li>
-      <li> <%= submit_tag "Search", class: "button searchbutton" %> </li>
-    <% end %>
-  </ul>
-</div>
