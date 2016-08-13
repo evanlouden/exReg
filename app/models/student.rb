@@ -34,13 +34,4 @@ class Student < ApplicationRecord
     end
     errors.add(:availability, "Please select at least one day of availability")
   end
-
-  def destroy_inquiries
-    inquiries.destroy_all
-  end
-
-  def destroy_availabilities
-    availabilities.destroy_all
-  end
-
 end
