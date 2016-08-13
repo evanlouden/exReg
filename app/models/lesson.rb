@@ -27,11 +27,11 @@ class Lesson < ApplicationRecord
   end
 
   def time_info
-    "#{day}s, #{start_time.strftime("%l:%M %p")}"
+    "#{day}s, #{start_time.strftime('%l:%M %p')}"
   end
 
   def price_info
-    "#{tier_name}: #{duration} min., $#{"%.2f" % price}"
+    "#{tier_name}: #{duration} min., $#{'%.2f' % price}"
   end
 
   def excused_counter
