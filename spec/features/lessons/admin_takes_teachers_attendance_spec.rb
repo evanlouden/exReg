@@ -62,7 +62,6 @@ feature "admin takes teacher's attendance", js: true do
       click_link "Present"
     end
 
-    expect(page).to have_content("Admin Dashboard")
     expect(page).to_not have_content("Present")
     expect(page).to_not have_content("Absent")
   end
@@ -77,7 +76,6 @@ feature "admin takes teacher's attendance", js: true do
       click_button "Submit"
     end
 
-    expect(page).to have_content("Admin Dashboard")
     expect(page).to_not have_content("Present")
     expect(page).to_not have_content("Absent")
 
@@ -96,7 +94,6 @@ feature "admin takes teacher's attendance", js: true do
       click_button "Submit"
     end
 
-    expect(page).to have_content("Admin Dashboard")
     expect(page).to_not have_content("Present")
     expect(page).to_not have_content("Absent")
   end

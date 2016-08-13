@@ -17,7 +17,7 @@ feature "family accesses dashboard via root path" do
     click_link "New Student"
     visit family_root_path
 
-    expect(page).to have_content("Dashboard")
+    expect(page).to have_content(contact1.full_name)
     expect(page).to have_content(student1.full_name)
   end
 end

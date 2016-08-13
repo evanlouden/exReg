@@ -14,27 +14,23 @@ feature "user submits new student inquiry" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
+    click_link student1.full_name
+    click_link "New Inquiry"
   end
   scenario "existing user specifies valid information" do
-    click_link "New Inquiry for #{student1.first_name}"
     select("Piano", from: "Instrument")
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Inquiry Submitted")
-    expect(page).to have_content("Dashboard")
-    expect(page).to have_content("John Doe")
-    expect(page).to have_content("Instrument: Piano")
+    expect(page).to have_content("Pending Piano Inquiry")
   end
 
   scenario "existing user optionally adds notes to inquiry" do
-    click_link "New Inquiry for #{student1.first_name}"
     select("Piano", from: "Instrument")
     fill_in "Additional Notes", with: "Some additional info"
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Inquiry Submitted")
-    expect(page).to have_content("Dashboard")
-    expect(page).to have_content("John Doe")
-    expect(page).to have_content("Instrument: Piano")
+    expect(page).to have_content("Pending Piano Inquiry")
   end
 end

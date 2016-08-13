@@ -5,7 +5,7 @@
 </h3>
 <h3>Lessons</h3>
 <% @lessons.each do |lesson| %>
-<div id="lessons-<%= lesson.student.full_name %>-<%= lesson.instrument %>" class="callout">
+<div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>" class="callout">
   <p>
     Instrument: <%= lesson.instrument %></br>
     Teacher: <%= lesson.teacher.staff_name %></br>
