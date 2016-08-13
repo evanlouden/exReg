@@ -1,19 +1,25 @@
+$pending-link: #ffffff;
+$pending-bar: #9fbfdf;
+
 .student-info ul {
   list-style: none;
-  text-align: center;
-  margin-left: 0;
   margin-bottom: 0;
+  margin-left: 0;
+  text-align: center;
 }
 
 .pending a {
-  color: #ffffff;
+  color: $pending-link;
 }
 
 .pending {
-  background-color: #9fbfdf;
+  background-color: $pending-bar;
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
-  border-radius: 10px;
+  a {
+    color: $pending-link;
+  }
 }
 
 .lesson-info {

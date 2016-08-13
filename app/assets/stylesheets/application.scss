@@ -16,9 +16,10 @@
 
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
- @import "font-awesome-sprockets";
- @import "font-awesome";
+$mobile-menu-color: #333;
 
 .content {
   margin-top: 20px;
@@ -45,6 +46,6 @@
 }
 
 .title-bar {
-  background: #333;
+  background: $mobile-menu-color;
   padding: 0.9rem;
 }

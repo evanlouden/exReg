@@ -27,7 +27,7 @@ class Lesson < ApplicationRecord
   end
 
   def time_info
-    "#{day}s, #{start_time.strftime("%l:%M %p")}"
+    "#{day}s, #{start_time.strftime('%l:%M %p')}"
   end
 
   def price_info
@@ -62,7 +62,7 @@ class Lesson < ApplicationRecord
     count = 0
     history = "<ul>"
     while count <= attended
-      date = (start_date + (count * 7)).strftime('%m/%d/%y')
+      date = (start_date + (count * 7)).strftime("%m/%d/%y")
       missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
       if missed_lesson.empty?
         history += "<li>#{date} - Attended</li>"
