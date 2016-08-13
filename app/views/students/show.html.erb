@@ -41,4 +41,5 @@
 <h3>Inquiries:</h3>
 <% @inquiries.each do |inquiry| %>
   <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %><br/>
+  <%= inquiry.notes ? inquiry.notes : nil %><br/>
 <% end %>

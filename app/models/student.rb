@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   include ApplicationHelper
+  include PgSearch
   belongs_to :family
   has_many :inquiries
   has_many :lessons
@@ -17,12 +18,11 @@ class Student < ApplicationRecord
   validates_associated :availabilities, on: :save
   validate :no_availability?
 
-  include PgSearch
   pg_search_scope :student_search,
-    against: [:first_name, :last_name],
-    associated_against: {
-    family: [:address, :email]
-  }
+                  against: [:first_name, :last_name],
+                  associated_against: {
+                    family: [:address, :email]
+                  }
 
   scope :search, -> (query) { student_search(query) if query.present? }
 
