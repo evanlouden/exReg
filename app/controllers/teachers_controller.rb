@@ -71,30 +71,20 @@ class TeachersController < PermissionsController
 
   def new
     @states = Account::STATES
-    @teacher = Teacher.new
-    @contact = @teacher.contacts.build
     @days = Availability::DAYS
-    @days.each do |item|
-      @teacher.availabilities.build(day: item)
-    end
-    @availabilities = @teacher.availabilities
+    @teacher = TeacherForm.new
   end
 
   def create
     @states = Account::STATES
-    @teacher = Teacher.new(teacher_params)
-    @teacher.contacts.last.email = @teacher.email
-    @availabilities = @teacher.availabilities
-    password = Devise.friendly_token(10)
-    @teacher.password = password
-    if @teacher.save
-      clear_times(@availabilities)
-      flash[:notice] = "Account created #{password}"
-      redirect_to admin_index_path
-    else
-      flash[:error] = @teacher.errors.full_messages.join(", ")
-      render :new
-    end
+    @days = Availability::DAYS
+    @teacher = TeacherForm.new(teacher_params)
+    @teacher.save
+    flash[:notice] = "Account created"
+    redirect_to admin_index_path
+  rescue => e
+    flash[:error] = @teacher.print_errors
+    render :new
   end
 
   def edit
@@ -133,17 +123,57 @@ class TeachersController < PermissionsController
   private
 
   def teacher_params
-    params.require(:teacher).permit(
+    params.require(:teacher_form).permit(
       :email,
-      :password,
-      :password_confirmation,
-      :remember_me,
       :address,
       :city,
       :state,
       :zip,
-      contacts_attributes: [:id, :first_name, :last_name, :email, :phone, :primary],
-      availabilities_attributes: [:id, :checked, :day, :start_time, :end_time]
-    ).merge(teacher: true)
+      :first_name,
+      :last_name,
+      :phone,
+      :sunday_day,
+      :sunday_checked,
+      :sunday_start_time,
+      :sunday_end_time,
+      :monday_day,
+      :monday_checked,
+      :monday_start_time,
+      :monday_end_time,
+      :tuesday_day,
+      :tuesday_checked,
+      :tuesday_start_time,
+      :tuesday_end_time,
+      :wednesday_day,
+      :wednesday_checked,
+      :wednesday_start_time,
+      :wednesday_end_time,
+      :thursday_day,
+      :thursday_checked,
+      :thursday_start_time,
+      :thursday_end_time,
+      :friday_day,
+      :friday_checked,
+      :friday_start_time,
+      :friday_end_time,
+      :saturday_day,
+      :saturday_checked,
+      :saturday_start_time,
+      :saturday_end_time
+    )
   end
+  # def teacher_params
+  #   params.require(:teacher).permit(
+  #     :email,
+  #     :password,
+  #     :password_confirmation,
+  #     :remember_me,
+  #     :address,
+  #     :city,
+  #     :state,
+  #     :zip,
+  #     contacts_attributes: [:id, :first_name, :last_name, :email, :phone, :primary],
+  #     availabilities_attributes: [:id, :checked, :day, :start_time, :end_time]
+  #   ).merge(teacher: true)
+  # end
 end

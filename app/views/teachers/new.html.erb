@@ -1,6 +1,6 @@
 <h4>New Teacher Account</h4>
 
-<%= form_for @teacher do |f| %>
+<%= form_for @teacher, url: teachers_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -15,7 +15,7 @@
   </div>
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.select :state, options_for_select(@states) %>
+    <%= f.select :state, options_for_select(@states, f.object.state) %>
   </div>
   <div class="field">
     <%= f.label :zip %><br />
@@ -23,42 +23,38 @@
   </div>
 
   <div class="accounts-contacts">
-    <%= f.fields_for :contacts do |c| %>
     <div class="field">
-      <%= c.label :first_name, "First Name" %><br />
-      <%= c.text_field :first_name %>
+      <%= f.label :first_name, "First Name" %><br />
+      <%= f.text_field :first_name %>
     </div>
     <div class="field">
-      <%= c.label :last_name, "Last Name" %><br />
-      <%= c.text_field :last_name %>
+      <%= f.label :last_name, "Last Name" %><br />
+      <%= f.text_field :last_name %>
     </div>
     <div class="field">
-      <%= c.label :phone %><br />
-      <%= c.text_field :phone %>
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone %>
     </div>
-    <% end %>
   </div>
 
-  <% @availabilities.each do |day| %>
+  <% @days.each do |day| %>
     <div class="field">
       <div class="avail-block">
-        <%= f.fields_for :availabilities, day do |a| %>
-        <div id ="<%= day.day %>">
-          <%= a.check_box :checked %>
-          <%= a.label day.day %>
-          <%= a.hidden_field :day %>
-          <%= a.hidden_field :start_time %>
-          <%= a.hidden_field :end_time %>
+        <div id ="<%= day.downcase %>">
+          <%= f.check_box "#{day.downcase}_checked" %>
+          <%= f.label day %>
+          <%= hidden_field_tag "teacher_form[#{day.downcase}_day]", "#{day}" %>
+          <%= f.hidden_field "#{day.downcase}_start_time" %>
+          <%= f.hidden_field "#{day.downcase}_end_time" %>
 
-          <div id="time-range-<%= day.day %>">
-            <p> Time Range: <span class="slider-time-<%= day.day %>">10:00 AM</span> - <span class="slider-time2-<%= day.day %>">12:00 PM</span> </p>
-            <div class="sliders_step1-<%= day.day %>">
-                <div id="slider-range-<%= day.day %>"></div>
+          <div id="time-range-<%= day.downcase %>">
+            <p> Time Range: <span class="slider-time-<%= day.downcase %>">10:00 AM</span> - <span class="slider-time2-<%= day.downcase %>">12:00 PM</span> </p>
+            <div class="sliders_step1-<%= day.downcase %>">
+                <div id="slider-range-<%= day.downcase %>"></div>
             </div>
           </div>
-        </div>
 
-        <% end %>
+        </div>
       </div>
     </div>
   <% end %>
@@ -70,6 +66,6 @@
 
 <%= link_to "Cancel", admin_index_path %>
 
-<%= javascript_include_tag "slider_time_teacher.js" %>
-<%= javascript_include_tag "slider.js"%>
+<%= javascript_include_tag "slider_time_teacher" %>
+<%= javascript_include_tag "slider"%>
 <%= javascript_include_tag "availTransparency"%>

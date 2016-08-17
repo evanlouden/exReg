@@ -1,11 +1,11 @@
 $(document).ready(function(){
-  slickSlider("Sunday");
-  slickSlider("Monday");
-  slickSlider("Tuesday");
-  slickSlider("Wednesday");
-  slickSlider("Thursday");
-  slickSlider("Friday");
-  slickSlider("Saturday");
+  slickSlider("sunday");
+  slickSlider("monday");
+  slickSlider("tuesday");
+  slickSlider("wednesday");
+  slickSlider("thursday");
+  slickSlider("friday");
+  slickSlider("saturday");
 });
 var slickSlider = function(id){
   $("#slider-range-" + id).slider({
