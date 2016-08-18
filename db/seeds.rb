@@ -13,6 +13,51 @@ Reason.create(reason: "Excused Absence", teacher_paid: false, student_charged: f
 Reason.create(reason: "Unexcused Absence", teacher_paid: true, student_charged: true)
 ExcusedAbsence.create(count: "2")
 
+teacher1_avails = [
+  {
+    checked: "1",
+    day: "Sunday",
+    start_time: "2000-01-01 14:00:00 UTC",
+    end_time: "2000-01-01 16:00:00 UTC"
+  },
+  {
+    checked: "1",
+    day: "Monday",
+    start_time: "2000-01-01 12:00:00 UTC",
+    end_time: "2000-01-01 18:00:00 UTC"
+  },
+  {
+    checked: "0",
+    day: "Tuesday",
+    start_time: nil,
+    end_time: nil
+  },
+  {
+    checked: "0",
+    day: "Wednesday",
+    start_time: nil,
+    end_time: nil
+  },
+  {
+    checked: "1",
+    day: "Thursday",
+    start_time: "2000-01-01 12:00:00 UTC",
+    end_time: "2000-01-01 20:00:00 UTC"
+  },
+  {
+    checked: "0",
+    day: "Friday",
+    start_time: nil,
+    end_time: nil
+  },
+  {
+    checked: "0",
+    day: "Saturday",
+    start_time: nil,
+    end_time: nil
+  }
+]
+
 teacher_params = {
   email: "teacher1@teacher.com",
   password: "password",
@@ -20,112 +65,75 @@ teacher_params = {
   city: "Boston",
   state: "MA",
   zip: "03333",
-  teacher: true,
-  availabilities_attributes: [
-    {
-      checked: "1",
-      day: "Sunday",
-      start_time: "2000-01-01 14:00:00 UTC",
-      end_time: "2000-01-01 16:00:00 UTC"
-    },
-    {
-      checked: "1",
-      day: "Monday",
-      start_time: "2000-01-01 12:00:00 UTC",
-      end_time: "2000-01-01 18:00:00 UTC"
-    },
-    {
-      checked: "0",
-      day: "Tuesday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Wednesday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "1",
-      day: "Thursday",
-      start_time: "2000-01-01 12:00:00 UTC",
-      end_time: "2000-01-01 20:00:00 UTC"
-    },
-    {
-      checked: "0",
-      day: "Friday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Saturday",
-      start_time: nil,
-      end_time: nil
-    }
-  ]
+  teacher: true
 }
 
-teacher1 = Teacher.create(teacher_params)
+teacher1 = Teacher.new(teacher_params)
+
+teacher1_avails.each do |a|
+  teacher1.availabilities.build(a)
+end
+
+teacher1.save
+
 Contact.create(first_name: "Terry", last_name: "Rozier", email: "teacher1@teacher.com", phone: "9785551212", teacher: teacher1)
-
-student_params = {
-  first_name: "Jimmy",
-  last_name: "Williams",
-  dob: "2001/02/10",
-  family: family1,
-  inquiries_attributes: [
-    {
-      instrument: "Piano",
-      notes: "Preferred teacher Smith"
-    }
-  ],
-  availabilities_attributes: [
-    {
-      checked: "1",
-      day: "Sunday",
-      start_time: "2000-01-01 14:00:00 UTC",
-      end_time: "2000-01-01 18:00:00 UTC"
-    },
-    {
-      checked: "0",
-      day: "Monday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Tuesday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Wednesday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Thursday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Friday",
-      start_time: nil,
-      end_time: nil
-    },
-    {
-      checked: "0",
-      day: "Saturday",
-      start_time: nil,
-      end_time: nil
-    }
-  ]
-}
-
-Student.create(student_params)
 TeacherInstrument.create(teacher: teacher1, instrument: instrument1)
+
+# student_params = {
+#   first_name: "Jimmy",
+#   last_name: "Williams",
+#   dob: "2001/02/10",
+#   family: family1,
+#   inquiries_attributes: [
+#     {
+#       instrument: "Piano",
+#       notes: "Preferred teacher Smith"
+#     }
+#   ],
+#   availabilities_attributes: [
+#     {
+#       checked: "1",
+#       day: "Sunday",
+#       start_time: "2000-01-01 14:00:00 UTC",
+#       end_time: "2000-01-01 18:00:00 UTC"
+#     },
+#     {
+#       checked: "0",
+#       day: "Monday",
+#       start_time: nil,
+#       end_time: nil
+#     },
+#     {
+#       checked: "0",
+#       day: "Tuesday",
+#       start_time: nil,
+#       end_time: nil
+#     },
+#     {
+#       checked: "0",
+#       day: "Wednesday",
+#       start_time: nil,
+#       end_time: nil
+#     },
+#     {
+#       checked: "0",
+#       day: "Thursday",
+#       start_time: nil,
+#       end_time: nil
+#     },
+#     {
+#       checked: "0",
+#       day: "Friday",
+#       start_time: nil,
+#       end_time: nil
+#     },
+#     {
+#       checked: "0",
+#       day: "Saturday",
+#       start_time: nil,
+#       end_time: nil
+#     }
+#   ]
+# }
+#
+# Student.create(student_params)

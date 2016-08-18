@@ -22,11 +22,12 @@ feature "admin edits teacher's availability" do
     click_button "Sign In"
   end
   scenario "successfully edits availability" do
+    click_link "Staff"
     click_link "All Staff"
     click_link "Edit Availability"
-    find(:css, "#teacher_availabilities_attributes_2_checked").set(true)
-    find(:css, "#teacher_availabilities_attributes_2_start_time", visible: false).set("4:00 PM")
-    find(:css, "#teacher_availabilities_attributes_2_end_time", visible: false).set("8:00 PM")
+    find(:css, "#teacher_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_form_sunday_end_time", visible: false).set("7:00 PM")
+    find(:css, "#teacher_form_monday_checked").set(false)
     click_button "Update Availability"
 
     expect(page).to have_content("Availability Updated")
@@ -34,10 +35,11 @@ feature "admin edits teacher's availability" do
   end
 
   scenario "does not specify availability" do
+    click_link "Staff"
     click_link "All Staff"
     click_link "Edit Availability"
-    find(:css, "#teacher_availabilities_attributes_0_checked").set(false)
-    find(:css, "#teacher_availabilities_attributes_1_checked").set(false)
+    find(:css, "#teacher_form_sunday_checked").set(false)
+    find(:css, "#teacher_form_monday_checked").set(false)
     click_button "Update Availability"
 
     expect(page).to have_content("Please select at least one day of availability")
@@ -45,25 +47,13 @@ feature "admin edits teacher's availability" do
     expect(page).to_not have_content("Teachers")
   end
 
-  scenario "selects invalid availability times" do
-    click_link "All Staff"
-    click_link "Edit Availability"
-    find(:css, "#teacher_availabilities_attributes_1_checked").set(true)
-    find(:css, "#teacher_availabilities_attributes_1_start_time", visible: false).set("7:00 PM")
-    find(:css, "#teacher_availabilities_attributes_1_end_time", visible: false).set("3:00 PM")
-    click_button "Update Availability"
-
-    expect(page).to have_content("must be later than start time")
-    expect(page).to have_content("Edit Availability")
-    expect(page).to_not have_content("Teachers")
-  end
-
   scenario "does not specify minimum availability times" do
+    click_link "Staff"
     click_link "All Staff"
     click_link "Edit Availability"
-    find(:css, "#teacher_availabilities_attributes_1_checked").set(true)
-    find(:css, "#teacher_availabilities_attributes_1_start_time", visible: false).set("7:00 PM")
-    find(:css, "#teacher_availabilities_attributes_1_end_time", visible: false).set("7:15 PM")
+    find(:css, "#teacher_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_form_sunday_end_time", visible: false).set("6:15 PM")
+    find(:css, "#teacher_form_monday_checked").set(false)
     click_button "Update Availability"
 
     expect(page).to have_content("Availability must be at least 30 minutes")
@@ -72,6 +62,7 @@ feature "admin edits teacher's availability" do
   end
 
   scenario "cancels edit attempt" do
+    click_link "Staff"
     click_link "All Staff"
     click_link "Edit Availability"
     click_link "Cancel"

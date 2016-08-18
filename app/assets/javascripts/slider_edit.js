@@ -1,28 +1,38 @@
 $(document).ready(function(){
   var path = window.location.pathname;
-
+  var id = path.split("/")[2];
 
   var request = $.ajax({
     method: "GET",
-    url: path,
+    url: "/students/" + id + "/edit",
     dataType: "json",
     success: function(response){
-
-      var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
       for (var i = 0; i < days.length; i++) {
         for (var j = 0; j < response.length; j++) {
           if (response[j].day !== days[i]) {
-            slickSlider(days[i], 600, 720);
+            slickSlider(days[i].toLowerCase(), 600, 720);
+            $('.slider-time-' + days[i].toLowerCase()).html("10:00 AM");
+            $('.slider-time2-' + days[i].toLowerCase()).html("12:00 PM");
           }
         }
       }
 
       for (var k = 0; k < response.length; k++) {
         slickSlider(
-          response[k].day,
+          response[k].day.toLowerCase(),
           convertTimes(response[k].start_time),
           convertTimes(response[k].end_time));
+          $('.slider-time-' + response[k].day.toLowerCase()).html(moment.utc(response[k].start_time).format("h:mm A"));
+          $('.slider-time2-' + response[k].day.toLowerCase()).html(moment.utc(response[k].end_time).format("h:mm A"));
+          $('#student_form_' + response[k].day.toLowerCase() + '_checked').prop("checked", true);
+      }
+
+      for (var l = 0; l < days.length; l++) {
+        if ($("#" + days[l] + " > :input[type=checkbox]").is(":checked")) {
+          $("#" + days[l]).parent().css({"opacity": "1.0"});
+        }
       }
     }
   });
@@ -92,3 +102,11 @@ var slickSlider = function(id, a, b){
       }
   });
 };
+
+$(':checkbox').change(function() {
+  if ($(this).is(":checked")) {
+    $(this).parents(".avail-block").css({"opacity": "1.0"});
+  } else {
+    $(this).parents(".avail-block").css({"opacity": "0.7"});
+  }
+});

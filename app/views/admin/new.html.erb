@@ -1,43 +1,42 @@
 <h1>New Admin Account</h1>
 
-<%= form_for @admin, url: admin_index_path do |f| %>
+<%= form_for @admin_form, url: admin_index_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, required: true %>
   </div>
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.text_field :address, required: true %>
   </div>
   <div class="field">
     <%= f.label :city %><br />
-    <%= f.text_field :city %>
+    <%= f.text_field :city, required: true %>
   </div>
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.select :state, options_for_select(@states) %>
+    <%= f.select :state, options_for_select(@states, f.object.state) %>
   </div>
   <div class="field">
     <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
+    <%= f.text_field :zip, required: true %>
   </div>
 
   <div class="accounts-contacts">
-    <%= f.fields_for :contacts do |c| %>
     <div class="field">
-      <%= c.label :first_name, "First Name" %><br />
-      <%= c.text_field :first_name %>
+      <%= f.label :first_name, "First Name" %><br />
+      <%= f.text_field :first_name, required: true %>
     </div>
     <div class="field">
-      <%= c.label :last_name, "Last Name" %><br />
-      <%= c.text_field :last_name %>
+      <%= f.label :last_name, "Last Name" %><br />
+      <%= f.text_field :last_name, required: true %>
     </div>
     <div class="field">
-      <%= c.label :phone %><br />
-      <%= c.text_field :phone %>
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, required: true %>
     </div>
-    <% end %>
   </div>
+
   <div class="actions">
     <%= f.submit "Create Account", id:"submit" %>
   </div>

@@ -1,4 +1,5 @@
 require 'coveralls'
+require 'slider_helpers'
 Coveralls.wear!('rails')
 
 RSpec.configure do |config|

@@ -1,18 +1,20 @@
 class Teacher < Account
   include ApplicationHelper
   has_many :contacts
-  accepts_nested_attributes_for :contacts
+  has_many :availabilities, autosave: true
   has_many :lessons
   has_many :students, through: :lessons
   has_many :teacher_instruments
   has_many :instruments, through: :teacher_instruments
-  has_many :availabilities
-  accepts_nested_attributes_for :availabilities
   before_destroy :destroy_availabilities
   before_destroy :destroy_lessons
 
-  validates_associated :availabilities, unless: :admin?
-  validate :no_availability?, unless: :admin?
+  validates :email, uniqueness: true, presence: true
+  validates :address, presence: true
+  validates :city, presence: true
+  validates :zip, presence: true, numericality: true, length: { is: 5 }
+  validates :state, presence: true
+  validate :no_availability?
 
   def earliest_start_time
     array = availabilities.select { |a| a.start_time if a.start_time }
@@ -28,8 +30,12 @@ class Teacher < Account
 
   private
 
-  def admin?
-    self.type == "Admin"
+  def destroy_availabilities
+    availabilities.destroy_all
+  end
+
+  def destroy_lessons
+    lessons.destroy_all
   end
 
   def no_availability?
@@ -37,13 +43,5 @@ class Teacher < Account
       return false if a.checked == "1"
     end
     errors.add(:availability, "Please select at least one day of availability")
-  end
-
-  def destroy_availabilities
-    availabilities.destroy_all
-  end
-
-  def destroy_lessons
-    lessons.destroy_all
   end
 end

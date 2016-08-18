@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
   for (var i = 0; i < days.length; i++) {
     if ($("#" + days[i] + " > :input[type=checkbox]").is(":checked")) {
       $("#" + days[i]).parent().css({"opacity": "1.0"});

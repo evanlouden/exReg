@@ -18,9 +18,9 @@ feature "user submits new student and inquiry" do
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
     select("Guitar", from: "Instrument")
-    find(:css, "#student_availabilities_attributes_0_checked").set(true)
-    find(:css, "#student_availabilities_attributes_0_start_time", visible: false).set("6:00 PM")
-    find(:css, "#student_availabilities_attributes_0_end_time", visible: false).set("7:00 PM")
+    find(:css, "#student_form_sunday_checked").set(true)
+    find(:css, "#student_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#student_form_sunday_end_time", visible: false).set("7:00 PM")
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Inquiry Submitted")
@@ -34,9 +34,9 @@ feature "user submits new student and inquiry" do
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
     select("Guitar", from: "Instrument")
-    find(:css, "#student_availabilities_attributes_0_checked").set(true)
-    find(:css, "#student_availabilities_attributes_0_start_time", visible: false).set("6:00 PM")
-    find(:css, "#student_availabilities_attributes_0_end_time", visible: false).set("7:00 PM")
+    find(:css, "#student_form_sunday_checked").set(true)
+    find(:css, "#student_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#student_form_sunday_end_time", visible: false).set("7:00 PM")
     fill_in "Additional Notes", with: "Some additional info"
     click_button "Submit Inquiry"
 
@@ -67,45 +67,15 @@ feature "user submits new student and inquiry" do
     expect(page).to_not have_content("Pending")
   end
 
-  scenario "does not specify availability times" do
-    click_link "New Student"
-    fill_in "First Name", with: "John"
-    fill_in "Last Name", with: "Doe"
-    fill_in "Date of Birth", with: "2000/05/13"
-    select("Guitar", from: "Instrument")
-    find(:css, "#student_availabilities_attributes_0_checked").set(true)
-    click_button "Submit Inquiry"
-
-    expect(page).to have_content("can't be blank")
-    expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Pending")
-  end
-
-  scenario "selects invalid availability times" do
-    click_link "New Student"
-    fill_in "First Name", with: "John"
-    fill_in "Last Name", with: "Doe"
-    fill_in "Date of Birth", with: "2000/05/13"
-    select("Guitar", from: "Instrument")
-    find(:css, "#student_availabilities_attributes_0_checked").set(true)
-    find(:css, "#student_availabilities_attributes_0_start_time", visible: false).set("9:00 PM")
-    find(:css, "#student_availabilities_attributes_0_end_time", visible: false).set("4:00 PM")
-    click_button "Submit Inquiry"
-
-    expect(page).to have_content("must be later than start time")
-    expect(page).to have_content("New Student Inquiry")
-    expect(page).to_not have_content("Pending")
-  end
-
   scenario "does not specify minimum availability times" do
     click_link "New Student"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Doe"
     fill_in "Date of Birth", with: "2000/05/13"
     select("Guitar", from: "Instrument")
-    find(:css, "#student_availabilities_attributes_0_checked").set(true)
-    find(:css, "#student_availabilities_attributes_0_start_time", visible: false).set("8:00 PM")
-    find(:css, "#student_availabilities_attributes_0_end_time", visible: false).set("8:25 PM")
+    find(:css, "#student_form_sunday_checked").set(true)
+    find(:css, "#student_form_sunday_start_time", visible: false).set("8:00 PM")
+    find(:css, "#student_form_sunday_end_time", visible: false).set("8:25 PM")
     click_button "Submit Inquiry"
 
     expect(page).to have_content("Availability must be at least 30 minutes")
