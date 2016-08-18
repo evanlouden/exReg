@@ -43,14 +43,14 @@ class TeacherForm
     :contact,
     :availabilities
 
-	validates :email, presence: true
-	validates :address, presence: true
-	validates :city, presence: true
-	validates :state, presence: true
-	validates :zip, presence: true
-	validates :first_name, presence: true
-	validates :last_name, presence: true
-	validates :phone, presence: true
+  validates :email, presence: true
+  validates :address, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zip, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :phone, presence: true
 
   def initialize(id = {})
     if !id["id"].nil?
@@ -118,12 +118,12 @@ class TeacherForm
   private
 
   def create_teacher
-		@teacher = Teacher.new(
+    @teacher = Teacher.new(
       email: email,
-	    address: address,
-		  city: city,
-		  state: state,
-		  zip: zip
+      address: address,
+      city: city,
+      state: state,
+      zip: zip
     )
     password = Devise.friendly_token(10)
     @teacher.password = password
