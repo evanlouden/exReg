@@ -6,28 +6,26 @@ class StudentsController < PermissionsController
   end
 
   def new
-    @student = Student.new
-    @inquiry = @student.inquiries.build
+    @current_account = current_account
     @days = Availability::DAYS
-    @days.each do |item|
-      @student.availabilities.build(day: item)
-    end
-    @availabilities = @student.availabilities
     @instruments = Instrument.all
+    @student_form = StudentForm.new
   end
 
   def create
-    @student = Student.new(student_params)
+    @current_account = current_account
+    @days = Availability::DAYS
     @instruments = Instrument.all
-    @availabilities = @student.availabilities
-    if @student.save
-      clear_times(@availabilities)
-      flash[:notice] = "Inquiry Submitted"
-      redirect_to dashboard_index_path
-    else
-      flash[:alert] = @student.errors.full_messages.join(", ")
-      render new_student_path
-    end
+    @student_form = StudentForm.new(student_params)
+    @student_form.persist
+    clear_times(@student_form.student.availabilities)
+    @student_form.student.family = @current_account
+    @student_form.student.save
+    flash[:notice] = "Student Created, Inquiry Submitted"
+    redirect_to dashboard_index_path
+  rescue => e
+    flash[:error] = @student_form.print_errors
+    render :new
   end
 
   def show
@@ -37,8 +35,10 @@ class StudentsController < PermissionsController
   end
 
   def edit
-    @student = Student.find(params[:id])
-    @availabilities = sort_avails(@student.availabilities)
+    @days = Availability::DAYS
+    @student_form = StudentForm.new(params)
+    @student = @student_form.student
+    @availabilities = sort_avails(@student_form.availabilities)
     respond_to do |format|
       format.html { render :edit }
       format.json { render json: @availabilities.select { |a| a.checked == "1" } }
@@ -46,27 +46,56 @@ class StudentsController < PermissionsController
   end
 
   def update
-    @student = Student.find(params[:id])
-    @availabilities = @student.availabilities
-    if @student.update(student_params)
-      clear_times(@availabilities)
-      flash[:notice] = "Availability Updated"
-      redirect_to dashboard_index_path
-    else
-      flash[:alert] = @student.errors.full_messages.join(", ")
-      render :edit
-    end
+    @days = Availability::DAYS
+    @student_form = StudentForm.new(params)
+    @student = @student_form.student
+    @availabilities = sort_avails(@student.availabilities)
+    @student_form.update_student(student_params)
+    clear_times(@student.availabilities)
+    flash[:notice] = "Availability Updated"
+    redirect_to dashboard_index_path
+  rescue => e
+    flash[:error] = @student_form.print_errors
+    render :edit
   end
 
   private
 
   def student_params
-    params.require(:student).permit(
-      :first_name,
-      :last_name,
-      :dob,
-      inquiries_attributes: [:id, :instrument, :student_id, :notes],
-      availabilities_attributes: [:id, :checked, :day, :start_time, :end_time]
-    ).merge(family_id: current_account.id)
+    params.require(:student_form).permit(
+    :first_name,
+    :last_name,
+    :dob,
+    :instrument,
+    :notes,
+    :sunday_day,
+    :sunday_checked,
+    :sunday_start_time,
+    :sunday_end_time,
+    :monday_day,
+    :monday_checked,
+    :monday_start_time,
+    :monday_end_time,
+    :tuesday_day,
+    :tuesday_checked,
+    :tuesday_start_time,
+    :tuesday_end_time,
+    :wednesday_day,
+    :wednesday_checked,
+    :wednesday_start_time,
+    :wednesday_end_time,
+    :thursday_day,
+    :thursday_checked,
+    :thursday_start_time,
+    :thursday_end_time,
+    :friday_day,
+    :friday_checked,
+    :friday_start_time,
+    :friday_end_time,
+    :saturday_day,
+    :saturday_checked,
+    :saturday_start_time,
+    :saturday_end_time
+  )
   end
 end

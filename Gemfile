@@ -13,6 +13,7 @@ gem 'foundation-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
 gem 'font-awesome-sass'
+gem 'virtus'
 
 group :development, :test do
   gem 'byebug', platform: :mri

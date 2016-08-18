@@ -1,8 +1,8 @@
 class AdminForm
+  include Virtus.model
   include ActiveModel::Model
-  include ActiveModel::Validations
 
-  attr_accessor(
+  attr_accessor \
     :email,
     :address,
     :city,
@@ -13,7 +13,6 @@ class AdminForm
     :phone,
     :admin,
     :contact
-  )
 
 	validates :email, presence: true
 	validates :address, presence: true
@@ -23,6 +22,16 @@ class AdminForm
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :phone, presence: true
+
+  def initialize(id = {})
+    if !id["id"].nil?
+      @teacher = Teacher.find(id["id"])
+      @contact = @teacher.contacts.first
+      @avails = @teacher.availabilities
+    else
+      super(id)
+    end
+  end
 
   def register
     if valid?
@@ -47,8 +56,11 @@ class AdminForm
 
   def print_errors
     errors = ""
-    errors += @admin.admin.errors.full_messages.join(", ")
-    errors += @admin.contact.errors.full_messages.join(", ")
+    errors += self.errors.full_messages.join(", ")
+    if admin || contact
+      errors += admin.errors.full_messages.join(", ")
+      errors += contact.errors.full_messages.join(", ")
+    end
     errors
   end
 
@@ -60,21 +72,20 @@ class AdminForm
 	    address: address,
 		  city: city,
 		  state: state,
-		  zip: zip
+		  zip: zip,
+      admin: true
     )
     password = Devise.friendly_token(10)
     @admin.password = password
-    @admin.admin = true
-    @admin
   end
 
   def create_contact
     @contact = @admin.contacts.build(
       first_name: first_name,
       last_name: last_name,
-      phone: phone
+      phone: phone,
+      primary: true
     )
     @contact.email = @admin.email
-    @contact
 	end
 end

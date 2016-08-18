@@ -1,16 +1,13 @@
-class TeacherForm
+class StudentForm
   include Virtus.model
   include ActiveModel::Model
 
   attr_accessor \
-    :email,
-    :address,
-    :city,
-    :state,
-    :zip,
     :first_name,
     :last_name,
-    :phone,
+    :dob,
+    :instrument,
+    :notes,
     :sunday_day,
     :sunday_checked,
     :sunday_start_time,
@@ -39,24 +36,19 @@ class TeacherForm
     :saturday_checked,
     :saturday_start_time,
     :saturday_end_time,
-    :teacher,
-    :contact,
+    :student,
+    :inquiry,
     :availabilities
 
-	validates :email, presence: true
-	validates :address, presence: true
-	validates :city, presence: true
-	validates :state, presence: true
-	validates :zip, presence: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
-	validates :phone, presence: true
+	validates :dob, presence: true
 
   def initialize(id = {})
     if !id["id"].nil?
-      @teacher = Teacher.find(id["id"])
-      @contact = @teacher.contacts.first
-      @avails = @teacher.availabilities
+      @student = Student.find(id["id"])
+      @inquiries = @student.inquiries
+      @avails = @student.availabilities
     else
       super(id)
     end
@@ -64,18 +56,18 @@ class TeacherForm
 
   def register
     if valid?
-      create_teacher
-      create_contact
+      create_student
+      create_inquiry
       create_availabilities
     end
   end
 
-  def teacher
-    @teacher
+  def student
+    @student
   end
 
-  def contact
-    @contact
+  def inquiries
+    @inquiries
   end
 
   def availabilities
@@ -84,10 +76,10 @@ class TeacherForm
 
   def persist
     register
-    teacher.save!
+    student.save!
   end
 
-  def update_teacher(params)
+  def update_student(params)
     @avails.each do |a|
       a.assign_attributes(
         {
@@ -97,19 +89,19 @@ class TeacherForm
         }
       )
     end
-    teacher.save!
+    student.save!
   end
 
   def print_errors
     errors = ""
     errors += self.errors.full_messages.join(", ")
-    if teacher || contact
-      errors += teacher.errors.full_messages.join(", ")
-      errors += contact.errors.full_messages.join(", ")
+    if student
+      errors += student.errors.full_messages.join(", ")
+      inquiries.each do |i|
+        errors += i.errors.full_messages.join(",")
+      end
       availabilities.each do |a|
-        unless a.errors.full_messages.empty?
-          errors += a.errors.full_messages.join(",")
-        end
+        errors += a.errors.full_messages.join(",")
       end
     end
     errors
@@ -117,33 +109,28 @@ class TeacherForm
 
   private
 
-  def create_teacher
-		@teacher = Teacher.new(
-      email: email,
-	    address: address,
-		  city: city,
-		  state: state,
-		  zip: zip
+  def create_student
+		@student = Student.new(
+      first_name: first_name,
+	    last_name: last_name,
+		  dob: dob
     )
-    password = Devise.friendly_token(10)
-    @teacher.password = password
-    @teacher.teacher = true
   end
 
-  def create_contact
-    @contact = @teacher.contacts.build(
-      first_name: first_name,
-      last_name: last_name,
-      phone: phone
+  def create_inquiry
+    @inquiries = []
+    @inquiry = @student.inquiries.build(
+      instrument: instrument,
+      notes: notes
     )
-    @contact.email = @teacher.email
+    @inquiries << @inquiry
 	end
 
   def create_availabilities
     @avails = []
     days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
     days.each do |day|
-      object = @teacher.availabilities.build(
+      object = @student.availabilities.build(
         day: send("#{day}_day"),
   	    checked: send("#{day}_checked"),
   		  start_time: send("#{day}_start_time"),

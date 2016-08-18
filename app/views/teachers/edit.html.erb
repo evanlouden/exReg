@@ -2,30 +2,26 @@
 
 <p><%= @teacher.staff_name %> </p>
 
-<%= form_for @teacher do |f| %>
+<%= form_for @teacher_form, url: teacher_path(@teacher), method: "put" do |f| %>
 
-  <% @availabilities.each do |day| %>
+  <% @availabilities.each do |a| %>
     <div class="field">
       <div class="avail-block">
-        <%= f.fields_for :availabilities, day do |a| %>
-        <% day.start_time ||= "10:00 AM" %>
-        <% day.end_time ||= "12:00 PM" %>
-        <div id ="<%= day.day %>">
-          <%= a.check_box :checked %>
-          <%= a.label day.day %>
-          <%= a.hidden_field :day %>
-          <%= a.hidden_field :start_time %>
-          <%= a.hidden_field :end_time %>
+        <div id ="<%= a.day.downcase %>">
+          <%= f.check_box "#{a.day.downcase}_checked", checked: (a.checked == "1" ? true : false) %>
+          <%= f.label a.day %>
+          <%= hidden_field_tag "teacher_form[#{a.day.downcase}_day]", "#{a.day}" %>
+          <%= f.hidden_field "#{a.day.downcase}_start_time" %>
+          <%= f.hidden_field "#{a.day.downcase}_end_time" %>
 
-          <div id="time-range-<%= day.day %>">
-            <p> Time Range: <span class="slider-time-<%= day.day %>"><%= day.start_time.strftime("%l:%M %p") %></span> - <span class="slider-time2-<%= day.day %>"><%= day.end_time.strftime("%l:%M %p") %></span> </p>
-            <div class="sliders_step1-<%= day.day %>">
-                <div id="slider-range-<%= day.day %>"></div>
+          <div id="time-range-<%= a.day.downcase %>">
+            <p> Time Range: <span class="slider-time-<%= a.day.downcase %>"></span> - <span class="slider-time2-<%= a.day.downcase %>"></span> </p>
+            <div class="sliders_step1-<%= a.day.downcase %>">
+                <div id="slider-range-<%= a.day.downcase %>"></div>
             </div>
           </div>
-        </div>
 
-        <% end %>
+        </div>
       </div>
     </div>
   <% end %>
@@ -39,4 +35,3 @@
 
 <%= javascript_include_tag "slider_time_teacher" %>
 <%= javascript_include_tag "slider_edit_teacher"%>
-<%= javascript_include_tag "availTransparency"%>

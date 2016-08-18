@@ -72,45 +72,50 @@ class TeachersController < PermissionsController
   def new
     @states = Account::STATES
     @days = Availability::DAYS
-    @teacher = TeacherForm.new
+    @teacher_form = TeacherForm.new
   end
 
   def create
     @states = Account::STATES
     @days = Availability::DAYS
-    @teacher = TeacherForm.new(teacher_params)
-    @teacher.save
+    @teacher_form = TeacherForm.new(teacher_params)
+    @teacher_form.persist
+    clear_times(@teacher_form.teacher.availabilities)
     flash[:notice] = "Account created"
     redirect_to admin_index_path
   rescue => e
-    flash[:error] = @teacher.print_errors
+    flash[:error] = @teacher_form.print_errors
     render :new
   end
 
   def edit
-    @teacher = Teacher.find(params[:id])
+    @days = Availability::DAYS
+    @teacher_form = TeacherForm.new(params)
+    @teacher = @teacher_form.teacher
     @availabilities = sort_avails(@teacher.availabilities)
     respond_to do |format|
       format.html { render :edit }
       format.json { render json: @availabilities.select { |a| a.checked == "1" } }
+      # format.json { render json: @teacher.availabilities.select { |a| a.checked == "1" } }
     end
   end
 
   def update
-    @teacher = Teacher.find(params[:id])
-    @availabilities = @teacher.availabilities
-    if @teacher.update(teacher_params)
-      clear_times(@availabilities)
-      flash[:notice] = "Availability Updated"
-      if current_account.type == "Teacher"
-        redirect_to teacher_path(@teacher)
-      else
-        redirect_to teachers_path
-      end
+    @days = Availability::DAYS
+    @teacher_form = TeacherForm.new(params)
+    @teacher = @teacher_form.teacher
+    @availabilities = sort_avails(@teacher.availabilities)
+    @teacher_form.update_teacher(teacher_params)
+    clear_times(@teacher.availabilities)
+    flash[:notice] = "Availability Updated"
+    if current_account.type == "Teacher"
+      redirect_to teacher_path(@teacher)
     else
-      flash[:alert] = @teacher.errors.full_messages.join(", ")
-      render :edit
+      redirect_to teachers_path
     end
+  rescue => e
+    flash[:error] = @teacher_form.print_errors
+    render :edit
   end
 
   def destroy
@@ -162,18 +167,4 @@ class TeachersController < PermissionsController
       :saturday_end_time
     )
   end
-  # def teacher_params
-  #   params.require(:teacher).permit(
-  #     :email,
-  #     :password,
-  #     :password_confirmation,
-  #     :remember_me,
-  #     :address,
-  #     :city,
-  #     :state,
-  #     :zip,
-  #     contacts_attributes: [:id, :first_name, :last_name, :email, :phone, :primary],
-  #     availabilities_attributes: [:id, :checked, :day, :start_time, :end_time]
-  #   ).merge(teacher: true)
-  # end
 end

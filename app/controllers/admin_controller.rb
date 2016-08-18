@@ -10,17 +10,17 @@ class AdminController < PermissionsController
 
   def new
     @states = Account::STATES
-    @admin = AdminForm.new
+    @admin_form = AdminForm.new
   end
 
   def create
     @states = Account::STATES
-    @admin = AdminForm.new(admin_params)
-	  @admin.save
+    @admin_form = AdminForm.new(admin_params)
+	  @admin_form.save
     flash[:notice] = "Account created"
     redirect_to admin_index_path
   rescue => e
-    flash[:error] = @admin.print_errors
+    flash[:error] = @admin_form.print_errors
     render :new
   end
 
@@ -53,17 +53,4 @@ class AdminController < PermissionsController
       :phone,
     )
   end
-  # def admin_params
-  #   params.require(:admin).permit(
-  #     :email,
-  #     :password,
-  #     :password_confirmation,
-  #     :remember_me,
-  #     :address,
-  #     :city,
-  #     :state,
-  #     :zip,
-  #     contacts_attributes: [:id, :first_name, :last_name, :email, :phone, :primary]
-  #   ).merge(admin: true)
-  # end
 end

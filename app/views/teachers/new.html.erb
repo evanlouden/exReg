@@ -1,6 +1,6 @@
 <h4>New Teacher Account</h4>
 
-<%= form_for @teacher, url: teachers_path do |f| %>
+<%= form_for @teacher_form, url: teachers_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>

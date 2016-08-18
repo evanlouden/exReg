@@ -25,17 +25,17 @@ feature "admin signs up teacher" do
     fill_in "Address", with: "100 Main Street"
     fill_in "City", with: "Boston"
     select("Massachusetts", from: "State")
-    fill_in "Zip", with: "02115"
+    fill_in "Zip", with: "01886"
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
     fill_in "Phone", with: "9785551212"
-    find(:css, "#teacher_availabilities_attributes_0_checked").set(true)
-    find(:css, "#teacher_availabilities_attributes_0_start_time", visible: false).set("6:00 PM")
-    find(:css, "#teacher_availabilities_attributes_0_end_time", visible: false).set("7:00 PM")
+    find(:css, "#teacher_form_sunday_checked").set(true)
+    find(:css, "#teacher_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_form_sunday_end_time", visible: false).set("7:00 PM")
     click_button "Create Account"
 
     expect(page).to have_content("Account created")
-    expect(page).to have_content("Admin Dashboard")
+    expect(page).to have_content("Attendance")
 
     click_link "All Staff"
 
@@ -61,14 +61,14 @@ feature "admin signs up teacher" do
     fill_in "First Name", with: "Thomas"
     fill_in "Last Name", with: "Appleseed"
     fill_in "Phone", with: "9785551212"
-    find(:css, "#teacher_availabilities_attributes_0_checked").set(true)
-    find(:css, "#teacher_availabilities_attributes_0_start_time", visible: false).set("6:00 PM")
-    find(:css, "#teacher_availabilities_attributes_0_end_time", visible: false).set("7:00 PM")
+    find(:css, "#teacher_form_sunday_checked").set(true)
+    find(:css, "#teacher_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_form_sunday_end_time", visible: false).set("7:00 PM")
     click_button "Create Account"
 
     expect(page).to have_content("New Teacher Account")
     expect(page).to have_content("Zip is not a number")
     expect(page).to have_content("Zip is the wrong length")
-    expect(page).to_not have_content("Admin Dashboard")
+    expect(page).to_not have_content("Account created")
   end
 end

@@ -1,14 +1,13 @@
 class Teacher < Account
   include ApplicationHelper
   has_many :contacts
-  has_many :availabilities
+  has_many :availabilities, autosave: true
   has_many :lessons
   has_many :students, through: :lessons
   has_many :teacher_instruments
   has_many :instruments, through: :teacher_instruments
   before_destroy :destroy_availabilities
   before_destroy :destroy_lessons
-  # validates_associated :availabilities, unless: :admin?
 
   validates :email, uniqueness: true, presence: true
   validates :address, presence: true
@@ -29,12 +28,7 @@ class Teacher < Account
     array.first.end_time
   end
 
-
   private
-
-  def admin?
-    self.type == "Admin"
-  end
 
   def destroy_availabilities
     availabilities.destroy_all
