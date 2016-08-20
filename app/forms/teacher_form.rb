@@ -102,17 +102,13 @@ class TeacherForm
 
   def print_errors
     errors = ""
-    errors += self.errors.full_messages.join(", ")
-    if teacher || contact
-      errors += teacher.errors.full_messages.join(", ")
+    if teacher
       errors += contact.errors.full_messages.join(", ")
-      availabilities.each do |a|
-        unless a.errors.full_messages.empty?
-          errors += a.errors.full_messages.join(",")
-        end
-      end
+      errors += ", "
+      errors += teacher.errors.full_messages.join(", ")
+    else
+      errors += self.errors.full_messages.join(", ")
     end
-    errors
   end
 
   private

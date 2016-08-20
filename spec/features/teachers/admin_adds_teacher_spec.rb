@@ -71,4 +71,24 @@ feature "admin signs up teacher" do
     expect(page).to have_content("Zip is the wrong length")
     expect(page).to_not have_content("Account created")
   end
+
+  scenario "does not specify valid city" do
+    click_link "Add Teacher"
+    fill_in "Email", with: "newteacher@teacher.com"
+    fill_in "Address", with: "100 Main Street"
+    fill_in "City", with: "6565"
+    select("Massachusetts", from: "State")
+    fill_in "Zip", with: "01886"
+    fill_in "First Name", with: "Thomas"
+    fill_in "Last Name", with: "Appleseed"
+    fill_in "Phone", with: "9785551212"
+    find(:css, "#teacher_form_sunday_checked").set(true)
+    find(:css, "#teacher_form_sunday_start_time", visible: false).set("6:00 PM")
+    find(:css, "#teacher_form_sunday_end_time", visible: false).set("7:00 PM")
+    click_button "Create Account"
+
+    expect(page).to have_content("New Teacher Account")
+    expect(page).to have_content("can only be letters")
+    expect(page).to_not have_content("Account created")
+  end
 end

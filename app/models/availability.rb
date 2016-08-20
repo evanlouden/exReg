@@ -27,6 +27,6 @@ class Availability < ApplicationRecord
   def min_time?
     return if end_time.blank? || start_time.blank?
 
-    errors.add(:availability, " must be at least 30 minutes") if (end_time - start_time) / 60 < 30 && checked == "1"
+    errors.add(:availability, "Availability must be at least 30 minutes") if (end_time - start_time) / 60 < 30 && checked == "1"
   end
 end

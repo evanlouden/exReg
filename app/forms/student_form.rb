@@ -94,17 +94,13 @@ class StudentForm
 
   def print_errors
     errors = ""
-    errors += self.errors.full_messages.join(", ")
     if student
+      errors += inquiries.last.errors.full_messages.join(", ")
+      errors += ", "
       errors += student.errors.full_messages.join(", ")
-      inquiries.each do |i|
-        errors += i.errors.full_messages.join(",")
-      end
-      availabilities.each do |a|
-        errors += a.errors.full_messages.join(",")
-      end
+    else
+      errors += self.errors.full_messages.join(", ")
     end
-    errors
   end
 
   private
