@@ -31,3 +31,5 @@ en:
       student:
         dob: "Date of Birth"
         availability: ""
+      teacher:
+        availability: ""

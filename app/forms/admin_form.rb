@@ -16,7 +16,7 @@ class AdminForm
 
 	validates :email, presence: true
 	validates :address, presence: true
-	validates :city, presence: true
+  validates :city, presence: true
 	validates :state, presence: true
 	validates :zip, presence: true
 	validates :first_name, presence: true
@@ -25,9 +25,8 @@ class AdminForm
 
   def initialize(id = {})
     if !id["id"].nil?
-      @teacher = Teacher.find(id["id"])
+      @admin = Admin.find(id["id"])
       @contact = @teacher.contacts.first
-      @avails = @teacher.availabilities
     else
       super(id)
     end
@@ -56,12 +55,13 @@ class AdminForm
 
   def print_errors
     errors = ""
-    errors += self.errors.full_messages.join(", ")
-    if admin || contact
-      errors += admin.errors.full_messages.join(", ")
+    if admin
       errors += contact.errors.full_messages.join(", ")
+      errors += ", "
+      errors += admin.errors.full_messages.join(", ")
+    else
+      errors += self.errors.full_messages.join(", ")
     end
-    errors
   end
 
   private
