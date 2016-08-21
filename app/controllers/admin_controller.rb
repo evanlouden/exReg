@@ -16,7 +16,7 @@ class AdminController < PermissionsController
   def create
     @states = Account::STATES
     @admin_form = AdminForm.new(admin_params)
-	  @admin_form.save
+    @admin_form.persist
     flash[:notice] = "Account created"
     redirect_to admin_index_path
   rescue => e

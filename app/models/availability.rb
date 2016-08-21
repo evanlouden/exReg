@@ -14,9 +14,12 @@ class Availability < ApplicationRecord
   ].freeze
 
   validate :min_time?
-  validates :start_time, presence: true, if: :checked?
-  validates :end_time, presence: true, if: :checked?
-  validates :checked, inclusion: { in: ["0", "1"] }
+  validates :start_time,
+            presence: true, if: :checked?
+  validates :end_time,
+            presence: true, if: :checked?
+  validates :checked,
+            inclusion: { in: %w(0 1) }
 
   private
 

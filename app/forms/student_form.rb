@@ -37,7 +37,7 @@ class StudentForm
     :saturday_start_time,
     :saturday_end_time,
     :student,
-    :inquiry,
+    :inquiries,
     :availabilities
 
 	validates :first_name, presence: true
@@ -48,7 +48,7 @@ class StudentForm
     if !id["id"].nil?
       @student = Student.find(id["id"])
       @inquiries = @student.inquiries
-      @avails = @student.availabilities
+      @availabilities = @student.availabilities
     else
       super(id)
     end
@@ -62,25 +62,13 @@ class StudentForm
     end
   end
 
-  def student
-    @student
-  end
-
-  def inquiries
-    @inquiries
-  end
-
-  def availabilities
-    @avails
-  end
-
   def persist
     register
     student.save!
   end
 
   def update_student(params)
-    @avails.each do |a|
+    @availabilities.each do |a|
       a.assign_attributes(
         {
           checked: params["#{a.day.downcase}_checked"],
@@ -123,16 +111,15 @@ class StudentForm
 	end
 
   def create_availabilities
-    @avails = []
+    @availabilities = []
     days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
     days.each do |day|
-      object = @student.availabilities.build(
+      @availabilities << @student.availabilities.build(
         day: send("#{day}_day"),
   	    checked: send("#{day}_checked"),
   		  start_time: send("#{day}_start_time"),
         end_time: send("#{day}_end_time"),
       )
-      @avails << instance_variable_set("@#{day}", object)
     end
   end
 end

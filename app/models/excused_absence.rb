@@ -1,3 +1,5 @@
 class ExcusedAbsence < ApplicationRecord
-  validates :count, presence: true, numericality: true
+  validates :count,
+            presence: true,
+            numericality: true
 end
