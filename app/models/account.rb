@@ -19,23 +19,23 @@ class Account < ApplicationRecord
   ].freeze
 
   validates :email,
-    uniqueness: true,
-    presence: true,
-    format: { with: /@/ }
+            uniqueness: true,
+            presence: true,
+            format: { with: /@/ }
   validates :address,
-    presence: true
+            presence: true
   validates :city,
-    presence: true,
-      format: {
-        with: /\A[a-zA-Z]+\z/,
-        message: "can only be letters"
-      }
+            presence: true,
+              format: {
+                with: /\A[a-zA-Z]+\z/,
+                message: "can only be letters"
+              }
   validates :zip,
-    presence: true,
-    numericality: true,
-    length: { is: 5 }
+            presence: true,
+            numericality: true,
+            length: { is: 5 }
   validates :state,
-    presence: true
+            presence: true
 
   private
 
