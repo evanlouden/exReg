@@ -26,10 +26,10 @@ class Account < ApplicationRecord
             presence: true
   validates :city,
             presence: true,
-              format: {
-                with: /\A[a-zA-Z]+\z/,
-                message: "can only be letters"
-              }
+            format: {
+              with: /\A[a-zA-Z]+\z/,
+              message: "can only be letters"
+            }
   validates :zip,
             presence: true,
             numericality: true,

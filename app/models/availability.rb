@@ -19,7 +19,7 @@ class Availability < ApplicationRecord
   validates :end_time,
             presence: true, if: :checked?
   validates :checked,
-            inclusion: { in: ["0", "1"] }
+            inclusion: { in: %w(0 1) }
 
   private
 
