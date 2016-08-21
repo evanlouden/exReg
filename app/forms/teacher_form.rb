@@ -56,7 +56,7 @@ class TeacherForm
     if !id["id"].nil?
       @teacher = Teacher.find(id["id"])
       @contact = @teacher.contacts.first
-      @avails = @teacher.availabilities
+      @availabilities = @teacher.availabilities
     else
       super(id)
     end
@@ -70,25 +70,13 @@ class TeacherForm
     end
   end
 
-  def teacher
-    @teacher
-  end
-
-  def contact
-    @contact
-  end
-
-  def availabilities
-    @avails
-  end
-
   def persist
     register
     teacher.save!
   end
 
   def update_teacher(params)
-    @avails.each do |a|
+    @availabilities.each do |a|
       a.assign_attributes(
         {
           checked: params["#{a.day.downcase}_checked"],
@@ -136,16 +124,15 @@ class TeacherForm
 	end
 
   def create_availabilities
-    @avails = []
+    @availabilities = []
     days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
     days.each do |day|
-      object = @teacher.availabilities.build(
+      @availabilities << @teacher.availabilities.build(
         day: send("#{day}_day"),
   	    checked: send("#{day}_checked"),
   		  start_time: send("#{day}_start_time"),
         end_time: send("#{day}_end_time"),
       )
-      @avails << instance_variable_set("@#{day}", object)
     end
   end
 end

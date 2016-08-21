@@ -9,12 +9,6 @@ class Teacher < Account
   before_destroy :destroy_availabilities
   before_destroy :destroy_lessons
 
-  validates :email, uniqueness: true, presence: true, format: { with: /@/ }
-  validates :address, presence: true
-  validates :city, presence: true, format: { with: /\A[a-zA-Z]+\z/,
-    message: "can only be letters" }
-  validates :zip, presence: true, numericality: true, length: { is: 5 }
-  validates :state, presence: true
   validate :no_availability?
 
   def earliest_start_time

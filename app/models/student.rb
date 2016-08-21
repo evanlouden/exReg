@@ -9,9 +9,12 @@ class Student < ApplicationRecord
   before_destroy :destroy_availabilities
   before_destroy :destroy_inquiries
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :dob, presence: true
+  validates :first_name,
+    presence: true
+  validates :last_name,
+    presence: true
+  validates :dob,
+    presence: true
   validate :no_availability?
 
   pg_search_scope :student_search,

@@ -18,11 +18,24 @@ class Account < ApplicationRecord
     ["Washington", "WA"], ["Wisconsin", "WI"], ["West Virginia", "WV"], ["Wyoming", "WY"]
   ].freeze
 
-  validates :email, uniqueness: true, presence: true
-  validates :address, presence: true
-  validates :city, presence: true
-  validates :zip, presence: true, numericality: true, length: { is: 5 }
-  validates :state, presence: true
+  validates :email,
+    uniqueness: true,
+    presence: true,
+    format: { with: /@/ }
+  validates :address,
+    presence: true
+  validates :city,
+    presence: true,
+      format: {
+        with: /\A[a-zA-Z]+\z/,
+        message: "can only be letters"
+      }
+  validates :zip,
+    presence: true,
+    numericality: true,
+    length: { is: 5 }
+  validates :state,
+    presence: true
 
   private
 

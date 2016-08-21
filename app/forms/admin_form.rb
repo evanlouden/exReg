@@ -39,18 +39,9 @@ class AdminForm
     end
   end
 
-  def admin
-    @admin
-  end
-
-  def contact
-    @contact
-  end
-
-  def save
+  def persist
     register
     admin.save!
-    contact.save!
   end
 
   def print_errors
