@@ -48,6 +48,23 @@ class Lesson < ApplicationRecord
     "#{tier_name}: #{duration} min., $#{'%.2f' % price}"
   end
 
+  def print_history
+    count = 0
+    history = "<ul>"
+    while count <= attended
+      date = (start_date + (count * 7)).strftime("%m/%d/%y")
+      missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
+      if missed_lesson.empty?
+        history += "<li>#{date} - Attended</li>"
+      else
+        history += "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
+      end
+      count += 1
+    end
+    history += "</ul>"
+    history.html_safe
+  end
+
   def excused_counter
     count = 0
     missed_lessons.each do |missed|
@@ -70,22 +87,5 @@ class Lesson < ApplicationRecord
     else
       false
     end
-  end
-
-  def print_history
-    count = 0
-    history = "<ul>"
-    while count <= attended
-      date = (start_date + (count * 7)).strftime("%m/%d/%y")
-      missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
-      if missed_lesson.empty?
-        history += "<li>#{date} - Attended</li>"
-      else
-        history += "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
-      end
-      count += 1
-    end
-    history += "</ul>"
-    history.html_safe
   end
 end
