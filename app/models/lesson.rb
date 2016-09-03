@@ -80,7 +80,7 @@ class Lesson < ApplicationRecord
   end
 
   def attendance_needed?
-    if (attended == 0 && Date.today >= active_lesson) || Date.today >= active_lesson
+    if (attended.zero? && Date.today >= active_lesson) || Date.today >= active_lesson
       true
     else
       false
