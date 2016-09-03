@@ -129,6 +129,9 @@ var printRows = function(response){
         if(time >= teacherStartTime && time <= teacherEndTime){
           $($blocks).removeClass('teacher-unavailable');
           var studentAvail = response.student_avail;
+          if(studentAvail[day].start_time === null || studentAvail[day].end_time === null){
+            $($blocks).addClass('student-unavailable');
+          }
           var studentStartTime = moment.utc(studentAvail[day].start_time);
           var studentEndTime = moment.utc(studentAvail[day].end_time);
           if(time < studentStartTime || time > studentEndTime){
@@ -152,14 +155,15 @@ var printRows = function(response){
       id: idTime
     })
   );
-  $('#' + idTime).append( $("<div>", {
-    "class": "small-1 columns time-header",
-    text: textTime
-  })
-);
-$.each(daysOfTheWeek, days);
-time = moment(time).add(15, 'minutes');
-}
+  $('#' + idTime).append(
+    $("<div>", {
+      "class": "small-1 columns time-header",
+      text: textTime
+    })
+  );
+  $.each(daysOfTheWeek, days);
+    time = moment(time).add(15, 'minutes');
+  }
 };
 
 var resizeLessons = function(){

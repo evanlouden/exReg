@@ -1,4 +1,4 @@
-#Administrative Settings
+# Administrative Settings
 admin1 = Admin.create(
   email: "admin@exreg.com",
   password: "password",
@@ -26,7 +26,7 @@ Reason.create(reason: "Excused Absence", teacher_paid: false, student_charged: f
 Reason.create(reason: "Unexcused Absence", teacher_paid: true, student_charged: true)
 ExcusedAbsence.create(count: "2")
 
-#Teachers
+# Teachers
 teacher1_avails = [
   {
     checked: "1",
@@ -385,8 +385,8 @@ end
 teacher5.save
 
 Contact.create(
-  first_name: "Terry",
-  last_name: "Rozier",
+  first_name: "Avery",
+  last_name: "Bradley",
   email: teacher5.email,
   phone: "9785551515",
   teacher: teacher5
@@ -396,7 +396,7 @@ TeacherInstrument.create(teacher: teacher5, instrument: instrument1)
 TeacherInstrument.create(teacher: teacher5, instrument: instrument3)
 
 
-#Families
+# Families
 family1 = Family.create(
   email: "family1@exreg.com",
   password: "password",
