@@ -1,17 +1,16 @@
 module AvailsHelper
   def clear_times(availabilities)
     availabilities.each do |a|
-      if a.checked == "0"
-        a.start_time = nil
-        a.end_time   = nil
-        a.save
-      end
+      next unless a.checked == "0"
+      a.start_time = nil
+      a.end_time   = nil
+      a.save
     end
   end
 
   def avails_hash(arg)
     unless arg.nil?
-      student_or_teacher_avails(arg)
+      load_avails(arg)
       sorted_avails = sort_avails(@avails)
       format_avails_hash(sorted_avails)
     end
@@ -30,8 +29,8 @@ module AvailsHelper
     end
   end
 
-  def student_or_teacher_avails(arg)
-    @avails = if arg.kind_of?(String)
+  def load_avails(arg)
+    @avails = if arg.is_a? String
                 Inquiry.find(params[:inquiry]).student.availabilities
               else
                 arg
