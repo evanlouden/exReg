@@ -16,25 +16,14 @@ class TeachersController < PermissionsController
     end
     @students = []
     @lessons.map { |l| @students << l.student.full_name }
-    unless params[:inquiry].nil?
-      @student = Inquiry.find(params[:inquiry]).student
-      student_days = sort_avails(@student.availabilities)
-      @student_avail = {}
-      student_days.each do |a|
-        time_hash = {}
-        time_hash[:start_time] = a.start_time
-        time_hash[:end_time]   = a.end_time
-        @student_avail[a.day]  = time_hash
-      end
-    end
     response = {
       time: @teacher.earliest_start_time,
       endTime: @teacher.latest_end_time,
       lessons: @lessons,
       students: @students,
-      availability: FormatTeacherAvails.call(@teacher.availabilities),
+      availability: avails_hash(@teacher.availabilities),
       lessonsRemaining: @lessons.map(&:remaining),
-      student_avail: @student_avail
+      student_avail: avails_hash(params[:inquiry])
     }
     respond_to do |format|
       format.html { render :show }
