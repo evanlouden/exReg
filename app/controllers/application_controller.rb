@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include AvailsHelper
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -48,28 +49,5 @@ class ApplicationController < ActionController::Base
       :zip,
       :type)
     }
-  end
-
-  def clear_times(availabilities)
-    availabilities.each do |a|
-      if a.checked == "0"
-        a.start_time = nil
-        a.end_time = nil
-        a.save
-      end
-    end
-  end
-
-  def sort_avails(array)
-    days = Availability::DAYS
-    lookup = {}
-
-    days.each_with_index do |day, index|
-      lookup[day] = index
-    end
-
-    array.sort_by do |item|
-      lookup.fetch(item.day)
-    end
   end
 end
