@@ -35,7 +35,7 @@ class Teacher < Account
   end
 
   def outstanding_attendance
-    active_lessons.select { |x| x.attendance_needed? }
+    active_lessons.select(&:attendance_needed?)
   end
 
   def calendar_json(inquiry_id = nil)
