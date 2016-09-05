@@ -31,7 +31,7 @@ module AvailsHelper
 
   def load_avails(arg)
     @avails = if arg.is_a? String
-                Inquiry.find(params[:inquiry]).student.availabilities
+                Inquiry.find(arg).student.availabilities
               else
                 arg
               end
