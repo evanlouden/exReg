@@ -10,9 +10,7 @@ class TeachersController < PermissionsController
   def show
     params[:id] ? @teacher = Teacher.find(params[:id]) : @teacher = current_account
     @attendance = @teacher.outstanding_attendance
-    @attendance.each do |lesson|
-      lesson.missed_lessons.build
-    end
+    @attendance.map { |x| x.missed_lessons.build }
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @teacher.calendar_json(params[:inquiry]) }
