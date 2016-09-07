@@ -51,18 +51,22 @@ class Lesson < ApplicationRecord
   def print_history
     count = 0
     history = "<ul>"
-    while count <= attended
+    history = print_each_line(count, history) + "</ul>"
+    history.html_safe
+  end
+
+  def print_each_line(count, history)
+    while !attended.zero? && count < attended
       date = (start_date + (count * 7)).strftime("%m/%d/%y")
       missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
-      if missed_lesson.empty?
-        history += "<li>#{date} - Attended</li>"
-      else
-        history += "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
-      end
+      history += if missed_lesson.empty?
+                   "<li>#{date} - Attended</li>"
+                 else
+                   "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
+                 end
       count += 1
     end
-    history += "</ul>"
-    history.html_safe
+    history
   end
 
   def excused_counter
@@ -80,10 +84,6 @@ class Lesson < ApplicationRecord
   end
 
   def attendance_needed?
-    if (attended.zero? && Date.today >= active_lesson) || Date.today >= active_lesson
-      true
-    else
-      false
-    end
+    Date.today >= active_lesson
   end
 end
