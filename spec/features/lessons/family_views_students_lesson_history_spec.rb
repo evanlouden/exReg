@@ -29,7 +29,7 @@ feature "family views student's lessons history" do
     FactoryGirl.create(
       :lesson,
       start_date: Date.today - 15,
-      attended: 3,
+      attended: 2,
       student: student1,
       teacher: teacher1,
       inquiry: inquiry1
