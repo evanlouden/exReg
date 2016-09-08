@@ -1,3 +1,3 @@
 <% @students.each do |student| %>
-  <li> <%= link_to "#{student.full_name}", student_path(student) %> </li>
+  <li> <%= link_to "#{student.full_name}", summary_admin_index_path(family_id: student.family.id) %> </li>
 <% end %>

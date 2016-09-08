@@ -15,6 +15,7 @@ class LessonsController < PermissionsController
     if @lesson.save
       @lesson.inquiry.update_attribute(:completed, true)
       @lesson.update_attribute(:excused_remaining, ExcusedAbsence.first.count)
+      Debit.create(family: @student.family, admin: current_account, amount: @lesson.remaining_balance)
       flash[:notice] = "Student Registered"
       redirect_to admin_index_path
     else

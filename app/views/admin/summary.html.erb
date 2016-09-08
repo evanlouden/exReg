@@ -1,0 +1,46 @@
+<div class="callout">
+  <ul class="no-bullets">
+    <h4>Account Address</h1>
+    <li> <%= @family.address %> </li>
+    <li> <%= @family.city %>, <%= @family.state %>  <%= @family.zip %> </li>
+  </ul>
+</div>
+<div class="callout">
+  <ul class="no-bullets">
+    <li>Primary: <%= @family.primary_family_contact.full_name %> - <%= number_to_phone(@family.primary_family_contact.phone) %> </li>
+    <% @contacts.each do |contact| %>
+      <li><%= contact.full_name %> - <%= contact.phone %> </li>
+    <% end %>
+  </ul>
+</div>
+<div class="callout">
+  <h3 class="balance_total"> Current balance: <%= number_to_currency(@family.current_balance) %></h3>
+  <ul class="no-bullets">
+    <% @transactions.each do |transaction| %>
+    <li class="<%= transaction.type.downcase %> "> <%= transaction.created_at.strftime("%-m/%-d/%Y") %> <%= transaction.balance_sign %><%= number_to_currency(transaction.amount) %>
+    <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, transaction_path(transaction), method: :delete, data: { confirm: "Are you sure?" } %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+  <%= link_to "Add Transaction", "#", class: "button success", id: "transaction_button" %>
+<div class="hidden-submit">
+  <%= form_for @transaction, url: transactions_path, method: :post do |f| %>
+    <%= f.hidden_field :family_id, value: @family.id %>
+    <div class="field">
+      <%= f.radio_button(:type, "Credit") %>
+      <%= f.label(:type, "Credit") %>
+      <%= f.radio_button(:type, "Debit") %>
+      <%= f.label(:type, "Debit") %>
+    </div>
+    <div class="field">
+      <%= f.label :amount %>
+      <%= f.number_field :amount %>
+    </div>
+    <div class="field">
+      <%= f.submit "Create Transaction" %>
+    </div>
+  <% end %>
+</div>
+
+<%= javascript_include_tag "newTransaction" %>

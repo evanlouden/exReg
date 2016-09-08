@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :admin do
     collection do
       get "search"
+      get "summary"
     end
     member do
       patch :change
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
   resources :teacher_instruments
   resources :missed_lessons, only: :create
   resources :excused_absences, only: [:index, :create, :edit, :update]
+  resources :transactions, only: [:create, :destroy]
 
   namespace :api do
     namespace :v1 do
