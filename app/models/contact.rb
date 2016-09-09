@@ -3,7 +3,8 @@ class Contact < ApplicationRecord
   belongs_to :family, optional: true
   belongs_to :teacher, optional: true
   belongs_to :admin, optional: true
-
+  has_many :students, through: :family
+  
   validates :first_name,
             presence: true
   validates :last_name,

@@ -1,9 +1,9 @@
-<h3>
+<h4>
   <%= @student.full_name %>
   <span class="student-links">
   </span>
-</h3>
-<h3>Lessons</h3>
+</h4>
+<h4>Lessons</h4>
 <% @lessons.each do |lesson| %>
 <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>" class="callout">
   <p>
@@ -12,34 +12,42 @@
     <%= "#{lesson.remaining} lessons remaining" %></br>
     Lesson Times: <%= lesson.time_info %></br>
     <%= lesson.price_info %></br>
-    Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
     Excused Remaining: <%= lesson.excused_remaining %></br>
     Lesson History:</br>
     <%= lesson.print_history %>
   </p>
 </div>
 <% end %>
-<%= link_to "New Inquiry", new_inquiry_path(student: @student.id) %></br>
-<h3>
-  Student Availability
-  <%= link_to "Edit", edit_student_path(@student) %>
-</h3>
-<div class="student-info">
-  <ul>
-    <% @student.availabilities.each do |availability| %>
-      <% unless availability.checked == "0" %>
-        <li>
-          <%= availability.day %>:
-          <%= availability.start_time.strftime("%l:%M %p") %>
-          -
-          <%= availability.end_time.strftime("%l:%M %p") %>
-        </li>
-      <% end %>
+<div class="callout">
+  <h4>
+    Student Availability
+    <% unless current_account.type == "Teacher" %>
+      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_student_path(@student) %>
     <% end %>
-  </ul>
+  </h4>
+  <div>
+    <ul class="no-bullets">
+      <% @student.availabilities.each do |availability| %>
+        <% unless availability.checked == "0" %>
+          <li>
+            <%= availability.day %>:
+            <%= availability.start_time.strftime("%l:%M %p") %>
+            -
+            <%= availability.end_time.strftime("%l:%M %p") %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>
-<h3>Inquiries:</h3>
+<div class="callout">
+<h4>Inquiries
+  <% unless current_account.type == "Teacher" %>
+      <%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_inquiry_path(student: @student.id) %>
+  <% end %>
+</h4>
 <% @inquiries.each do |inquiry| %>
   <%= inquiry.instrument %> - <%= inquiry.completed ? "Completed" : "Pending" %><br/>
   <%= inquiry.notes ? inquiry.notes : nil %><br/>
+</div>
 <% end %>

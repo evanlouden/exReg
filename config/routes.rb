@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     collection do
       get "search"
       get "summary"
+      get "settings"
     end
     member do
       patch :change

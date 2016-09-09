@@ -1,10 +1,20 @@
 <% @nonprimary.each do |contact| %>
-  <div id="contact-<%= contact.first_name %>-<%= contact.last_name %>">
-    <%= contact.full_name %> -
-    <%= link_to " Make Primary", change_contact_path(contact), method: :patch %></br>
-    <p>
-      <%= link_to "Edit Contact", edit_contact_path(contact) %></br>
-      <%= link_to "Delete Contact", contact_path(contact), method: :delete %></br>
-    </p>
+  <div class="callout" id="contact-<%= contact.first_name %>-<%= contact.last_name %>">
+    <ul class="no-bullet">
+      <li>
+        <%= contact.full_name %>
+        <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_contact_path(contact) %>
+        <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, contact_path(contact), method: :delete, data: { confirm: "Delete Contact?" }  %>
+      </li>
+      <li>
+        <i class="fa fa-phone" aria-hidden="true"></i> <%= number_to_phone(contact.phone) %>
+      </li>
+      <li>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i> <%= contact.email %>
+      </li>
+      <li>
+        <%= link_to "Make Primary", change_contact_path(contact), method: :patch %>
+      </li>
+    </ul>
   </div>
 <% end %>

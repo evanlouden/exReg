@@ -1,6 +1,19 @@
 <h1>Students</h1>
 <% @students.each do |student| %>
-  <p>
-    <%= link_to "#{student.full_name}", student_path(student) %>
-  </p>
+  <div class="callout" id="contact-<%= student.first_name %>-<%= student.last_name %>">
+    <ul class="no-bullet">
+      <li>
+        <%= link_to "#{student.full_name}", student_path(student) %>
+      </li>
+      <li>
+        <i class="fa fa-star" aria-hidden="true"></i> <%= student.family.primary_family_contact.full_name %>
+      </li>
+      <li>
+        <i class="fa fa-phone" aria-hidden="true"></i> <%= number_to_phone(student.family.primary_family_contact.phone) %>
+      </li>
+      <li>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i> <%= student.family.primary_family_contact.email %>
+      </li>
+    </ul>
+  </div>
 <% end %>

@@ -1,6 +1,14 @@
-<div id="contact-<%= @primary.first_name %>-<%= @primary.last_name %>">
-  <%= @primary.full_name %> - <%= " Primary" %></br>
-  <p>
-    <%= link_to "Edit Contact", edit_contact_path(@primary) %></br>
-  </p>
+<div class="callout" id="contact-<%= @primary.first_name %>-<%= @primary.last_name %>">
+  <ul class="no-bullet">
+    <li>
+      <i class="fa fa-star" aria-hidden="true"></i> <%= @primary.full_name %>
+      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_contact_path(@primary) %>
+    </li>
+    <li>
+      <i class="fa fa-phone" aria-hidden="true"></i> <%= number_to_phone(@primary.phone) %>
+    </li>
+    <li>
+      <i class="fa fa-envelope-o" aria-hidden="true"></i> <%= @primary.email %>
+    </li>
+  </ul>
 </div>

@@ -1,0 +1,86 @@
+<h3>Settings:</h3>
+<div class="callout">
+  <h3>Pricing Tiers <a href="#" id="add-price"><i class="fa fa-plus" aria-hidden="true"></i></a></h3>
+  <% if @prices %>
+    <% @prices.each do |price| %>
+      <p>
+        <%= price.description %>
+        <%= link_to "Edit", edit_price_path(price) %>
+        <%= link_to "Delete", price_path(price), method: :delete %>
+      </p>
+    <% end %>
+  <% end %>
+  <div class="hidden-submit price" id="price-form">
+    <%= render "admin/settings/prices_form" %>
+  </div>
+</div>
+
+<div class="callout">
+  <h3>Instruments <a href="#" id="add-instrument"><i class="fa fa-plus" aria-hidden="true"></i></a></h3>
+  <% if @instruments %>
+    <% @instruments.each do |instrument| %>
+      <p>
+        <%= instrument.name %>
+        <%= link_to "Edit", edit_instrument_path(instrument) %>
+        <%= link_to "Delete", instrument_path(instrument), method: :delete %>
+      </p>
+    <% end %>
+  <% end %>
+  <div class="hidden-submit instrument">
+    <%= form_for @instrument do |f| %>
+      <div class="field">
+        <%= f.label :name, "Instrument Name"  %>
+        <%= f.text_field :name  %>
+      </div>
+
+      <div class= "actions">
+        <%= f.submit "Add Instrument" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="callout">
+  <h3>Absence Reasons <a href="#" id="add-reason"><i class="fa fa-plus" aria-hidden="true"></i></a></h3>
+  <% if @reasons %>
+    <% @reasons.each do |reason| %>
+      <p>
+        <%= reason.reason %>
+        <%= link_to "Edit", edit_reason_path(reason) %>
+        <%= link_to "Delete", reason_path(reason), method: :delete %>
+      </p>
+    <% end %>
+  <% end %>
+  <div class="hidden-submit reason">
+    <%= form_for @reason do |f| %>
+      <div class="field">
+        <%= f.label :reason, "Reason Name"  %>
+        <%= f.text_field :reason  %>
+      </div>
+      <div class="field">
+        <%= f.label :teacher_paid, "Teacher Paid?"  %>
+        <%= f.select(:teacher_paid, [["Yes", true],["No", false]] )  %>
+      </div>
+      <div class="field">
+        <%= f.label :student_charged, "Charge Student?"  %>
+        <%= f.select(:student_charged, [["Yes", true],["No", false]] )  %>
+      </div>
+
+      <div class= "actions">
+        <%= f.submit "Add Reason" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="callout">
+  <h3>Excused Absences Allotted: <%= @count ? @count.count : "0" %> </h3>
+  <% if @count.nil? %>
+    <%= render "admin/settings/new_form" %>
+  <% else %>
+    <%= render "admin/settings/edit_form" %>
+  <% end %>
+</div>
+
+
+<%= javascript_include_tag "settings" %>

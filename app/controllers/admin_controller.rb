@@ -38,6 +38,17 @@ class AdminController < PermissionsController
     render :search
   end
 
+  def settings
+    @prices = Price.all
+    @price = Price.new
+    @instruments = Instrument.all
+    @instrument = Instrument.new
+    @reasons = Reason.all
+    @reason = Reason.new
+    @count = ExcusedAbsence.first
+    @excused_absence = ExcusedAbsence.new
+  end
+
   def summary
     @family = Family.find(params[:family_id])
     @students = @family.students

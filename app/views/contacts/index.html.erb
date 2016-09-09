@@ -1,3 +1,3 @@
-<h3>Contacts <span id="add-contact">(<%= link_to "Add Contact", new_contact_path %>)</span></h3>
+<h3>Contacts <span id="add-contact"><%= link_to "<i class='fa fa-plus fa-lg' aria-hidden='true'></i>".html_safe, new_contact_path %></span></h3>
 <%= render "primary" %>
 <%= render "nonprimary" %>

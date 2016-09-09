@@ -2,7 +2,14 @@ class StudentsController < PermissionsController
   before_action :authenticate_account!
 
   def index
-    @students = Student.all
+    @students = current_account.students
+    @lessons = []
+    @students.each do |student|
+      unless student.lessons.empty?
+        student.lessons.map { |lesson| @lessons << lesson }
+      end
+    end
+    @lessons.sort_by! { |l| [l.teacher.contacts.first.last_name, l.student.last_name] }
   end
 
   def new
@@ -30,7 +37,7 @@ class StudentsController < PermissionsController
 
   def show
     @student = Student.find(params[:id])
-    @inquiries = @student.inquiries
+    @inquiries = @student.pending_inquiries
     @lessons = @student.lessons
   end
 

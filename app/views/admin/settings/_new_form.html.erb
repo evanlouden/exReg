@@ -1,0 +1,7 @@
+<%= form_for @excused_absence do |f| %>
+  <div class="field">
+    <%= f.label :count %>
+    <%= f.number_field :count %>
+  </div>
+  <%= f.submit "Add Count" %>
+<% end %>
