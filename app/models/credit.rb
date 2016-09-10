@@ -1,3 +1,2 @@
 class Credit < Transaction
-
 end

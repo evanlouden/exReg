@@ -14,12 +14,12 @@ class Family < Account
   end
 
   def all_debits
-    debits = transactions.select { |t| t.type == "Debit"}
+    debits = transactions.select { |t| t.type == "Debit" }
     debits.map { |t| t.amount.to_f }.reduce(:+)
   end
 
   def all_credits
-    credits = transactions.select { |t| t.type == "Credit"}
+    credits = transactions.select { |t| t.type == "Credit" }
     credits.map { |t| t.amount.to_f }.reduce(:+)
   end
 end
