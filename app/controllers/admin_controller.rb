@@ -3,7 +3,7 @@ class AdminController < PermissionsController
   before_action :require_admin
 
   def index
-    @open_inquiries = Inquiry.all.where(completed: false).order(created_at: :asc)
+    @open_inquiries = Inquiry.where(completed: false).order(created_at: :asc)
     @students = Student.all
     @teachers = Teacher.all
   end
@@ -36,6 +36,25 @@ class AdminController < PermissionsController
       flash[:error] = "Sorry, but we couldn't find anything matching '#{params[:query]}'"
     end
     render :search
+  end
+
+  def settings
+    @prices = Price.all
+    @price = Price.new
+    @instruments = Instrument.all
+    @instrument = Instrument.new
+    @reasons = Reason.all
+    @reason = Reason.new
+    @count = ExcusedAbsence.first
+    @excused_absence = ExcusedAbsence.new
+  end
+
+  def summary
+    @family = Family.find(params[:family_id])
+    @students = @family.students
+    @contacts = @family.contacts.select { |c| !c.primary }
+    @transactions = Transaction.where(family: @family)
+    @transaction = Transaction.new
   end
 
   private

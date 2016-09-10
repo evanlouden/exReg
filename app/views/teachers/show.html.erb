@@ -1,26 +1,28 @@
 <h4><%= @teacher.staff_name %></h4>
-<div class="teacher-calendar">
+<div class="callout">
+  <h4>Outstanding Attendance:</h4>
+
+<% @attendance.each do |lesson| %>
+<div id="attendance-<%= lesson.student.first_name %>-<%= lesson.student.last_name %>">
+    <%= lesson.student.full_name %></br>
+  Attendance For: <%= lesson.active_lesson %>
+  <div class="button-group">
+    <%= link_to "Present", attended_lesson_path(lesson), method: :patch, class: "button success" %>
+    <%= link_to "Absent", "#", class: "button alert", id:"btn-#{lesson.student.id}" %>
+  </div>
+  <div class="hidden-submit <%= lesson.student.id %>">
+    <%= form_for lesson.missed_lessons.last, url: missed_lessons_path do |f| %>
+    <%= f.hidden_field :lesson_id %>
+    <%= f.label :reason_id, "Reason" %>
+    <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :reason) %>
+    <%= f.submit "Submit" %>
+    <% end %>
+  </div>
+</div>
+<% end %>
 </div>
 
-<h3>Outstanding Attendance:</h3>
-<% @attendance.each do |lesson| %>
-  <div id="attendance-<%= lesson.student.first_name %>-<%= lesson.student.last_name %>">
-    <%= lesson.student.full_name %></br>
-    Attendance For: <%= lesson.active_lesson %>
-    <div class="button-group">
-      <%= link_to "Present", attended_lesson_path(lesson), method: :patch, class: "button success" %>
-      <%= link_to "Absent", "#", class: "button alert", id:"btn-#{lesson.student.id}" %>
-    </div>
-    <div class="hidden-submit <%= lesson.student.id %>">
-      <%= form_for lesson.missed_lessons.last, url: missed_lessons_path do |f| %>
-        <%= f.hidden_field :lesson_id %>
-        <%= f.label :reason_id, "Reason" %>
-        <%= f.select :reason_id, options_from_collection_for_select(Reason.all, :id, :reason) %>
-        <%= f.submit "Submit" %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+<div class="teacher-calendar callout"></div>
 
 <%= javascript_include_tag "absentToggle"%>
 <%= javascript_include_tag "teacherCalendar"%>

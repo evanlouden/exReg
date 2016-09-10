@@ -2,19 +2,21 @@ class ExcusedAbsencesController < PermissionsController
   before_action :authenticate_account!
   before_action :require_admin
 
-  def index
-    @count = ExcusedAbsence.first
-    @excused_absence = ExcusedAbsence.new
-  end
-
   def create
     @excused_absence = ExcusedAbsence.new(excused_absences_params)
+    @count = ExcusedAbsence.first
+    @prices = Price.all
+    @price = Price.new
+    @instruments = Instrument.all
+    @instrument = Instrument.new
+    @reasons = Reason.all
+    @reason = Reason.new
     if @excused_absence.save
       flash[:notice] = "Count Added"
-      redirect_to excused_absences_path
+      redirect_to settings_admin_index_path
     else
       flash[:alert] = @excused_absence.errors.full_messages.join(", ")
-      render :index
+      render "admin/settings"
     end
   end
 
@@ -25,7 +27,7 @@ class ExcusedAbsencesController < PermissionsController
     else
       flash[:alert] = @excused_absence.errors.full_messages.join(", ")
     end
-    redirect_to excused_absences_path
+    redirect_to settings_admin_index_path
   end
 
   private

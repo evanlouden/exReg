@@ -33,10 +33,10 @@ feature "admin registers student for lessons", js: true do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-  end
-  scenario "specifies valid information" do
     click_link student1.full_name
     click_link "Register Student"
+  end
+  scenario "specifies valid information" do
     select(price2.description, from: "Pricing Tier")
     find(:css, "#lesson_start_date").set("09/11/2016")
     find('label', text: 'Start Time').click
@@ -53,25 +53,22 @@ feature "admin registers student for lessons", js: true do
 
     expect(page).to have_content("Student Registered")
 
-    click_link "Students"
+    fill_in :query, with: student1.last_name
+    click_button "Search"
+    click_link student1.full_name
     click_link student1.full_name
 
-    expect(page).to have_content("#{inquiry1.instrument} - Completed")
     expect(page).to have_content(count1.count)
-    expect(page).to_not have_content("Register Student")
+    expect(page).to have_content(price2.description)
   end
 
   scenario "changes instrument from original inquiry" do
-    click_link student1.full_name
-    click_link "Register Student"
     select("Violin", from: "Instrument")
 
     expect(page).to have_select("lesson_teacher_id", options: [teacher2.staff_name])
   end
 
   scenario "does not specify required information" do
-    click_link student1.full_name
-    click_link "Register Student"
     click_button "Register Student"
 
     expect(page).to have_content("can't be blank")

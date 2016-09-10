@@ -6,6 +6,7 @@ class Student < ApplicationRecord
   has_many :lessons
   has_many :teachers, through: :lessons
   has_many :availabilities, autosave: true
+  has_many :contacts, through: :family
   before_destroy :destroy_availabilities
   before_destroy :destroy_inquiries
 
@@ -21,9 +22,13 @@ class Student < ApplicationRecord
                   against: [:first_name, :last_name],
                   associated_against: {
                     family: [:address, :email]
-                  }
+                  }, using: { tsearch: { prefix: true } }
 
   scope :search, -> (query) { student_search(query) if query.present? }
+
+  def pending_inquiries
+    inquiries.where(completed: false)
+  end
 
   private
 

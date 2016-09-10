@@ -10,10 +10,10 @@ feature "user edits contact" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
+    click_link "Contacts"
+    click_link("edit-contact")
   end
   scenario "specifies valid information" do
-    click_link "Contacts"
-    click_link "Edit Contact"
     fill_in "First Name", with: "Jane"
     click_button "Update Contact"
 
@@ -22,11 +22,10 @@ feature "user edits contact" do
   end
 
   scenario "does not specify valid information" do
-    click_link "Contacts"
-    click_link "Edit Contact"
     fill_in "First Name", with: ""
     click_button "Update Contact"
 
     expect(page).to have_content("can't be blank")
+    expect(page).to_not have_content("Contact Updated")
   end
 end

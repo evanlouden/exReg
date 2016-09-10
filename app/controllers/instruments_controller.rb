@@ -2,19 +2,21 @@ class InstrumentsController < PermissionsController
   before_action :authenticate_account!
   before_action :require_admin
 
-  def index
-    @instruments = Instrument.all
-    @instrument = Instrument.new
-  end
-
   def create
     @instrument = Instrument.new(instrument_params)
+    @instruments = Instrument.all
+    @prices = Price.all
+    @price = Price.new
+    @reasons = Reason.all
+    @reason = Reason.new
+    @count = ExcusedAbsence.first
+    @excused_absence = ExcusedAbsence.new
     if @instrument.save
       flash[:notice] = "Instrument Added"
-      redirect_to instruments_path
+      redirect_to settings_admin_index_path
     else
       flash[:alert] = @instrument.errors.full_messages.join(", ")
-      render :index
+      render "admin/settings"
     end
   end
 
@@ -26,7 +28,7 @@ class InstrumentsController < PermissionsController
     @instrument = Instrument.find(params[:id])
     if @instrument.update(instrument_params)
       flash[:notice] = "Instrument Updated"
-      redirect_to instruments_path
+      redirect_to settings_admin_index_path
     else
       flash[:alert] = @instrument.errors.full_messages.join(", ")
       render :edit
@@ -37,7 +39,7 @@ class InstrumentsController < PermissionsController
     @instrument = Instrument.find(params[:id])
     @instrument.destroy
     flash[:notice] = "Instrument Removed"
-    redirect_to instruments_path
+    redirect_to settings_admin_index_path
   end
 
   private

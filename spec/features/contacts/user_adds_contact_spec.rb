@@ -10,10 +10,10 @@ feature "user adds contact" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
+    click_link "Contacts"
+    click_link("add-contact")
   end
   scenario "specifies valid information" do
-    click_link "Contacts"
-    click_link "Add Contact"
     fill_in "First Name", with: "Grandma"
     fill_in "Last Name", with: "Doe"
     fill_in "Email", with: "grandmadoe@user.com"
@@ -22,12 +22,9 @@ feature "user adds contact" do
 
     expect(page).to have_content("Contact Added")
     expect(page).to have_content("Grandma Doe")
-    expect(page).to_not have_content("Grandma Doe - Primary")
   end
 
   scenario "does not specify valid information" do
-    click_link "Contacts"
-    click_link "Add Contact"
     click_button "Add Contact"
 
     expect(page).to have_content("can't be blank")

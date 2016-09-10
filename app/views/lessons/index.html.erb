@@ -9,7 +9,7 @@
       <%= "#{lesson.remaining} lessons remaining" %></br>
       Lesson Times: <%= lesson.time_info %></br>
       <%= lesson.price_info %></br>
-      Remaining Balance: <%= "$#{lesson.remaining_balance}" %></br>
+      Current Balance: <%= "$#{lesson.student.family.current_balance}" %></br>
       Excused Remaining: <%= lesson.excused_remaining %>
     </p>
   </div>

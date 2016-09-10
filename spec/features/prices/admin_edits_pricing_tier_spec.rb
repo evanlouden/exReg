@@ -19,10 +19,9 @@ feature "admin edits pricing tier" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Pricing Tiers"
-
     expect(page).to have_content(price1.description)
 
     click_link "Edit"
@@ -34,7 +33,6 @@ feature "admin edits pricing tier" do
   end
 
   scenario "does not specify required information" do
-    click_link "Pricing Tiers"
     click_link "Edit"
     fill_in "Tier Name", with: ""
     click_button "Update Pricing Tier"

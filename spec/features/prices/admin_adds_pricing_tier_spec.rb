@@ -18,9 +18,9 @@ feature "admin adds pricing tier" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Pricing Tiers"
     fill_in "Tier Name", with: "Private Lesson"
     fill_in "Duration (minutes)", with: "30"
     fill_in "Price", with: "50"
@@ -31,7 +31,6 @@ feature "admin adds pricing tier" do
   end
 
   scenario "does not specify required information" do
-    click_link "Pricing Tiers"
     click_button "Create Pricing Tier"
 
     expect(page).to have_content("is not a number")
@@ -40,7 +39,6 @@ feature "admin adds pricing tier" do
   end
 
   scenario "specifies duration not multiple of 15" do
-    click_link "Pricing Tiers"
     fill_in "Tier Name", with: "Private Lesson"
     fill_in "Duration (minutes)", with: "35"
     fill_in "Price", with: "50"
@@ -51,7 +49,6 @@ feature "admin adds pricing tier" do
   end
 
   scenario "specifies duration less than 30" do
-    click_link "Pricing Tiers"
     fill_in "Tier Name", with: "Private Lesson"
     fill_in "Duration (minutes)", with: "15"
     fill_in "Price", with: "50"

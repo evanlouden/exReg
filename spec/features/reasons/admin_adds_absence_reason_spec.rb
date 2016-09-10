@@ -18,9 +18,9 @@ feature "admin adds absence reason" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Absence Reasons"
     fill_in "Reason Name", with: "Unexcused Absence"
     select("Yes", from: "Teacher Paid?")
     select("Yes", from: "Charge Student?")
@@ -31,7 +31,6 @@ feature "admin adds absence reason" do
   end
 
   scenario "does not specify required information" do
-    click_link "Absence Reasons"
     click_button "Add Reason"
 
     expect(page).to have_content("can't be blank")

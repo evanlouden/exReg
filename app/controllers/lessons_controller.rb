@@ -15,6 +15,7 @@ class LessonsController < PermissionsController
     if @lesson.save
       @lesson.inquiry.update_attribute(:completed, true)
       @lesson.update_attribute(:excused_remaining, ExcusedAbsence.first.count)
+      Debit.create(family: @student.family, admin: current_account, amount: @lesson.initial_balance)
       flash[:notice] = "Student Registered"
       redirect_to admin_index_path
     else
@@ -25,18 +26,7 @@ class LessonsController < PermissionsController
   end
 
   def index
-    @students = if current_account.type == "Teacher"
-                  current_account.students
-                else
-                  Student.all
-                end
-    @lessons = []
-    @students.each do |student|
-      unless student.lessons.empty?
-        student.lessons.map { |lesson| @lessons << lesson }
-      end
-    end
-    @lessons.sort_by! { |l| [l.teacher.contacts.first.last_name, l.student.last_name] }
+    @lessons = Lesson.all_active_lessons
   end
 
   def attended

@@ -13,7 +13,7 @@ feature "user edits student availability" do
     fill_in "Password", with: family1.password
     click_button "Sign In"
     click_link student1.full_name
-    click_link "Edit"
+    click_link("edit-availability")
   end
   scenario "successfully edits availability" do
     find(:css, "#student_form_sunday_start_time", visible: false).set("6:00 PM")

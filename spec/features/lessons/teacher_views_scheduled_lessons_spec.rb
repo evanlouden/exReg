@@ -12,8 +12,17 @@ feature "teacher views list of scheduled lessons" do
     )
   }
   let!(:teacher1) { FactoryGirl.create(:teacher) }
-  let!(:user1) { FactoryGirl.create(:family) }
-  let!(:student1) { FactoryGirl.create(:student, family: user1) }
+  let!(:family1) { FactoryGirl.create(:family) }
+  let!(:contact2) {
+    FactoryGirl.create(
+      :contact,
+      family: family1,
+      email: family1.email,
+      first_name: "Jim",
+      last_name: "Doe"
+    )
+  }
+  let!(:student1) { FactoryGirl.create(:student, family: family1) }
   let!(:inquiry1) { FactoryGirl.create(:inquiry, student: student1) }
   let!(:price1) { FactoryGirl.create(:price) }
   let!(:price2) { FactoryGirl.create(:price, duration: "60", price: "100") }
@@ -26,7 +35,8 @@ feature "teacher views list of scheduled lessons" do
       inquiry: inquiry1
     )
   }
-  let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:contact3) { FactoryGirl.create(:contact, teacher: teacher1) }
+  let!(:count1) { FactoryGirl.create(:excused_absence) }
 
   scenario "successfully views list" do
     visit unauthenticated_root_path
@@ -34,9 +44,10 @@ feature "teacher views list of scheduled lessons" do
     fill_in "Email", with: teacher1.email
     fill_in "Password", with: teacher1.password
     click_button "Sign In"
-    click_link "Lessons"
+    click_link "My Students"
+    click_link student1.full_name
 
-    expect(page).to have_content("Excused Remaining: 3")
-    expect(page).to have_content("#{student1.full_name} - #{lesson1.instrument}")
+    expect(page).to have_content(count1.count)
+    expect(page).to have_content(lesson1.instrument)
   end
 end
