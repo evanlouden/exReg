@@ -43,7 +43,8 @@ feature "admin deletes transaction" do
       :reason,
       reason: "Unexcused Absence",
       student_charged: true,
-      teacher_paid: true)
+      teacher_paid: true
+    )
   }
   let!(:transaction1) { FactoryGirl.create(:debit, amount: "500", family: family1, admin: admin1) }
 

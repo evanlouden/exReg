@@ -43,7 +43,8 @@ feature "admin adds transaction" do
       :reason,
       reason: "Unexcused Absence",
       student_charged: true,
-      teacher_paid: true)
+      teacher_paid: true
+    )
   }
 
   before(:each) do
