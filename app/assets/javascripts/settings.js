@@ -1,6 +1,7 @@
 $('a[id^=add]').click(
-  function(){
-    var id = this.id.split('-')[1]
+  function(event){
+    event.preventDefault();
+    var id = this.id.split('-')[1];
     $('.hidden-submit.' + id).toggle();
   }
 );

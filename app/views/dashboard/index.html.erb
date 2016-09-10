@@ -7,9 +7,9 @@
       <h2><%= link_to "#{student.full_name}", student_path(student) %></h2>
     </li>
     <% student.inquiries.where(completed: false).each do |inquiry| %>
-    <li class="pending">
+    <li class="pending" id="pending-<%= inquiry.instrument %>">
       Pending <%= inquiry.instrument %> Inquiry
-      <%= link_to "Edit", edit_inquiry_path(inquiry) %>
+      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_inquiry_path(inquiry), id: "edit-inquiry" %>
     </li>
   </ul>
   <% end %>

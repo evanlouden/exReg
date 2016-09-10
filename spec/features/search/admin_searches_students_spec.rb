@@ -96,7 +96,7 @@ feature "admin searches for students" do
     click_button "Sign In"
   end
   scenario "successfully finds students" do
-    fill_in :query, with: "Williams"
+    fill_in :query, with: "Will"
     click_button "Search"
 
     expect(page).to have_content(student1.full_name)

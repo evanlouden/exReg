@@ -22,7 +22,7 @@
   <h4>
     Student Availability
     <% unless current_account.type == "Teacher" %>
-      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_student_path(@student) %>
+      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_student_path(@student), id: "edit-availability" %>
     <% end %>
   </h4>
   <div>
@@ -43,7 +43,7 @@
 <div class="callout">
 <h4>Inquiries
   <% unless current_account.type == "Teacher" %>
-      <%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_inquiry_path(student: @student.id) %>
+      <%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, new_inquiry_path(student: @student.id), id: "add-inquiry" %>
   <% end %>
 </h4>
 <% @inquiries.each do |inquiry| %>

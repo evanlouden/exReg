@@ -13,11 +13,11 @@ feature "user deletes contact" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
+    click_link "Contacts"
   end
   scenario "successfully deletes contact" do
-    click_link "Contacts"
     within(:css, "#contact-#{contact2.first_name}-#{contact2.last_name}") do
-      click_link "Delete Contact"
+      click_link("delete-contact")
     end
 
     expect(page).to have_content("Contact Removed")

@@ -19,10 +19,9 @@ feature "admin edits absence reason" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Absence Reasons"
-
     expect(page).to have_content(reason1.reason)
 
     click_link "Edit"
@@ -34,12 +33,12 @@ feature "admin edits absence reason" do
   end
 
   scenario "does not specify required information" do
-    click_link "Absence Reasons"
     click_link "Edit"
     fill_in "Reason Name", with: ""
     click_button "Update Reason"
 
     expect(page).to have_content("can't be blank")
     expect(page).to_not have_content("Reason Updated")
+    expect(page).to_not have_content("School Settings")
   end
 end

@@ -19,7 +19,7 @@ feature "admin deletes instrument" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link "Instruments"
+    click_link("settings-cog")
     click_link "Delete"
 
     expect(page).to have_content("Instrument Removed")

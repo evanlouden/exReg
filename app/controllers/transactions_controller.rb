@@ -2,7 +2,7 @@ class TransactionsController < PermissionsController
   def create
     @family = Family.find(transaction_params[:family_id])
     @students = @family.students
-    @transactions = Transaction.where(family_id: @family.id)
+    @transactions = Transaction.where(family: @family)
     @contacts = @family.contacts.select { |c| !c.primary }
     @transaction = current_account.transactions.build(transaction_params)
     if @transaction.save

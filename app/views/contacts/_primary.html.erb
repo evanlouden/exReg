@@ -2,7 +2,7 @@
   <ul class="no-bullet">
     <li>
       <i class="fa fa-star" aria-hidden="true"></i> <%= @primary.full_name %>
-      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_contact_path(@primary) %>
+      <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_contact_path(@primary), id: "edit-contact" %>
     </li>
     <li>
       <i class="fa fa-phone" aria-hidden="true"></i> <%= number_to_phone(@primary.phone) %>

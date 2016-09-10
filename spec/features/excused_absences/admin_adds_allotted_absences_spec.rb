@@ -18,9 +18,9 @@ feature "admin adds allotted excused absences" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Excused Absences Allotted"
     fill_in "Count", with: "3"
     click_button "Add Count"
 
@@ -29,7 +29,6 @@ feature "admin adds allotted excused absences" do
   end
 
   scenario "does not specify required information" do
-    click_link "Excused Absences Allotted"
     click_button "Add Count"
 
     expect(page).to have_content("can't be blank")

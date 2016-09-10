@@ -31,7 +31,6 @@ feature "user views registered students' lessons" do
     within(:css, "#lessons-#{lesson1.student.first_name}-#{lesson1.instrument}") do
       expect(page).to have_content(lesson1.time_info)
       expect(page).to have_content(lesson1.price_info)
-      expect(page).to have_content(lesson1.remaining_balance)
     end
   end
 end

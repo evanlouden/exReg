@@ -27,7 +27,7 @@ class Student < ApplicationRecord
   scope :search, -> (query) { student_search(query) if query.present? }
 
   def pending_inquiries
-    inquiries.where(completed: false) 
+    inquiries.where(completed: false)
   end
 
   private

@@ -19,14 +19,13 @@ feature "admin edits instrument" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Instruments"
-
     expect(page).to have_content(instrument1.name)
 
     click_link "Edit"
-    fill_in "Name", with: "Piano"
+    fill_in "Instrument Name", with: "Piano"
     click_button "Update Instrument"
 
     expect(page).to have_content("Instrument Updated")
@@ -35,12 +34,12 @@ feature "admin edits instrument" do
   end
 
   scenario "does not specify required information" do
-    click_link "Instruments"
     click_link "Edit"
-    fill_in "Name", with: ""
+    fill_in "Instrument Name", with: ""
     click_button "Update Instrument"
 
     expect(page).to have_content("can't be blank")
     expect(page).to_not have_content("Instrument Updated")
+    expect(page).to_not have_content("School Settings")
   end
 end

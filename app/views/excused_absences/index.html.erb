@@ -1,7 +1,0 @@
-<h3>Excused Absences Allotted: <%= @count ? @count.count : "0" %> </h3>
-
-<% if @count.nil? %>
-  <%= render "new_form" %>
-<% else %>
-  <%= render "edit_form" %>
-<% end %>

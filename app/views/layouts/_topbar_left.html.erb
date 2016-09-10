@@ -4,8 +4,9 @@
           <%= link_to "Lessons", lessons_path %>
         </li>
         <%= render "layouts/staff" %>
-        <%= render "layouts/settings" %>
-        <%= link_to "<i class='fa fa-cog' aria-hidden='true'></i>".html_safe, settings_admin_index_path %>
+        <li>
+          <%= link_to "<i class='fa fa-cog' aria-hidden='true'></i>".html_safe, settings_admin_index_path, id: "settings-cog" %>
+        </li>
       <% elsif current_account.type == "Teacher"%>
         <li>
           <%= link_to "My Students", students_path %>

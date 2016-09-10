@@ -1,4 +1,5 @@
-<h3>Settings:</h3>
+<h3>School Settings</h3>
+
 <div class="callout">
   <h3>Pricing Tiers <a href="#" id="add-price"><i class="fa fa-plus" aria-hidden="true"></i></a></h3>
   <% if @prices %>
@@ -27,16 +28,7 @@
     <% end %>
   <% end %>
   <div class="hidden-submit instrument">
-    <%= form_for @instrument do |f| %>
-      <div class="field">
-        <%= f.label :name, "Instrument Name"  %>
-        <%= f.text_field :name  %>
-      </div>
-
-      <div class= "actions">
-        <%= f.submit "Add Instrument" %>
-      </div>
-    <% end %>
+    <%= render "admin/settings/instruments_form" %>
   </div>
 </div>
 
@@ -52,33 +44,16 @@
     <% end %>
   <% end %>
   <div class="hidden-submit reason">
-    <%= form_for @reason do |f| %>
-      <div class="field">
-        <%= f.label :reason, "Reason Name"  %>
-        <%= f.text_field :reason  %>
-      </div>
-      <div class="field">
-        <%= f.label :teacher_paid, "Teacher Paid?"  %>
-        <%= f.select(:teacher_paid, [["Yes", true],["No", false]] )  %>
-      </div>
-      <div class="field">
-        <%= f.label :student_charged, "Charge Student?"  %>
-        <%= f.select(:student_charged, [["Yes", true],["No", false]] )  %>
-      </div>
-
-      <div class= "actions">
-        <%= f.submit "Add Reason" %>
-      </div>
-    <% end %>
+    <%= render "admin/settings/reasons_form" %>
   </div>
 </div>
 
 <div class="callout">
   <h3>Excused Absences Allotted: <%= @count ? @count.count : "0" %> </h3>
   <% if @count.nil? %>
-    <%= render "admin/settings/new_form" %>
+    <%= render "admin/settings/new_excused_form" %>
   <% else %>
-    <%= render "admin/settings/edit_form" %>
+    <%= render "admin/settings/edit_excused_form" %>
   <% end %>
 </div>
 

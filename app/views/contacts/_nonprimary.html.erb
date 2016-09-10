@@ -3,8 +3,8 @@
     <ul class="no-bullet">
       <li>
         <%= contact.full_name %>
-        <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_contact_path(contact) %>
-        <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, contact_path(contact), method: :delete, data: { confirm: "Delete Contact?" }  %>
+        <%= link_to "<i class='fa fa-pencil' aria-hidden='true'></i>".html_safe, edit_contact_path(contact), id: "edit-contact" %>
+        <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, contact_path(contact), method: :delete, data: { confirm: "Delete Contact?" }, id: "delete-contact" %>
       </li>
       <li>
         <i class="fa fa-phone" aria-hidden="true"></i> <%= number_to_phone(contact.phone) %>

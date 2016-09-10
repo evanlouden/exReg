@@ -8,16 +8,14 @@ feature "user edits student inquiry" do
   let!(:instrument1) { FactoryGirl.create(:instrument) }
   let!(:instrument2) { FactoryGirl.create(:instrument, name: "Piano") }
 
-  before(:each) do
+  scenario "existing user successfully edits inquiry" do
     visit unauthenticated_root_path
     click_link "Sign In"
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
-  end
-  scenario "existing user successfully edits inquiry form" do
     visit dashboard_index_path
-    click_link "Edit"
+    click_link("edit-inquiry")
     select("Piano", from: "Instrument")
     click_button "Update Inquiry"
 

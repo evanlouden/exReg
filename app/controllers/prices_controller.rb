@@ -2,19 +2,21 @@ class PricesController < PermissionsController
   before_action :authenticate_account!
   before_action :require_admin
 
-  def index
-    @prices = Price.all
-    @price = Price.new
-  end
-
   def create
     @price = Price.new(price_params)
+    @prices = Price.all
+    @instruments = Instrument.all
+    @instrument = Instrument.new
+    @reasons = Reason.all
+    @reason = Reason.new
+    @count = ExcusedAbsence.first
+    @excused_absence = ExcusedAbsence.new
     if @price.save
       flash[:notice] = "Pricing Tier Added"
-      redirect_to prices_path
+      redirect_to settings_admin_index_path
     else
       flash[:alert] = @price.errors.full_messages.join(", ")
-      render :index
+      render "admin/settings"
     end
   end
 
@@ -26,7 +28,7 @@ class PricesController < PermissionsController
     @price = Price.find(params[:id])
     if @price.update(price_params)
       flash[:notice] = "Pricing Tier Updated"
-      redirect_to prices_path
+      redirect_to settings_admin_index_path
     else
       flash[:alert] = @price.errors.full_messages.join(", ")
       render :edit
@@ -37,7 +39,7 @@ class PricesController < PermissionsController
     @price = Price.find(params[:id])
     @price.destroy
     flash[:notice] = "Pricing Tier Removed"
-    redirect_to prices_path
+    redirect_to settings_admin_index_path
   end
 
   private

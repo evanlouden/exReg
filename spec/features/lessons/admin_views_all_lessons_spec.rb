@@ -40,7 +40,7 @@ feature "admin views all lessons" do
     click_link "Lessons"
 
     expect(page).to have_content(lesson1.remaining)
-    expect(page).to have_content(lesson1.remaining_balance)
+    expect(page).to have_content(family1.current_balance)
     expect(page).to have_content("#{lesson1.student.full_name} - #{lesson1.instrument}")
   end
 end

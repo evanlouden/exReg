@@ -18,10 +18,10 @@ feature "admin adds instrument" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
+    click_link("settings-cog")
   end
   scenario "specifies valid information" do
-    click_link "Instruments"
-    fill_in "Name", with: "Guitar"
+    fill_in "Instrument Name", with: "Guitar"
     click_button "Add Instrument"
 
     expect(page).to have_content("Instrument Added")
@@ -29,7 +29,6 @@ feature "admin adds instrument" do
   end
 
   scenario "does not specify required information" do
-    click_link "Instruments"
     click_button "Add Instrument"
 
     expect(page).to have_content("can't be blank")

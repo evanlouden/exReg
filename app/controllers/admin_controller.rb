@@ -52,8 +52,8 @@ class AdminController < PermissionsController
   def summary
     @family = Family.find(params[:family_id])
     @students = @family.students
-    @transactions = Transaction.where(family_id: @family.id)
     @contacts = @family.contacts.select { |c| !c.primary }
+    @transactions = Transaction.where(family: @family)
     @transaction = Transaction.new
   end
 
