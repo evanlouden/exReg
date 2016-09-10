@@ -1,7 +1,7 @@
 class ReasonsController < PermissionsController
   before_action :authenticate_account!
   before_action :require_admin
-  
+
   def create
     @reason = Reason.new(reason_params)
     @reasons = Reason.all
