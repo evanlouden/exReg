@@ -104,4 +104,19 @@ FactoryGirl.define do
   factory :excused_absence do
     count "3"
   end
+
+  factory :transaction, class: 'Transaction' do
+  end
+
+  factory :debit, parent: :transaction, class: 'Debit' do
+    amount "100"
+    admin
+    family
+  end
+
+  factory :credit, parent: :transaction, class: 'Credit' do
+    amount "100"
+    admin
+    family
+  end
 end

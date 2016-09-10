@@ -17,6 +17,7 @@ class TransactionsController < PermissionsController
   def destroy
     @transaction = Transaction.find(params[:id])
     @family = @transaction.family
+    flash[:notice] = "#{@transaction.type} Removed"
     @transaction.destroy
     redirect_to summary_admin_index_path(family_id: @family.id)
   end
