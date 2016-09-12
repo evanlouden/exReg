@@ -109,8 +109,8 @@ class TeacherForm
       state: state,
       zip: zip
     )
-    password = Devise.friendly_token(10)
-    @teacher.password = password
+    @password = Devise.friendly_token(10)
+    @teacher.password = @password
     @teacher.teacher = true
   end
 

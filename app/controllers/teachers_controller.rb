@@ -29,6 +29,7 @@ class TeachersController < PermissionsController
     @teacher_form = TeacherForm.new(teacher_params)
     @teacher_form.persist
     clear_times(@teacher_form.teacher.availabilities)
+    AccountMailer.welcome_email(@teacher_form.teacher, @teacher_form.teacher.password).deliver
     flash[:notice] = "Account created"
     redirect_to admin_index_path
   rescue => e
