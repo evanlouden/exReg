@@ -7,6 +7,7 @@ FactoryGirl.define do
     city "Boston"
     state "MA"
     zip "01223"
+    confirmed_at Time.now
   end
 
   factory :admin, parent: :account, class: 'Admin' do
