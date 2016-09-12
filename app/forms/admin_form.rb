@@ -68,6 +68,7 @@ class AdminForm
     )
     @password = Devise.friendly_token(10)
     @admin.password = @password
+    @admin.skip_confirmation!
   end
 
   def create_contact

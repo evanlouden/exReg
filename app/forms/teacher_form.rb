@@ -112,6 +112,7 @@ class TeacherForm
     @password = Devise.friendly_token(10)
     @teacher.password = @password
     @teacher.teacher = true
+    @teacher.skip_confirmation!
   end
 
   def create_contact
