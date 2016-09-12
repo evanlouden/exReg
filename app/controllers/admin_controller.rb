@@ -18,6 +18,7 @@ class AdminController < PermissionsController
     @admin_form = AdminForm.new(admin_params)
     @admin_form.persist
     flash[:notice] = "Account created"
+    AccountMailer.welcome_email(@admin_form.admin, @admin_form.admin.password).deliver
     redirect_to admin_index_path
   rescue => e
     flash[:error] = @admin_form.print_errors

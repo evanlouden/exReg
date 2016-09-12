@@ -66,8 +66,8 @@ class AdminForm
 		  zip: zip,
       admin: true
     )
-    password = Devise.friendly_token(10)
-    @admin.password = password
+    @password = Devise.friendly_token(10)
+    @admin.password = @password
   end
 
   def create_contact
@@ -78,5 +78,5 @@ class AdminForm
       primary: true
     )
     @contact.email = @admin.email
-	end
+  end
 end
