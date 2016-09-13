@@ -19,8 +19,10 @@ feature "admin deletes pricing tier" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link("settings-cog")
-    click_link "Delete"
+    within(:css, ".top-bar-right") do
+      click_link("settings-cog")
+    end
+    click_link("delete-price")
 
     expect(page).to have_content("Pricing Tier Removed")
   end

@@ -19,12 +19,12 @@ feature "admin edits instrument" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link("settings-cog")
+    within(:css, ".top-bar-right") do
+      click_link("settings-cog")
+    end
+    click_link("edit-instrument")
   end
   scenario "specifies valid information" do
-    expect(page).to have_content(instrument1.name)
-
-    click_link "Edit"
     fill_in "Instrument Name", with: "Piano"
     click_button "Update Instrument"
 
@@ -34,7 +34,6 @@ feature "admin edits instrument" do
   end
 
   scenario "does not specify required information" do
-    click_link "Edit"
     fill_in "Instrument Name", with: ""
     click_button "Update Instrument"
 

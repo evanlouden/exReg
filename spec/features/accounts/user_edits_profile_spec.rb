@@ -10,9 +10,9 @@ feature "user edits profile" do
     fill_in "Email", with: family1.email
     fill_in "Password", with: family1.password
     click_button "Sign In"
+    click_link("profile-icon")
   end
   scenario "successfully edits profile" do
-    click_link contact1.full_name
     select("Alaska", from: "State")
     fill_in "Current Password", with: family1.password
     click_button "Update"
@@ -22,7 +22,6 @@ feature "user edits profile" do
   end
 
   scenario "does not specify valid information" do
-    click_link contact1.full_name
     fill_in "Zip", with: ""
     fill_in "Current Password", with: family1.password
     click_button "Update"

@@ -19,12 +19,12 @@ feature "admin edits absence reason" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link("settings-cog")
+    within(:css, ".top-bar-right") do
+      click_link("settings-cog")
+    end
+    click_link("edit-reason")
   end
   scenario "specifies valid information" do
-    expect(page).to have_content(reason1.reason)
-
-    click_link "Edit"
     fill_in "Reason Name", with: "Unexcused Absence"
     click_button "Update Reason"
 
@@ -33,7 +33,6 @@ feature "admin edits absence reason" do
   end
 
   scenario "does not specify required information" do
-    click_link "Edit"
     fill_in "Reason Name", with: ""
     click_button "Update Reason"
 

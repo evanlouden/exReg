@@ -18,7 +18,9 @@ feature "admin adds pricing tier" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link("settings-cog")
+    within(:css, ".top-bar-right") do
+      click_link("settings-cog")
+    end
   end
   scenario "specifies valid information" do
     fill_in "Tier Name", with: "Private Lesson"
@@ -39,9 +41,7 @@ feature "admin adds pricing tier" do
   end
 
   scenario "specifies duration not multiple of 15" do
-    fill_in "Tier Name", with: "Private Lesson"
     fill_in "Duration (minutes)", with: "35"
-    fill_in "Price", with: "50"
     click_button "Create Pricing Tier"
 
     expect(page).to have_content("must be intervals of 15 minutes")
@@ -49,9 +49,7 @@ feature "admin adds pricing tier" do
   end
 
   scenario "specifies duration less than 30" do
-    fill_in "Tier Name", with: "Private Lesson"
     fill_in "Duration (minutes)", with: "15"
-    fill_in "Price", with: "50"
     click_button "Create Pricing Tier"
 
     expect(page).to have_content("must be minimum of 30 minutes")

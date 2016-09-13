@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin searches for students" do
+feature "admin searches for students", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(
@@ -96,8 +96,10 @@ feature "admin searches for students" do
     click_button "Sign In"
   end
   scenario "successfully finds students" do
-    fill_in :query, with: "Will"
-    click_button "Search"
+    within(:css, ".top-bar-right") do
+      fill_in :query, with: "Will"
+      find('#search_field').native.send_keys(:return)
+    end
 
     expect(page).to have_content(student1.full_name)
     expect(page).to have_content(student2.full_name)
@@ -105,8 +107,10 @@ feature "admin searches for students" do
   end
 
   scenario "specifies invalid search query" do
-    fill_in :query, with: "x"
-    click_button "Search"
+    within(:css, ".top-bar-right") do
+      fill_in :query, with: "x"
+      find('#search_field').native.send_keys(:return)
+    end
 
     expect(page).to have_content("Sorry, but we couldn't find anything matching 'x'")
   end
