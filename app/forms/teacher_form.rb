@@ -122,7 +122,7 @@ class TeacherForm
       phone: phone
     )
     @contact.email = @teacher.email
-	end
+  end
 
   def create_availabilities
     @availabilities = []

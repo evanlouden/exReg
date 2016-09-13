@@ -14,7 +14,6 @@ gem 'momentjs-rails'
 gem 'pg_search'
 gem 'font-awesome-sass'
 gem 'virtus'
-gem 'faker'
 
 group :development, :test do
   gem 'byebug', platform: :mri
