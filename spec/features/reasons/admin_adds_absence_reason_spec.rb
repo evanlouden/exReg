@@ -18,7 +18,9 @@ feature "admin adds absence reason" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    click_link("settings-cog")
+    within(:css, ".top-bar-right") do
+      click_link("settings-cog")
+    end
   end
   scenario "specifies valid information" do
     fill_in "Reason Name", with: "Unexcused Absence"

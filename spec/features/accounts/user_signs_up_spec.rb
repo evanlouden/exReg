@@ -21,9 +21,7 @@ feature "user signs up" do
     fill_in "Phone", with: "9785551212"
     click_button "Sign Up"
 
-    expect(page).to have_content("Account Created!")
-    expect(page).to have_content("Sign Out")
-    expect(page).to have_content("Student Inquiry")
+    expect(page).to have_content("A message with a confirmation link has been sent to your email address.")
   end
 
   scenario "required account information not specified" do

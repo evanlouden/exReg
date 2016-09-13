@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin adds transaction" do
+feature "admin adds transaction", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(
@@ -53,8 +53,10 @@ feature "admin adds transaction" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    fill_in :query, with: "Will"
-    click_button "Search"
+    within(:css, ".top-bar-right") do
+      fill_in :query, with: "Will"
+      find('#search_field').native.send_keys(:return)
+    end
     click_link student1.full_name
   end
   scenario "successfully adds debit" do
@@ -64,7 +66,7 @@ feature "admin adds transaction" do
 
     expect(page).to have_content("Debit Added")
     expect(page).to have_content("Current Balance: $500.00")
-    expect(page).to have_content(Date.today.strftime("%-m/%-d/%Y"))
+    expect(page).to have_content(Time.now.getutc.to_date.strftime("%-m/%-d/%Y"))
   end
 
   scenario "successfully adds credit" do
@@ -74,6 +76,6 @@ feature "admin adds transaction" do
 
     expect(page).to have_content("Credit Added")
     expect(page).to have_content("Current Balance: -$500.00")
-    expect(page).to have_content(Date.today.strftime("%-m/%-d/%Y"))
+    expect(page).to have_content(Time.now.getutc.to_date.strftime("%-m/%-d/%Y"))
   end
 end

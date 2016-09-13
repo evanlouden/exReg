@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @account.staff_name %>, your account has been created</h1>
+    <p>
+      Your temporary password is <%= @password %>
+    </p>
+    <p>
+      Please follow this link to log in to your account and change your password: <a href= "<%= @url %>"> <%= @url %> </a>
+    </p>
+</html>

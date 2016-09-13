@@ -10,16 +10,6 @@
     </li>
   <% end %>
   <li>
-    <%= link_to "<i class='fa fa-user fa-lg' aria-hidden='true'></i>".html_safe, edit_account_registration_path, id: "profile-icon" %>
-  </li>
-  <li>
-    <%= link_to "Sign Out", destroy_account_session_path, method: :delete %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to "Sign In", new_account_session_path %>
-  </li>
-  <li>
-    <%= link_to "Sign Up", new_account_registration_path %>
+    <%= link_to "<i class='fa fa-user fa-lg' aria-hidden='true'></i>".html_safe, edit_account_registration_path %>
   </li>
 <% end %>

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin views student's lessons" do
+feature "admin views student's lessons", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(
@@ -47,8 +47,10 @@ feature "admin views student's lessons" do
     fill_in "Email", with: admin1.email
     fill_in "Password", with: admin1.password
     click_button "Sign In"
-    fill_in :query, with: student1.last_name
-    click_button "Search"
+    within(:css, ".top-bar-right") do
+      fill_in :query, with: student1.last_name
+      find('#search_field').native.send_keys(:return)
+    end
     click_link student1.full_name
     click_link student1.full_name
 

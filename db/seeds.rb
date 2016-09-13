@@ -6,7 +6,8 @@ admin1 = Admin.create(
   city: "Boston",
   state: "MA",
   zip: "03333",
-  admin: true
+  admin: true,
+  confirmed_at: Time.now
 )
 
 Contact.create(
@@ -14,7 +15,8 @@ Contact.create(
   last_name: "Stevens",
   email: admin1.email,
   phone: "9785551313",
-  admin: admin1
+  admin: admin1,
+  primary: true
 )
 
 instrument1 = Instrument.create(name: "Piano")
@@ -79,7 +81,8 @@ teacher1_params = {
   city: "Boston",
   state: "MA",
   zip: "03333",
-  teacher: true
+  teacher: true,
+  confirmed_at: Time.now
 }
 
 teacher1 = Teacher.new(teacher1_params)
@@ -152,7 +155,8 @@ teacher2_params = {
   city: "Belmont",
   state: "MA",
   zip: "03333",
-  teacher: true
+  teacher: true,
+  confirmed_at: Time.now
 }
 
 teacher2 = Teacher.new(teacher2_params)
@@ -226,7 +230,8 @@ teacher3_params = {
   city: "Malden",
   state: "MA",
   zip: "03333",
-  teacher: true
+  teacher: true,
+  confirmed_at: Time.now
 }
 
 teacher3 = Teacher.new(teacher3_params)
@@ -299,7 +304,8 @@ teacher4_params = {
   city: "Cambridge",
   state: "MA",
   zip: "03333",
-  teacher: true
+  teacher: true,
+  confirmed_at: Time.now
 }
 
 teacher4 = Teacher.new(teacher4_params)
@@ -373,7 +379,8 @@ teacher5_params = {
   city: "Everett",
   state: "MA",
   zip: "03333",
-  teacher: true
+  teacher: true,
+  confirmed_at: Time.now
 }
 
 teacher5 = Teacher.new(teacher5_params)
@@ -403,7 +410,8 @@ family1 = Family.create(
   address: "505 Bridge Street",
   city: "Boston",
   state: "MA",
-  zip: "03333"
+  zip: "03333",
+  confirmed_at: Time.now
 )
 
 Contact.create(
@@ -488,7 +496,8 @@ family2 = Family.create(
   address: "406 Oak Ave",
   city: "Boston",
   state: "MA",
-  zip: "03333"
+  zip: "03333",
+  confirmed_at: Time.now
 )
 
 Contact.create(

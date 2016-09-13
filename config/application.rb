@@ -13,5 +13,6 @@ module Scheduler
     # -- all .rb files in that directory are automatically loaded.
     config.autoload_paths += %W(#{config.root}/app)
     config.autoload_paths += %W(#{config.root}/lib)
+    config.active_record.time_zone_aware_types = [:time, :datetime]
   end
 end

@@ -14,12 +14,16 @@
   <body>
 
     <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+      <div class= "row">
       <button class="menu-icon" type="button" data-toggle></button>
-      <div class="title-bar-title">Menu</div>
+        <ul class="mobile-icons">
+          <%= render 'layouts/topbar_icons' %>
+        </ul>
+      </div>
     </div>
 
     <div class="top-bar" id="main-menu">
-      <div class="top-bar-left">
+      <div class="top-bar-left" >
         <ul class="dropdown menu vertical medium-horizontal" data-dropdown-menu>
           <li>
             <a href="/">exReg</a>
@@ -27,7 +31,7 @@
           <%= render "layouts/topbar_left" %>
         </ul>
       </div>
-      <div class="top-bar-right">
+      <div class="top-bar-right hide-for-small-only">
         <ul class="menu vertical medium-horizontal" data-responsive-menu="accordion medium-dropdown">
           <%= render "layouts/topbar_right" %>
         </ul>

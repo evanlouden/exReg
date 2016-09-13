@@ -13,7 +13,6 @@ feature "user signs in" do
 
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Sign Out")
-    expect(page).to have_content(contact1.full_name)
   end
 
   scenario "nonexistent email and password supplied" do
