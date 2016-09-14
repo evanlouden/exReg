@@ -13,7 +13,7 @@ feature "admin deletes teacher" do
     fill_in "Password", with: admin1.password
     click_button "Sign In"
     click_link "All Staff"
-    click_link "Delete Teacher"
+    click_link("delete-teacher")
 
     expect(page).to have_content("Teacher deleted")
     expect(page).to_not have_content(contact2.first_name)
