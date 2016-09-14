@@ -55,7 +55,7 @@ feature "admin registers student for lessons", js: true do
 
     within(:css, ".top-bar-right") do
       fill_in :query, with: student1.last_name
-      find('.search-field').native.send_keys(:return)
+      find(".search-field").native.send_keys(:return)
     end
     click_link student1.full_name
     click_link student1.full_name

@@ -5,8 +5,8 @@ class Transaction < ApplicationRecord
   has_many :debits
   has_many :credits
   validates :amount,
-    presence: true,
-    numericality: { greater_than: 0 }
+            presence: true,
+            numericality: { greater_than: 0 }
   validates :type,
-    presence: true
+            presence: true
 end
