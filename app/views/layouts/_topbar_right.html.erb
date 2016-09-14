@@ -2,7 +2,7 @@
   <% unless current_account.type == "Family" %>
     <li>
       <%= form_tag search_admin_index_path, method: :get do %>
-        <%= text_field_tag :query, params[:query], placeholder: "Search Students", id: "search_field" %>
+        <%= text_field_tag :query, params[:query], placeholder: "Search Students", class: "search-field" %>
       <% end %>
     </li>
     <li>
