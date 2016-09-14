@@ -1,15 +1,46 @@
 $pending-link: #ffffff;
 $pending-bar: #9fbfdf;
+$balance-div: #FAE0B6;
+$student-box: rgba(227, 227, 227, 0.8);
 
-.student-info ul {
-  list-style: none;
-  margin-bottom: 0;
-  margin-left: 0;
+.balance-box {
+  background-color: $balance-div;
+  border-radius: 10px;
+}
+
+.balance-info {
+  padding-top: 0.3em;
+  padding-bottom: 0.5em;
+  display: table;
+  margin: 0 auto;
   text-align: center;
 }
 
-.pending a {
-  color: $pending-link;
+.balance-title {
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.balance-amount {
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+.student-info {
+  background-color: $student-box;
+  list-style: none;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
+  margin-bottom: 0;
+  margin-left: 0;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.student-name {
+  font-size: 2em;
+  font-weight: 400;
+  padding-bottom: 0.2em;
 }
 
 .pending {
@@ -17,16 +48,34 @@ $pending-bar: #9fbfdf;
   border-radius: 10px;
   border-style: solid;
   border-width: 1px;
+  width: 20em;
+  display: table;
+  margin: 0 auto;
+  padding: 0.1em;
+
   a {
     color: $pending-link;
   }
 }
 
 .lesson-info {
-  margin-top: 0.5em;
-  h2 {
-    margin-bottom: 0;
-  }
+  padding-top: 0.2em;
+}
+
+.lesson-instrument {
+  font-size: 1.6em;
+}
+
+.lesson-time {
+  font-size: 1em;
+}
+
+.lesson-remaining {
+  font-size: 1em;
+}
+
+.lesson-excused {
+  font-size: 1em;
 }
 
 .no-bullets {
