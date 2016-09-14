@@ -98,7 +98,7 @@ feature "admin searches for students", js: true do
   scenario "successfully finds students" do
     within(:css, ".top-bar-right") do
       fill_in :query, with: "Will"
-      find('#search_field').native.send_keys(:return)
+      find(".search-field").native.send_keys(:return)
     end
 
     expect(page).to have_content(student1.full_name)
@@ -109,7 +109,7 @@ feature "admin searches for students", js: true do
   scenario "specifies invalid search query" do
     within(:css, ".top-bar-right") do
       fill_in :query, with: "x"
-      find('#search_field').native.send_keys(:return)
+      find(".search-field").native.send_keys(:return)
     end
 
     expect(page).to have_content("Sorry, but we couldn't find anything matching 'x'")

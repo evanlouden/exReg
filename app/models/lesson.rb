@@ -90,6 +90,5 @@ class Lesson < ApplicationRecord
   def self.all_active_lessons
     lessons = select { |l| l.remaining.positive? }
     lessons.sort_by! { |l| [l.teacher.contacts.first.last_name, l.student.last_name] }
-    # lessons ||= ""
   end
 end

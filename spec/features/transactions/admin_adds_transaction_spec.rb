@@ -55,7 +55,7 @@ feature "admin adds transaction", js: true do
     click_button "Sign In"
     within(:css, ".top-bar-right") do
       fill_in :query, with: "Will"
-      find('#search_field').native.send_keys(:return)
+      find(".search-field").native.send_keys(:return)
     end
     click_link student1.full_name
   end
@@ -65,7 +65,7 @@ feature "admin adds transaction", js: true do
     click_button "Add Transaction"
 
     expect(page).to have_content("Debit Added")
-    expect(page).to have_content("Current Balance: $500.00")
+    expect(page).to have_content("$500.00")
     expect(page).to have_content(Time.now.getutc.to_date.strftime("%-m/%-d/%Y"))
   end
 
@@ -75,7 +75,22 @@ feature "admin adds transaction", js: true do
     click_button "Add Transaction"
 
     expect(page).to have_content("Credit Added")
-    expect(page).to have_content("Current Balance: -$500.00")
+    expect(page).to have_content("-$500.00")
     expect(page).to have_content(Time.now.getutc.to_date.strftime("%-m/%-d/%Y"))
+  end
+
+  scenario "does not specify required information" do
+    click_button "Add Transaction"
+
+    expect(page).to have_content("can't be blank")
+    expect(page).to_not have_content("-$500.00")
+  end
+
+  scenario "does not specify minimum amount" do
+    choose("transaction_type_credit")
+    click_button "Add Transaction"
+
+    expect(page).to have_content("greater than 0")
+    expect(page).to_not have_content("-$500.00")
   end
 end
