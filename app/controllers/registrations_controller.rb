@@ -20,10 +20,4 @@ class RegistrationsController < Devise::RegistrationsController
     @states = Account::STATES
     super
   end
-
-  protected
-
-  def after_sign_up_path_for(_resource)
-    new_student_path
-  end
 end

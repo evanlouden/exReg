@@ -3,10 +3,6 @@ module ApplicationHelper
     "#{first_name} #{last_name}"
   end
 
-  def primary_contact
-    current_account.contacts.select(&:primary).first
-  end
-
   def primary_family_contact
     contacts.select(&:primary).first
   end
