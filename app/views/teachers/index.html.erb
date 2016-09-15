@@ -2,14 +2,14 @@
 <div id="admin-teachers">
   <% @teachers.each do |teacher| %>
     <p>
-      <%= link_to teacher.staff_name, students_path(teacher: teacher.id) %>
-      <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i>".html_safe, edit_teacher_path(teacher), id: "edit-availability" %>
-      <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, teacher_path(teacher), method: :delete, id: "delete-teacher", data: { confirm: "Are you sure?" } %></br>
+      <%= link_to teacher.staff_name, students_path(teacher: teacher.id) %> </br>
       <%=
        link_to_if(teacher.admin, "Revoke Admin", change_admin_path(teacher), method: :patch) do
          link_to("Make Admin", change_admin_path(teacher), method: :patch)
        end
-      %>
+      %> </br>
+      <%= link_to "<i class='fa fa-calendar' aria-hidden='true'></i>".html_safe, edit_teacher_path(teacher), id: "edit-availability" %>
+      <%= link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe, teacher_path(teacher), method: :delete, id: "delete-teacher", data: { confirm: "Are you sure?" } %> </br>
     </p>
   <% end %>
 </div>
