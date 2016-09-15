@@ -16,6 +16,7 @@ Rails.application.config.assets.precompile += %w( teacherCalendar.js )
 Rails.application.config.assets.precompile += %w( lessonRegistrationForm.js )
 Rails.application.config.assets.precompile += %w( inquiryShow.js )
 Rails.application.config.assets.precompile += %w( settings.js )
+Rails.application.config.assets.precompile += %w( attendanceSwiper.js )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
