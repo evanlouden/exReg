@@ -17,9 +17,11 @@
 //= require moment
 
 $(function(){ $(document).foundation();
-  var errorTimeOut = setTimeout(function(){
-    $('#flash-messages').fadeOut('slow',function(){
-      $(this).remove();
-    });
-  }, 2000);
+  errorTimeOut();
 });
+
+var errorTimeOut = setTimeout(function(){
+  $('#flash-messages').fadeOut('slow',function(){
+    $(this).remove();
+  });
+}, 2000);
