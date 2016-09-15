@@ -2,7 +2,8 @@ class StudentsController < PermissionsController
   before_action :authenticate_account!
 
   def index
-    @students = current_account.students
+    params[:teacher] ? teacher = Teacher.find(params[:teacher]) : teacher = current_account
+    @students = teacher.students
   end
 
   def new
