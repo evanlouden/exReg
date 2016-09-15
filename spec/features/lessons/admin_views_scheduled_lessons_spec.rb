@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin views list of scheduled lessons" do
+feature "admin views list of students lessons for teachers" do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(

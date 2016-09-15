@@ -1,0 +1,19 @@
+@import "application";
+
+.flash.notice {
+  padding: 1em;
+  color: $white;
+  background-color: $flash-success;
+}
+
+.flash.error {
+  padding: 1em;
+  color: $white;
+  background-color: $flash-error;
+}
+
+.flash.alert {
+  padding: 1em;
+  color: $white;
+  background-color: $flash-alert;
+}

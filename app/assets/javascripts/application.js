@@ -16,4 +16,10 @@
 //= require foundation
 //= require moment
 
-$(function(){ $(document).foundation(); });
+$(function(){ $(document).foundation();
+  var errorTimeOut = setTimeout(function(){
+    $('#flash-messages').fadeOut('slow',function(){
+      $(this).remove();
+    });
+  }, 2000);
+});
