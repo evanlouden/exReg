@@ -1,8 +1,8 @@
 class ContactsController < PermissionsController
   def index
-    @contacts = current_account.contacts
-    @primary = @contacts.select(&:primary).first
-    @nonprimary = @contacts.select { |c| !c.primary }
+    contacts = current_account.contacts
+    @primary = contacts.select(&:primary).first
+    @nonprimary = contacts.select { |c| !c.primary }
   end
 
   def new
