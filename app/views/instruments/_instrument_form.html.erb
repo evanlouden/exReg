@@ -1,10 +1,9 @@
-<%= form_for @instrument do |f| %>
+<%= form_for instrument do |f| %>
   <div class="field">
     <%= f.label :name, "Instrument Name"  %>
     <%= f.text_field :name  %>
   </div>
-
   <div class= "actions">
-    <%= f.submit "Add Instrument" %>
+    <%= f.submit button_label %>
   </div>
 <% end %>

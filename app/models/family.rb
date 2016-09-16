@@ -8,18 +8,18 @@ class Family < Account
   accepts_nested_attributes_for :contacts
 
   def current_balance
-    debits = all_debits
-    credits = all_credits
-    (debits ||= 0) - (credits ||= 0)
+    all_debits - all_credits
   end
 
   def all_debits
     debits = transactions.select { |t| t.type == "Debit" }
-    debits.map { |t| t.amount.to_f }.reduce(:+)
+    total = debits.map { |t| t.amount.to_f }.reduce(:+)
+    total ||= 0
   end
 
   def all_credits
     credits = transactions.select { |t| t.type == "Credit" }
-    credits.map { |t| t.amount.to_f }.reduce(:+)
+    total = credits.map { |t| t.amount.to_f }.reduce(:+)
+    total ||= 0
   end
 end

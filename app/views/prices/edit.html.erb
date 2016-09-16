@@ -1,22 +1,3 @@
 <h1>Edit Pricing Tier</h1>
 
-<%= form_for @price do |f| %>
-  <div class="field">
-    <%= f.label :tier_name, "Tier Name"  %>
-    <%= f.text_field :tier_name  %>
-  </div>
-  <div class="field">
-    <%= f.label :duration, "Duration (minutes)" %>
-    <%= f.number_field :duration %>
-  </div>
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.number_field :price %>
-  </div>
-
-  <div class= "actions">
-    <%= f.submit "Update Pricing Tier" %>
-  </div>
-<% end %>
-
-<%= link_to "Cancel", prices_path %>
+<%= render partial: "price_form", locals: { price: @price, button_label: "Update Pricing Tier" } %>

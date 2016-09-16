@@ -12,7 +12,7 @@
     <% end %>
   <% end %>
   <div class="hidden-submit price" id="price-form">
-    <%= render "admin/settings/prices_form" %>
+    <%= render partial: "prices/price_form", locals: { price: @price, button_label: "Create Pricing Tier" } %>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
     <% end %>
   <% end %>
   <div class="hidden-submit instrument">
-    <%= render "admin/settings/instruments_form" %>
+    <%= render partial: "instruments/instrument_form", locals: { instrument: @instrument, button_label: "Add Instrument" } %>
   </div>
 </div>
 
@@ -44,16 +44,16 @@
     <% end %>
   <% end %>
   <div class="hidden-submit reason">
-    <%= render "admin/settings/reasons_form" %>
+    <%= render partial: "reasons/reason_form", locals: { reason: @reason, button_label: "Add Reason" } %>
   </div>
 </div>
 
 <div class="callout">
   <h3>Excused Absences Allotted: <%= @count ? @count.count : "0" %> </h3>
   <% if @count.nil? %>
-    <%= render "admin/settings/new_excused_form" %>
+    <%= render partial: "admin/settings/new_excused_form", locals: { excused_absence: @excused_absence } %>
   <% else %>
-    <%= render "admin/settings/edit_excused_form" %>
+    <%= render partial: "admin/settings/edit_excused_form", locals: { count: @count } %>
   <% end %>
 </div>
 

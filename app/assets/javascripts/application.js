@@ -21,5 +21,5 @@ $(function(){ $(document).foundation();
     $('#flash-messages').fadeOut('slow',function(){
       $(this).remove();
     });
-  }, 2000);
+  }, 5000);
 });
