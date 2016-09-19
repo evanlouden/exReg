@@ -17,6 +17,7 @@ class InstrumentsController < PermissionsController
     else
       flash[:alert] = @instrument.errors.full_messages.join(", ")
       render "admin/settings"
+      flash.discard(:alert)
     end
   end
 
