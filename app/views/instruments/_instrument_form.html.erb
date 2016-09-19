@@ -1,7 +1,9 @@
-<%= form_for instrument do |f| %>
+<%= form_for instrument, validate: true do |f| %>
   <div class="field">
-    <%= f.label :name, "Instrument Name"  %>
-    <%= f.text_field :name  %>
+    <div class="small-4">
+      <%= f.label :name, "Instrument Name"  %>
+      <%= f.text_field :name  %>
+    </div>
   </div>
   <div class= "actions">
     <%= f.submit button_label %>
