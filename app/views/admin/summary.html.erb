@@ -41,7 +41,7 @@
 </div>
 
 <div class="add-transaction callout small-12 medium-6">
-  <%= form_for @transaction, validate: true, url: transactions_path, method: :post do |f| %>
+  <%= form_for @transaction, url: transactions_path, method: :post do |f| %>
     <%= f.hidden_field :family_id, value: @family.id %>
     <div class="field">
       <%= f.label :amount %>
