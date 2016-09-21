@@ -17,6 +17,7 @@ class PricesController < PermissionsController
     else
       flash[:alert] = @price.errors.full_messages.join(", ")
       render "admin/settings"
+      flash.discard(:alert)
     end
   end
 

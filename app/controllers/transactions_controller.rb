@@ -11,6 +11,7 @@ class TransactionsController < PermissionsController
     else
       flash[:alert] = @transaction.errors.full_messages.join(", ")
       render "admin/summary"
+      flash.discard(:alert)
     end
   end
 
