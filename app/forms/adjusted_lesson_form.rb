@@ -45,7 +45,7 @@ class AdjustedLessonForm
   end
 
   def print_errors
-    errors = ""
+    errors = "errors!"
   end
 
   private

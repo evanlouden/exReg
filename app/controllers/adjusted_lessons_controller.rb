@@ -3,7 +3,7 @@ class AdjustedLessonsController < PermissionsController
   def create
     @adjusted_lesson_form = AdjustedLessonForm.new(adjusted_lesson_params)
     lesson = Lesson.find(adjusted_lesson_params[:lesson_id])
-    @student = Student.find(lesson.student)
+    @student = Student.find(lesson.student.id)
     @inquiries = @student.pending_inquiries
     @lessons = @student.lessons
     @adjusted_lesson_form.persist
