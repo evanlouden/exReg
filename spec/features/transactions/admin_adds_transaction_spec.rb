@@ -57,7 +57,7 @@ feature "admin adds transaction", js: true do
       fill_in :query, with: "Will"
       find(".search-field").native.send_keys(:return)
     end
-    click_link student1.full_name
+    click_link("family-icon")
   end
   scenario "successfully adds debit" do
     choose("transaction_type_debit")

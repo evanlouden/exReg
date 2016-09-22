@@ -1,23 +1,58 @@
 <h4>
   <%= @student.full_name %>
-  <span class="student-links">
-  </span>
+  <%= link_to "<i class='fa fa-users' aria-hidden='true'></i>".html_safe, summary_admin_index_path(family_id: @student.family.id), id: "family-icon" if current_account.type == "Admin" %>
 </h4>
+
 <h4>Lessons</h4>
 <% @lessons.each do |lesson| %>
-<div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>" class="callout">
-  <p>
-    Instrument: <%= lesson.instrument %></br>
-    Teacher: <%= lesson.teacher.staff_name %></br>
-    <%= "#{lesson.remaining} lessons remaining" %></br>
-    Lesson Times: <%= lesson.time_info %></br>
-    <%= lesson.price_info %></br>
-    Excused Remaining: <%= lesson.excused_remaining %></br>
-    Lesson History:</br>
-    <%= lesson.print_history %>
-  </p>
-</div>
+  <div id="lessons-<%= lesson.student.first_name %>-<%= lesson.instrument %>" class="callout">
+    <p>
+      Instrument: <%= lesson.instrument %></br>
+      Teacher: <%= lesson.teacher.staff_name %></br>
+      <%= "#{lesson.remaining} lessons remaining" %></br>
+      Lesson Times: <%= lesson.time_info %></br>
+      <%= lesson.price_info %></br>
+      Excused Remaining: <%= lesson.excused_remaining %></br>
+      Lesson History:</br>
+      <%= lesson.print_history %>
+    </p>
+
+    <% if current_account.type == "Admin" %>
+      <%= form_for @adjusted_lesson_form, url: adjusted_lessons_path do |f| %>
+        <div class="field">
+          <%= f.label :lesson_amount %><br />
+          <%= f.number_field :lesson_amount, autofocus: true %>
+        </div>
+        <div class="field">
+          <%= f.label :effective_date %><br />
+          <%= f.date_field :effective_date %>
+        </div>
+        <div class="field">
+          <%= f.label :reason %><br />
+          <%= f.text_field :reason %>
+        </div>
+        <div class="field">
+          <%= f.label :transaction_amount %><br />
+          <%= f.number_field :transaction_amount %>
+        </div>
+        <div class="field">
+          <%= f.radio_button(:transaction_type, "Credit") %>
+          <%= f.label(:transaction_type, "Credit") %><br/>
+          <%= f.radio_button(:transaction_type, "Debit") %>
+          <%= f.label(:transaction_type, "Debit") %>
+        </div>
+        <%= f.hidden_field :lesson_id, value: lesson.id %>
+        <%= f.hidden_field :family_id, value: lesson.student.family.id %>
+        <%= f.hidden_field :admin_id, value: current_account.id %>
+
+        <div class= "actions">
+          <%= f.submit "Submit Adjustments" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
+
 <div class="callout">
   <h4>
     Student Availability

@@ -4,6 +4,7 @@ class Lesson < ApplicationRecord
   belongs_to :teacher
   belongs_to :inquiry
   has_many :missed_lessons
+  has_many :adjusted_lessons
 
   validates :day,
             presence: true
@@ -33,7 +34,11 @@ class Lesson < ApplicationRecord
             presence: true
 
   def remaining
-    purchased - attended
+    purchased - (attended + adjusted_count)
+  end
+
+  def adjusted_count
+    adjusted_lessons.map(&:amount).inject(0, &:+)
   end
 
   def initial_balance
@@ -56,11 +61,23 @@ class Lesson < ApplicationRecord
   end
 
   def print_each_line(count, history)
-    while !attended.zero? && count < attended
+    while !attended.zero? && count < (attended + adjusted_count)
       date = (start_date + (count * 7)).strftime("%m/%d/%y")
       missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
-      history += if missed_lesson.empty?
+      adjusted_lesson = adjusted_lessons.select do |l|
+        case
+          when l.effective_date == start_date + (count * 7)
+            true
+          when l.effective_date < start_date + (count * 7) && l.effective_date + ((l.amount - 1) * 7) >= start_date + (count * 7)
+            true
+          else
+            false
+          end
+      end
+      history += if missed_lesson.empty? && adjusted_lesson.empty?
                    "<li>#{date} - Attended</li>"
+                 elsif !adjusted_lesson.empty?
+                   "<li>#{date} - Credited</li>"
                  else
                    "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
                  end

@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   resources :missed_lessons, only: :create
   resources :excused_absences, only: [:index, :create, :edit, :update]
   resources :transactions, only: [:create, :destroy]
+  resources :adjusted_lessons, only: :create
 
   namespace :api do
     namespace :v1 do

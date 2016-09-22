@@ -58,7 +58,6 @@ feature "admin registers student for lessons", js: true do
       find(".search-field").native.send_keys(:return)
     end
     click_link student1.full_name
-    click_link student1.full_name
 
     expect(page).to have_content(count1.count)
     expect(page).to have_content(price2.description)
