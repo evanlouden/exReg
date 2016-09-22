@@ -14,14 +14,14 @@ class AdjustedLessonForm
     :adjusted_lesson,
     :transaction
 
-	validates :lesson_amount, presence: true
-	validates :effective_date, presence: true
+  validates :lesson_amount, presence: true
+  validates :effective_date, presence: true
   validates :reason, presence: true
-	validates :transaction_amount, presence: true
-	validates :transaction_type, presence: true
-	validates :lesson_id, presence: true
-	validates :family_id, presence: true
-	validates :admin_id, presence: true
+  validates :transaction_amount, presence: true
+  validates :transaction_type, presence: true
+  validates :lesson_id, presence: true
+  validates :family_id, presence: true
+  validates :admin_id, presence: true
 
   def initialize(id = {})
     if !id["id"].nil?
@@ -45,16 +45,23 @@ class AdjustedLessonForm
   end
 
   def print_errors
-    errors = "errors"
+    errors = ""
+    if adjusted_lesson
+      errors += transaction.errors.full_messages.join(", ")
+      errors += ", "
+      errors += adjusted_lesson.errors.full_messages.join(", ")
+    else
+      errors += self.errors.full_messages.join(", ")
+    end
   end
 
   private
 
   def create_adjusted_lesson
-		@adjusted_lesson = AdjustedLesson.new(
+    @adjusted_lesson = AdjustedLesson.new(
       amount: lesson_amount,
-	    effective_date: effective_date,
-		  reason: reason,
+      effective_date: effective_date,
+      reason: reason,
       lesson_id: lesson_id
     )
   end

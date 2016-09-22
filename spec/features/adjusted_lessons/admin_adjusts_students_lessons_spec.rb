@@ -43,7 +43,7 @@ feature "admin credits student with lessons", js: true do
     )
   }
 
-  scenario "successfully credits lessons" do
+  before(:each) do
     visit unauthenticated_root_path
     click_link "Sign In"
     fill_in "Email", with: admin1.email
@@ -54,7 +54,9 @@ feature "admin credits student with lessons", js: true do
       find(".search-field").native.send_keys(:return)
     end
     click_link student1.full_name
-    fill_in "Lesson Amount", with: "1"
+  end
+  scenario "successfully credits lessons" do
+    fill_in "Lesson Amount", with: "2"
     fill_in "Effective Date", with: Date.today + 6
     fill_in "Reason", with: "Had the flu"
     fill_in "Transaction Amount", with: "150"
@@ -63,9 +65,18 @@ feature "admin credits student with lessons", js: true do
 
     expect(page).to have_content("Adjustments Added")
     expect(page).to have_content("#{(lesson1.start_date + 21).strftime('%m/%d/%y')} - Credited")
+    expect(page).to have_content("#{(lesson1.start_date + 28).strftime('%m/%d/%y')} - Credited")
 
     click_link("family-icon")
 
     expect(page).to have_content("+$150.00")
+  end
+
+  scenario "does not specify valid information" do
+    click_button "Submit Adjustments"
+
+    expect(page).to have_content("can't be blank")
+    expect(page).to_not have_content("Adjustments Added")
+    expect(page).to_not have_content("Credited")
   end
 end
