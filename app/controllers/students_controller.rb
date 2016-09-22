@@ -33,6 +33,7 @@ class StudentsController < PermissionsController
     @student = Student.find(params[:id])
     @inquiries = @student.pending_inquiries
     @lessons = @student.lessons
+    @adjusted_lesson_form = AdjustedLessonForm.new
   end
 
   def edit

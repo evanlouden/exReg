@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "admin views student's lessons", js: true do
+feature "admin credits student with lessons", js: true do
   let!(:admin1) { FactoryGirl.create(:admin) }
   let!(:contact1) {
     FactoryGirl.create(
@@ -35,13 +35,15 @@ feature "admin views student's lessons", js: true do
   let!(:lesson1) {
     FactoryGirl.create(
       :lesson,
+      start_date: Date.today - 15,
+      attended: 3,
       student: student1,
       teacher: teacher1,
       inquiry: inquiry1
     )
   }
 
-  scenario "views list of lessons" do
+  scenario "successfully credits lessons" do
     visit unauthenticated_root_path
     click_link "Sign In"
     fill_in "Email", with: admin1.email
@@ -52,10 +54,18 @@ feature "admin views student's lessons", js: true do
       find(".search-field").native.send_keys(:return)
     end
     click_link student1.full_name
-    click_link student1.full_name
+    fill_in "Lesson Amount", with: "1"
+    fill_in "Effective Date", with: Date.today + 6
+    fill_in "Reason", with: "Had the flu"
+    fill_in "Transaction Amount", with: "150"
+    choose("adjusted_lesson_form_transaction_type_credit")
+    click_button "Submit Adjustments"
 
-    expect(page).to have_content(lesson1.time_info)
-    expect(page).to have_content(lesson1.price_info)
-    expect(page).to have_content(lesson1.teacher.staff_name)
+    expect(page).to have_content("Adjustments Added")
+    expect(page).to have_content("#{(lesson1.start_date + 21).strftime('%m/%d/%y')} - Credited")
+
+    click_link("family-icon")
+
+    expect(page).to have_content("+$150.00")
   end
 end
