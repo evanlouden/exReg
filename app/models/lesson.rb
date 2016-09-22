@@ -65,14 +65,13 @@ class Lesson < ApplicationRecord
       date = (start_date + (count * 7)).strftime("%m/%d/%y")
       missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
       adjusted_lesson = adjusted_lessons.select do |l|
-        case
-          when l.effective_date == start_date + (count * 7)
-            true
-          when l.effective_date < start_date + (count * 7) && l.effective_date + ((l.amount - 1) * 7) >= start_date + (count * 7)
-            true
-          else
-            false
-          end
+        if l.effective_date == start_date + (count * 7)
+          true
+        elsif l.effective_date < start_date + (count * 7) && l.effective_date + ((l.amount - 1) * 7) >= start_date + (count * 7)
+          true
+        else
+          false
+        end
       end
       history += if missed_lesson.empty? && adjusted_lesson.empty?
                    "<li>#{date} - Attended</li>"
