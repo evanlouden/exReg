@@ -4,7 +4,7 @@ class Lesson < ApplicationRecord
   belongs_to :teacher
   belongs_to :inquiry
   has_many :missed_lessons
-  has_many :adjusted_lessons
+  has_many :dropped_lessons
 
   validates :day,
             presence: true
@@ -34,11 +34,11 @@ class Lesson < ApplicationRecord
             presence: true
 
   def remaining
-    purchased - (attended + adjusted_count)
+    purchased - (attended + dropped_count)
   end
 
-  def adjusted_count
-    adjusted_lessons.map(&:amount).inject(0, &:+)
+  def dropped_count
+    dropped_lessons.map(&:amount).inject(0, &:+)
   end
 
   def initial_balance
@@ -60,11 +60,19 @@ class Lesson < ApplicationRecord
     history.html_safe
   end
 
+  def future_lessons
+    lessons = []
+    remaining.times do |i|
+      lessons << active_lesson + (7 * i)
+    end
+    lessons
+  end
+
   def print_each_line(count, history)
-    while !attended.zero? && count < (attended + adjusted_count)
+    while !attended.zero? && count < (attended + dropped_count + excused_counter)
       date = (start_date + (count * 7)).strftime("%m/%d/%y")
       missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
-      adjusted_lesson = adjusted_lessons.select do |l|
+      dropped_lesson = dropped_lessons.select do |l|
         if l.effective_date == start_date + (count * 7)
           true
         elsif l.effective_date < start_date + (count * 7) && l.effective_date + ((l.amount - 1) * 7) >= start_date + (count * 7)
@@ -73,10 +81,10 @@ class Lesson < ApplicationRecord
           false
         end
       end
-      history += if missed_lesson.empty? && adjusted_lesson.empty?
+      history += if missed_lesson.empty? && dropped_lesson.empty?
                    "<li>#{date} - Attended</li>"
-                 elsif !adjusted_lesson.empty?
-                   "<li>#{date} - Credited</li>"
+                 elsif !dropped_lesson.empty?
+                   "<li>#{date} - Dropped, #{dropped_lesson.first.reason}</li>"
                  else
                    "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
                  end
@@ -96,7 +104,7 @@ class Lesson < ApplicationRecord
   end
 
   def active_lesson
-    start_date + ((attended + excused_counter) * 7)
+    start_date + ((attended + excused_counter + dropped_count) * 7)
   end
 
   def attendance_needed?

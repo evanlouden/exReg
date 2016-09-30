@@ -43,16 +43,6 @@ ActiveRecord::Schema.define(version: 20160921200158) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "adjusted_lessons", force: :cascade do |t|
-    t.integer  "amount",         null: false
-    t.date     "effective_date", null: false
-    t.text     "reason",         null: false
-    t.integer  "lesson_id",      null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["lesson_id"], name: "index_adjusted_lessons_on_lesson_id", using: :btree
-  end
-
   create_table "availabilities", force: :cascade do |t|
     t.string  "checked",    null: false
     t.string  "day",        null: false
@@ -76,6 +66,16 @@ ActiveRecord::Schema.define(version: 20160921200158) do
     t.index ["admin_id"], name: "index_contacts_on_admin_id", using: :btree
     t.index ["family_id"], name: "index_contacts_on_family_id", using: :btree
     t.index ["teacher_id"], name: "index_contacts_on_teacher_id", using: :btree
+  end
+
+  create_table "dropped_lessons", force: :cascade do |t|
+    t.integer  "amount",         null: false
+    t.date     "effective_date", null: false
+    t.text     "reason",         null: false
+    t.integer  "lesson_id",      null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["lesson_id"], name: "index_dropped_lessons_on_lesson_id", using: :btree
   end
 
   create_table "excused_absences", force: :cascade do |t|

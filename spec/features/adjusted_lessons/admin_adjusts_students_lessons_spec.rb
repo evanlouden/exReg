@@ -57,15 +57,14 @@ feature "admin credits student with lessons", js: true do
   end
   scenario "successfully credits lessons" do
     fill_in "Lesson Amount", with: "2"
-    fill_in "Effective Date", with: Date.today + 6
+    select(Date.today + 6, from: "Effective Date")
     fill_in "Reason", with: "Had the flu"
     fill_in "Transaction Amount", with: "150"
-    choose("adjusted_lesson_form_transaction_type_credit")
-    click_button "Submit Adjustments"
+    click_button "Add Dropped Lessons"
 
-    expect(page).to have_content("Adjustments Added")
-    expect(page).to have_content("#{(lesson1.start_date + 21).strftime('%m/%d/%y')} - Credited")
-    expect(page).to have_content("#{(lesson1.start_date + 28).strftime('%m/%d/%y')} - Credited")
+    expect(page).to have_content("Lesson(s) Dropped")
+    expect(page).to have_content("#{(lesson1.start_date + 21).strftime('%m/%d/%y')} - Dropped")
+    expect(page).to have_content("#{(lesson1.start_date + 28).strftime('%m/%d/%y')} - Dropped")
 
     click_link("family-icon")
 
@@ -73,10 +72,9 @@ feature "admin credits student with lessons", js: true do
   end
 
   scenario "does not specify valid information" do
-    click_button "Submit Adjustments"
+    click_button "Add Dropped Lessons"
 
     expect(page).to have_content("can't be blank")
-    expect(page).to_not have_content("Adjustments Added")
-    expect(page).to_not have_content("Credited")
+    expect(page).to_not have_content("Lesson(s) Dropped")
   end
 end
