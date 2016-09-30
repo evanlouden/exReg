@@ -15,6 +15,12 @@
       Excused Remaining: <%= lesson.excused_remaining %></br>
       Lesson History:</br>
       <%= lesson.print_history %>
+      Future Lessons:
+      <% lesson.future_lessons.each do |future_lesson| %>
+        <li>
+          <%= future_lesson.to_formatted_s(:long) %>
+        </li>
+      <% end %>
     </p>
 
     <% if current_account.type == "Admin" %>
@@ -25,7 +31,7 @@
         </div>
         <div class="field">
           <%= f.label :effective_date, "Effective Date" %><br />
-          <%= f.date_field :effective_date %>
+          <%= f.collection_select(:effective_date, lesson.future_lessons, :to_s, :to_s) %>
         </div>
         <div class="field">
           <%= f.label :reason %><br />

@@ -60,6 +60,14 @@ class Lesson < ApplicationRecord
     history.html_safe
   end
 
+  def future_lessons
+    lessons = []
+    remaining.times do |i|
+      lessons << active_lesson + (7 * i)
+    end
+    lessons
+  end
+
   def print_each_line(count, history)
     while !attended.zero? && count < (attended + adjusted_count)
       date = (start_date + (count * 7)).strftime("%m/%d/%y")
@@ -96,7 +104,7 @@ class Lesson < ApplicationRecord
   end
 
   def active_lesson
-    start_date + ((attended + excused_counter) * 7)
+    start_date + ((attended + excused_counter + adjusted_count) * 7)
   end
 
   def attendance_needed?
