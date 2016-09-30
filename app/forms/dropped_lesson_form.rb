@@ -1,4 +1,4 @@
-class AdjustedLessonForm
+class DroppedLessonForm
   include Virtus.model
   include ActiveModel::Model
 
@@ -11,7 +11,7 @@ class AdjustedLessonForm
     :lesson_id,
     :family_id,
     :admin_id,
-    :adjusted_lesson,
+    :dropped_lesson,
     :transaction
 
   validates :lesson_amount, presence: true
@@ -25,7 +25,7 @@ class AdjustedLessonForm
 
   def initialize(id = {})
     if !id["id"].nil?
-      @adjusted_lesson = AdjustedLesson.find(id["id"])
+      @dropped_lesson = DroppedLesson.find(id["id"])
     else
       super(id)
     end
@@ -33,23 +33,23 @@ class AdjustedLessonForm
 
   def register
     if valid?
-      create_adjusted_lesson
+      create_dropped_lesson
       create_transaction
     end
   end
 
   def persist
     register
-    adjusted_lesson.save!
+    dropped_lesson.save!
     transaction.save!
   end
 
   def print_errors
     errors = ""
-    if adjusted_lesson
+    if dropped_lesson
       errors += transaction.errors.full_messages.join(", ")
       errors += ", "
-      errors += adjusted_lesson.errors.full_messages.join(", ")
+      errors += dropped_lesson.errors.full_messages.join(", ")
     else
       errors += self.errors.full_messages.join(", ")
     end
@@ -57,8 +57,8 @@ class AdjustedLessonForm
 
   private
 
-  def create_adjusted_lesson
-    @adjusted_lesson = AdjustedLesson.new(
+  def create_dropped_lesson
+    @dropped_lesson = DroppedLesson.new(
       amount: lesson_amount,
       effective_date: effective_date,
       reason: reason,

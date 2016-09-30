@@ -1,4 +1,4 @@
-class AdjustedLesson < ApplicationRecord
+class DroppedLesson < ApplicationRecord
   belongs_to :lesson
 
   validates :amount,

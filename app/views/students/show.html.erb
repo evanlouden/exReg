@@ -24,7 +24,7 @@
     </p>
 
     <% if current_account.type == "Admin" %>
-      <%= form_for @adjusted_lesson_form, url: adjusted_lessons_path do |f| %>
+      <%= form_for @dropped_lesson_form, url: dropped_lessons_path do |f| %>
         <div class="field">
           <%= f.label :lesson_amount, "Lesson Amount" %><br />
           <%= f.number_field :lesson_amount, autofocus: true %>
@@ -41,18 +41,13 @@
           <%= f.label :transaction_amount, "Transaction Amount" %><br />
           <%= f.number_field :transaction_amount %>
         </div>
-        <div class="field">
-          <%= f.radio_button(:transaction_type, "Credit") %>
-          <%= f.label(:transaction_type, "Credit") %><br/>
-          <%= f.radio_button(:transaction_type, "Debit") %>
-          <%= f.label(:transaction_type, "Debit") %>
-        </div>
+        <%= f.hidden_field :transaction_type, value: "Credit" %>
         <%= f.hidden_field :lesson_id, value: lesson.id %>
         <%= f.hidden_field :family_id, value: lesson.student.family.id %>
         <%= f.hidden_field :admin_id, value: current_account.id %>
 
         <div class= "actions">
-          <%= f.submit "Submit Adjustments" %>
+          <%= f.submit "Add Dropped Lessons" %>
         </div>
       <% end %>
     <% end %>
