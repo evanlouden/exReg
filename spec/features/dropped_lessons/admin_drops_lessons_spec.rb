@@ -57,10 +57,15 @@ feature "admin credits student with lessons", js: true do
   end
   scenario "successfully credits lessons" do
     fill_in "Lesson Amount", with: "2"
+
+    using_wait_time 15 do
+      page.has_css?("input", text: "150", visible: true)
+    end
+
     select(Date.today + 6, from: "Effective Date")
     fill_in "Reason", with: "Had the flu"
-    fill_in "Credit Amount", with: "150"
-    click_button "Add Dropped Lessons"
+    click_button "Drop Lessons"
+    page.driver.browser.switch_to.alert.accept
 
     expect(page).to have_content("Lesson(s) Dropped")
     expect(page).to have_content("#{(lesson1.start_date + 21).strftime('%m/%d/%y')} - Dropped")
@@ -72,17 +77,8 @@ feature "admin credits student with lessons", js: true do
   end
 
   scenario "does not specify valid information" do
-    click_button "Add Dropped Lessons"
-
-    expect(page).to have_content("can't be blank")
-    expect(page).to_not have_content("Lesson(s) Dropped")
-  end
-
-  scenario "does not specify valid transaction information" do
-    fill_in "Lesson Amount", with: "2"
-    select(Date.today + 6, from: "Effective Date")
-    fill_in "Reason", with: "Had the flu"
-    click_button "Add Dropped Lessons"
+    click_button "Drop Lessons"
+    page.driver.browser.switch_to.alert.accept
 
     expect(page).to have_content("can't be blank")
     expect(page).to_not have_content("Lesson(s) Dropped")
