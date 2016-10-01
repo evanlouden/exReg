@@ -1,5 +1,4 @@
 class DroppedLessonsController < PermissionsController
-
   def create
     @dropped_lesson_form = DroppedLessonForm.new(dropped_lesson_params)
     lesson = Lesson.find(dropped_lesson_params[:lesson_id])
@@ -18,14 +17,14 @@ class DroppedLessonsController < PermissionsController
 
   def dropped_lesson_params
     params.require(:dropped_lesson_form).permit(
-    :lesson_amount,
-    :effective_date,
-    :reason,
-    :transaction_amount,
-    :transaction_type,
-    :lesson_id,
-    :family_id,
-    :admin_id
-  )
+      :lesson_amount,
+      :effective_date,
+      :reason,
+      :transaction_amount,
+      :transaction_type,
+      :lesson_id,
+      :family_id,
+      :admin_id
+    )
   end
 end

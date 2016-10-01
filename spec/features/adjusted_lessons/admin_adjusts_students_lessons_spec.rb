@@ -59,7 +59,7 @@ feature "admin credits student with lessons", js: true do
     fill_in "Lesson Amount", with: "2"
     select(Date.today + 6, from: "Effective Date")
     fill_in "Reason", with: "Had the flu"
-    fill_in "Transaction Amount", with: "150"
+    fill_in "Credit Amount", with: "150"
     click_button "Add Dropped Lessons"
 
     expect(page).to have_content("Lesson(s) Dropped")
@@ -72,6 +72,16 @@ feature "admin credits student with lessons", js: true do
   end
 
   scenario "does not specify valid information" do
+    click_button "Add Dropped Lessons"
+
+    expect(page).to have_content("can't be blank")
+    expect(page).to_not have_content("Lesson(s) Dropped")
+  end
+
+  scenario "does not specify valid transaction information" do
+    fill_in "Lesson Amount", with: "2"
+    select(Date.today + 6, from: "Effective Date")
+    fill_in "Reason", with: "Had the flu"
     click_button "Add Dropped Lessons"
 
     expect(page).to have_content("can't be blank")

@@ -14,8 +14,4 @@ module ApplicationHelper
   def balance_sign
     type == "Debit" ? "-" : "+"
   end
-
-  def readable_date
-    strftime("%B")
-  end
 end
