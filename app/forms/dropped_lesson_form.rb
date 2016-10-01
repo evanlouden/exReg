@@ -24,11 +24,7 @@ class DroppedLessonForm
   validates :admin_id, presence: true
 
   def initialize(id = {})
-    if !id["id"].nil?
-      @dropped_lesson = DroppedLesson.find(id["id"])
-    else
-      super(id)
-    end
+    super(id)
   end
 
   def register
