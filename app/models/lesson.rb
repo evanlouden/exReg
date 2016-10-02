@@ -62,32 +62,54 @@ class Lesson < ApplicationRecord
 
   def future_lessons
     lessons = []
-    remaining.times do |i|
-      lessons << active_lesson + (7 * i)
-    end
+    remaining.times { |i| lessons << active_lesson + (7 * i) }
     lessons
   end
 
-  def print_each_line(count, history)
-    while !attended.zero? && count < (attended + dropped_count + excused_counter)
-      date = (start_date + (count * 7)).strftime("%m/%d/%y")
-      missed_lesson = missed_lessons.select { |l| l.date == start_date + (count * 7) }
-      dropped_lesson = dropped_lessons.select do |l|
-        if l.effective_date == start_date + (count * 7)
-          true
-        elsif l.effective_date < start_date + (count * 7) && l.effective_date + ((l.amount - 1) * 7) >= start_date + (count * 7)
-          true
-        else
-          false
-        end
+  def iterative_lesson(count)
+    start_date + (count * 7)
+  end
+
+  def lesson_date(count)
+    iterative_lesson(count).strftime("%m/%d/%y")
+  end
+
+  def missed_lesson(count)
+    missed_lessons.select { |l| l.date == iterative_lesson(count) }
+  end
+
+  def dropped_lesson(count)
+    dropped_lessons.select do |l|
+      if l.effective_date == iterative_lesson(count)
+        true
+      elsif l.effective_date < iterative_lesson(count) &&
+            l.effective_date + ((l.amount - 1) * 7) >= iterative_lesson(count)
+        true
+      else
+        false
       end
-      history += if missed_lesson.empty? && dropped_lesson.empty?
-                   "<li>#{date} - Attended</li>"
-                 elsif !dropped_lesson.empty?
-                   "<li>#{date} - Dropped, #{dropped_lesson.first.reason}</li>"
-                 else
-                   "<li>#{date} - Missed, #{missed_lesson.first.reason.reason}</li>"
-                 end
+    end
+  end
+
+  def format_date_li(count)
+    li = "<li>#{lesson_date(count)}"
+    li += if missed_lesson(count).empty? && dropped_lesson(count).empty?
+            " - Attended</li>"
+          elsif !dropped_lesson(count).empty?
+            " - Dropped, #{dropped_lesson(count).first.reason}</li>"
+          else
+            " - Missed, #{missed_lesson(count).first.reason.reason}</li>"
+          end
+    li
+  end
+
+  def all_logged_lessons
+    attended + dropped_count + excused_counter
+  end
+
+  def print_each_line(count, history)
+    while !attended.zero? && count < all_logged_lessons
+      history += format_date_li(count)
       count += 1
     end
     history
@@ -104,7 +126,7 @@ class Lesson < ApplicationRecord
   end
 
   def active_lesson
-    start_date + ((attended + excused_counter + dropped_count) * 7)
+    start_date + (all_logged_lessons * 7)
   end
 
   def attendance_needed?

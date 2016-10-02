@@ -46,7 +46,7 @@ class Teacher < Account
       students: active_students,
       availability: avails_hash(availabilities),
       lessonsRemaining: active_lessons.map(&:remaining),
-      student_avail: avails_hash(inquiry_id)
+      studentAvail: avails_hash(inquiry_id)
     }
   end
 
