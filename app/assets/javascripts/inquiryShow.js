@@ -128,7 +128,7 @@ var printRows = function(response){
         var teacherEndTime = moment.utc(teacherAvail[day].end_time);
         if(time >= teacherStartTime && time <= teacherEndTime){
           $($blocks).removeClass('teacher-unavailable');
-          var studentAvail = response.student_avail;
+          var studentAvail = response.studentAvail;
           if(studentAvail[day].start_time === null || studentAvail[day].end_time === null){
             $($blocks).addClass('student-unavailable');
           }
