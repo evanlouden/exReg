@@ -108,7 +108,7 @@ class Lesson < ApplicationRecord
   end
 
   def print_each_line(count, history)
-    while !attended.zero? && count < (all_logged_lessons)
+    while !attended.zero? && count < all_logged_lessons
       history += format_date_li(count)
       count += 1
     end
@@ -126,7 +126,7 @@ class Lesson < ApplicationRecord
   end
 
   def active_lesson
-    start_date + ((all_logged_lessons) * 7)
+    start_date + (all_logged_lessons * 7)
   end
 
   def attendance_needed?
