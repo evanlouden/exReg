@@ -152,10 +152,11 @@ ActiveRecord::Schema.define(version: 20160921200158) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.decimal  "amount",     default: "0.0", null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.decimal  "amount",      default: "0.0", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "type"
+    t.string   "description",                 null: false
     t.integer  "family_id"
     t.integer  "admin_id"
     t.index ["admin_id"], name: "index_transactions_on_admin_id", using: :btree

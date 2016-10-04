@@ -29,6 +29,7 @@ class TransactionsController < PermissionsController
     params.require(:transaction).permit(
       :amount,
       :type,
+      :description,
       :family_id
     )
   end

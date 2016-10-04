@@ -69,6 +69,7 @@ feature "admin credits student with lessons", js: true do
 
     click_link("family-icon")
 
+    expect(page).to have_content("Had the flu")
     expect(page).to have_content("+$150.00")
   end
 

@@ -110,14 +110,16 @@ FactoryGirl.define do
   end
 
   factory :debit, parent: :transaction, class: 'Debit' do
-    amount "100"
+    amount "500"
     admin
     family
+    description "Lesson Registration"
   end
 
   factory :credit, parent: :transaction, class: 'Credit' do
     amount "100"
     admin
     family
+    description "Payment"
   end
 end
