@@ -54,7 +54,7 @@ class AdminController < PermissionsController
     @family = Family.find(params[:family_id])
     @students = @family.students
     @contacts = @family.contacts.select { |c| !c.primary }
-    @transactions = Transaction.where(family: @family)
+    @transactions = Transaction.where(family: @family).order(created_at: :asc)
     @transaction = Transaction.new
   end
 
