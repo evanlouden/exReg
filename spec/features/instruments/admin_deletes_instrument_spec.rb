@@ -14,11 +14,7 @@ feature "admin deletes instrument" do
   let!(:instrument1) { FactoryGirl.create(:instrument) }
 
   scenario "successfully deletes instrument" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
     within(:css, ".top-bar-right") do
       click_link("settings-cog")
     end

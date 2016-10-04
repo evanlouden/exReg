@@ -39,11 +39,7 @@ feature "teacher takes attendance", js: true do
   }
 
   scenario "marks student present" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: teacher1.email
-    fill_in "Password", with: teacher1.password
-    click_button "Sign In"
+    sign_in_as(teacher1)
 
     within(:css, "#attendance-#{lesson1.student.first_name}-#{lesson1.student.last_name}") do
       expect(page).to have_content(lesson1.active_lesson)

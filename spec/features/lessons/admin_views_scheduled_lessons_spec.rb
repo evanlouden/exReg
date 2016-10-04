@@ -40,11 +40,7 @@ feature "admin views list of students lessons for teachers" do
   let!(:count1) { FactoryGirl.create(:excused_absence) }
 
   scenario "successfully views list" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
     click_link "All Staff"
     click_link teacher1.staff_name
 

@@ -5,11 +5,7 @@ feature "user signs in" do
   let!(:contact1) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
 
   scenario "existing user specifies valid email and password" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
 
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Sign Out")

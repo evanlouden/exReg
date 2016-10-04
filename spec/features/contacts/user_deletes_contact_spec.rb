@@ -8,11 +8,7 @@ feature "user deletes contact" do
   let!(:contact3) { FactoryGirl.create(:contact, first_name: "Sarah", family: family2) }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     click_link "Contacts"
   end
   scenario "successfully deletes contact" do

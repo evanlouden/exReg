@@ -17,11 +17,7 @@ feature "admin accesses dashboard via root path" do
   let!(:contact3) { FactoryGirl.create(:contact, email: family1.email, family: family1) }
 
   scenario "successfully accesses dashboard" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
     click_link "All Staff"
     visit admin_root_path
 
@@ -29,11 +25,7 @@ feature "admin accesses dashboard via root path" do
   end
 
   scenario "teacher tries to access admin dashboard" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: teacher1.email
-    fill_in "Password", with: teacher1.password
-    click_button "Sign In"
+    sign_in_as(teacher1)
     visit admin_index_path
 
     expect(page).to have_content("You do not have permission to access this page")
@@ -41,11 +33,7 @@ feature "admin accesses dashboard via root path" do
   end
 
   scenario "family tries to access admin dashboard" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     visit admin_index_path
 
     expect(page).to have_content("You do not have permission to access this page")

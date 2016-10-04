@@ -5,11 +5,7 @@ feature "user edits contact" do
   let!(:contact1) { FactoryGirl.create(:contact, family: family1) }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     click_link "Contacts"
     click_link("edit-contact")
   end

@@ -45,11 +45,7 @@ feature "family views student's lessons history" do
   }
 
   scenario "successfully views list of lessons" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     click_link student1.full_name
 
     expect(page).to have_content("#{lesson1.start_date.strftime('%m/%d/%y')} - Attended")

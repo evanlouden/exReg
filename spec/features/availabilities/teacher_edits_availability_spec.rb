@@ -5,11 +5,7 @@ feature "teacher edits availability" do
   let!(:contact1) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: teacher1.email
-    fill_in "Password", with: teacher1.password
-    click_button "Sign In"
+    sign_in_as(teacher1)
     click_link "Edit Availability"
   end
   scenario "successfully edits availability" do

@@ -21,11 +21,7 @@ feature "user views registered students' lessons" do
   let!(:lesson1) { FactoryGirl.create(:lesson, student: student1, teacher: teacher1, inquiry: inquiry1) }
 
   scenario "views list of lessons" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     click_link student1.full_name
 
     within(:css, "#lessons-#{lesson1.student.first_name}-#{lesson1.instrument}") do

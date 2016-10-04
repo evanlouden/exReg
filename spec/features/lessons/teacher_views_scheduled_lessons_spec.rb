@@ -39,11 +39,7 @@ feature "teacher views list of scheduled lessons" do
   let!(:count1) { FactoryGirl.create(:excused_absence) }
 
   scenario "successfully views list" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: teacher1.email
-    fill_in "Password", with: teacher1.password
-    click_button "Sign In"
+    sign_in_as(teacher1)
     click_link "My Students"
     click_link student1.full_name
 

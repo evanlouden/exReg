@@ -20,11 +20,7 @@ feature "admin adds teacher instrument association" do
   let!(:association1) { FactoryGirl.create(:teacher_instrument, teacher: teacher2, instrument: instrument1) }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
   end
   scenario "successfully removes association" do
     click_link "Instrument Associations"

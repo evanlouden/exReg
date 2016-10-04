@@ -6,10 +6,7 @@ feature "adminteacher accesses dashboard via root path" do
 
   scenario "successfully accesses dashboard" do
     visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: teacher1.email
-    fill_in "Password", with: teacher1.password
-    click_button "Sign In"
+    sign_in_as(teacher1)
 
     expect(page).to have_content("Admin Dashboard")
 

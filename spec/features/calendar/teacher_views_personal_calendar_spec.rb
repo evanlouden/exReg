@@ -32,11 +32,7 @@ feature "teacher views personal calendar", js: true do
   }
 
   scenario "successfully views calendar" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: teacher1.email
-    fill_in "Password", with: teacher1.password
-    click_button "Sign In"
+    sign_in_as(teacher1)
 
     within(:css, "##{lesson1.day}-0800PM") do
       find(:xpath, ".//div[@id='lesson-#{lesson1.day}-0800PM']")
