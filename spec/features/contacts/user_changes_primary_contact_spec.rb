@@ -6,11 +6,7 @@ feature "user changes primary contact" do
   let!(:contact2) { FactoryGirl.create(:contact, first_name: "John", email: "johndoe@family.com", primary: false, family: family1) }
 
   scenario "successfully changes primary contact" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     click_link "Contacts"
     click_link "Make Primary"
 

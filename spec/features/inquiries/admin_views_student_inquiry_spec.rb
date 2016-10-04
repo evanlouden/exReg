@@ -18,11 +18,7 @@ feature "admin views student inquiry" do
   let!(:instrument2) { FactoryGirl.create(:instrument, name: "Piano") }
 
   scenario "views student inquiry" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
     within(:css, "#admin-inquiries") do
       click_link student1.full_name
     end

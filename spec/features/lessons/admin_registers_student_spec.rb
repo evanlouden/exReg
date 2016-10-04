@@ -28,11 +28,7 @@ feature "admin registers student for lessons", js: true do
   let!(:count1) { FactoryGirl.create(:excused_absence) }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
     click_link student1.full_name
     click_link "Register Student"
   end

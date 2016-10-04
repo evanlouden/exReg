@@ -48,11 +48,7 @@ feature "admin takes teacher's attendance", js: true do
   }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
   end
   scenario "marks student present" do
     within(:css, "#admin-attendance") do

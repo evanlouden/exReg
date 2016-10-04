@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'support/factories'
+require_relative 'helpers'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -16,4 +17,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include FactoryGirl::Syntax::Methods
   config.include SliderHelpers, type: :feature
+  config.include Helpers
 end

@@ -15,11 +15,7 @@ feature "admin changes teacher's admin status" do
   let!(:contact2) { FactoryGirl.create(:contact, teacher: teacher1) }
 
   before(:each) do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: admin1.email
-    fill_in "Password", with: admin1.password
-    click_button "Sign In"
+    sign_in_as(admin1)
   end
   scenario "designates admin" do
     click_link "All Staff"

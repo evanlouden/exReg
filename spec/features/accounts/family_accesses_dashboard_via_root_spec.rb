@@ -9,11 +9,7 @@ feature "family accesses dashboard via root path" do
   let!(:instrument2) { FactoryGirl.create(:instrument, name: "Piano") }
 
   scenario "successfully accesses dashboard" do
-    visit unauthenticated_root_path
-    click_link "Sign In"
-    fill_in "Email", with: family1.email
-    fill_in "Password", with: family1.password
-    click_button "Sign In"
+    sign_in_as(family1)
     click_link "New Student"
     visit family_root_path
 
