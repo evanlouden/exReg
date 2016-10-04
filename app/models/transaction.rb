@@ -10,5 +10,5 @@ class Transaction < ApplicationRecord
   validates :type,
             presence: true
   validates :description,
-            presence: true 
+            presence: true
 end
