@@ -8,5 +8,6 @@ class DashboardController < PermissionsController
         student.lessons.map { |lesson| @lessons << lesson }
       end
     end
+    @transactions = Transaction.where(family: current_account).order(created_at: :asc)
   end
 end

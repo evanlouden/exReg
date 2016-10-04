@@ -38,3 +38,12 @@
     <% end %>
   </div>
 <% end %>
+
+<ul class="no-bullets">
+  <h5>Transaction History</h5>
+  <% @transactions.each do |transaction| %>
+  <li class="<%= transaction.type.downcase %> ">
+    <%= transaction.created_at.strftime("%-m/%-d/%Y") %> <%= transaction.description %> <%= transaction.balance_sign %><%= number_to_currency(transaction.amount) %>
+  </li>
+  <% end %>
+</ul>
