@@ -46,7 +46,7 @@ feature "admin deletes transaction", js: true do
       teacher_paid: true
     )
   }
-  let!(:transaction1) { FactoryGirl.create(:debit, amount: "500", family: family1, admin: admin1) }
+  let!(:transaction1) { FactoryGirl.create(:debit, family: family1, admin: admin1) }
 
   scenario "successfully deletes transaction" do
     sign_in_as(admin1)
@@ -61,5 +61,6 @@ feature "admin deletes transaction", js: true do
     expect(page).to have_content("Debit Removed")
     expect(page).to have_content("Current Balance: $0.00")
     expect(page).to_not have_content(transaction1.amount)
+    expect(page).to_not have_content(transaction1.description)
   end
 end

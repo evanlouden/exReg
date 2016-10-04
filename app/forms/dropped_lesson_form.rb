@@ -66,6 +66,7 @@ class DroppedLessonForm
     @transaction = Transaction.new(
       amount: transaction_amount,
       type: transaction_type,
+      description: reason,
       admin_id: admin_id,
       family_id: family_id
     )

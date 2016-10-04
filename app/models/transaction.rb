@@ -9,4 +9,6 @@ class Transaction < ApplicationRecord
             numericality: { greater_than: 0 }
   validates :type,
             presence: true
+  validates :description,
+            presence: true 
 end

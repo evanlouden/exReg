@@ -58,19 +58,23 @@ feature "admin adds transaction", js: true do
   scenario "successfully adds debit" do
     choose("transaction_type_debit")
     fill_in "Amount", with: "500"
+    fill_in "Description", with: "Late Fee"
     click_button "Add Transaction"
 
     expect(page).to have_content("Debit Added")
+    expect(page).to have_content("Late Fee")
     expect(page).to have_content("$500.00")
     expect(page).to have_content(Time.now.getutc.to_date.strftime("%-m/%-d/%Y"))
   end
 
   scenario "successfully adds credit" do
     choose("transaction_type_credit")
+    fill_in "Description", with: "Payment"
     fill_in "Amount", with: "500"
     click_button "Add Transaction"
 
     expect(page).to have_content("Credit Added")
+    expect(page).to have_content("Payment")
     expect(page).to have_content("-$500.00")
     expect(page).to have_content(Time.now.getutc.to_date.strftime("%-m/%-d/%Y"))
   end
@@ -78,7 +82,8 @@ feature "admin adds transaction", js: true do
   scenario "does not specify required information" do
     click_button "Add Transaction"
 
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content("Type can't be blank")
     expect(page).to_not have_content("-$500.00")
   end
 
