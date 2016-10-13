@@ -3,15 +3,15 @@
 <%= form_for @teacher_form, url: teachers_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, required: true %>
+    <%= f.email_field :email, autofocus: true %>
   </div>
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address, required: true %>
+    <%= f.text_field :address %>
   </div>
   <div class="field">
     <%= f.label :city %><br />
-    <%= f.text_field :city, required: true %>
+    <%= f.text_field :city %>
   </div>
   <div class="field">
     <%= f.label :state %><br />
@@ -19,21 +19,21 @@
   </div>
   <div class="field">
     <%= f.label :zip %><br />
-    <%= f.text_field :zip, required: true %>
+    <%= f.text_field :zip %>
   </div>
 
   <div class="accounts-contacts">
     <div class="field">
       <%= f.label :first_name, "First Name" %><br />
-      <%= f.text_field :first_name, required: true %>
+      <%= f.text_field :first_name %>
     </div>
     <div class="field">
       <%= f.label :last_name, "Last Name" %><br />
-      <%= f.text_field :last_name, required: true %>
+      <%= f.text_field :last_name %>
     </div>
     <div class="field">
       <%= f.label :phone %><br />
-      <%= f.text_field :phone, required: true %>
+      <%= f.text_field :phone %>
     </div>
   </div>
 

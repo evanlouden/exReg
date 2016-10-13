@@ -1,5 +1,4 @@
 class DroppedLessonForm
-  include Virtus.model
   include ActiveModel::Model
 
   attr_accessor \
@@ -14,24 +13,13 @@ class DroppedLessonForm
     :dropped_lesson,
     :transaction
 
-  validates :lesson_amount, presence: true
-  validates :effective_date, presence: true
-  validates :reason, presence: true
-  validates :transaction_amount, presence: true
-  validates :transaction_type, presence: true
-  validates :lesson_id, presence: true
-  validates :family_id, presence: true
-  validates :admin_id, presence: true
-
   def initialize(id = {})
     super(id)
   end
 
   def register
-    if valid?
-      create_dropped_lesson
-      create_transaction
-    end
+    create_dropped_lesson
+    create_transaction
   end
 
   def persist
@@ -41,14 +29,9 @@ class DroppedLessonForm
   end
 
   def print_errors
-    errors = ""
-    if dropped_lesson
-      errors += transaction.errors.full_messages.join(", ")
-      errors += ", "
-      errors += dropped_lesson.errors.full_messages.join(", ")
-    else
-      errors += self.errors.full_messages.join(", ")
-    end
+    errors = dropped_lesson.errors.full_messages + transaction.errors.full_messages
+    errors.delete_if { |e| e.include? "invalid" }
+    errors.join(", ")
   end
 
   private

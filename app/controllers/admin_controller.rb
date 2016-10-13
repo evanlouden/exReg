@@ -20,7 +20,7 @@ class AdminController < PermissionsController
     flash[:notice] = "Account created"
     AccountMailer.welcome_email(@admin_form.admin, @admin_form.admin.password).deliver
     redirect_to admin_index_path
-  rescue => e
+  rescue StandardError
     flash[:error] = @admin_form.print_errors
     render :new
   end
