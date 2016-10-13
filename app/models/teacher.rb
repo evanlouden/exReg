@@ -52,18 +52,7 @@ class Teacher < Account
 
   private
 
-  def destroy_availabilities
-    availabilities.destroy_all
-  end
-
   def destroy_lessons
     lessons.destroy_all
-  end
-
-  def no_availability?
-    availabilities.each do |a|
-      return false if a.checked == "1"
-    end
-    errors.add(:availability, "Please select at least one day of availability")
   end
 end

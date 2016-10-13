@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   include ApplicationHelper
+  include AvailsHelper
   include PgSearch
   belongs_to :family
   has_many :inquiries
@@ -32,18 +33,7 @@ class Student < ApplicationRecord
 
   private
 
-  def destroy_availabilities
-    availabilities.destroy_all
-  end
-
   def destroy_inquiries
     inquiries.destroy_all
-  end
-
-  def no_availability?
-    availabilities.each do |a|
-      return false if a.checked == "1"
-    end
-    errors.add(:availability, "Please select at least one day of availability")
   end
 end

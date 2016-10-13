@@ -163,21 +163,21 @@
         1,
         1,
         null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        64,
-        106,
-        null,
-        3,
-        null,
         null
       ],
       "/Users/evanlouden/side_projects/exReg/lib/avails_helper.rb": [
         1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        118,
+        174,
+        null,
+        6,
+        null,
+        null,
         1,
         6,
         37,
@@ -465,6 +465,7 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         null,
@@ -490,17 +491,6 @@
         null,
         1,
         0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        54,
-        68,
-        null,
-        3,
         null,
         null
       ],
@@ -2022,6 +2012,6 @@
         0
       ]
     },
-    "timestamp": 1476385704
+    "timestamp": 1476391249
   }
 }
