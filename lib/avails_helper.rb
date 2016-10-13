@@ -1,4 +1,15 @@
 module AvailsHelper
+  def destroy_availabilities
+    availabilities.destroy_all
+  end
+
+  def no_availability?
+    availabilities.each do |a|
+      return false if a.checked == "1"
+    end
+    errors.add(:availability, "Please select at least one day of availability")
+  end
+
   def clear_times(availabilities)
     availabilities.each do |a|
       next unless a.checked == "0"
