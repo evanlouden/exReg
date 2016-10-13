@@ -13,7 +13,6 @@ gem 'foundation-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
 gem 'font-awesome-sass'
-gem 'virtus'
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
 
 group :development, :test do

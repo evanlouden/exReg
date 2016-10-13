@@ -24,7 +24,7 @@ class StudentsController < PermissionsController
     @student_form.student.save
     flash[:notice] = "Student Created, Inquiry Submitted"
     redirect_to dashboard_index_path
-  rescue => e
+  rescue StandardError
     flash[:error] = @student_form.print_errors
     render :new
   end
@@ -56,7 +56,7 @@ class StudentsController < PermissionsController
     clear_times(@student.availabilities)
     flash[:notice] = "Availability Updated"
     redirect_to dashboard_index_path
-  rescue => e
+  rescue StandardError
     flash[:error] = @student_form.print_errors
     render :edit
   end

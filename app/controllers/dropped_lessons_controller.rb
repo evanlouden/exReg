@@ -8,7 +8,7 @@ class DroppedLessonsController < PermissionsController
     @dropped_lesson_form.persist
     flash[:notice] = "Lesson(s) Dropped"
     redirect_to student_path(@student)
-  rescue => e
+  rescue StandardError
     flash[:error] = @dropped_lesson_form.print_errors
     render "students/show"
   end

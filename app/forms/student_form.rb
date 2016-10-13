@@ -1,5 +1,4 @@
 class StudentForm
-  include Virtus.model
   include ActiveModel::Model
 
   attr_accessor \
@@ -40,10 +39,6 @@ class StudentForm
     :inquiries,
     :availabilities
 
-	validates :first_name, presence: true
-	validates :last_name, presence: true
-	validates :dob, presence: true
-
   def initialize(id = {})
     if !id["id"].nil?
       @student = Student.find(id["id"])
@@ -55,11 +50,9 @@ class StudentForm
   end
 
   def register
-    if valid?
-      create_student
-      create_inquiry
-      create_availabilities
-    end
+    create_student
+    create_inquiry
+    create_availabilities
   end
 
   def persist
@@ -81,14 +74,9 @@ class StudentForm
   end
 
   def print_errors
-    errors = ""
-    if student
-      errors += inquiries.last.errors.full_messages.join(", ")
-      errors += ", "
-      errors += student.errors.full_messages.join(", ")
-    else
-      errors += self.errors.full_messages.join(", ")
-    end
+    errors = student.errors.full_messages + inquiries.last.errors.full_messages
+    errors.delete_if { |e| e.include? "invalid" }
+    errors.join(", ")
   end
 
   private
@@ -108,7 +96,7 @@ class StudentForm
       notes: notes
     )
     @inquiries << @inquiry
-	end
+  end
 
   def create_availabilities
     @availabilities = []

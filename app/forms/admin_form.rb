@@ -1,5 +1,4 @@
 class AdminForm
-  include Virtus.model
   include ActiveModel::Model
 
   attr_accessor \
@@ -14,15 +13,6 @@ class AdminForm
     :admin,
     :contact
 
-	validates :email, presence: true
-	validates :address, presence: true
-  validates :city, presence: true
-	validates :state, presence: true
-	validates :zip, presence: true
-	validates :first_name, presence: true
-	validates :last_name, presence: true
-	validates :phone, presence: true
-
   def initialize(id = {})
     if !id["id"].nil?
       @admin = Admin.find(id["id"])
@@ -33,10 +23,8 @@ class AdminForm
   end
 
   def register
-    if valid?
-      create_admin
-      create_contact
-    end
+    create_admin
+    create_contact
   end
 
   def persist
@@ -45,14 +33,9 @@ class AdminForm
   end
 
   def print_errors
-    errors = ""
-    if admin
-      errors += contact.errors.full_messages.join(", ")
-      errors += ", "
-      errors += admin.errors.full_messages.join(", ")
-    else
-      errors += self.errors.full_messages.join(", ")
-    end
+    errors = admin.errors.full_messages + contact.errors.full_messages
+    errors.delete_if { |e| e.include? "invalid" }
+    errors.join(", ")
   end
 
   private

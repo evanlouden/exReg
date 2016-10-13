@@ -32,7 +32,7 @@ class TeachersController < PermissionsController
     AccountMailer.welcome_email(@teacher_form.teacher, @teacher_form.teacher.password).deliver
     flash[:notice] = "Account created"
     redirect_to admin_index_path
-  rescue => e
+  rescue StandardError
     flash[:error] = @teacher_form.print_errors
     render :new
   end
@@ -61,7 +61,7 @@ class TeachersController < PermissionsController
     else
       redirect_to teachers_path
     end
-  rescue => e
+  rescue StandardError
     flash[:error] = @teacher_form.print_errors
     render :edit
   end

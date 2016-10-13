@@ -1,5 +1,4 @@
 class TeacherForm
-  include Virtus.model
   include ActiveModel::Model
 
   attr_accessor \
@@ -43,15 +42,6 @@ class TeacherForm
     :contact,
     :availabilities
 
-  validates :email, presence: true
-  validates :address, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zip, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :phone, presence: true
-
   def initialize(id = {})
     if !id["id"].nil?
       @teacher = Teacher.find(id["id"])
@@ -63,11 +53,9 @@ class TeacherForm
   end
 
   def register
-    if valid?
-      create_teacher
-      create_contact
-      create_availabilities
-    end
+    create_teacher
+    create_contact
+    create_availabilities
   end
 
   def persist
@@ -89,14 +77,9 @@ class TeacherForm
   end
 
   def print_errors
-    errors = ""
-    if teacher
-      errors += contact.errors.full_messages.join(", ")
-      errors += ", "
-      errors += teacher.errors.full_messages.join(", ")
-    else
-      errors += self.errors.full_messages.join(", ")
-    end
+    errors = teacher.errors.full_messages + contact.errors.full_messages
+    errors.delete_if { |e| e.include? "invalid" }
+    errors.join(", ")
   end
 
   private
