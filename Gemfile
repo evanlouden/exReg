@@ -13,7 +13,6 @@ gem 'foundation-rails'
 gem 'momentjs-rails'
 gem 'pg_search'
 gem 'font-awesome-sass'
-gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -25,7 +24,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry-rails'
   gem 'factory_girl_rails', "~> 4.0"
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', "2.53.4"
 end
 
 group :development do

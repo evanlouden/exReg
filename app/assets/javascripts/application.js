@@ -15,7 +15,6 @@
 //= require jquery-ui
 //= require foundation
 //= require moment
-//= require rails.validations
 
 $(function(){ $(document).foundation();
   setTimeout(function(){
